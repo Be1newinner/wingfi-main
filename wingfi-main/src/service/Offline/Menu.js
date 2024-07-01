@@ -1,7 +1,7 @@
 import { IoHomeOutline } from "react-icons/io5";
 import { AiOutlineShop } from "react-icons/ai";
 import { MdOutlineAccountCircle } from "react-icons/md";
-import { LuHeart } from "react-icons/lu";
+// import { LuHeart } from "react-icons/lu";
 import { BsInfoCircle } from "react-icons/bs";
 
 const Menu = [

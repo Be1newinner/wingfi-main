@@ -1,6 +1,5 @@
 import { Footer, NavBar, AccountSidebar } from "@/registry/components";
 import { ProtectedRoute } from "@/registry/context";
-import { AuthProvider } from "@/service/Authentication/AuthContext";
 import Link from "next/link";
 import { FaUserTie } from "react-icons/fa6";
 
@@ -12,48 +11,46 @@ export default function AccountStructure({
   topButtonLink = "",
 }) {
   return (
-    <AuthProvider>
-      <ProtectedRoute>
-        <div
+    <ProtectedRoute>
+      <div
+        style={{
+          backgroundColor: "#f6f9fc",
+        }}
+      >
+        <NavBar />
+        <main
+          className="p-2 mt-8 flex flex-col pb-20"
           style={{
-            backgroundColor: "#f6f9fc",
+            maxWidth: 1200,
+            marginLeft: "auto",
+            marginRight: "auto",
           }}
         >
-          <NavBar />
-          <main
-            className="p-2 mt-8 flex flex-col pb-20"
-            style={{
-              maxWidth: 1200,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
-            <div className="flex mt-4 gap-6">
-              <AccountSidebar state={state} />
-              <div className="w-full rounded-sm flex flex-col gap-6">
-                <div className="flex justify-between items-end">
-                  <span className="text-2xl font-semibold flex gap-2 items-start">
-                    <FaUserTie size={26} className="text-error" />
-                    {pageName}
-                  </span>
+          <div className="flex mt-4 gap-6">
+            <AccountSidebar state={state} />
+            <div className="w-full rounded-sm flex flex-col gap-6">
+              <div className="flex justify-between items-end">
+                <span className="text-2xl font-semibold flex gap-2 items-start">
+                  <FaUserTie size={26} className="text-error" />
+                  {pageName}
+                </span>
 
-                  {topButtonName && (
-                    <Link
-                      href={topButtonLink}
-                      className="btn btn-error bg-red-200 border-none text-red-500 hover:text-white rounded-sm btn-wide"
-                    >
-                      {topButtonName}
-                    </Link>
-                  )}
-                </div>
-
-                {children}
+                {topButtonName && (
+                  <Link
+                    href={topButtonLink}
+                    className="btn btn-error bg-red-200 border-none text-red-500 hover:text-white rounded-sm btn-wide"
+                  >
+                    {topButtonName}
+                  </Link>
+                )}
               </div>
+
+              {children}
             </div>
-          </main>
-          <Footer />
-        </div>
-      </ProtectedRoute>
-    </AuthProvider>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    </ProtectedRoute>
   );
 }
