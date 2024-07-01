@@ -1,0 +1,8 @@
+.ordersTable span {
+  font-size: 12px;
+  text-wrap: nowrap;
+}
+
+.ordersTable thead th {
+  padding: 10px;
+}
