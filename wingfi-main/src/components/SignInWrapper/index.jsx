@@ -33,12 +33,15 @@ export default function SignInWrapper({ children }) {
 
               <div>
                 <div className="mt-2 text-xl">Introducing</div>
-                <div className="mb-2 mt-1 text-2xl font-medium">High Quality Power Banks</div>
+                <div className="mb-2 mt-1 text-2xl font-medium">
+                  High Quality Power Banks
+                </div>
               </div>
 
               <div className="p1 mv2 text-xs">
-                Never get your phone out of charge again.
-                Get Fast Charging, Premium Quality Power Banks at very Offordable Price. Only with WIngfi India Power Banks.
+                Never get your phone out of charge again. Get Fast Charging,
+                Premium Quality Power Banks at very Offordable Price. Only with
+                WIngfi India Power Banks.
               </div>
             </div>
           </div>

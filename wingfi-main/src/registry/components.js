@@ -17,7 +17,7 @@ import PriceContainer from "@/components/PriceContainer/PriceContainer";
 import AccountSidebar from "@/components/AccountSidebar";
 import AccountStructure from "@/components/AccountStructure";
 import LoadingIndicator from "@/components/LoadingIndicator";
-import SignInWrapper from "@/components/SignInWrapper/SignInWrapper";
+import SignInWrapper from "@/components/SignInWrapper";
 
 export {
   NavBar,
@@ -39,5 +39,5 @@ export {
   AccountSidebar,
   AccountStructure,
   LoadingIndicator,
-  SignInWrapper
+  SignInWrapper,
 };
