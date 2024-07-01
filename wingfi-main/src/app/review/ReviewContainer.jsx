@@ -1,8 +1,8 @@
 "use client";
 
-import { ProductCartContext } from "@/registry/context";
+// import { ProductCartContext } from "@/registry/context";
 import { CheckoutSteps } from "@/registry/components";
-import { useContext } from "react";
+// import { useContext } from "react";
 import { CiGift } from "react-icons/ci";
 import { OtherDetailsService } from "@/service/OtherDetails/OtherDetailsService";
 
@@ -30,9 +30,10 @@ export default function ReviewContainer({ status = true }) {
     },
   ];
 
-  const { ProductCart, ProductGrossAmt } = useContext(ProductCartContext);
+  // const { ProductCart, ProductGrossAmt } = useContext(ProductCartContext);
   const discount = 0;
-
+  const ProductCart = {};
+  const ProductGrossAmt = 0;
   return (
     <div className="px-4 pb-8 flex flex-col gap-2 basis-1/2 flex-1">
       <CheckoutSteps step={4} />
