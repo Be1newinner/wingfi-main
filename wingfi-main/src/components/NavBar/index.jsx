@@ -54,7 +54,7 @@ export default function NavBar() {
                       <Link href={item.path}>{item.title}</Link>
                     ) : (
                       <>
-                        <SignOut />
+                        <SignOut styleType={1} />
                       </>
                     )}
                     <ul>
