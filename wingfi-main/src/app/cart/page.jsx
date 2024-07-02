@@ -14,8 +14,8 @@ export default function Cart() {
         }}
         className="my-8"
       >
-        <h2 className="text-2xl font-semibold">Shopping Cart</h2>
-        <div className="text-sm breadcrumbs pb-0">
+        <h2 className="text-2xl font-semibold ml-2 sm:ml-0">Shopping Cart</h2>
+        <div className="text-sm breadcrumbs pb-0 ml-2 sm:ml-0">
           <ul>
             <li>
               <Link href="/">Home</Link>

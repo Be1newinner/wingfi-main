@@ -10,12 +10,7 @@ export default function PriceContainer({
   const discount = CartSelector.discount || 0;
 
   return CartSelector.subtotal != 0 ? (
-    <div
-      className="ml-4 p-4 pb-8 bg-white rounded-sm shadow border basis-1/4 h-min "
-      style={{
-        minWidth: 320,
-      }}
-    >
+    <div className="mx-4 sm:mr-0 p-4 pb-8 bg-white rounded-sm shadow border basis-1/4 h-min min-w-[290px]">
       <p className="text-md font-bold pb-4">Order Summary</p>
       <p className="flex justify-between">
         <span className="text-gray-500 text-sm">Subtotal</span>

@@ -5,7 +5,7 @@ import { IoMdMailUnread } from "react-icons/io";
 export default function Newsletter() {
   return (
     <div
-      className="bg-gray-200 rounded-sm px-4 my-24 flex justify-center items-center gap-0 lg:gap-16 shadow-md"
+      className="bg-gray-200 rounded-sm px-4 my-8 sm:my-24 flex justify-center items-center gap-0 lg:gap-16 shadow-md"
       style={{
         maxWidth: 1200,
         marginLeft: "auto",

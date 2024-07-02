@@ -56,8 +56,8 @@ export default function SignInForm() {
 
   useEffect(() => {
     console.log("User => ", User);
-    if (User) redirect("/");
-  }, [User]);
+    if (User?.uid) redirect("/");
+  }, [User?.uid]);
 
   return (
     <>
@@ -65,7 +65,7 @@ export default function SignInForm() {
       {AuthErrors ? (
         <span className="font-medium text-error">{AuthErrors}</span>
       ) : null}
-      <label className="form-control w-96 mt-2">
+      <label className="form-control w-full sm:w-96 mt-2">
         <input
           type="text"
           placeholder="email ID"

@@ -19,7 +19,7 @@ export default function Store() {
               marginLeft: "auto",
               marginRight: "auto",
             }}
-            className="py-8"
+            className="py-0 sm:py-8"
           >
             <div className="text-sm breadcrumbs p-4">
               <ul>
@@ -30,7 +30,7 @@ export default function Store() {
               </ul>
             </div>
 
-            <p className="text-3xl pb-4 ps-3 font-semibold">
+            <p className="text-xl sm:text-3xl pb-4 ps-3 font-semibold">
               Explore All Products
             </p>
           </div>
@@ -45,7 +45,7 @@ export default function Store() {
           }}
         >
           {/* Filter and Sorting */}
-          <div className="flex px-4 gap-2 items-center justify-end">
+          {/* <div className="flex px-4 gap-2 items-center justify-end">
             <select
               className="select select-bordered max-w-sm"
               defaultValue={0}
@@ -55,7 +55,7 @@ export default function Store() {
               <option value={2}>Sort by Name</option>
               <option value={3}>Sort by Price</option>
             </select>
-          </div>
+          </div> */}
 
           <div className="m-3 flex flex-wrap">
             <ShopProductsWrapper />

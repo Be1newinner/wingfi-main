@@ -13,9 +13,9 @@ export default function PricingContainer() {
     <div className="flex flex-wrap">
       <CartContainer />
       {CartLength > 0 ? (
-        <div className="basis-1/4 flex flex-col gap-4 pt-16">
+        <div className="basis-1/4 flex flex-col gap-4 pt-0 sm:pt-16">
           <PriceContainer />
-          <ApplyVoucher />
+          {/* <ApplyVoucher /> */}
         </div>
       ) : null}
     </div>

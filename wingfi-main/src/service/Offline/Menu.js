@@ -1,7 +1,6 @@
 import { IoHomeOutline } from "react-icons/io5";
 import { AiOutlineShop } from "react-icons/ai";
 import { MdOutlineAccountCircle } from "react-icons/md";
-// import { LuHeart } from "react-icons/lu";
 import { BsInfoCircle } from "react-icons/bs";
 
 const Menu = [
@@ -26,32 +25,37 @@ const Menu = [
     sub: [
       {
         path: "/account",
-        title: "Account Info",
+        title: "Accounts Info",
         id: 0,
       },
       {
-        path: "/account/orders-info",
+        path: "/orders-info",
         title: "Orders Info",
         id: 1,
       },
       {
-        path: "/account/notifications",
-        title: "Notifications",
+        path: "/wishlist",
+        title: "Wishlist",
         id: 2,
+      },
+      {
+        path: "/saved-addresses",
+        title: "Saved Addresses",
+        id: 3,
       },
     ],
   },
-  // {
-  //   path: "/wishlist",
-  //   title: "Wish List",
-  //   id: 7,
-  //   icon: <LuHeart size={20} />,
-  // },
   {
     path: "/contact",
     title: "About Us",
     id: 3,
     icon: <BsInfoCircle size={20} />,
+  },
+  {
+    title: "Sign Out",
+    id: 8,
+    icon: <BsInfoCircle size={20} />,
+    phoneOnly: 1,
   },
 ];
 export default Menu;

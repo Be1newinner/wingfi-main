@@ -1,6 +1,7 @@
 import MenuItems from "@/service/Offline/Menu";
 import Link from "next/link";
 import CartIcons from "./CartIcons";
+import SignOut from "../AccountSidebar/SignOut";
 
 export default function NavBar() {
   return (
@@ -41,13 +42,21 @@ export default function NavBar() {
                   />
                 </svg>
               </div>
+
+              {/* Phone Menu Navbar */}
               <ul
                 tabIndex={0}
                 className="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
-                {MenuItems?.map((item) => (
+                {MenuItems?.filter((e) => e.phoneOnly !== 2)?.map((item) => (
                   <li key={item.id}>
-                    <Link href={item.path}>{item.title}</Link>
+                    {item.path ? (
+                      <Link href={item.path}>{item.title}</Link>
+                    ) : (
+                      <>
+                        <SignOut />
+                      </>
+                    )}
                     <ul>
                       {item?.sub?.map((item) => (
                         <li key={item.id}>
@@ -68,7 +77,7 @@ export default function NavBar() {
           </Link>
           <div className="navbar-center hidden lg:flex flex-1 justify-center">
             <ul className="menu menu-horizontal px-1">
-              {MenuItems?.map((item) => (
+              {MenuItems?.filter((e) => e.phoneOnly !== 1)?.map((item) => (
                 <li key={item.id}>
                   <Link href={item.path} className="font-bold">
                     {item?.icon}

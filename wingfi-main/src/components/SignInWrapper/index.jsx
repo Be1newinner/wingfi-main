@@ -15,7 +15,7 @@ export default function SignInWrapper({ children }) {
             maxWidth: 1200,
           }}
         >
-          <div className="w-full flex flex-col items-center justify-center">
+          <div className="w-full hidden sm:flex flex-col items-center justify-center">
             <div
               className="w-full flex flex-col"
               style={{

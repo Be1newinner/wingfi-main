@@ -1,8 +1,6 @@
 "use client";
 
-// import { ProductCartContext } from "@/registry/context";
 import { CheckoutSteps } from "@/registry/components";
-// import { useContext } from "react";
 import { CiGift } from "react-icons/ci";
 import { OtherDetailsService } from "@/service/OtherDetails/OtherDetailsService";
 
@@ -30,19 +28,18 @@ export default function ReviewContainer({ status = true }) {
     },
   ];
 
-  // const { ProductCart, ProductGrossAmt } = useContext(ProductCartContext);
   const discount = 0;
   const ProductCart = {};
   const ProductGrossAmt = 0;
   return (
-    <div className="px-4 pb-8 flex flex-col gap-2 basis-1/2 flex-1">
+    <div className="px-4 pb-0 sm:pb-8 flex flex-col gap-2 basis-1/2 flex-1">
       <CheckoutSteps step={4} />
-      <div className="bg-white border shadow rounded-sm flex">
+      <div className="bg-white border shadow rounded-sm flex flex-col sm:flex-row">
         <div
           style={{
             maxWidth: 500,
           }}
-          className="flex-1 bg-error p-16 text-white flex flex-col items-center justify-center gap-4"
+          className="flex-1 bg-error p-4 sm:p-16 text-white flex flex-col items-center justify-center gap-4"
         >
           <div
             className="border"
@@ -61,7 +58,6 @@ export default function ReviewContainer({ status = true }) {
           </div>
           <div>
             <p className="text-center">
-              {" "}
               Your Order is {status ? "Confirmed!" : "Failed!"}
             </p>
             <p className="text-center"> Thank you, for shopping with us.</p>
@@ -69,7 +65,11 @@ export default function ReviewContainer({ status = true }) {
           <div className="flex flex-wrap gap-y-4 mt-8">
             {confirmBox?.map((item) => (
               <div key={item.key} className="basis-1/2">
-                <p className={item.key % 2 === 1 ? "text-right" : ""}>
+                <p
+                  className={
+                    item.key % 2 === 1 ? "text-right text-sm" : "text-sm"
+                  }
+                >
                   {item.title}:
                 </p>
                 <p className={item.key % 2 === 1 ? "text-right" : ""}>

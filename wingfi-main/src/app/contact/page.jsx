@@ -1,4 +1,7 @@
+/** @format */
+
 import { Footer, NavBar } from "@/registry/components";
+import Faq from "./Faq";
 import Link from "next/link";
 
 export default function Contact() {
@@ -6,7 +9,7 @@ export default function Contact() {
     <div>
       <NavBar />
 
-      <main className="bg-slate-200 pb-4">
+      <main className="pb-4">
         <div
           style={{
             maxWidth: 1200,
@@ -29,94 +32,61 @@ export default function Contact() {
 
           {/* Contact Us Page */}
 
-          <div className="bg-white w-11/12 mx-auto p-4 shadow rounded rounded-md flex flex-col">
-            <h1 className="text-md font-semibold">Send a Message</h1>
-
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">What is your name?</span>
-              </div>
-              <input
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                name="name"
-              />
-              <div className="label">
-                <span className="label-text-alt text-error">
-                  Bottom Left label
-                </span>
-              </div>
-            </label>
-
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">What is your Contact Number?</span>
-              </div>
-              <input
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                name="phone"
-              />
-              <div className="label">
-                <span className="label-text-alt text-error">
-                  Bottom Left label
-                </span>
-              </div>
-            </label>
-
-            <label className="form-control w-full">
-              <div className="label">
-                <span className="label-text">What is your email ID?</span>
-              </div>
-              <input
-                type="text"
-                placeholder="Type here"
-                className="input input-bordered w-full"
-                name="email"
-              />
-              <div className="label">
-                <span className="label-text-alt text-error">
-                  Bottom Left label
-                </span>
-              </div>
-            </label>
-
-            <label className="form-control">
-              <div className="label">
-                <span className="label-text">Your Message</span>
-              </div>
-              <textarea
-                className="textarea textarea-bordered h-36"
-                placeholder="Type Your Message here!"
-                name="message"
-              />
-              <div className="label">
-                <span className="label-text-alt text-error">
-                  Type Your Message here!
-                </span>
-              </div>
-            </label>
-
-            <button className="btn max-w-44">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          <div className="flex items-center justify-center gap-4 flex-col sm:flex-row">
+            <div className="min-h-[700px] bg-white p-6 rounded-md max-w-xl">
+              <h3 className="text-orange-500 font-medium">How It Started</h3>
+              <h1 className="text-6xl font-medium mt-12">
+                Our Dream is Global Learning Transfomation
+              </h1>
+              <p className="mt-20 text-lg">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
+                provident exercitationem voluptatibus. Ipsa soluta tempora
+                voluptas ipsum temporibus perferendis veniam sequi id
+                reprehenderit sed blanditiis hic vero, laboriosam quo a quae
+                excepturi quod similique, corrupti error nemo dicta illo
+                accusamus! Et nihil natus quod voluptas ut quia ea maxime, eaque
+                deleniti officia quas inventore doloremque fugit, odio ab ipsum?
+                A quaerat expedita voluptates, odio inventore blanditiis eius
+                maiores aspernatur perspiciatis?
+              </p>
+            </div>
+            <div className="">
+              <div className="h-[350px]  w-full">
+                <img
+                  src="./images/1.jpg"
+                  alt="img"
+                  className="h-full w-full rounded-t-md"
                 />
-              </svg>
-              Submit Query
-            </button>
+              </div>
+              <div className="flex flex-col justify-center item-center gap-5  w-1/1 h-[350px] bg-white p-6 rounded-b-md">
+                <div className="flex flex-row gap-4 item-center justify-center">
+                  <div className="bg-gray-100 p-4 rounded-lg">
+                    <h1 className="text-3xl font-bold">3.5</h1>
+                    <p>Years Experiences</p>
+                  </div>
+
+                  <div className="bg-gray-100 p-4 rounded-lg">
+                    <h1 className="text-3xl font-bold">23</h1>
+                    <p>Project Challenge</p>
+                  </div>
+                </div>
+
+                <div className="flex flex-row gap-4 item-center justify-center">
+                  <div className="bg-gray-100 p-4 px-[20px] rounded-lg">
+                    <h1 className="text-3xl font-bold">830+</h1>
+                    <p>Positive Reviews</p>
+                  </div>
+
+                  <div className="bg-gray-100 p-4 px-[20px] rounded-lg">
+                    <h1 className="text-3xl font-bold">100K</h1>
+                    <p>Trusted Students</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <Faq />
         </div>
       </main>
       <Footer />

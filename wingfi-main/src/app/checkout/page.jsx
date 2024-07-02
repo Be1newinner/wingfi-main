@@ -16,8 +16,8 @@ export default function Checkout() {
             marginRight: "auto",
           }}
         >
-          <h2 className="text-2xl font-semibold mt-8">Checkout</h2>
-          <div className="text-sm breadcrumbs pb-0">
+          <h2 className="text-2xl font-semibold mt-8 ml-2 sm:ml-0">Checkout</h2>
+          <div className="text-sm breadcrumbs pb-0 ml-2 sm:ml-0">
             <ul>
               <li>
                 <Link href="/">Home</Link>

@@ -80,59 +80,40 @@ export default function OrdersInfo({ params }) {
       topButtonName="All Orders"
       topButtonLink="/orders-info"
     >
-      <div className="flex gap-4">
-        <div className="bg-white shadow rounded py-3 px-6 mt-4 flex-1">
+      <div className="flex gap-1 sm:gap-4 flex-col-reverse sm:flex-row">
+        <div className="bg-white shadow rounded p-3 sm:px-6 mt-4 flex-1">
           <h5 className="mb-2 text-sm font-semibold">Order Status</h5>
 
           <div className="flex justify-center flex-1">
             <ul className="steps  flex-1">
-              <li
-                className={[
-                  "step",
-                  OrderData.status == 0
-                    ? "step-error text-error font-semibold"
-                    : "step-neautral",
-                ].join(" ")}
-              >
-                Accepted
-              </li>
-              <li
-                className={[
-                  "step",
-                  OrderData.status == 1
-                    ? "step-error text-error font-semibold"
-                    : "step-neautral",
-                ].join(" ")}
-              >
-                Shipped
-              </li>
-              <li
-                data-content="✓"
-                className={[
-                  "step",
-                  OrderData.status == 2
-                    ? "step-error text-error font-semibold"
-                    : "step-neautral",
-                ].join(" ")}
-              >
-                Delivered
-              </li>
+              {["Accepted", "Shipped", "Delivered"].map((item, index) => (
+                <li
+                  className={[
+                    "step",
+                    OrderData.status == index
+                      ? "step-error text-error font-semibold"
+                      : "step-neautral",
+                  ].join(" ")}
+                >
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
         </div>
-        <div className="bg-white shadow rounded py-3 px-6 mt-4 flex flex-col justify-center">
-          <p className="text-sm flex justify-between gap-8">
-            <span className="text-gray-500">Order ID: </span>
-            <span className="text-right">{params.slug}</span>
+        <div className="bg-white shadow rounded p-3 sm:px-6 mt-4 flex flex-col justify-center">
+          <p className="text-sm flex justify-between gap-4 sm:gap-8">
+            <span className="text-gray-500 font-medium">Order ID: </span>
+            <span className="text-right text-[13px]">{params.slug}</span>
           </p>
-          <p className="text-sm flex justify-between gap-8">
-            <span className="text-gray-500">Placed On: </span>
-            <span className="text-right">{OrderData?.date}</span>
+          <p className="text-sm flex justify-between gap-4 sm:gap-8">
+            <span className="text-gray-500 font-medium">Placed On: </span>
+            <span className="text-right text-[13px]">{OrderData?.date}</span>
           </p>
         </div>
       </div>
 
-      <div className="bg-white shadow rounded py-3 px-6 mt-4">
+      <div className="bg-white shadow rounded p-3 sm:px-6 mt-4">
         <h5 className="mb-2 text-sm font-semibold">Order Items</h5>
 
         {OrderData?.items?.map((item) => (
@@ -172,7 +153,7 @@ export default function OrdersInfo({ params }) {
         ))}
       </div>
 
-      <div className="flex flex-col gap-2 bg-white shadow rounded p-6 mt-4">
+      <div className="flex flex-col gap-2 bg-white shadow rounded p-3 sm:px-6 mt-4">
         <h5 className="mb-1 text-sm font-semibold">Shipping Details</h5>
         <p className="text-sm">
           <span className="text-slate-500">Name : </span>
@@ -190,7 +171,7 @@ export default function OrdersInfo({ params }) {
         </p>
       </div>
 
-      <div className="bg-white shadow rounded py-3 px-6 mt-4">
+      <div className="bg-white shadow rounded p-3 sm:px-6 mt-4">
         <h5 className="mb-1 text-sm font-semibold">Total Summary</h5>
         <div className="flex justify-between">
           <span

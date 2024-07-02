@@ -6,10 +6,9 @@ import Link from "next/link";
 import SignOut from "./SignOut";
 
 export default function AccountSidebar({ state = 0 }) {
-
   return (
     <div
-      className="flex flex-col bg-white py-8 border shadow rounded-sm"
+      className="hidden sm:flex flex-col bg-white py-8 border shadow rounded-sm"
       style={{
         minWidth: 200,
         height: "min-content",
@@ -71,7 +70,7 @@ export default function AccountSidebar({ state = 0 }) {
         </li>
       </ul>
 
-     <SignOut />
+      <SignOut />
     </div>
   );
 }

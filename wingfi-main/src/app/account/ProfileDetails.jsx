@@ -6,7 +6,7 @@ import { useState } from "react";
 import { getPhoneNumber, changePhoneNumber } from "./ProfileDetailsController";
 
 export default function ProfileDetails() {
-  const { User } = useContext(AuthContext);
+  const User = useContext(AuthContext)?.state?.user;
 
   const [CanEdit, setCanEdit] = useState(false);
   const [inputName, setInputName] = useState("");
@@ -19,16 +19,25 @@ export default function ProfileDetails() {
     other: "",
   });
 
+  const resetInputs = () => {
+    setErrors({
+      phone: "",
+      fullname: "",
+      other: "",
+    });
+    setCanEdit(false);
+  };
+
   useEffect(() => {
     (async function () {
-      if (User) {
+      if (User?.uid) {
         const data = await getPhoneNumber(User);
         setInputName(User?.displayName || "");
         setInputPhoneTrack(data);
         setInputPhone(data);
       }
     })();
-  }, [User]);
+  }, [User?.uid]);
 
   const saveChanges = async () => {
     if (!CanEdit) setCanEdit(true);
@@ -66,7 +75,7 @@ export default function ProfileDetails() {
   };
 
   return (
-    <div className="bg-white shadow rounded-sm border py-6 px-10 flex flex-col gap-4 w-full">
+    <div className="bg-white shadow rounded-sm border p-4 sm:py-6 sm:px-10 flex flex-col gap-4 w-full">
       <div className="flex gap-4 items-center">
         <Image
           src={User?.photoURL}
@@ -75,6 +84,7 @@ export default function ProfileDetails() {
           style={{
             borderRadius: 100,
           }}
+          className="bg-slate-500 shadow-md"
           alt=""
         />
         <div className="flex flex-col">
@@ -85,7 +95,7 @@ export default function ProfileDetails() {
         </div>
       </div>
       <div>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap flex-col sm:flex-row">
           <label className="form-control w-full basis-1/2 px-1">
             <div className="label">
               <span className="label-text font-medium">Full Name</span>
@@ -235,12 +245,22 @@ export default function ProfileDetails() {
             </div>
           </label> */}
         </div>
-        <button
-          className="btn btn-error text-white rounded-sm px-8 mt-4"
-          onClick={saveChanges}
-        >
-          {CanEdit ? "Save Changes" : "Edit Details"}
-        </button>
+        <div className="flex gap-1">
+          <button
+            className="btn btn-error text-white rounded-sm px-8 mt-4"
+            onClick={saveChanges}
+          >
+            {CanEdit ? "Save Changes" : "Edit Details"}
+          </button>
+          {CanEdit ? (
+            <button
+              className="btn btn-error btn-outline text-white rounded-sm px-8 mt-4 "
+              onClick={resetInputs}
+            >
+              Cancel
+            </button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

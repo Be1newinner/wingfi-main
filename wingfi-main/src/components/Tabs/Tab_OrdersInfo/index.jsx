@@ -11,7 +11,7 @@ import { AuthContext } from "@/registry/context";
 
 export default function Tab_OrdersInfo() {
   const [OrdersData, setOrdersData] = useState(null);
-  const { User } = useContext(AuthContext);
+  const User = useContext(AuthContext)?.state?.user;
 
   async function getOrdersData({ lim }) {
     if (User) {
@@ -48,7 +48,8 @@ export default function Tab_OrdersInfo() {
       });
       return AllPromise;
     } else {
-      console.error("User not Logged in!");
+      process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
+        console.log("USER NOT LOGIN!");
     }
   }
 
@@ -60,92 +61,95 @@ export default function Tab_OrdersInfo() {
   }, []);
 
   useEffect(() => {
-    console.log("OrdersData => ", OrdersData);
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
+      console.log("OrdersData => ", OrdersData);
   }, [OrdersData]);
 
   return (
-    <table className={styles.ordersTable}>
-      <thead>
-        <tr>
-          <th
-            className="text-left"
-            style={{
-              fontSize: 13,
-            }}
-          >
-            Order ID
-          </th>
-          <th
-            className="text-left"
-            style={{
-              fontSize: 13,
-            }}
-          >
-            Date
-          </th>
-          <th
-            className="text-left"
-            style={{
-              fontSize: 13,
-            }}
-          >
-            Status
-          </th>
-          <th
-            className="text-left"
-            style={{
-              fontSize: 13,
-            }}
-          >
-            Total
-          </th>
-          <th
-            className="text-right"
-            style={{
-              fontSize: 13,
-            }}
-          >
-            Action
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {OrdersData?.map((item) => {
-          let status = null;
-
-          if (item.status == 0) status = "Accepted";
-          if (item.status == 1) status = "Shipped";
-          if (item.status == 2) status = "Completed";
-
-          return (
-            <tr
-              key={item.orderID}
-              className="bg-white mb-2 border shadow rounded-sm"
+    <div className="max-w-screen overflow-scroll">
+      <table className={styles.ordersTable}>
+        <thead>
+          <tr>
+            <th
+              className="text-left"
+              style={{
+                fontSize: 13,
+              }}
             >
-              <td className="p-3">
-                <span className="text-md font-medium">{item.orderID}</span>
-              </td>
-              <td>
-                <span>{TimeStampToDate(item.date)}</span>
-              </td>
-              <td>
-                <span>{status}</span>
-              </td>
-              <td>
-                <span>₹ {item.total} /-</span>
-              </td>
-              <td className="flex justify-end items-center">
-                <Link
-                  className="btn btn-sm btn-circle btn-ghost m-3"
-                  href={"/orders-info/" + item.orderID}
-                >
-                  <FaArrowRight />
-                </Link>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+              Order ID
+            </th>
+            <th
+              className="text-left"
+              style={{
+                fontSize: 13,
+              }}
+            >
+              Date
+            </th>
+            <th
+              className="text-left"
+              style={{
+                fontSize: 13,
+              }}
+            >
+              Status
+            </th>
+            <th
+              className="text-left"
+              style={{
+                fontSize: 13,
+              }}
+            >
+              Total
+            </th>
+            <th
+              className="text-right"
+              style={{
+                fontSize: 13,
+              }}
+            >
+              Action
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {OrdersData?.map((item) => {
+            let status = null;
+
+            if (item.status == 0) status = "Accepted";
+            if (item.status == 1) status = "Shipped";
+            if (item.status == 2) status = "Completed";
+
+            return (
+              <tr
+                key={item.orderID}
+                className="bg-white mb-2 border shadow rounded-sm"
+              >
+                <td className="p-3">
+                  <span className="text-md font-medium">{item.orderID}</span>
+                </td>
+                <td>
+                  <span>{TimeStampToDate(item.date)}</span>
+                </td>
+                <td>
+                  <span>{status}</span>
+                </td>
+                <td>
+                  <span>₹ {item.total} /-</span>
+                </td>
+                <td className="flex justify-end items-center">
+                  <Link
+                    className="btn btn-sm btn-circle btn-ghost m-3"
+                    href={"/orders-info/" + item.orderID}
+                  >
+                    <FaArrowRight />
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }

@@ -8,21 +8,16 @@ import { deleteAddresses, getAddresses } from "./SavedAddressController";
 import AddNewAddressDialog from "./AddNewAddressDialog";
 
 export default function SavedAddresses() {
-  const { User } = useContext(AuthContext);
+  const User = useContext(AuthContext)?.state?.user || {};
   const [SavedAddress, setSavedAddress] = useState(null);
   const [defaultAddress, setDefaultAddress] = useState(null);
 
   useEffect(() => {
     (async function () {
       const data = await getAddresses(User);
-      // console.log("SavedAddress", data);
       setSavedAddress(data);
     })();
   }, [User]);
-
-  // useEffect(() => {
-  //   console.log("SavedAddress New", SavedAddress);
-  // }, [SavedAddress]);
 
   useEffect(() => {
     const def = localStorage.getItem("defaultAddress");
@@ -50,7 +45,9 @@ export default function SavedAddresses() {
 
   return (
     <>
-      <p className="text-md font-semibold pb-4">Select from Saved Addresses</p>
+      <p className="text-md font-semibold pb-0 sm:pb-4">
+        Select from Saved Addresses
+      </p>
       {SavedAddress?.map((item, index) => (
         <div
           key={item.k || index}
