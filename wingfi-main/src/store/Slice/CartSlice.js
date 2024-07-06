@@ -4,7 +4,30 @@ import { produce } from "immer";
 const delivery = 0;
 const discount = 0;
 
-const initialState = {
+const loadState = () => {
+  try {
+    const serializedState = localStorage.getItem("cartState");
+    if (serializedState === null) {
+      return undefined;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return undefined;
+  }
+};
+
+const saveState = (state) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("cartState", serializedState);
+  } catch (err) {
+    console.error("Could not save state", err);
+  }
+};
+
+const persistedState = loadState();
+
+const initialState = persistedState || {
   items: {},
   total: 0,
   subtotal: 0,
@@ -20,7 +43,7 @@ export const CartSlice = createSlice({
   reducers: {
     addInCart(state, action) {
       const data = JSON.parse(action.payload);
-      console.log("PAYLOAD ", data);
+      // console.log("PAYLOAD ", data);
       const newState = produce(state, (draftState) => {
         draftState.items[data.sku] = data;
         draftState.qty = Object.values(draftState.items)?.filter(
@@ -28,7 +51,7 @@ export const CartSlice = createSlice({
         ).length;
       });
 
-      return produce(newState, (draftState) => {
+      const updatedState = produce(newState, (draftState) => {
         const subtotal = Object.values(newState.items).reduce(
           (total, value) => {
             return total + value.qty * value.price;
@@ -43,10 +66,14 @@ export const CartSlice = createSlice({
           subtotal + Math.floor(delivery * 118) / 100 - discount
         );
       });
+
+      saveState(updatedState);
+      return updatedState;
     },
     resetCart(state) {
       try {
         Object.assign(state, initialState);
+        saveState(initialState);
       } catch (error) {
         console.error(error);
       }

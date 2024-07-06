@@ -1,34 +1,27 @@
-"use client";
-
 import { ProductViewList } from "@/registry/components";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useEffect } from "react";
 import { ProductsData } from "./../../service/Products/ProductsService";
-import { addProductsArray } from "../../store/Slice/AllProductsSlice";
-import { useRef } from "react";
+// import { addProductsArray } from "../../store/Slice/AllProductsSlice";
+// import { useRef } from "react";
 
-export default function ShopProductsWrapper() {
-  const dispatch = useDispatch();
-  const ProductsSelector = useSelector((selector) => selector.AllProducts);
+export default async function ShopProductsWrapper() {
+  // async function getProducts() {
+  //   return await
+  // }
 
-  const fetching = useRef(true);
+  const productsArray = await ProductsData({
+    lim: 15,
+    order: "s",
+    coll: "p43duc",
+  });
 
-  useEffect(() => {
-    (async function () {
-      if (ProductsSelector?.data?.length == 0 && fetching.current) {
-        const data = await ProductsData({
-          lim: 15,
-          order: "s",
-          coll: "p43duc",
-        });
-        dispatch(addProductsArray(data));
-        console.log("FETCH => ", fetching.current);
-        fetching.current = false;
-        console.log("USE EFFECT Called!", fetching.current);
-      }
-    })();
-  }, []);
-  return ProductsSelector?.data?.map((item) => (
+  // getProducts().then((e) => {
+  //   productsArray = e;
+  console.log("data => ", productsArray);
+  // });
+
+  return productsArray?.map((item) => (
     <ProductViewList
       key={item.slug}
       title={item.title}

@@ -18,6 +18,7 @@ export default function CartButton({
 
   useEffect(() => {
     const quant = CartSelector?.items[item?.sku]?.qty || 0;
+    console.log("CartSelector => ", CartSelector);
     setQuantity(quant);
   }, [CartSelector]);
 
