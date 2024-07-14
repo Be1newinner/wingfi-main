@@ -1,13 +1,26 @@
 "use client";
 
 import { CheckoutSteps } from "@/registry/components";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useContext, useEffect, useState } from "react";
+import getAllAddresses from "@/service/Address/getAllAddress";
+import { AuthContext } from "@/registry/context";
 
 export default function ShippingContainer() {
-  const AddressSelector = useSelector((selector) => selector.Address);
-  const SavedAddress = AddressSelector.addresses || [];
   const [isNewAddress, setIsNewAddress] = useState(false);
+  const [SavedAddress, setSavedAddress] = useState([]);
+  const User = useContext(AuthContext)?.state?.user || {};
+
+  useEffect(() => {
+    (async function () {
+      if (User?.uid) {
+        const { data, status } = await getAllAddresses({
+          uid: User?.uid,
+        });
+        // console.log(User?.uid, "Address from internet ", data, status);
+        if (status === 200) setSavedAddress(data || []);
+      }
+    })();
+  }, [User]);
 
   return (
     <div className="px-4 pb-8 flex flex-col gap-2 basis-1/2 flex-1">
@@ -27,7 +40,7 @@ export default function ShippingContainer() {
               defaultChecked={index == 0 ? true : false}
               onChange={() => {
                 setIsNewAddress(false);
-                console.log("RADIO => ", item.k);
+                // console.log("RADIO => ", item.k);
               }}
             />
             <table
@@ -38,14 +51,13 @@ export default function ShippingContainer() {
             >
               <tbody>
                 <tr>
-                  <td>Name:</td>{" "}
+                  <td>Name:</td>
                   <td>
                     {item?.n} , {item?.p}
                   </td>
                 </tr>
-
                 <tr>
-                  <td>Address:</td>{" "}
+                  <td>Address:</td>
                   <td>
                     {item?.h} , {item?.l}, {item?.c}, {item?.s}, {item?.pi}
                   </td>
@@ -73,7 +85,7 @@ export default function ShippingContainer() {
             defaultChecked={SavedAddress?.length == 0 ? true : false}
             onChange={() => {
               setIsNewAddress(true);
-              console.log("RADIO => New ");
+              // console.log("RADIO => New ");
             }}
           />
           <p>Add a New Address</p>

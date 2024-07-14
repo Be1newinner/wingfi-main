@@ -13,8 +13,8 @@ export default function OrderDetails() {
       <div className="flex flex-col gap-1">
         {Object.keys(ProductCart)?.map((item, index) => {
           return (
-            <div>
-              <p key={item} className="flex justify-between gap-4">
+            <div key={item}>
+              <p className="flex justify-between gap-4">
                 <span
                   className="text-gray-500 text-sm"
                   style={{

@@ -92,7 +92,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
-      console.log("Auth Context => ", user);
+      // console.log("Auth Context => ", user);
       if (user) {
         dispatch({ type: "SET_USER", payload: user });
       } else {
@@ -157,7 +157,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const signInWithGoogle = async () => {
     try {
       const data = await signInWithPopup(firebaseAuth, googleProvider);
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.error(err);
     }

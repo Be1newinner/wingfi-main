@@ -94,7 +94,7 @@ export default function AddNewAddressDialog() {
 
           <h3 className="font-medium text-md">Add New Address!</h3>
           <div className="flex flex-wrap mt-4">
-            <label className="form-control w-full basis-1/2 p-1">
+            <label className="form-control w-full basis-full sm:basis-1/2 p-1">
               <input
                 type="text"
                 placeholder="full name"
@@ -114,7 +114,7 @@ export default function AddNewAddressDialog() {
                 </div>
               )}
             </label>
-            <label className="form-control w-full basis-1/2 p-1">
+            <label className="form-control w-full basis-full sm:basis-1/2 p-1">
               <input
                 type="tel"
                 placeholder="contact number"
@@ -135,7 +135,7 @@ export default function AddNewAddressDialog() {
               )}
             </label>
 
-            <label className="form-control w-full basis-1/2 p-1">
+            <label className="form-control w-full basis-full sm:basis-1/2 p-1">
               <input
                 type="text"
                 placeholder="House/Flat/Office No."
@@ -155,7 +155,7 @@ export default function AddNewAddressDialog() {
                 </div>
               )}
             </label>
-            <label className="form-control w-full basis-1/2 p-1">
+            <label className="form-control w-full basis-full sm:basis-1/2 p-1">
               <input
                 type="text"
                 placeholder="Street Address, Landmark"
@@ -175,7 +175,7 @@ export default function AddNewAddressDialog() {
               )}
             </label>
 
-            <label className="form-control w-full basis-1/3 p-1">
+            <label className="form-control w-full basis-full sm:basis-1/3 p-1">
               <input
                 type="text"
                 placeholder="city"
@@ -194,7 +194,7 @@ export default function AddNewAddressDialog() {
                 </div>
               )}
             </label>
-            <label className="form-control w-full basis-1/3 p-1">
+            <label className="form-control w-full basis-1/2 sm:basis-1/3 p-1">
               <input
                 type="text"
                 placeholder="State"
@@ -213,7 +213,7 @@ export default function AddNewAddressDialog() {
                 </div>
               )}
             </label>
-            <label className="form-control w-full basis-1/3 p-1">
+            <label className="form-control w-full basis-1/2 sm:basis-1/3 p-1">
               <input
                 type="tel"
                 placeholder="Pin Code"

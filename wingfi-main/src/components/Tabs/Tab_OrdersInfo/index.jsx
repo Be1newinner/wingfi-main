@@ -8,6 +8,7 @@ import { collection, query, getDocs, limit, where } from "firebase/firestore";
 import { firestore } from "@/infrastructure/firebase.config";
 import { TimeStampToDate } from "@/registry/functions";
 import { AuthContext } from "@/registry/context";
+// import { waitForDebugger } from "inspector";
 
 export default function Tab_OrdersInfo() {
   const [OrdersData, setOrdersData] = useState(null);
@@ -65,9 +66,11 @@ export default function Tab_OrdersInfo() {
       console.log("OrdersData => ", OrdersData);
   }, [OrdersData]);
 
+  // waitForDebugger
+
   return (
-    <div className="max-w-screen overflow-scroll">
-      <table className={styles.ordersTable}>
+    <div className="max-w-screen overflow-auto">
+      <table className={[styles.ordersTable, "w-full"].join(" ")}>
         <thead>
           <tr>
             <th

@@ -33,21 +33,23 @@ export default function Contact() {
           {/* Contact Us Page */}
 
           <div className="flex items-center justify-center gap-4 flex-col sm:flex-row">
-            <div className="min-h-[700px] bg-white p-6 rounded-md max-w-xl">
+            <div className="w-full sm:min-h-[700px] bg-white p-6 rounded-md max-w-xl">
               <h3 className="text-orange-500 font-medium">How It Started</h3>
-              <h1 className="text-6xl font-medium mt-12">
-                Our Dream is Global Learning Transfomation
+              <h1 className="text-4xl sm:text-6xl font-medium mt-4 sm:mt-12">
+                Empowering Your Mobile Lifestyle with Innovative Power Solutions
               </h1>
-              <p className="mt-20 text-lg">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio
-                provident exercitationem voluptatibus. Ipsa soluta tempora
-                voluptas ipsum temporibus perferendis veniam sequi id
-                reprehenderit sed blanditiis hic vero, laboriosam quo a quae
-                excepturi quod similique, corrupti error nemo dicta illo
-                accusamus! Et nihil natus quod voluptas ut quia ea maxime, eaque
-                deleniti officia quas inventore doloremque fugit, odio ab ipsum?
-                A quaerat expedita voluptates, odio inventore blanditiis eius
-                maiores aspernatur perspiciatis?
+              <p className="mt-4 sm:mt-20 text-lg">
+                our vision is to revolutionize the way you stay connected by
+                providing innovative, reliable, and high-quality power
+                solutions. We believe in empowering your mobile lifestyle with
+                products that keep your devices charged and ready, no matter
+                where you are. Our commitment to cutting-edge technology,
+                exceptional design, and customer satisfaction drives us to
+                deliver power banks and accessories that enhance your everyday
+                experiences. We strive to set new standards in convenience,
+                portability, and sustainability, ensuring that you can always
+                rely on our products to keep you powered up and connected in
+                today&apos;s fast-paced world.
               </p>
             </div>
             <div className="">
@@ -59,27 +61,27 @@ export default function Contact() {
                 />
               </div>
               <div className="flex flex-col justify-center item-center gap-5  w-1/1 h-[350px] bg-white p-6 rounded-b-md">
-                <div className="flex flex-row gap-4 item-center justify-center">
+                <div className="flex flex-row gap-4 item-center justify-center flex-1">
                   <div className="bg-gray-100 p-4 rounded-lg">
-                    <h1 className="text-3xl font-bold">3.5</h1>
+                    <h1 className="text-3xl font-bold">5+</h1>
                     <p>Years Experiences</p>
                   </div>
 
-                  <div className="bg-gray-100 p-4 rounded-lg">
-                    <h1 className="text-3xl font-bold">23</h1>
-                    <p>Project Challenge</p>
+                  <div className="bg-gray-100 p-4 rounded-lg  flex-1">
+                    <h1 className="text-3xl font-bold">100K+</h1>
+                    <p>Products Sold</p>
                   </div>
                 </div>
 
-                <div className="flex flex-row gap-4 item-center justify-center">
+                <div className="flex flex-row gap-4 item-center justify-center  flex-1">
                   <div className="bg-gray-100 p-4 px-[20px] rounded-lg">
-                    <h1 className="text-3xl font-bold">830+</h1>
+                    <h1 className="text-3xl font-bold">800+</h1>
                     <p>Positive Reviews</p>
                   </div>
 
-                  <div className="bg-gray-100 p-4 px-[20px] rounded-lg">
-                    <h1 className="text-3xl font-bold">100K</h1>
-                    <p>Trusted Students</p>
+                  <div className="bg-gray-100 p-4 px-[20px] rounded-lg flex-1">
+                    <h1 className="text-3xl font-bold">10+</h1>
+                    <p>Our Offices</p>
                   </div>
                 </div>
               </div>
