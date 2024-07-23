@@ -22,7 +22,7 @@ export default function Cart() {
       >
         <div className="flex w-full gap-4">
           <div className="bg-white basis-2/3 shadow">
-            <p className="text-gray-500 font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
+            <p className="text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
               CART ITEMS
             </p>
             {cartProductsData?.map((item) => {

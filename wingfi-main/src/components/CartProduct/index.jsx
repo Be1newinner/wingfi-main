@@ -1,6 +1,6 @@
 export default function CartProduct({ sku, imgUrl, title, mrp, price }) {
   return (
-    <div className="flex flex-col gap-4 border-t-2 border-gray-200 py-8 px-12">
+    <div className="flex flex-col gap-4 border-y-2 border-gray-200 py-8 px-12">
       <div className="flex justify-between items-center">
         <div className="flex gap-4">
           <img src={imgUrl} className="w-14 h-28" alt="product" />
