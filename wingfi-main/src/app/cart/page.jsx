@@ -1,11 +1,8 @@
 import { NavBar, Footer } from "@/registry/components";
-// import Link from "next/link";
-// import PricingContainer from "./PricingContainer";
 import { MdSecurity } from "react-icons/md";
 import PricingCart from "@/components/PricingCart";
 import Link from "next/link";
-import CartProduct from "@/components/CartProduct";
-import { cartProductsData } from "@/service/Offline/CartProducts";
+import CartProductArray from "@/components/CartProductArray";
 
 export default function Cart() {
   return (
@@ -25,18 +22,7 @@ export default function Cart() {
             <p className="text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
               CART ITEMS
             </p>
-            {cartProductsData?.map((item) => {
-              return (
-                <CartProduct
-                  key={item.sku}
-                  sku={item.sku}
-                  imgUrl={item.imgUrl}
-                  title={item.title}
-                  mrp={item.mrp}
-                  price={item.price}
-                />
-              );
-            })}
+            <CartProductArray />
             <div
               className="shadow-md flex justify-end items-center pr-2 py-4"
               style={{

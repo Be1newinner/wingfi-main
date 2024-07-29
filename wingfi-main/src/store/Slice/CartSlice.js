@@ -35,6 +35,11 @@ const initialState = persistedState || {
   delivery: 0,
   qty: 0,
   discount: 0,
+  address: {
+    fulladdress: "",
+    pincode: 0,
+  },
+  paymentMethod: 1,
 };
 
 export const CartSlice = createSlice({
@@ -43,7 +48,6 @@ export const CartSlice = createSlice({
   reducers: {
     addInCart(state, action) {
       const data = JSON.parse(action.payload);
-      // console.log("PAYLOAD ", data);
       const newState = produce(state, (draftState) => {
         draftState.items[data.sku] = data;
         draftState.qty = Object.values(draftState.items)?.filter(
@@ -78,7 +82,12 @@ export const CartSlice = createSlice({
         console.error(error);
       }
     },
+    changePaymentMethod(state, action) {
+      return produce(state, (draft) => {
+        draft.paymentMethod = action.payload;
+      });
+    },
   },
 });
 
-export const { addInCart, resetCart } = CartSlice.actions;
+export const { addInCart, resetCart, changePaymentMethod } = CartSlice.actions;

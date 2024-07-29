@@ -3,14 +3,20 @@
 import { NavBar, Footer, Newsletter } from "@/registry/components";
 import { AuthProvider } from "@/registry/context";
 import PricingCart from "@/components/PricingCart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cartProductsData } from "@/service/Offline/CartProducts";
 import CartProduct from "@/components/CartProduct";
 import { AddAddressItem, AddressItem } from "./components";
+import { useSelector } from "react-redux";
+import CartProductArray from "@/components/CartProductArray";
+import PaymentOptions from "./components/PaymentOptions";
 
 export default function Checkout() {
-  const [addressSelected, setAddressSelected] = useState(0);
-  const [checkoutSteps, setCheckoutSteps] = useState(1);
+  const [checkoutSteps, setCheckoutSteps] = useState<number>(1);
+  const SavedAddressSelector = useSelector((selector) => selector.Address);
+  const [addressSelected, setAddressSelected] = useState(
+    SavedAddressSelector?.default || 0
+  );
 
   return (
     <AuthProvider>
@@ -37,12 +43,13 @@ export default function Checkout() {
                     </div>
                     DELIVERY ADDRESS
                   </p>
-                  {[{ id: 0 }, { id: 1 }].map((e) => (
+                  {SavedAddressSelector?.addresses?.map((e) => (
                     <AddressItem
-                      id={e.id}
+                      id={e.k}
+                      key={e.k}
                       addressSelected={addressSelected}
-                      setAddressSelected={setAddressSelected}
                       setCheckoutSteps={setCheckoutSteps}
+                      setAddressSelected={setAddressSelected}
                     />
                   ))}
                   <AddAddressItem
@@ -89,20 +96,7 @@ export default function Checkout() {
                     </div>
                     ORDER SUMMARY
                   </p>
-                  <div>
-                    {cartProductsData?.map((item) => {
-                      return (
-                        <CartProduct
-                          key={item.sku}
-                          sku={item.sku}
-                          imgUrl={item.imgUrl}
-                          title={item.title}
-                          mrp={item.mrp}
-                          price={item.price}
-                        />
-                      );
-                    })}
-                  </div>
+                  <CartProductArray />
                   <div className="px-8 py-4 flex items-center">
                     <span className="text-sm flex-1">
                       Order confirmation email will be sent to{" "}
@@ -131,74 +125,10 @@ export default function Checkout() {
                 </div>
               )}
 
-              {checkoutSteps === 3 ? (
-                <div className="bg-white shadow">
-                  <p className="flex gap-2 text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
-                    <div className="flex w-5 h-5 bg-white rounded-sm items-center justify-center">
-                      <span className="text-blue-600 text-xs font-medium">
-                        3
-                      </span>
-                    </div>
-                    PAYMENT OPTIONS
-                  </p>
-                  <div>
-                    <div className="cursor-pointer flex gap-2 items-center border-b-2 px-8">
-                      <input
-                        type="radio"
-                        name="payment_radio"
-                        id="online_payment"
-                        className="cursor-pointer"
-                        disabled
-                      />
-                      <label
-                        htmlFor="online_payment"
-                        className="text-sm cursor-pointer py-4"
-                      >
-                        Online Payment
-                      </label>
-                    </div>
-                    <div className="cursor-pointer flex gap-2 items-center border-b-2 px-8">
-                      <input
-                        type="radio"
-                        name="payment_radio"
-                        id="cod"
-                        checked
-                      />
-                      <label
-                        htmlFor="cod"
-                        className="text-sm cursor-pointer py-4"
-                      >
-                        Cash On Delivery
-                      </label>
-                    </div>
-                  </div>
-                  <div className="px-8 py-4 flex items-center">
-                    <span className="text-sm flex-1">
-                      Order confirmation email will be sent to{" "}
-                      <span className="font-semibold">
-                        be1newinner@gmail.com
-                      </span>
-                    </span>
-                    <button
-                      onClick={() => setCheckoutSteps(3)}
-                      className="btn btn-error mt-2 text-white text-sm font-medium px-12 py-4 rounded-none max-w-60"
-                    >
-                      CONFIRM PAYMENT
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="bg-white shadow cursor-pointer">
-                  <p className="flex gap-2 text-gray-500 font-semibold text-sm p-4 px-8 shadow-md bg-white">
-                    <div className="flex w-5 h-5 bg-gray-200 rounded-sm items-center justify-center">
-                      <span className="text-blue-500 text-xs font-medium">
-                        3
-                      </span>
-                    </div>
-                    PAYMENT OPTIONS
-                  </p>
-                </div>
-              )}
+              <PaymentOptions
+                checkoutSteps={checkoutSteps}
+                setCheckoutSteps={setCheckoutSteps}
+              />
             </div>
             <div className="basis-1/3">
               <div className="flex flex-col bg-white shadow items-between">

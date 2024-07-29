@@ -1,9 +1,24 @@
+"use client";
+
+import { changeDefaultAddress } from "@/store/Slice/AddressSlice";
+import { Dispatch, SetStateAction } from "react";
+import { useDispatch } from "react-redux";
+
+interface propType {
+  id: number;
+  addressSelected: number;
+  setCheckoutSteps: Dispatch<SetStateAction<number>>;
+  setAddressSelected: Dispatch<SetStateAction<number>>;
+}
+
 export const AddressItem = ({
   id,
-  addressSelected,
-  setAddressSelected,
   setCheckoutSteps,
-}) => {
+  setAddressSelected,
+  addressSelected,
+}: propType) => {
+  const dispatch = useDispatch();
+
   return (
     <div
       className={[
@@ -36,7 +51,10 @@ export const AddressItem = ({
         </p>
         {addressSelected === id && (
           <button
-            onClick={() => setCheckoutSteps(2)}
+            onClick={() => {
+              dispatch(changeDefaultAddress(id));
+              setCheckoutSteps(2);
+            }}
             className="btn btn-error mt-2 text-white text-xs font-medium px-12 py-4 rounded-none max-w-52"
           >
             DELIVER HERE

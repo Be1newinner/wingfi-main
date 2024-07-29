@@ -1,5 +1,5 @@
 import { firebaseRealtime } from "@/infrastructure/firebase.config";
-import { getDatabase, ref, set, child, push } from "firebase/database";
+import { ref, set,  push } from "firebase/database";
 
 export default async function addNewAddressController({
   Name,
