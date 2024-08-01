@@ -15,11 +15,11 @@ export default function Cart() {
           marginLeft: "auto",
           marginRight: "auto",
         }}
-        className="my-8"
+        className="sm:my-8"
       >
-        <div className="flex w-full gap-4">
+        <div className="flex flex-col sm:flex-row w-full gap-4">
           <div className="bg-white basis-2/3 shadow">
-            <p className="text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
+            <p className="text-white font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-blue-500">
               CART ITEMS
             </p>
             <CartProductArray />

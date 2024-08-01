@@ -18,7 +18,7 @@ export default function PaymentOptions({
 
   return checkoutSteps === 3 ? (
     <div className="bg-white shadow">
-      <p className="flex gap-2 text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
+      <p className="flex gap-2 text-white font-semibold text-sm py-4 px-4 sm:px-8 shadow-md bg-blue-500 ">
         <div className="flex w-5 h-5 bg-white rounded-sm items-center justify-center">
           <span className="text-blue-600 text-xs font-medium">3</span>
         </div>
@@ -61,9 +61,9 @@ export default function PaymentOptions({
           </label>
         </div>
       </div>
-      <div className="px-8 py-4 flex items-center">
+      <div className="px-4 sm:px-8 py-4 flex flex-wrap w-full items-center">
         <span className="text-sm flex-1">
-          Order confirmation email will be sent to{" "}
+          Order confirmation email will be sent to
           <span className="font-semibold">be1newinner@gmail.com</span>
         </span>
         <button
@@ -76,7 +76,7 @@ export default function PaymentOptions({
     </div>
   ) : (
     <div className="bg-white shadow cursor-pointer">
-      <p className="flex gap-2 text-gray-500 font-semibold text-sm p-4 px-8 shadow-md bg-white">
+      <p className="flex gap-2 text-gray-500 font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-white">
         <div className="flex w-5 h-5 bg-gray-200 rounded-sm items-center justify-center">
           <span className="text-blue-500 text-xs font-medium">3</span>
         </div>

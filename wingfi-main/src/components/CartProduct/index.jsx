@@ -1,6 +1,8 @@
+import { SlMinus, SlPlus } from "react-icons/sl";
+
 export default function CartProduct({ sku, qty, title, mrp, price }) {
   return (
-    <div className="flex flex-col gap-4 border-y-2 border-gray-200 py-8 px-12">
+    <div className="flex flex-col gap-2  border-y-2 border-gray-200 py-8 px-4 sm:px-8">
       <div className="flex justify-between items-center">
         <div className="flex gap-4">
           <img
@@ -8,11 +10,12 @@ export default function CartProduct({ sku, qty, title, mrp, price }) {
             className="w-28 aspect-square rounded-md shadow-md"
             alt="product"
           />
-          <div className="flex flex-col gap-2">
+          <div className="flex  flex-col gap-2">
             <div className="flex flex-col">
               <span className="text-md font-medium my-0 py-0 leading-5 capitalize">
                 {title}
               </span>
+
               <span className="text-xs text-gray-500 my-0 py-0 leading-4">
                 Black, Lithium Polymer, Quick Charge 4.0 for Mobile
               </span>
@@ -25,10 +28,24 @@ export default function CartProduct({ sku, qty, title, mrp, price }) {
                   ₹{mrp}
                 </span>
                 <span className="font-semibold ">₹{price}</span>
+                <span className="font-semibold text-green-500 text-sm ">
+                  40% Off
+                </span>
               </p>
-              <p>Qty x {qty}</p>
+              {/* <p>Qty x {qty}</p> */}
             </div>
           </div>
+        </div>
+      </div>
+      <div className="flex gap-8 cursor-pointer">
+        <div className="flex gap-2 items-center">
+          <SlMinus className="text-xl" />
+          <div className="border-2 w-10 rounded-md text-center">{qty}</div>
+          <SlPlus className="text-xl" />
+        </div>
+        <div className="font-semibold uppercase flex gap-4 ">
+          <p className="hover:text-blue-500">save for later</p>
+          <p className="hover:text-blue-500">remove</p>
         </div>
       </div>
     </div>

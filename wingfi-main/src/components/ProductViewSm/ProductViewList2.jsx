@@ -51,22 +51,24 @@ export default function ProductViewList2({ item, key }) {
           </span>
           <span className="text-error font-semibold">₹{item?.price}/-</span>
         </div>
-        <div className="flex gap-2 flex-wrap items-end">
+        <div className="flex gap-2 ">
           <Link
             href={"/shop/" + item?.slug}
-            className="btn btn-sm btn-error flex-1 border border-gray-300 shadow rounded-sm text-white font-medium min-w-16"
+            className="btn btn-sm btn-error sm:flex-1 border border-gray-300 shadow rounded-sm text-white font-medium min-w-16"
           >
             View
           </Link>
           <button
-            className="btn btn-sm btn-outline btn-error flex-1 border shadow flex-1 rounded-sm font-medium"
+            className="btn btn-sm btn-outline btn-error sm:flex-1 border shadow rounded-sm "
             onClick={() => {
               dispatch(
                 addInWishlist(JSON.stringify({ ...item, sku: item.sku }))
               );
             }}
           >
-            <FaRegHeart /> wishlist
+            <div className="flex gap-1 items-center">
+              <FaRegHeart /> wishlist
+            </div>
           </button>
         </div>
       </div>

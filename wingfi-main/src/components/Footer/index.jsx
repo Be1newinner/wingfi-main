@@ -11,7 +11,7 @@ import { FiMapPin } from "react-icons/fi";
 
 export default function Footer() {
   return (
-    <footer className="footer mt-3 p-10 pt-12 bg-white text-base-content rounded flex flex-col">
+    <footer className="footer mt-3 p-4 sm:p-10  pt-12 bg-white text-base-content rounded flex flex-col">
       <div
         style={{
           maxWidth: 1200,
@@ -63,10 +63,10 @@ export default function Footer() {
         </div>
 
         {/* 2nd Column */}
-        <div>
+        <div >
           <h3 className="text-lg font-bold">My Account</h3>
           <ul
-            className="flex flex-col gap-2 mt-2"
+            className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0"
             style={{
               listStyleType: "disc",
             }}
@@ -93,7 +93,7 @@ export default function Footer() {
         <div>
           <h3 className="text-lg font-bold">Informations</h3>
           <ul
-            className="flex flex-col gap-2 mt-2"
+            className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0"
             style={{
               listStyleType: "disc",
             }}

@@ -45,14 +45,15 @@ export default function UserFeedBack2({ rating, reviewsCount }) {
         <h1 className="text-2xl font-bold flex gap-2 mt-1 items-center">
           <FaStar /> {rating} {rating && "&"} {reviewsCount} Users&apos; Reviews
         </h1>
-        <div className="flex gap-12 flex-wrap pt-4 flex-col sm:flex-row">
+        <div className="flex gap-12 flex-wrap pt-4  flex-col sm:flex-row">
           {feedbackList?.slice(0, 3)?.map((item, index) => (
             <div
               key={item.id}
               style={{
                 flex: "1 0 24%",
-                marginTop: index % 2 === 1 ? 60 : 0,
+                // marginTop: index % 2 === 1 ? 60 : 0,
               }}
+              className={`mt-0 ${index % 2 === 1 ? 'sm:mt-16' : 'mt-0'}`}
             >
               <div className="mb-4 flex gap-1 ml-1">
                 <Image
@@ -60,14 +61,14 @@ export default function UserFeedBack2({ rating, reviewsCount }) {
                   width={40}
                   height={40}
                   alt=""
-                  className="rounded rounded-lg shadow"
+                  className=" rounded-lg shadow"
                 />
                 <div className="flex flex-col">
                   <h2 className="text-sm">{item?.name}</h2>
                   <h3 className="text-xs text-gray-500">{item?.profession}</h3>
                 </div>
               </div>
-              <div className="bg-white p-4 border shadow shadow-lg rounded rounded-xl">
+              <div className="bg-white p-4 border shadow-lg rounded-xl">
                 <p>{item?.desc}</p>
               </div>
             </div>

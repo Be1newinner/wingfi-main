@@ -29,13 +29,13 @@ export default function Checkout() {
             marginLeft: "auto",
             marginRight: "auto",
           }}
-          className="my-8"
+          className="sm:my-8"
         >
-          <div className="flex w-full gap-4">
+          <div className="flex flex-col  w-full gap-4 sm:flex-row">
             <div className="basis-2/3 flex flex-col gap-4">
               {checkoutSteps === 1 ? (
                 <div className="bg-white shadow">
-                  <p className="flex gap-2 text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
+                  <p className="flex gap-2 text-white font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-blue-500">
                     <div className="flex w-5 h-5 bg-white rounded-sm items-center justify-center">
                       <span className="text-blue-600 text-xs font-medium">
                         1
@@ -59,7 +59,7 @@ export default function Checkout() {
                 </div>
               ) : (
                 <div className="bg-white shadow flex">
-                  <div className="flex gap-2 text-gray-500 font-semibold py-6 text-sm px-8 shadow-md bg-white flex-1">
+                  <div className="flex gap-2 text-gray-500 font-semibold py-6 text-sm px-4 sm:px-8 shadow-md bg-white flex-1">
                     <div className="flex w-5 h-5 bg-gray-200 rounded-sm items-center justify-center">
                       <span className="text-blue-500 text-xs font-medium">
                         1
@@ -88,7 +88,7 @@ export default function Checkout() {
 
               {checkoutSteps === 2 ? (
                 <div className="bg-white shadow">
-                  <p className="flex gap-2 text-white font-semibold text-sm p-4 px-8 shadow-md bg-blue-500">
+                  <p className="flex gap-2 text-white font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-blue-500">
                     <div className="flex w-5 h-5 bg-white rounded-sm items-center justify-center">
                       <span className="text-blue-600 text-xs font-medium">
                         2
@@ -97,9 +97,9 @@ export default function Checkout() {
                     ORDER SUMMARY
                   </p>
                   <CartProductArray />
-                  <div className="px-8 py-4 flex items-center">
+                  <div className="px-4 sm:px-8 py-4 flex flex-col  items-center">
                     <span className="text-sm flex-1">
-                      Order confirmation email will be sent to{" "}
+                      Order confirmation email will be sent to
                       <span className="font-semibold">
                         be1newinner@gmail.com
                       </span>
@@ -114,13 +114,13 @@ export default function Checkout() {
                 </div>
               ) : (
                 <div className="bg-white shadow cursor-pointer">
-                  <p className="flex gap-2 text-gray-500 font-semibold text-sm p-4 px-8 shadow-md bg-white">
+                  <p className="flex gap-2 text-gray-500 font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-white">
                     <div className="flex w-5 h-5 bg-gray-200 rounded-sm items-center justify-center">
                       <span className="text-blue-500 text-xs font-medium">
                         2
                       </span>
                     </div>
-                    ORDER SUMMARY
+                    MARY
                   </p>
                 </div>
               )}
