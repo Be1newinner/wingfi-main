@@ -1,4 +1,4 @@
-import { changePaymentMethod } from "@/store/slice/CartSlice";
+// import { changePaymentMethod } from "@/store/slice/CartSlice";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -52,7 +52,7 @@ export default function PaymentOptions({
             id="cod"
             checked={radioSelection === 1 ? true : false}
             onChange={() => {
-              dispatch(changePaymentMethod(1));
+              // dispatch(changePaymentMethod(1));
               setRadioSelection(1);
             }}
           />
