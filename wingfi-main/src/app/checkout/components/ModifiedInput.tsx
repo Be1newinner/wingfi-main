@@ -3,7 +3,7 @@ import { Dispatch, SetStateAction } from "react";
 interface propTypes {
   className: string;
   value?: string;
-  setValue?: Dispatch<SetStateAction<string>>;
+  setValue: Dispatch<SetStateAction<string>>;
   title: string;
 }
 

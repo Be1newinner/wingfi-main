@@ -1,4 +1,6 @@
-import { Dispatch, SetStateAction } from "react";
+"use client";
+
+import { Dispatch, SetStateAction, useState } from "react";
 import { ModifiedInput, ModifiedSelect } from "./index";
 
 interface propTypes {
@@ -10,6 +12,8 @@ export const AddAddressItem = ({
   addressSelected,
   setAddressSelected,
 }: propTypes) => {
+  const [value, setValue] = useState("");
+
   return (
     <div
       className={[
@@ -31,20 +35,39 @@ export const AddAddressItem = ({
         </span>
         {999 === addressSelected && (
           <div className="flex flex-wrap gap-y-4">
-            <ModifiedInput title="Full Name" className="basis-1/2 odd:pr-4" />
+            <ModifiedInput
+              title="Full Name"
+              className="basis-1/2 odd:pr-4"
+              setValue={setValue}
+            />
             <ModifiedInput
               title="10-digit Mobile Number"
               className="basis-1/2 odd:pr-4"
+              setValue={setValue}
             />
-            <ModifiedInput title="Pincode" className="basis-1/2 odd:pr-4" />
-            <ModifiedInput title="Locality" className="basis-1/2 odd:pr-4" />
+            <ModifiedInput
+              title="Pincode"
+              className="basis-1/2 odd:pr-4"
+              setValue={setValue}
+            />
+            <ModifiedInput
+              title="Locality"
+              className="basis-1/2 odd:pr-4"
+              setValue={setValue}
+            />
             <ModifiedInput
               title="Address (Area and Street)"
               className="basis-full"
+              setValue={setValue}
             />
-            <ModifiedInput title="City/State/Town" className="basis-1/2 pr-4" />
+            <ModifiedInput
+              title="City/State/Town"
+              className="basis-1/2 pr-4"
+              setValue={setValue}
+            />
             <ModifiedSelect />
             <ModifiedInput
+              setValue={setValue}
               title="Landmark (Optional)"
               className="basis-1/2 pr-4"
             />

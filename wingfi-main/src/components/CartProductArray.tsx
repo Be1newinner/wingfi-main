@@ -4,7 +4,8 @@ import CartProduct from "@/components/CartProduct";
 import { useSelector } from "react-redux";
 
 export default function CartProductArray() {
-  const CartSelector = useSelector((selector) => selector.Cart)?.items || {};
+  const CartSelector =
+    useSelector((selector: any) => selector.Cart)?.items || {};
 
   let CartArray: any = [];
 
@@ -14,7 +15,7 @@ export default function CartProductArray() {
     CartArray = [];
   }
 
-  return CartArray?.map((item) => (
+  return CartArray?.map((item: any) => (
     <CartProduct
       key={item.sku}
       sku={item.sku}

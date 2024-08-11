@@ -12,7 +12,7 @@ export default function PaymentOptions({
   setCheckoutSteps,
 }: propTypes) {
   const [radioSelection, setRadioSelection] = useState(
-    useSelector((selector) => selector.Cart)?.paymentMethod
+    useSelector((selector: any) => selector.Cart)?.paymentMethod
   );
   const dispatch = useDispatch();
 
@@ -34,7 +34,7 @@ export default function PaymentOptions({
             // disabled
             checked={radioSelection === 0 ? true : false}
             onChange={() => {
-              dispatch(changePaymentMethod(0));
+              // dispatch(changePaymentMethod(0));
               setRadioSelection(0);
             }}
           />

@@ -3,9 +3,9 @@
 import { NavBar, Footer, Newsletter } from "@/registry/components";
 import { AuthProvider } from "@/registry/context";
 import PricingCart from "@/components/PricingCart";
-import { useEffect, useState } from "react";
-import { cartProductsData } from "@/service/Offline/CartProducts";
-import CartProduct from "@/components/CartProduct";
+import { useState } from "react";
+// import { cartProductsData } from "@/service/Offline/CartProducts";
+// import CartProduct from "@/components/CartProduct";
 import { AddAddressItem, AddressItem } from "./components";
 import { useSelector } from "react-redux";
 import CartProductArray from "@/components/CartProductArray";
@@ -13,7 +13,7 @@ import PaymentOptions from "./components/PaymentOptions";
 
 export default function Checkout() {
   const [checkoutSteps, setCheckoutSteps] = useState<number>(1);
-  const SavedAddressSelector = useSelector((selector) => selector.Address);
+  const SavedAddressSelector = useSelector((selector: any) => selector.Address);
   const [addressSelected, setAddressSelected] = useState(
     SavedAddressSelector?.default || 0
   );
@@ -43,7 +43,7 @@ export default function Checkout() {
                     </div>
                     DELIVERY ADDRESS
                   </p>
-                  {SavedAddressSelector?.addresses?.map((e) => (
+                  {SavedAddressSelector?.addresses?.map((e: any) => (
                     <AddressItem
                       id={e.k}
                       key={e.k}
