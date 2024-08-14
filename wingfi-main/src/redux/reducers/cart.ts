@@ -54,7 +54,7 @@ const CartSlice = createSlice({
 
       const existingItem = state.items.find((i) => i.sku === item.sku);
       if (existingItem) {
-        existingItem.qty += item.qty;
+        existingItem.qty = Number(item.qty);
       } else {
         state.items.push(item);
       }

@@ -27,3 +27,11 @@ export interface CartData {
   };
   paymentMethod: number;
 }
+
+export interface CartItemData {
+  qty: number;
+}
+
+export interface CartItemsState {
+  [sku: string]: CartItemData;
+}

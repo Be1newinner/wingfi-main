@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { addInCart } from "../../redux/Slice/CartSlice";
+import { addInCart } from "@/redux/actions/cart";
 
 export default function QuantityChangeSelect({ item, quantity = 1, size }) {
   let selectSize = "select-sm";
@@ -41,9 +41,8 @@ export default function QuantityChangeSelect({ item, quantity = 1, size }) {
         width: selectWidth,
       }}
       onChange={(e) => {
-        dispatch(
-          addInCart(JSON.stringify({ ...item, qty: Number(e.target.value) }))
-        );
+        const newItem = { ...item, price: item.price, qty: e.target.value };
+        dispatch(addInCart(newItem));
       }}
       onClick={(e) => e.preventDefault()}
       defaultValue={quantity}

@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Theme_text_colors_class } from "@/infrastructure/theme";
 import { FaRegHeart, FaStar } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { addInWishlist } from "@/redux/Slice/WishlistSlice.js";
+// import { useDispatch } from "react-redux";
+// import { addInWishlist } from "@/redux/actions/cart";
 
 export default function ProductViewList2({ item, key }) {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <div className="flex items-center bg-white border shadow p-2 sm:p-3 gap-1 sm:gap-4 overflow-hidden rounded-sm flex-col sm:flex-row basis-1/2">
@@ -61,9 +61,9 @@ export default function ProductViewList2({ item, key }) {
           <button
             className="btn btn-sm btn-outline btn-error sm:flex-1 border shadow rounded-sm "
             onClick={() => {
-              dispatch(
-                addInWishlist(JSON.stringify({ ...item, sku: item.sku }))
-              );
+              // dispatch(
+              //   addInWishlist(JSON.stringify({ ...item, sku: item.sku }))
+              // );
             }}
           >
             <div className="flex gap-1 items-center">

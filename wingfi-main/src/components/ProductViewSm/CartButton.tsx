@@ -1,0 +1,68 @@
+"use client";
+
+import { Theme_colors_class } from "@/infrastructure/theme";
+import QuantityChangeSelect from "@/app/cart/QuantityChangeSelect";
+import { useDispatch, useSelector } from "react-redux";
+import { addInCart } from "@/redux/actions/cart";
+import { useEffect, useState } from "react";
+import { selectCartItems } from "@/redux/selectors/cart"; // Adjust path as needed
+import { CartItemsState } from "@/redux/constants/cart";
+
+interface CartButtonProps {
+  text: string;
+  item: {
+    sku: string;
+    qty: number;
+    price: number;
+  };
+  size: string;
+  flex: string;
+  color: string;
+}
+
+export default function CartButton({
+  text = "Add",
+  item = {
+    sku: "",
+    qty: 0,
+    price: 0,
+  },
+  size = "btn-sm",
+  flex = "flex-0",
+  color = "",
+}: CartButtonProps) {
+  const dispatch = useDispatch();
+  const selectCartItemsData: CartItemsState = useSelector(selectCartItems);
+  const [quantity, setQuantity] = useState<number>(0);
+
+  useEffect(() => {
+    const sku = item.sku || "";
+    if (sku) {
+      const quant = selectCartItemsData[sku]?.qty || 0;
+      setQuantity(quant);
+    }
+    console.log("ITEM -> ", item);
+  }, [selectCartItemsData, item.sku]);
+
+  return quantity > 0 ? (
+    <QuantityChangeSelect item={item} quantity={quantity} size={size} />
+  ) : (
+    <button
+      className={[
+        "btn border border-none shadow text-white rounded-sm",
+        Theme_colors_class.primary,
+        size,
+        flex,
+        color,
+      ].join(" ")}
+      onClick={(e) => {
+        e.preventDefault();
+        const newItem = { ...item, price: item.price, qty: 1 };
+        console.log("newItem => ", newItem);
+        dispatch(addInCart(newItem));
+      }}
+    >
+      {text}
+    </button>
+  );
+}
