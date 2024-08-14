@@ -1,6 +1,6 @@
 "use client";
 
-import { changeDefaultAddress } from "@/store/Slice/AddressSlice";
+import { changeDefaultAddress } from "@/redux/Slice/AddressSlice";
 import { Dispatch, SetStateAction } from "react";
 import { useDispatch } from "react-redux";
 

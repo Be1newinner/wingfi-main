@@ -7,7 +7,6 @@ import styles from "./style.module.css";
 import ExtraFeaturesCards from "./ExtraFeaturesCards";
 import getProductFromURL from "@/service/getProductFromURL/getProductFromURLService";
 import { Variants } from "@/service/Offline/Variants";
-// import { Controls, Player } from "@lottiefiles/react-lottie-player";
 
 export default async function SingleStore({ params }) {
   const { slug } = params;

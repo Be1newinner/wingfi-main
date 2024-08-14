@@ -1,8 +1,9 @@
 "use client";
+
 import { Theme_colors_class } from "@/infrastructure/theme";
 import QuantityChangeSelect from "@/app/cart/QuantityChangeSelect";
 import { useDispatch, useSelector } from "react-redux";
-import { addInCart } from "@/store/Slice/CartSlice";
+import { addInCart } from "@/redux/Slice/CartSlice";
 import { useEffect, useState } from "react";
 
 export default function CartButton({

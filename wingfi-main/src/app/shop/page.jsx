@@ -44,19 +44,6 @@ export default function Store() {
             marginTop: 12,
           }}
         >
-          {/* Filter and Sorting */}
-          {/* <div className="flex px-4 gap-2 items-center justify-end">
-            <select
-              className="select select-bordered max-w-sm"
-              defaultValue={0}
-            >
-              <option value={0}>Sort by Latest</option>
-              <option value={1}>Sort by Popularity</option>
-              <option value={2}>Sort by Name</option>
-              <option value={3}>Sort by Price</option>
-            </select>
-          </div> */}
-
           <div className="m-3 flex flex-wrap">
             <ShopProductsWrapper />
           </div>

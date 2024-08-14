@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Theme_text_colors_class } from "@/infrastructure/theme";
 import { FaRegHeart, FaStar } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-import { addInWishlist } from "@/store/Slice/WishlistSlice.js";
+import { addInWishlist } from "@/redux/Slice/WishlistSlice.js";
 
 export default function ProductViewList2({ item, key }) {
   const dispatch = useDispatch();
