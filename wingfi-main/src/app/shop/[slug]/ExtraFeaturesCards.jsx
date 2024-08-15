@@ -1,4 +1,4 @@
-export default function ExtraFeaturesCards() {
+export  function ExtraFeaturesCards() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 relative">
       <div className="flex flex-col p-5 rounded-sm shadow bg-red-50 dark:bg-opacity-90">
@@ -193,7 +193,9 @@ export default function ExtraFeaturesCards() {
         </div>
         <div className="mt-2.5">
           <p className="font-semibold text-slate-900">Nationwide Delivery</p>
-          <p className="text-slate-500 mt-0.5 text-sm">Fast delivery nationwide.</p>
+          <p className="text-slate-500 mt-0.5 text-sm">
+            Fast delivery nationwide.
+          </p>
         </div>
       </div>
       <div className="flex flex-col p-5 rounded-sm shadow bg-amber-50 dark:bg-opacity-90">

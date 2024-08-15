@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
 
-export default function PriceContainer({
+export function PriceContainer({
   text = "Checkout",
   link = "/checkout",
 }) {

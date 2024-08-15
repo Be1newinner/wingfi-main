@@ -1,6 +1,4 @@
-/** @format */
-
-import { Footer, NavBar } from "@/registry/components";
+import { Footer, NavBar } from "@/components";
 import Faq from "./Faq";
 import Link from "next/link";
 

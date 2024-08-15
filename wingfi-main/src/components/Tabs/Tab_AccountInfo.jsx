@@ -2,7 +2,7 @@ import styles from "./Tab_AccountInfo.module.css";
 import { MdAlternateEmail } from "react-icons/md";
 import { FaPhoneAlt, FaRegUser } from "react-icons/fa";
 
-export default function Tab_AccountInfo() {
+export function Tab_AccountInfo() {
   return (
     <div className="mx-2">
       <label className="form-control w-full max-w-md">

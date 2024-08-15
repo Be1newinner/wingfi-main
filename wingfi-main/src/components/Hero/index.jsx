@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 import { Theme_colors } from "@/infrastructure/theme";
 import bg from "@/../public/images/bg.jpg";
 
-export default function HeroSection() {
+export function HeroSection() {
   return (
     <div
       // className="bg-blue-200"

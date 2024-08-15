@@ -1,4 +1,4 @@
-import { ProductViewList3 } from "@/registry/components";
+import { ProductViewList3 } from "@/components";
 import { ProductsData } from "./../../service/Products/ProductsService";
 
 export default async function BestSellerWrapper() {

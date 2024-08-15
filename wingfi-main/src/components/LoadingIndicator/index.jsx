@@ -3,7 +3,7 @@
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import Loading from "./loading.json";
 
-export default function LoadingIndicator() {
+export function LoadingIndicator() {
   return (
     <div
       style={{

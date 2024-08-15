@@ -5,7 +5,7 @@ import { AuthContext } from "@/registry/context";
 import { useState } from "react";
 import { getPhoneNumber, changePhoneNumber } from "./ProfileDetailsController";
 
-export default function ProfileDetails() {
+export function ProfileDetails() {
   const User = useContext(AuthContext)?.state?.user;
 
   const [CanEdit, setCanEdit] = useState(false);

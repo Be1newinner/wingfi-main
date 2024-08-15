@@ -5,7 +5,7 @@ import { PiMapPinLineLight } from "react-icons/pi";
 import Link from "next/link";
 import SignOut from "./SignOut";
 
-export default function AccountSidebar({ state = 0 }) {
+export function AccountSidebar({ state = 0 }) {
   return (
     <div
       className="hidden sm:flex flex-col bg-white py-8 border shadow rounded-sm"

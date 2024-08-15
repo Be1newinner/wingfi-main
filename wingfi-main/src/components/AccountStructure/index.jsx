@@ -1,9 +1,9 @@
-import { Footer, NavBar, AccountSidebar } from "@/registry/components";
+import { Footer, NavBar, AccountSidebar } from "@/components";
 import { ProtectedRoute } from "@/registry/context";
 import Link from "next/link";
 import { FaUserTie } from "react-icons/fa6";
 
-export default function AccountStructure({
+export function AccountStructure({
   children,
   pageName = "",
   state = 0,

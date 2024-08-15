@@ -1,5 +1,5 @@
-import { AccountStructure } from "@/registry/components";
-import SavedAddresses from "./SavedAddresses";
+import { AccountStructure } from "@/components";
+import { SavedAddresses } from "./SavedAddresses";
 
 export default function SavedAddressesPage() {
   return (

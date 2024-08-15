@@ -1,4 +1,4 @@
-import { NavBar, Footer, Newsletter } from "@/registry/components";
+import { NavBar, Footer, Newsletter } from "@/components";
 import Link from "next/link";
 import ReviewContainer from "./ReviewContainer";
 

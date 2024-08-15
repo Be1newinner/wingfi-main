@@ -1,13 +1,11 @@
 "use client";
 
-import { useContext } from "react";
 import { AuthContext } from "@/registry/context";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
-export default function SignUpForms() {
+export function SignUpForms() {
   const authContextData = useContext(AuthContext);
 
   const signUpWithEmail = authContextData?.signUpWithEmail || function () {};

@@ -1,5 +1,5 @@
 import WishlistContainer from "./WishlistContainer";
-import { AccountStructure } from "@/registry/components";
+import { AccountStructure } from "@/components";
 
 export default function Cart() {
   return (

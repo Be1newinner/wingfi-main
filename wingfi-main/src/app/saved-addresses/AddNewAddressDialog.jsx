@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { addNewAddressController } from "@/registry/functions";
 
-export default function AddNewAddressDialog() {
+export function AddNewAddressDialog() {
   const [inputName, setInputName] = useState("");
   const [inputContact, setInputContact] = useState("");
   const [inputAdd1, setInputAdd1] = useState("");

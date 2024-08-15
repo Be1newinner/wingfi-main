@@ -10,7 +10,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import PricingCart from "./PricingCart";
 
-export default function PricingCartContainer() {
+export function PricingCartContainer() {
   const CartTotal = useSelector(selectCartTotal);
   const CartSubtotal = useSelector(selectCartSubtotal);
   const CartDiscount = useSelector(selectCartDelivery);

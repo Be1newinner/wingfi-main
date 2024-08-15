@@ -2,7 +2,7 @@ import Image from "next/image";
 import { PiNewspaper } from "react-icons/pi";
 import { IoMdMailUnread } from "react-icons/io";
 
-export default function Newsletter() {
+export function Newsletter() {
   return (
     <div
       className="bg-gray-200 rounded-sm px-4 my-8 sm:my-24 flex justify-center items-center gap-0 lg:gap-16 shadow-md"

@@ -1,4 +1,4 @@
-import { ProductViewList } from "@/registry/components";
+import { ProductViewList } from "@/components";
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
 import { ProductsData } from "./../../service/Products/ProductsService";

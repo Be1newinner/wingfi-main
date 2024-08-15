@@ -1,8 +1,6 @@
-import { NavBar, Footer } from "@/registry/components";
 import { MdSecurity } from "react-icons/md";
-import PricingCart from "@/components/PricingCart";
 import Link from "next/link";
-import CartProductArray from "@/components/CartProductArray";
+import { CartProductArray, PricingCart, NavBar, Footer } from "@/components";
 
 export default function Cart() {
   return (

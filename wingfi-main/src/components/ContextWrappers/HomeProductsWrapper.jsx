@@ -1,6 +1,6 @@
 "use client";
 
-import { ProductViewList2 } from "@/registry/components";
+import { ProductViewList2 } from "@/components";
 import { useSelector } from "react-redux";
 
 export default function HomeProductsWrapper() {

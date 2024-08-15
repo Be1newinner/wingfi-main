@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { TbMicrophone2 } from "react-icons/tb";
 
-export default function UserFeedBack() {
+export function UserFeedBack() {
   const feedbackList = [
     {
       id: 0,

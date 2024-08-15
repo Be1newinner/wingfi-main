@@ -1,10 +1,10 @@
 "use client";
-import { Footer, NavBar } from "@/registry/components";
+import { Footer, NavBar } from "@/components";
 import { AuthProvider } from "@/registry/context";
 import Lottie from "lottie-react";
 import animationData from "@/../public/animation/auth-animation.json";
 
-export default function SignInWrapper({ children }) {
+export function SignInWrapper({ children }) {
   return (
     <AuthProvider>
       <NavBar />

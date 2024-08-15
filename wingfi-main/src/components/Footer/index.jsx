@@ -9,7 +9,7 @@ import {
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FiMapPin } from "react-icons/fi";
 
-export default function Footer() {
+export function Footer() {
   return (
     <footer className="footer mt-3 p-4 sm:p-10  pt-12 bg-white text-base-content rounded flex flex-col">
       <div

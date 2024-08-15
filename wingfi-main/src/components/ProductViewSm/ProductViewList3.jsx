@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Theme_text_colors_class } from "@/infrastructure/theme";
-import { FaRegHeart, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
-export default function ProductViewList2({ item }) {
+export function ProductViewList3({ item }) {
   return (
     <Link
       className="flex flex-col items-center bg-white border shadow p-2 pt-4 sm:p-8 sm:py-4 sm:gap-8 rounded-sm"

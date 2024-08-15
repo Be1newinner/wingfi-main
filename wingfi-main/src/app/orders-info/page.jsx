@@ -1,4 +1,4 @@
-import { Tab_OrdersInfo, AccountStructure } from "@/registry/components";
+import { Tab_OrdersInfo, AccountStructure } from "@/components";
 
 export default function OrdersInfo() {
   return (

@@ -1,4 +1,4 @@
-import { ProductViewList2 } from "@/registry/components";
+import { ProductViewList2 } from "@/components";
 import { ProductsData } from "@/service/Products/ProductsService";
 
 export default async function RecProductsWrapper() {

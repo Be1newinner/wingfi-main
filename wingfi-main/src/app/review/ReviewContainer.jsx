@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckoutSteps } from "@/registry/components";
+import { CheckoutSteps } from "@/components";
 import { CiGift } from "react-icons/ci";
 import { OtherDetailsService } from "@/service/OtherDetails/OtherDetailsService";
 

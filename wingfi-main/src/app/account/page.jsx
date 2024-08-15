@@ -1,5 +1,5 @@
-import { AccountStructure } from "@/registry/components";
-import ProfileDetails from "./ProfileDetails";
+import { AccountStructure } from "@/components";
+import { ProfileDetails } from "./ProfileDetails";
 
 export default function Account() {
   return (

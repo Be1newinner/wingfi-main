@@ -8,6 +8,6 @@ interface ProviderWrapperProps {
   children: ReactNode;
 }
 
-export default function ProviderWrapper({ children }: ProviderWrapperProps) {
+export function ProviderWrapper({ children }: ProviderWrapperProps) {
   return <Provider store={store}>{children}</Provider>;
 }

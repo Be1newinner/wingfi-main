@@ -3,10 +3,11 @@
 // import { ProductCartContext } from "@/registry/context";
 import Image from "next/image";
 // import { useContext } from "react";
-import { Theme_text_colors_class } from "@/infrastructure/theme";
 import { MdOutlineMergeType } from "react-icons/md";
 import Link from "next/link";
-import CartButton from "@/components/ProductViewSm/CartButton";
+
+import { Theme_text_colors_class } from "@/infrastructure/theme";
+import { CartButton } from "@/components";
 
 export default function WishlistContainer() {
   // const { ProductWishList, ToggleProductInWishList } =

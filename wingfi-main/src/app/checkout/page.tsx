@@ -3,11 +3,16 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { NavBar, Footer, Newsletter } from "@/registry/components";
 import { AuthProvider } from "@/registry/context";
-import PricingCart from "@/components/PricingCart";
+
+import {
+  NavBar,
+  Footer,
+  Newsletter,
+  CartProductArray,
+  PricingCart,
+} from "@/components";
 import { AddAddressItem, AddressItem, PaymentOptions } from "./components";
-import CartProductArray from "@/components/CartProductArray";
 import {
   selectAddresses,
   selectDefaultAddress,

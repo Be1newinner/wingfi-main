@@ -1,7 +1,7 @@
 import Link from "next/link";
 import React from "react";
 
-export default function CheckoutSteps({ step = 1 }) {
+export function CheckoutSteps({ step = 1 }) {
   const data = [
     { title: "Cart", key: 0, link: "/cart" },
     { title: "Checkout", key: 1, link: "/checkout" },

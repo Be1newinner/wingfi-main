@@ -3,7 +3,7 @@ import { GrRotateLeft } from "react-icons/gr";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { PiMedalLight } from "react-icons/pi";
 
-export default function HomeFeatures() {
+export function HomeFeatures() {
   const list = [
     {
       id: 0,

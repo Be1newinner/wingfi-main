@@ -13,7 +13,7 @@ interface props {
   sku: number;
 }
 
-export default function ProductViewList({
+export function ProductViewList({
   title,
   price,
   mrp,

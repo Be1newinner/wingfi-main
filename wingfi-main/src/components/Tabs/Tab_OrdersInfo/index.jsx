@@ -10,7 +10,7 @@ import { TimeStampToDate } from "@/registry/functions";
 import { AuthContext } from "@/registry/context";
 // import { waitForDebugger } from "inspector";
 
-export default function Tab_OrdersInfo() {
+export function Tab_OrdersInfo() {
   const [OrdersData, setOrdersData] = useState(null);
   const User = useContext(AuthContext)?.state?.user;
 

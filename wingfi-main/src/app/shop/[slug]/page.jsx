@@ -1,12 +1,13 @@
-import { NavBar, Footer, UserFeedBack2 } from "@/registry/components";
 import Link from "next/link";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import CartButton from "@/components/ProductViewSm/CartButton";
-import styles from "./style.module.css";
-import ExtraFeaturesCards from "./ExtraFeaturesCards";
+
+import { NavBar, Footer, UserFeedBack2, CartButton } from "@/components";
 import getProductFromURL from "@/service/getProductFromURL/getProductFromURLService";
 import { Variants } from "@/service/Offline/Variants";
+
+import styles from "./style.module.css";
+import { ExtraFeaturesCards } from "./ExtraFeaturesCards";
 
 export default async function SingleStore({ params }) {
   const { slug } = params;

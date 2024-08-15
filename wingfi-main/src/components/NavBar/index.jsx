@@ -3,7 +3,7 @@ import Link from "next/link";
 import CartIcons from "./CartIcons";
 import SignOut from "../AccountSidebar/SignOut";
 
-export default function NavBar() {
+export function NavBar() {
   return (
     <div
       className="navbar bg-base-100 shadow shadow-md "

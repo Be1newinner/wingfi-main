@@ -3,7 +3,7 @@
 import { redirect } from "next/navigation";
 import AuthContext from "./AuthContext";
 import { PropsWithChildren, useContext, useEffect } from "react";
-import { LoadingIndicator } from "@/registry/components";
+import { LoadingIndicator } from "@/components";
 
 export default function ProtectedRoute({ children }: PropsWithChildren) {
   const authContextData = useContext(AuthContext);
@@ -14,7 +14,6 @@ export default function ProtectedRoute({ children }: PropsWithChildren) {
     if (!IsUserLoading) {
       if (User?.uid) {
         console.log("User at Protected Routes...", User);
-
       } else {
         // console.log("User at Protected Routes... No User");
         redirect("/signin");

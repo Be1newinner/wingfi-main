@@ -1,4 +1,4 @@
-import { NavBar, Footer, Newsletter } from "@/registry/components";
+import { NavBar, Footer, Newsletter } from "@/components";
 import { ShopProductsWrapper } from "@/registry/contextWrappers";
 import Link from "next/link";
 

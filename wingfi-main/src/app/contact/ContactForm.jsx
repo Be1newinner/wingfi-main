@@ -1,4 +1,4 @@
-import { Footer, NavBar } from "@/registry/components";
+import { Footer, NavBar } from "@/components";
 import Link from "next/link";
 
 export default function Contact() {

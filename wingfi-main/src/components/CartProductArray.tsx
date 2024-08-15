@@ -6,13 +6,11 @@ import { selectCartItems } from "@/redux/selectors/cart";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-export default function CartProductArray() {
+export function CartProductArray() {
   const CartSelector = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
   return Object.values(CartSelector)?.map((item: any) => {
-    // console.log("SKU =>", item);
-
     return (
       <CartProduct
         key={item.sku}

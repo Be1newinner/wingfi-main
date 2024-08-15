@@ -1,13 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "@/registry/context";
 import { useEffect } from "react";
 import { deleteAddresses, getAddresses } from "./SavedAddressController";
-import AddNewAddressDialog from "./AddNewAddressDialog";
+import { AddNewAddressDialog } from "./AddNewAddressDialog";
 
-export default function SavedAddresses() {
+export function SavedAddresses() {
   const User = useContext(AuthContext)?.state?.user || {};
   const [SavedAddress, setSavedAddress] = useState(null);
   const [defaultAddress, setDefaultAddress] = useState(null);

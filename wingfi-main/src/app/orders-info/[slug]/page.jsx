@@ -1,6 +1,6 @@
 "use client";
 
-import { AccountStructure } from "@/registry/components";
+import { AccountStructure } from "@/components";
 import Image from "next/image";
 import { useEffect } from "react";
 import { firestore } from "@/infrastructure/firebase.config";

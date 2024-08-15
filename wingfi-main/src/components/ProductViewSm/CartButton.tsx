@@ -20,7 +20,7 @@ interface CartButtonProps {
   color: string;
 }
 
-export default function CartButton({
+export function CartButton({
   text = "Add",
   item = {
     sku: "",

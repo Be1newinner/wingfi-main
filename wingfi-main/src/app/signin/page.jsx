@@ -1,6 +1,6 @@
 "use client";
 import SingInForms from "./SignInForm";
-import { SignInWrapper } from "@/registry/components";
+import { SignInWrapper } from "@/components";
 
 export default function SignUp() {
   return (
