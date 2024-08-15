@@ -21,6 +21,7 @@ const dummyAddresses: AddressType[] = [
     state: "delhi",
     key: 0,
     type: 0,
+    uid: "abcd",
   },
   {
     houseNumber: "2h449/8",
@@ -32,6 +33,7 @@ const dummyAddresses: AddressType[] = [
     state: "delhi",
     key: 1,
     type: 1,
+    uid: "abcd",
   },
 ];
 

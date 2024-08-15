@@ -46,7 +46,7 @@ export interface GenerateOrderRequestAction {
 
 interface GenerateOrderSuccessAction {
   type: typeof GENERATE_ORDER_SUCCESS;
-  payload: string; // orderId
+  payload: Order;
 }
 
 interface GenerateOrderFailureAction {
@@ -68,9 +68,9 @@ interface LoadAllOrdersFailureAction {
   payload: string;
 }
 
-interface LoadSingleOrderRequestAction {
+export interface LoadSingleOrderRequestAction {
   type: typeof LOAD_SINGLE_ORDER_REQUEST;
-  payload: string; // orderId
+  payload: string;
 }
 
 interface LoadSingleOrderSuccessAction {

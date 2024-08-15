@@ -1,5 +1,3 @@
-// src/store/order/reducer.ts
-
 import { produce } from "immer";
 import {
   GENERATE_ORDER_REQUEST,
@@ -36,7 +34,7 @@ export const orderReducer = (
 
       case GENERATE_ORDER_SUCCESS:
         draft.loading = false;
-        draft.orders.push({ ...action.payload, id: action.payload });
+        draft.orders.push(action.payload);
         break;
 
       case LOAD_ALL_ORDERS_SUCCESS:

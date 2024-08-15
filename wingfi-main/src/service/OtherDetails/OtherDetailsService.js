@@ -1,8 +1,6 @@
 export const OtherDetailsService = {
-  t: 18,
-  s: 50,
+  t: 18, // Tax Fees
+  s: 50, // Shipping Fees
 };
 
 
-
-// Tax and Shipping Fees

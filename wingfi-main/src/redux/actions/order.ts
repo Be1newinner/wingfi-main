@@ -1,5 +1,3 @@
-// src/store/order/actions.ts
-
 import {
   GENERATE_ORDER_REQUEST,
   GENERATE_ORDER_SUCCESS,
@@ -13,23 +11,25 @@ import {
   Order,
 } from "../constants/order";
 
-// Generate Order
 export const generateOrderRequest = (order: Order) => ({
   type: GENERATE_ORDER_REQUEST,
   payload: order,
 });
 
-export const generateOrderSuccess = (orderId: string) => ({
-  type: GENERATE_ORDER_SUCCESS,
-  payload: orderId,
-});
+export interface GenerateOrderSuccessAction {
+  type: typeof GENERATE_ORDER_SUCCESS;
+  payload: Order;
+}
 
+export const generateOrderSuccess = (error: string) => ({
+  type: GENERATE_ORDER_SUCCESS,
+  payload: error,
+});
 export const generateOrderFailure = (error: string) => ({
   type: GENERATE_ORDER_FAILURE,
   payload: error,
 });
 
-// Load All Orders
 export const loadAllOrdersRequest = () => ({
   type: LOAD_ALL_ORDERS_REQUEST,
 });
@@ -44,7 +44,6 @@ export const loadAllOrdersFailure = (error: string) => ({
   payload: error,
 });
 
-// Load Single Order
 export const loadSingleOrderRequest = (orderId: string) => ({
   type: LOAD_SINGLE_ORDER_REQUEST,
   payload: orderId,
