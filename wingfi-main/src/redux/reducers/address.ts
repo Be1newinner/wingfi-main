@@ -72,12 +72,7 @@ export const addressReducer = (
         break;
       }
       case CHANGE_DEFAULT_ADDRESSES: {
-        // const addressExists = draft.addresses.some(
-        //   (address) => address.key === action.payload.key
-        // );
-        // if (addressExists) {
         draft.default = action.payload.key;
-        // }
         break;
       }
       default:

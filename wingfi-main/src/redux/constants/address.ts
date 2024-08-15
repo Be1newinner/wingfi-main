@@ -14,6 +14,7 @@ export interface AddressType {
   state: string;
   key: number;
   type: number;
+  uid: string;
 }
 
 export interface AddNewAddressAction {
