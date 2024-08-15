@@ -34,7 +34,6 @@ const authReducer = (state = initialState, action: AuthActionTypes): State => {
     case SET_IS_USER_LOADING:
       return { ...state, isUserLoading: action.payload };
     default:
-      console.error("Invalid Action Call!");
       return state;
   }
 };

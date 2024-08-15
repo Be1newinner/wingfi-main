@@ -1,4 +1,12 @@
-export function ModifiedSelect() {
+import { ChangeEventHandler } from "react";
+
+export function ModifiedSelect({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: ChangeEventHandler<HTMLSelectElement>;
+}) {
   return (
     <div className="basis-1/2">
       <label
@@ -9,6 +17,8 @@ export function ModifiedSelect() {
           name="HeadlineAct"
           id="HeadlineAct"
           className="peer border-none bg-white placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 px-2 py-3 w-full rounded-xs"
+          defaultValue={value}
+          onChange={onChange}
         >
           <option value="" className="text-gray-400">
             Please select

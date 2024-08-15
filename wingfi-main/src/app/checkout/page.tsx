@@ -1,22 +1,25 @@
 "use client";
 
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { NavBar, Footer, Newsletter } from "@/registry/components";
 import { AuthProvider } from "@/registry/context";
 import PricingCart from "@/components/PricingCart";
-import { useState } from "react";
-// import { cartProductsData } from "@/service/Offline/CartProducts";
-// import CartProduct from "@/components/CartProduct";
-import { AddAddressItem, AddressItem } from "./components";
-import { useSelector } from "react-redux";
+import { AddAddressItem, AddressItem, PaymentOptions } from "./components";
 import CartProductArray from "@/components/CartProductArray";
-import PaymentOptions from "./components/PaymentOptions";
+import {
+  selectAddresses,
+  selectDefaultAddress,
+} from "@/redux/selectors/address";
+import { changeDefaultAddress } from "@/redux/actions/address";
+import { AddressType } from "@/redux/constants/address";
 
 export default function Checkout() {
   const [checkoutSteps, setCheckoutSteps] = useState<number>(1);
-  const SavedAddressSelector = useSelector((selector: any) => selector.Address);
-  const [addressSelected, setAddressSelected] = useState(
-    SavedAddressSelector?.default || 0
-  );
+  const SavedAddressSelector = useSelector(selectAddresses);
+  const DefaultAddress = useSelector(selectDefaultAddress);
+  const dispatch = useDispatch();
 
   return (
     <AuthProvider>
@@ -43,18 +46,22 @@ export default function Checkout() {
                     </div>
                     DELIVERY ADDRESS
                   </p>
-                  {SavedAddressSelector?.addresses?.map((e: any) => (
+                  {SavedAddressSelector?.map((e: AddressType) => (
                     <AddressItem
-                      id={e.k}
-                      key={e.k}
-                      addressSelected={addressSelected}
+                      id={e.key}
+                      key={e.key}
+                      addressSelected={DefaultAddress}
                       setCheckoutSteps={setCheckoutSteps}
-                      setAddressSelected={setAddressSelected}
+                      setAddressSelected={(item) =>
+                        dispatch(changeDefaultAddress({ key: item }))
+                      }
                     />
                   ))}
                   <AddAddressItem
-                    addressSelected={addressSelected}
-                    setAddressSelected={setAddressSelected}
+                    addressSelected={DefaultAddress}
+                    setAddressSelected={() =>
+                      dispatch(changeDefaultAddress({ key: 999 }))
+                    }
                   />
                 </div>
               ) : (
@@ -120,7 +127,7 @@ export default function Checkout() {
                         2
                       </span>
                     </div>
-                    MARY
+                    ORDER SUMMARY
                   </p>
                 </div>
               )}

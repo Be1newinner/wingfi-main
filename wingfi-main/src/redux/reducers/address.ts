@@ -1,5 +1,3 @@
-// src/store/address/reducer.ts
-
 import { produce } from "immer";
 import {
   AddressActionTypes,
@@ -8,59 +6,45 @@ import {
   RESET_ADDRESS,
   LOAD_ALL_ADDRESSES,
   CHANGE_DEFAULT_ADDRESSES,
+  AddressInitialState,
+  AddressType,
 } from "../constants/address";
 
-interface Address {
-  h: string;
-  n: string;
-  p: number;
-  pi: number;
-  l: string;
-  c: string;
-  s: string;
-  k: number;
-  t: number;
-}
+const dummyAddresses: AddressType[] = [
+  {
+    houseNumber: "h550/9",
+    name: "1Vijay Kumar",
+    phoneNumber: 18130506284,
+    pinCode: 1110062,
+    landmark: "1m1, asthal mandir",
+    city: "delhi",
+    state: "delhi",
+    key: 0,
+    type: 0,
+  },
+  {
+    houseNumber: "2h449/8",
+    name: "2ajay kumar",
+    phoneNumber: 29717099259,
+    pinCode: 2110080,
+    landmark: "2m2, asthal mandir",
+    city: "delhi",
+    state: "delhi",
+    key: 1,
+    type: 1,
+  },
+];
 
-interface State {
-  addresses: Address[];
-  default: number;
-  isFetched: boolean;
-}
-
-const initialState: State = {
-  addresses: [
-    {
-      h: "h550/9",
-      n: "1Vijay Kumar",
-      p: 18130506284,
-      pi: 1110062,
-      l: "1m1, asthal mandir",
-      c: "delhi",
-      s: "delhi",
-      k: 0,
-      t: 0,
-    },
-    {
-      h: "2h449/8",
-      n: "2ajay kumar",
-      p: 29717099259,
-      pi: 2110080,
-      l: "2m2, asthal mandir",
-      c: "delhi",
-      s: "delhi",
-      k: 1,
-      t: 1,
-    },
-  ],
+const initialState: AddressInitialState = {
+  addresses: dummyAddresses,
   default: 0,
-  isFetched: false,
+  isFetched: true,
 };
 
 export const addressReducer = (
   state = initialState,
   action: AddressActionTypes
-): State =>
+): AddressInitialState =>
   produce(state, (draft) => {
     switch (action.type) {
       case ADD_NEW_ADDRESS: {
@@ -69,32 +53,34 @@ export const addressReducer = (
       }
       case REMOVE_ADDRESS: {
         draft.addresses = draft.addresses.filter(
-          (item) => item.k !== action.payload.k
+          (item) => item.key !== action.payload.key
         );
-        if (action.payload.k === draft.default) {
-          draft.default = draft.addresses.length ? draft.addresses[0].k : 0;
+        if (action.payload.key === draft.default) {
+          draft.default = draft.addresses.length ? draft.addresses[0].key : 0;
         }
         break;
       }
       case RESET_ADDRESS: {
         draft.addresses = action.payload;
-        draft.default = 0;
+        draft.default = draft.addresses.length ? draft.addresses[0].key : 0;
         break;
       }
       case LOAD_ALL_ADDRESSES: {
-        draft.addresses = [];
-        draft.default = 0;
+        draft.addresses = action.payload;
+        draft.default = draft.addresses.length ? draft.addresses[0].key : 0;
+        draft.isFetched = true;
         break;
       }
       case CHANGE_DEFAULT_ADDRESSES: {
-        draft.default = action.payload.k;
+        // const addressExists = draft.addresses.some(
+        //   (address) => address.key === action.payload.key
+        // );
+        // if (addressExists) {
+        draft.default = action.payload.key;
+        // }
         break;
       }
-      default: {
-        console.error("Invalid Action Call!");
-        if (process.env.NODE_ENV === "development") {
-          console.error(`Unhandled action type:`);
-        }
-      }
+      default:
+        return state;
     }
   });

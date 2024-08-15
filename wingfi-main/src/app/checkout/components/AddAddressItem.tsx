@@ -1,75 +1,131 @@
 "use client";
 
-import { Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, useState } from "react";
 import { ModifiedInput, ModifiedSelect } from "./index";
 
-interface propTypes {
+interface FormValues {
+  fullName: string;
+  mobileNumber: string;
+  pincode: string;
+  locality: string;
+  address: string;
+  cityStateTown: string;
+  landmark?: string;
+  addressType: string;
+}
+
+interface PropTypes {
   addressSelected: number;
-  setAddressSelected: Dispatch<SetStateAction<number>>;
+  setAddressSelected: Dispatch<number>;
 }
 
 export const AddAddressItem = ({
   addressSelected,
   setAddressSelected,
-}: propTypes) => {
-  const [value, setValue] = useState("");
+}: PropTypes) => {
+  const [formValues, setFormValues] = useState<FormValues>({
+    fullName: "",
+    mobileNumber: "",
+    pincode: "",
+    locality: "",
+    address: "",
+    cityStateTown: "",
+    landmark: "",
+    addressType: "home",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (
+    e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>
+  ) => {
+    const { value } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      addressType: value,
+    }));
+  };
 
   return (
     <div
-      className={[
-        "flex p-6 gap-4 items-start cursor-pointer border-t-2",
-        999 === addressSelected ? "bg-blue-50" : "",
-      ].join(" ")}
+      className={`flex p-6 gap-4 items-start cursor-pointer border-t-2 ${
+        addressSelected === 999 ? "bg-blue-50" : ""
+      }`}
       onClick={() => setAddressSelected(999)}
     >
       <input
         type="radio"
         name="select_address"
         className="mt-1"
-        checked={999 === addressSelected}
+        checked={addressSelected === 999}
         onChange={() => setAddressSelected(999)}
       />
       <div className="flex flex-col flex-1 text-sm gap-2">
         <span className="text-sm font-medium text-blue-600 cursor-pointer mb-2">
           Add a new address
         </span>
-        {999 === addressSelected && (
+        {addressSelected === 999 && (
           <div className="flex flex-wrap gap-y-4">
             <ModifiedInput
               title="Full Name"
-              className="basis-1/2 odd:pr-4"
-              setValue={setValue}
+              className="basis-1/2 pr-4"
+              name="fullName"
+              value={formValues.fullName}
+              onChange={handleChange}
             />
             <ModifiedInput
               title="10-digit Mobile Number"
-              className="basis-1/2 odd:pr-4"
-              setValue={setValue}
+              className="basis-1/2 pr-4"
+              name="mobileNumber"
+              value={formValues.mobileNumber}
+              onChange={handleChange}
+              type="tel"
             />
             <ModifiedInput
               title="Pincode"
-              className="basis-1/2 odd:pr-4"
-              setValue={setValue}
+              className="basis-1/2 pr-4"
+              name="pincode"
+              value={formValues.pincode}
+              onChange={handleChange}
+              type="number"
             />
             <ModifiedInput
               title="Locality"
-              className="basis-1/2 odd:pr-4"
-              setValue={setValue}
+              className="basis-1/2 pr-4"
+              name="locality"
+              value={formValues.locality}
+              onChange={handleChange}
             />
             <ModifiedInput
               title="Address (Area and Street)"
               className="basis-full"
-              setValue={setValue}
+              name="address"
+              value={formValues.address}
+              onChange={handleChange}
             />
             <ModifiedInput
               title="City/State/Town"
               className="basis-1/2 pr-4"
-              setValue={setValue}
+              name="cityStateTown"
+              value={formValues.cityStateTown}
+              onChange={handleChange}
             />
-            <ModifiedSelect />
+            <ModifiedSelect
+              value={formValues.addressType}
+              onChange={handleSelectChange}
+            />
             <ModifiedInput
-              setValue={setValue}
               title="Landmark (Optional)"
               className="basis-1/2 pr-4"
+              name="landmark"
+              value={formValues.landmark || ""}
+              onChange={handleChange}
             />
             <span className="basis-full text-gray-500">Address Type</span>
             <div className="flex gap-6 basis-full">
@@ -78,6 +134,9 @@ export const AddAddressItem = ({
                   type="radio"
                   name="address_type"
                   id="address_type_home"
+                  checked={formValues.addressType === "home"}
+                  value="home"
+                  onChange={handleSelectChange}
                 />
                 <label htmlFor="address_type_home">
                   Home (All day delivery)
@@ -88,6 +147,9 @@ export const AddAddressItem = ({
                   type="radio"
                   name="address_type"
                   id="address_type_work"
+                  checked={formValues.addressType === "work"}
+                  value="work"
+                  onChange={handleSelectChange}
                 />
                 <label htmlFor="address_type_work">
                   Work (Delivery between 10 AM to 5 PM)

@@ -1,45 +1,50 @@
-// src/store/address/actions.ts
-
 export const ADD_NEW_ADDRESS = "ADD_NEW_ADDRESS";
 export const REMOVE_ADDRESS = "REMOVE_ADDRESS";
 export const RESET_ADDRESS = "RESET_ADDRESS";
 export const LOAD_ALL_ADDRESSES = "LOAD_ALL_ADDRESSES";
 export const CHANGE_DEFAULT_ADDRESSES = "CHANGE_DEFAULT_ADDRESSES";
 
-interface Address {
-  h: string;
-  n: string;
-  p: number;
-  pi: number;
-  l: string;
-  c: string;
-  s: string;
-  k: number;
-  t: number;
+export interface AddressType {
+  houseNumber: string;
+  name: string;
+  phoneNumber: number;
+  pinCode: number;
+  landmark: string;
+  city: string;
+  state: string;
+  key: number;
+  type: number;
 }
 
 export interface AddNewAddressAction {
   type: typeof ADD_NEW_ADDRESS;
-  payload: Address;
+  payload: AddressType;
 }
 
 export interface RemoveAddressAction {
   type: typeof REMOVE_ADDRESS;
-  payload: { k: number };
+  payload: { key: number };
 }
 
 export interface ResetAddressAction {
   type: typeof RESET_ADDRESS;
-  payload: Address[];
+  payload: AddressType[];
 }
 
 export interface LoadAllAddressesAction {
   type: typeof LOAD_ALL_ADDRESSES;
+  payload: AddressType[];
 }
 
 export interface ChangeDefaultAddressesAction {
   type: typeof CHANGE_DEFAULT_ADDRESSES;
-  payload: { k: number };
+  payload: { key: number };
+}
+
+export interface AddressInitialState {
+  addresses: AddressType[];
+  default: number;
+  isFetched: boolean;
 }
 
 export type AddressActionTypes =

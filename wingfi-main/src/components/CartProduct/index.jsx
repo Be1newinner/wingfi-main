@@ -1,6 +1,15 @@
 import { SlMinus, SlPlus } from "react-icons/sl";
+import { formatToIndianCurrency } from "../../../utils/formatToIndianCurrency";
 
-export default function CartProduct({ sku, qty, title, mrp, price }) {
+export default function CartProduct({
+  sku,
+  qty,
+  title,
+  mrp,
+  price,
+  inreaseFunction,
+  decreaseFunction,
+}) {
   return (
     <div className="flex flex-col gap-2  border-y-2 border-gray-200 py-8 px-4 sm:px-8">
       <div className="flex justify-between items-center">
@@ -25,28 +34,29 @@ export default function CartProduct({ sku, qty, title, mrp, price }) {
             <div className="flex gap-2 items-center justify-between">
               <p className="flex gap-2 items-center">
                 <span className="text-xs text-gray-500 line-through">
-                  ₹{mrp}
+                  ₹{formatToIndianCurrency(mrp)}
                 </span>
-                <span className="font-semibold ">₹{price}</span>
+                <span className="font-semibold ">
+                  ₹{formatToIndianCurrency(price)}
+                </span>
                 <span className="font-semibold text-green-500 text-sm ">
                   40% Off
                 </span>
               </p>
-              {/* <p>Qty x {qty}</p> */}
             </div>
           </div>
         </div>
       </div>
       <div className="flex gap-8 cursor-pointer">
         <div className="flex gap-2 items-center">
-          <SlMinus className="text-xl" />
+          <SlMinus className="text-xl" onClick={decreaseFunction} />
           <div className="border-2 w-10 rounded-md text-center">{qty}</div>
-          <SlPlus className="text-xl" />
+          <SlPlus className="text-xl" onClick={inreaseFunction} />
         </div>
-        <div className="font-semibold uppercase flex gap-4 ">
+        {/* <div className="font-semibold uppercase flex gap-4 ">
           <p className="hover:text-blue-500">save for later</p>
           <p className="hover:text-blue-500">remove</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

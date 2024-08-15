@@ -1,10 +1,14 @@
-export const ADD_IN_CART = "cart/addInCart";
-export const RESET_CART = "cart/resetCart";
-export const CHANGE_PAYMENT_METHOD = "cart/changePaymentMethod";
-export const FETCH_CART_DATA = "cart/fetchCartData";
-export const FETCH_CART_DATA_REQUEST = "cart/fetchCartDataRequest";
-export const FETCH_CART_DATA_SUCCESS = "cart/fetchCartDataSuccess";
-export const FETCH_CART_DATA_FAILURE = "cart/fetchCartDataFailure";
+// Action Types
+
+export const FETCH_CART_DATA = "FETCH_CART_DATA";
+export const ADD_IN_CART = "ADD_IN_CART";
+export const RESET_CART = "RESET_CART";
+export const CHANGE_PAYMENT_METHOD = "CHANGE_PAYMENT_METHOD";
+export const INCREASE_QTY = "INCREASE_QTY";
+export const DECREASE_QTY = "DECREASE_QTY";
+export const FETCH_CART_DATA_REQUEST = "FETCH_CART_DATA_REQUEST";
+export const FETCH_CART_DATA_SUCCESS = "FETCH_CART_DATA_SUCCESS";
+export const FETCH_CART_DATA_FAILURE = "FETCH_CART_DATA_FAILURE";
 
 export interface CartItem {
   sku: string;
@@ -30,6 +34,10 @@ export interface CartData {
 
 export interface CartItemData {
   qty: number;
+  sku: string;
+  title: string;
+  mrp: string;
+  price: number;
 }
 
 export interface CartItemsState {

@@ -1,21 +1,18 @@
-// import { changePaymentMethod } from "@/store/slice/CartSlice";
-import { Dispatch, SetStateAction, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Dispatch, SetStateAction } from "react";
 
 interface propTypes {
   checkoutSteps: number;
   setCheckoutSteps: Dispatch<SetStateAction<number>>;
+  radioSelection: number;
+  setRadioSelection: (e: number) => void;
 }
 
 export default function PaymentOptions({
   checkoutSteps,
   setCheckoutSteps,
+  radioSelection,
+  setRadioSelection,
 }: propTypes) {
-  const [radioSelection, setRadioSelection] = useState(
-    useSelector((selector: any) => selector.Cart)?.paymentMethod
-  );
-  const dispatch = useDispatch();
-
   return checkoutSteps === 3 ? (
     <div className="bg-white shadow">
       <p className="flex gap-2 text-white font-semibold text-sm py-4 px-4 sm:px-8 shadow-md bg-blue-500 ">
@@ -31,12 +28,8 @@ export default function PaymentOptions({
             name="payment_radio"
             id="online_payment"
             className="cursor-pointer"
-            // disabled
             checked={radioSelection === 0 ? true : false}
-            onChange={() => {
-              // dispatch(changePaymentMethod(0));
-              setRadioSelection(0);
-            }}
+            onChange={() => setRadioSelection(0)}
           />
           <label
             htmlFor="online_payment"
@@ -51,10 +44,7 @@ export default function PaymentOptions({
             name="payment_radio"
             id="cod"
             checked={radioSelection === 1 ? true : false}
-            onChange={() => {
-              // dispatch(changePaymentMethod(1));
-              setRadioSelection(1);
-            }}
+            onChange={() => setRadioSelection(1)}
           />
           <label htmlFor="cod" className="text-sm cursor-pointer py-4">
             Cash On Delivery
@@ -70,7 +60,7 @@ export default function PaymentOptions({
           onClick={() => setCheckoutSteps(3)}
           className="btn btn-error mt-2 text-white text-sm font-medium px-12 py-4 rounded-none max-w-60"
         >
-          CONFIRM PAYMENT
+          {radioSelection === 0 ? "CONFIRM PAYMENT" : "CONFIRM ORDER"}
         </button>
       </div>
     </div>

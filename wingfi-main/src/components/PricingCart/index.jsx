@@ -1,30 +1,27 @@
-import React from "react";
+"use client";
 
-export default function PricingCart() {
+import {
+  selectCartDelivery,
+  selectCartDiscount,
+  selectCartSubtotal,
+  selectCartTotal,
+} from "@/redux/selectors/cart";
+import React from "react";
+import { useSelector } from "react-redux";
+import PricingCart from "./PricingCart";
+
+export default function PricingCartContainer() {
+  const CartTotal = useSelector(selectCartTotal);
+  const CartSubtotal = useSelector(selectCartSubtotal);
+  const CartDiscount = useSelector(selectCartDelivery);
+  const CartDelivery = useSelector(selectCartDiscount);
+
   return (
-    <React.Fragment>
-      <p className="text-gray-500 font-semibold m-4 text-sm">PRICE DETAILS</p>
-      <div className="flex flex-col gap-4 border-y-2 p-4 text-gray-600">
-        <p className="flex justify-between">
-          <span>Price (4 items)</span>
-          <span>₹8,064</span>
-        </p>
-        <p className="flex justify-between">
-          <span>Discount</span>
-          <span className="text-green-500"> - ₹2,064</span>
-        </p>
-        <p className="flex justify-between">
-          <span>Delivery Charges</span>
-          <span className="flex gap-2">
-            <span className="line-through">₹70</span>
-            <span className="text-green-500">Free</span>
-          </span>
-        </p>
-      </div>
-      <p className="flex justify-between p-4 font-semibold">
-        <span>Total Amount</span>
-        <span>₹2,689</span>
-      </p>
-    </React.Fragment>
+    <PricingCart
+      price={CartSubtotal}
+      discount={CartDiscount}
+      delivery={CartDelivery}
+      total={CartTotal}
+    />
   );
 }
