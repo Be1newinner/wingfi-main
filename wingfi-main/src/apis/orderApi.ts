@@ -6,18 +6,32 @@ import { Order } from "@/redux/constants/order";
 export async function generateOrderAPI({
   address,
   status,
-  products,
+  items,
   name,
   phone,
   total,
+  uid,
+  subtotal,
+  tax,
+  delivery,
+  qty,
+  discount,
+  paymentMethod,
 }: Order): Promise<string> {
-  const docRef = await addDoc(collection(firestore, "orders"), {
+  const docRef = await addDoc(collection(firestore, "or84r"), {
+    pd: items,
+    t: total,
+    st: subtotal,
+    x: tax,
+    dy: delivery,
+    q: qty,
+    ds: discount,
     ad: address,
+    pm: paymentMethod,
     s: status,
-    pd: products,
     n: name,
     p: phone,
-    t: total,
+    u: uid,
   });
 
   console.log("Document written with ID: ", docRef.id);
@@ -26,18 +40,25 @@ export async function generateOrderAPI({
 }
 
 export async function loadAllOrdersAPI(): Promise<Order[]> {
-  const querySnapshot = await getDocs(collection(firestore, "orders"));
+  const querySnapshot = await getDocs(collection(firestore, "or84r"));
 
   const orders: Order[] = querySnapshot.docs.map((doc) => {
     const data = doc.data();
     return {
-      id: doc.id,
+      items: data.pd,
+      total: data.t,
+      subtotal: data.st,
+      tax: data.x,
+      delivery: data.dy,
+      qty: data.q,
+      discount: data.ds,
       address: data.ad,
+      paymentMethod: data.pm,
       status: data.s,
-      products: data.pd,
       name: data.n,
       phone: data.p,
-      total: data.t,
+      uid: data.uid,
+      id: doc.id,
     };
   });
 
@@ -48,20 +69,27 @@ export async function loadAllOrdersAPI(): Promise<Order[]> {
 export async function loadSingleOrderAPI(
   orderId: string
 ): Promise<Order | null> {
-  const docRef = doc(firestore, "orders", orderId);
+  const docRef = doc(firestore, "or84r", orderId);
   const docSnap = await getDoc(docRef);
 
   if (docSnap.exists()) {
     const data = docSnap.data();
 
     const order: Order = {
-      id: docSnap.id,
+      items: data.pd,
+      total: data.t,
+      subtotal: data.st,
+      tax: data.x,
+      delivery: data.dy,
+      qty: data.q,
+      discount: data.ds,
       address: data.ad,
+      paymentMethod: data.pm,
       status: data.s,
-      products: data.pd,
       name: data.n,
       phone: data.p,
-      total: data.t,
+      uid: data.uid,
+      id: docSnap.id,
     };
 
     console.log("Loaded single order with ID: ", orderId);

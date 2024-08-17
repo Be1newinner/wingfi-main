@@ -1,6 +1,6 @@
 import { MdSecurity } from "react-icons/md";
 import Link from "next/link";
-import { CartProductArray, PricingCart, NavBar, Footer } from "@/components";
+import { CartProductArray, PricingCart, NavBar, Footer } from "../../components";
 
 export default function Cart() {
   return (

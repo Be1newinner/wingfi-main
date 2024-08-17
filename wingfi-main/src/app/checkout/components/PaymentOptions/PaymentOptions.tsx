@@ -1,17 +1,15 @@
-import { Dispatch, SetStateAction } from "react";
-
 interface propTypes {
   checkoutSteps: number;
-  setCheckoutSteps: Dispatch<SetStateAction<number>>;
   radioSelection: number;
   setRadioSelection: (e: number) => void;
+  generateOrder: () => void;
 }
 
 export default function PaymentOptions({
   checkoutSteps,
-  setCheckoutSteps,
   radioSelection,
   setRadioSelection,
+  generateOrder,
 }: propTypes) {
   return checkoutSteps === 3 ? (
     <div className="bg-white shadow">
@@ -57,12 +55,39 @@ export default function PaymentOptions({
           <span className="font-semibold">be1newinner@gmail.com</span>
         </span>
         <button
-          onClick={() => setCheckoutSteps(3)}
+          onClick={() =>
+            (
+              document.getElementById(
+                "payment_confirm_dialog"
+              ) as HTMLDialogElement
+            ).showModal()
+          }
           className="btn btn-error mt-2 text-white text-sm font-medium px-12 py-4 rounded-none max-w-60"
         >
           {radioSelection === 0 ? "CONFIRM PAYMENT" : "CONFIRM ORDER"}
         </button>
       </div>
+
+      <dialog id="payment_confirm_dialog" className="modal">
+        <div className="modal-box rounded-sm">
+          <h3 className="font-bold text-lg">Confirm Order!</h3>
+          <p className="py-4">press continue to confirm this order!</p>
+
+          <div className="flex justify-end">
+            <form method="dialog">
+              <button className="btn btn-error btn-outline mt-2 text-sm font-medium p-4 px-8 rounded-none max-w-60">
+                close
+              </button>
+              <button
+                onClick={generateOrder}
+                className="btn btn-error mt-2 text-white text-sm font-medium p-4 px-8 rounded-none max-w-60"
+              >
+                Continue
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
     </div>
   ) : (
     <div className="bg-white shadow cursor-pointer">

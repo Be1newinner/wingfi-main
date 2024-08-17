@@ -17,6 +17,7 @@ const initialState: OrderState = {
   orders: [],
   loading: false,
   error: null,
+  success: false,
 };
 
 export const orderReducer = (
@@ -26,6 +27,7 @@ export const orderReducer = (
   produce(state, (draft) => {
     switch (action.type) {
       case GENERATE_ORDER_REQUEST:
+        draft.success = false;
       case LOAD_ALL_ORDERS_REQUEST:
       case LOAD_SINGLE_ORDER_REQUEST:
         draft.loading = true;
@@ -35,6 +37,7 @@ export const orderReducer = (
       case GENERATE_ORDER_SUCCESS:
         draft.loading = false;
         draft.orders.push(action.payload);
+        draft.success = true;
         break;
 
       case LOAD_ALL_ORDERS_SUCCESS:
@@ -50,6 +53,7 @@ export const orderReducer = (
         break;
 
       case GENERATE_ORDER_FAILURE:
+        draft.success = false;
       case LOAD_ALL_ORDERS_FAILURE:
       case LOAD_SINGLE_ORDER_FAILURE:
         draft.loading = false;

@@ -13,7 +13,9 @@ export const FETCH_CART_DATA_FAILURE = "FETCH_CART_DATA_FAILURE";
 export interface CartItem {
   sku: string;
   qty: number;
+  img: string;
   price: number;
+  category: number;
   [key: string]: any;
 }
 

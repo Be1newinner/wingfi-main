@@ -6,7 +6,7 @@ import SignOut from "../AccountSidebar/SignOut";
 export function NavBar() {
   return (
     <div
-      className="navbar bg-base-100 shadow shadow-md "
+      className="navbar bg-base-100 shadow-md "
       style={{
         position: "sticky",
         top: 0,

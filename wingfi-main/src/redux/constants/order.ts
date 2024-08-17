@@ -1,3 +1,5 @@
+import { CartData } from "./cart";
+
 export const GENERATE_ORDER_REQUEST = "GENERATE_ORDER_REQUEST";
 export const GENERATE_ORDER_SUCCESS = "GENERATE_ORDER_SUCCESS";
 export const GENERATE_ORDER_FAILURE = "GENERATE_ORDER_FAILURE";
@@ -10,33 +12,23 @@ export const LOAD_SINGLE_ORDER_REQUEST = "LOAD_SINGLE_ORDER_REQUEST";
 export const LOAD_SINGLE_ORDER_SUCCESS = "LOAD_SINGLE_ORDER_SUCCESS";
 export const LOAD_SINGLE_ORDER_FAILURE = "LOAD_SINGLE_ORDER_FAILURE";
 
-export interface Order {
-  id?: string;
-  address: {
-    fullAddress: string;
-    pincode: number;
-  };
+export interface Order extends CartData {
+  uid: string;
+  id: string;
   status: {
     s0: {
       date: number;
     };
   };
-  products: {
-    category: number;
-    image: string;
-    name: string;
-    price: number;
-    quantity: number;
-  }[];
   name: string;
   phone: string;
-  total: number;
 }
 
 export interface OrderState {
   orders: Order[];
   loading: boolean;
   error: string | null;
+  success: boolean;
 }
 
 export interface GenerateOrderRequestAction {

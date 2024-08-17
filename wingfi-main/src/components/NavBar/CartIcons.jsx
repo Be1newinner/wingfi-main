@@ -1,17 +1,12 @@
 "use client";
 
+import { selectCartQuantity } from "@/redux/selectors/cart";
 import Link from "next/link";
-import { useEffect } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { useSelector } from "react-redux";
 
 export default function CartIcons() {
-  const CartSelector = useSelector((selector) => selector.Cart);
-  const CartLength = CartSelector?.qty || 0;
-
-  useEffect(() => {
-    console.log("CartLength => ", CartLength);
-  }, [CartLength]);
+  const CartLength = useSelector(selectCartQuantity);
 
   return (
     <Link className="btn btn-ghost btn-sm sm:btn-md btn-circle" href={"/cart"}>
