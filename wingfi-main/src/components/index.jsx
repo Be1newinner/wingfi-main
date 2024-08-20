@@ -22,3 +22,4 @@ export { PricingCartContainer as PricingCart } from "./PricingCart";
 export { CartProductArray } from "./CartProductArray";
 export { CartButton } from "./ProductViewSm/CartButton";
 export { ProviderWrapper } from "./ProviderWrapper";
+export { StyledAlert } from "./Alerts";

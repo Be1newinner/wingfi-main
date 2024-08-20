@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 import PaymentOptions from "./PaymentOptions";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -7,12 +7,17 @@ import {
   selectCartState,
 } from "@/redux/selectors/cart";
 import { changePaymentMethod } from "@/redux/actions/cart";
-import { generateOrderRequest } from "@/redux/actions/order";
+import {
+  generateOrderRequest,
+  resetGenerateOrder,
+} from "@/redux/actions/order";
 import {
   selectGenerateOrderStatusState,
   selectOrderError,
   selectOrderLoading,
 } from "@/redux/selectors/order";
+import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface propTypes {
   checkoutSteps: number;
@@ -26,6 +31,7 @@ export default function PaymentOptionsContainer({ checkoutSteps }: propTypes) {
   const orderStateError = useSelector(selectOrderError);
   const GenerateOrderStatus = useSelector(selectGenerateOrderStatusState);
   const dispatch = useDispatch();
+  const navigate: AppRouterInstance = useRouter();
 
   const generateOrder = () => {
     dispatch(
@@ -44,21 +50,22 @@ export default function PaymentOptionsContainer({ checkoutSteps }: propTypes) {
     );
   };
 
+  useEffect(() => {
+    dispatch(resetGenerateOrder());
+  }, [dispatch]);
+
   return (
-    <>
-      <PaymentOptions
-        checkoutSteps={checkoutSteps}
-        radioSelection={radioSelection}
-        setRadioSelection={(e) => {
-          dispatch(changePaymentMethod(e));
-        }}
-        generateOrder={generateOrder}
-      />
-      {orderStateLoading && <p>Loading...</p>}
-      {orderStateError && <p style={{ color: "red" }}>{orderStateError}</p>}
-      {GenerateOrderStatus && (
-        <p style={{ color: "green" }}>Order created successfully!</p>
-      )}
-    </>
+    <PaymentOptions
+      checkoutSteps={checkoutSteps}
+      radioSelection={radioSelection}
+      setRadioSelection={(e) => {
+        dispatch(changePaymentMethod(e));
+      }}
+      generateOrder={generateOrder}
+      orderApiError={orderStateError}
+      orderApiLoading={orderStateLoading}
+      generateOrderStatus={GenerateOrderStatus}
+      navigate={navigate}
+    />
   );
 }

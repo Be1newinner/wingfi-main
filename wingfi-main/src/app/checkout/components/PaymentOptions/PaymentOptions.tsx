@@ -1,8 +1,16 @@
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useEffect } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+
 interface propTypes {
   checkoutSteps: number;
   radioSelection: number;
   setRadioSelection: (e: number) => void;
   generateOrder: () => void;
+  orderApiError: string | null;
+  orderApiLoading: boolean;
+  generateOrderStatus: boolean;
+  navigate: AppRouterInstance;
 }
 
 export default function PaymentOptions({
@@ -10,7 +18,18 @@ export default function PaymentOptions({
   radioSelection,
   setRadioSelection,
   generateOrder,
+  orderApiError,
+  orderApiLoading,
+  generateOrderStatus,
+  navigate,
 }: propTypes) {
+  //
+  useEffect(() => {
+    if (generateOrderStatus) {
+      navigate.replace("/review");
+    }
+  }, [generateOrderStatus, navigate]);
+
   return checkoutSteps === 3 ? (
     <div className="bg-white shadow">
       <p className="flex gap-2 text-white font-semibold text-sm py-4 px-4 sm:px-8 shadow-md bg-blue-500 ">
@@ -75,14 +94,22 @@ export default function PaymentOptions({
 
           <div className="flex justify-end">
             <form method="dialog">
-              <button className="btn btn-error btn-outline mt-2 text-sm font-medium p-4 px-8 rounded-none max-w-60">
+              <button className="btn btn-error btn-outline mt-2 text-sm font-medium p-4 px-8 rounded-none ">
                 close
               </button>
               <button
-                onClick={generateOrder}
-                className="btn btn-error mt-2 text-white text-sm font-medium p-4 px-8 rounded-none max-w-60"
+                // onClick={generateOrder}
+                className="btn btn-error mt-2 text-white text-sm font-medium py-4 px-8 rounded-none "
               >
-                Continue
+                {false ? (
+                  "Continue"
+                ) : (
+                  <AiOutlineLoading3Quarters
+                    color="white"
+                    size={14}
+                    className="animate-spin"
+                  />
+                )}
               </button>
             </form>
           </div>

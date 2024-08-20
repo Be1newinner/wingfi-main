@@ -9,7 +9,12 @@ import {
   LOAD_SINGLE_ORDER_SUCCESS,
   LOAD_SINGLE_ORDER_FAILURE,
   Order,
+  RESET_GENERATE_ORDER,
 } from "../constants/order";
+
+export const resetGenerateOrder = () => ({
+  type: RESET_GENERATE_ORDER,
+});
 
 export const generateOrderRequest = (order: Order) => ({
   type: GENERATE_ORDER_REQUEST,

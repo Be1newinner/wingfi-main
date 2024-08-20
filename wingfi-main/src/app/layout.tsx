@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ProviderWrapper } from "@/components";
+import AlertWrapper from "@/components/Alerts/AlertWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ProviderWrapper>{children}</ProviderWrapper>;
+        <ProviderWrapper>
+          {children}
+          <AlertWrapper />
+        </ProviderWrapper>
       </body>
     </html>
   );

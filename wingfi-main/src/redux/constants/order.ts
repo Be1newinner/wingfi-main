@@ -12,6 +12,8 @@ export const LOAD_SINGLE_ORDER_REQUEST = "LOAD_SINGLE_ORDER_REQUEST";
 export const LOAD_SINGLE_ORDER_SUCCESS = "LOAD_SINGLE_ORDER_SUCCESS";
 export const LOAD_SINGLE_ORDER_FAILURE = "LOAD_SINGLE_ORDER_FAILURE";
 
+export const RESET_GENERATE_ORDER = "RESET_GENERATE_ORDER";
+
 export interface Order extends CartData {
   uid: string;
   id: string;
@@ -75,6 +77,10 @@ interface LoadSingleOrderFailureAction {
   payload: string;
 }
 
+interface ResetGenerateOrderAction {
+  type: typeof RESET_GENERATE_ORDER;
+}
+
 export type OrderActionTypes =
   | GenerateOrderRequestAction
   | GenerateOrderSuccessAction
@@ -84,4 +90,5 @@ export type OrderActionTypes =
   | LoadAllOrdersFailureAction
   | LoadSingleOrderRequestAction
   | LoadSingleOrderSuccessAction
-  | LoadSingleOrderFailureAction;
+  | LoadSingleOrderFailureAction
+  | ResetGenerateOrderAction;

@@ -11,6 +11,7 @@ import {
   LOAD_SINGLE_ORDER_FAILURE,
   OrderState,
   OrderActionTypes,
+  RESET_GENERATE_ORDER,
 } from "../constants/order";
 
 const initialState: OrderState = {
@@ -54,10 +55,18 @@ export const orderReducer = (
 
       case GENERATE_ORDER_FAILURE:
         draft.success = false;
+        draft.error = action.payload;
+
       case LOAD_ALL_ORDERS_FAILURE:
       case LOAD_SINGLE_ORDER_FAILURE:
         draft.loading = false;
         draft.error = action.payload;
+        break;
+
+      case RESET_GENERATE_ORDER:
+        draft.loading = false;
+        draft.error = null;
+        draft.success = false;
         break;
 
       default:

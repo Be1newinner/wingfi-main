@@ -18,25 +18,36 @@ export async function generateOrderAPI({
   discount,
   paymentMethod,
 }: Order): Promise<string> {
-  const docRef = await addDoc(collection(firestore, "or84r"), {
-    pd: items,
-    t: total,
-    st: subtotal,
-    x: tax,
-    dy: delivery,
-    q: qty,
-    ds: discount,
-    ad: address,
-    pm: paymentMethod,
-    s: status,
-    n: name,
-    p: phone,
-    u: uid,
+  // throw new Error("CUSTOM ERROR!");
+  // const docRef = await addDoc(collection(firestore, "or84r"), {
+  //   pd: items,
+  //   t: total,
+  //   st: subtotal,
+  //   x: tax,
+  //   dy: delivery,
+  //   q: qty,
+  //   ds: discount,
+  //   ad: address,
+  //   pm: paymentMethod,
+  //   s: status,
+  //   n: name,
+  //   p: phone,
+  //   u: uid,
+  // });
+
+  // console.log("Document written with ID: ", docRef.id);
+
+  // return docRef.id;
+  return new Promise((res, rej) => {
+    try {
+      setTimeout(() => {
+        res("ABCDEFGH");
+        console.log("API SUCCESS");
+      }, 5000);
+    } catch (error) {
+      rej(error);
+    }
   });
-
-  console.log("Document written with ID: ", docRef.id);
-
-  return docRef.id;
 }
 
 export async function loadAllOrdersAPI(): Promise<Order[]> {
