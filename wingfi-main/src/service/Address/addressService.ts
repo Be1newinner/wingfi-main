@@ -3,16 +3,56 @@ import { firebaseRealtime } from "@/infrastructure/firebase.config";
 import { AddressType } from "@/redux/constants/address";
 import { EventChannel, eventChannel } from "redux-saga";
 
+const toAddressType = (
+  firebaseAddress: any,
+  key: number,
+  uid: string
+): AddressType => ({
+  houseNumber: firebaseAddress.h,
+  name: firebaseAddress.n,
+  phoneNumber: firebaseAddress.p,
+  pinCode: firebaseAddress.pi,
+  landmark: firebaseAddress.l,
+  city: firebaseAddress.c,
+  state: firebaseAddress.s,
+  key,
+  type: firebaseAddress.t,
+  uid,
+});
+
+const toFirebaseAddress = (address: AddressType): any => ({
+  h: address.houseNumber,
+  n: address.name,
+  p: address.phoneNumber,
+  pi: address.pinCode,
+  l: address.landmark,
+  c: address.city,
+  s: address.state,
+  t: address.type,
+});
+
+const addressRef = (userId: string, key?: number) => {
+  if (key) return ref(firebaseRealtime, `users/${userId}/sa/${key}`);
+  else return ref(firebaseRealtime, `users/${userId}/sa`);
+};
+
+// Fetch addresses from Firebase
 export const fetchAddresses = async (
   userId: string
 ): Promise<AddressType[]> => {
-  const addressRef = ref(firebaseRealtime, `users/${userId}/sa`);
   return new Promise((resolve, reject) => {
     onValue(
-      addressRef,
+      addressRef(userId),
       (snapshot) => {
         const data = snapshot.val();
-        resolve(data ? Object.values(data) : []);
+        if (data) {
+          const addresses = Object.entries(data).map(([key, value]) =>
+            toAddressType(value, Number(key), userId)
+          );
+          resolve(addresses);
+        } else {
+          resolve([]);
+        }
       },
       (error: any) => {
         reject(error);
@@ -25,18 +65,15 @@ export const fetchAddresses = async (
 };
 
 export const addAddress = async (userId: string, address: AddressType) => {
-  const addressRef = ref(firebaseRealtime, `users/${userId}/sa/${address.key}`);
-  await set(addressRef, address);
+  await set(addressRef(userId, address.key), toFirebaseAddress(address));
 };
 
 export const removeAddress = async (userId: string, key: number) => {
-  const addressRef = ref(firebaseRealtime, `users/${userId}/sa/${key}`);
-  await remove(addressRef);
+  await remove(addressRef(userId, key));
 };
 
 export const updateAddress = async (userId: string, address: AddressType) => {
-  const addressRef = ref(firebaseRealtime, `users/${userId}/sa/${address.key}`);
-  await update(addressRef, address);
+  await update(addressRef(userId, address.key), toFirebaseAddress(address));
 };
 
 export function createAddressChannel(
@@ -48,15 +85,22 @@ export function createAddressChannel(
         const addresses = await fetchAddresses(userId);
         emit(addresses);
 
-        const addressRef = ref(firebaseRealtime, `users/${userId}/sa`);
-        const unsubscribe = onValue(addressRef, (snapshot) => {
+        const unsubscribe = onValue(addressRef(userId), (snapshot) => {
           const data = snapshot.val();
-          emit(data ? Object.values(data) : []);
+          if (data) {
+            const addresses = Object.entries(data).map(([key, value]) =>
+              toAddressType(value, Number(key), userId)
+            );
+            emit(addresses);
+          } else {
+            emit([]);
+          }
         });
 
         return () => unsubscribe();
       } catch (error) {
         emit([]);
+        console.error("Error creating address channel:", error);
       }
     };
 
