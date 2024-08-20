@@ -1,5 +1,3 @@
-// src/store/auth/reducer.ts
-
 import {
   SET_USER,
   SET_AUTH_ERRORS,

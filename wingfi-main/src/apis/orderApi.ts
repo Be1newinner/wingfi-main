@@ -5,10 +5,10 @@ import { Order } from "@/redux/constants/order";
 
 export async function generateOrderAPI({
   address,
-  status,
+  statuses,
   items,
-  name,
-  phone,
+  customerName,
+  customerPhone,
   total,
   uid,
   subtotal,
@@ -17,9 +17,9 @@ export async function generateOrderAPI({
   qty,
   discount,
   paymentMethod,
-}: Order): Promise<string> {
-  // throw new Error("CUSTOM ERROR!");
-  // const docRef = await addDoc(collection(firestore, "or84r"), {
+  currentStatus,
+}: Order): Promise<Order> {
+  // const order = {
   //   pd: items,
   //   t: total,
   //   st: subtotal,
@@ -29,21 +29,42 @@ export async function generateOrderAPI({
   //   ds: discount,
   //   ad: address,
   //   pm: paymentMethod,
-  //   s: status,
-  //   n: name,
-  //   p: phone,
+  //   s: statuses,
+  //   n: customerName,
+  //   p: customerPhone,
   //   u: uid,
-  // });
+  //   cs:currentStatus
+  // };
+
+  // throw new Error("CUSTOM ERROR!");
+  // const docRef = await addDoc(collection(firestore, "or84r"), order);
 
   // console.log("Document written with ID: ", docRef.id);
 
   // return docRef.id;
+  const docRef = { id: "DASDAS" };
   return new Promise((res, rej) => {
     try {
       setTimeout(() => {
-        res("ABCDEFGH");
+        res({
+          items,
+          total,
+          subtotal,
+          tax,
+          delivery,
+          qty,
+          discount,
+          address,
+          paymentMethod,
+          statuses,
+          customerName,
+          customerPhone,
+          uid,
+          id: docRef?.id,
+          currentStatus,
+        });
         console.log("API SUCCESS");
-      }, 5000);
+      }, 1500);
     } catch (error) {
       rej(error);
     }
@@ -65,11 +86,12 @@ export async function loadAllOrdersAPI(): Promise<Order[]> {
       discount: data.ds,
       address: data.ad,
       paymentMethod: data.pm,
-      status: data.s,
-      name: data.n,
-      phone: data.p,
+      statuses: data.s,
+      customerName: data.n,
+      customerPhone: data.p,
       uid: data.uid,
       id: doc.id,
+      currentStatus: data.cs,
     };
   });
 
@@ -96,11 +118,12 @@ export async function loadSingleOrderAPI(
       discount: data.ds,
       address: data.ad,
       paymentMethod: data.pm,
-      status: data.s,
-      name: data.n,
-      phone: data.p,
+      statuses: data.s,
+      customerName: data.n,
+      customerPhone: data.p,
       uid: data.uid,
       id: docSnap.id,
+      currentStatus: data.cs,
     };
 
     console.log("Loaded single order with ID: ", orderId);

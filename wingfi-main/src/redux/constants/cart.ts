@@ -1,15 +1,3 @@
-// Action Types
-
-export const FETCH_CART_DATA = "FETCH_CART_DATA";
-export const ADD_IN_CART = "ADD_IN_CART";
-export const RESET_CART = "RESET_CART";
-export const CHANGE_PAYMENT_METHOD = "CHANGE_PAYMENT_METHOD";
-export const INCREASE_QTY = "INCREASE_QTY";
-export const DECREASE_QTY = "DECREASE_QTY";
-export const FETCH_CART_DATA_REQUEST = "FETCH_CART_DATA_REQUEST";
-export const FETCH_CART_DATA_SUCCESS = "FETCH_CART_DATA_SUCCESS";
-export const FETCH_CART_DATA_FAILURE = "FETCH_CART_DATA_FAILURE";
-
 export interface CartItem {
   sku: string;
   qty: number;
@@ -32,6 +20,11 @@ export interface CartData {
     pincode: number;
   };
   paymentMethod: number;
+}
+
+export interface CartDataReducer extends CartData {
+  loading: boolean;
+  error: null | string;
 }
 
 export interface CartItemData {

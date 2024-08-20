@@ -1,12 +1,5 @@
 import { call, delay, put, takeEvery } from "redux-saga/effects";
-import {
-  GENERATE_ORDER_REQUEST,
-  LOAD_ALL_ORDERS_REQUEST,
-  LOAD_SINGLE_ORDER_REQUEST,
-  GenerateOrderRequestAction,
-  LoadSingleOrderRequestAction,
-  Order,
-} from "../constants/order";
+import { Order } from "../constants/order";
 
 import {
   generateOrderSuccess,
@@ -15,8 +8,11 @@ import {
   loadAllOrdersFailure,
   loadSingleOrderSuccess,
   loadSingleOrderFailure,
-  resetGenerateOrder,
-} from "../actions/order";
+  resetGenerateOrderState,
+  generateOrderRequest,
+  loadSingleOrderRequest,
+  loadAllOrdersRequest,
+} from "../reducers/order";
 
 import {
   generateOrderAPI,
@@ -25,21 +21,30 @@ import {
 } from "@/apis/orderApi";
 import { resetCart } from "../actions/cart";
 
+interface GenerateOrderRequestAction {
+  type: typeof generateOrderRequest.type;
+  payload: Order;
+}
+
+interface LoadSingleOrderRequestAction {
+  type: typeof loadSingleOrderRequest.type;
+  payload: string;
+}
+
 function* generateOrderSaga(action: GenerateOrderRequestAction) {
   try {
-    const orderId: string = yield call(generateOrderAPI, action.payload);
-    yield put(generateOrderSuccess(orderId));
+    const order: Order = yield call(generateOrderAPI, action.payload);
+    yield put(generateOrderSuccess(order));
     yield put(resetCart());
-    yield delay(10000);
-    yield put(resetGenerateOrder());
+    yield put(resetGenerateOrderState());
   } catch (error: any) {
     yield put(generateOrderFailure(error.message));
     yield delay(10000);
-    yield put(resetGenerateOrder());
+    yield put(resetGenerateOrderState());
   }
 }
 
-function* loadAllOrdersSaga(): Generator<any, void, Order[]> {
+function* loadAllOrdersSaga() {
   try {
     const orders: Order[] = yield call(loadAllOrdersAPI);
     yield put(loadAllOrdersSuccess(orders));
@@ -48,9 +53,7 @@ function* loadAllOrdersSaga(): Generator<any, void, Order[]> {
   }
 }
 
-function* loadSingleOrderSaga(
-  action: LoadSingleOrderRequestAction
-): Generator<any, void, Order | null> {
+function* loadSingleOrderSaga(action: LoadSingleOrderRequestAction) {
   try {
     const order: Order | null = yield call(loadSingleOrderAPI, action.payload);
     if (order) {
@@ -64,7 +67,7 @@ function* loadSingleOrderSaga(
 }
 
 export function* orderSaga() {
-  yield takeEvery(GENERATE_ORDER_REQUEST, generateOrderSaga);
-  yield takeEvery(LOAD_ALL_ORDERS_REQUEST, loadAllOrdersSaga);
-  yield takeEvery(LOAD_SINGLE_ORDER_REQUEST, loadSingleOrderSaga);
+  yield takeEvery(generateOrderRequest.type, generateOrderSaga);
+  yield takeEvery(loadAllOrdersRequest.type, loadAllOrdersSaga);
+  yield takeEvery(loadSingleOrderRequest.type, loadSingleOrderSaga);
 }

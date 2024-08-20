@@ -1,75 +1,89 @@
-import { produce } from "immer";
-import {
-  GENERATE_ORDER_REQUEST,
-  GENERATE_ORDER_SUCCESS,
-  GENERATE_ORDER_FAILURE,
-  LOAD_ALL_ORDERS_REQUEST,
-  LOAD_ALL_ORDERS_SUCCESS,
-  LOAD_ALL_ORDERS_FAILURE,
-  LOAD_SINGLE_ORDER_REQUEST,
-  LOAD_SINGLE_ORDER_SUCCESS,
-  LOAD_SINGLE_ORDER_FAILURE,
-  OrderState,
-  OrderActionTypes,
-  RESET_GENERATE_ORDER,
-} from "../constants/order";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Order } from "../constants/order";
+
+interface OrderState {
+  orders: Order[];
+  loading: boolean;
+  error: string | null;
+  success: boolean;
+  latestOrderID: string | null;
+}
 
 const initialState: OrderState = {
   orders: [],
   loading: false,
   error: null,
   success: false,
+  latestOrderID: null,
 };
 
-export const orderReducer = (
-  state = initialState,
-  action: OrderActionTypes
-): OrderState =>
-  produce(state, (draft) => {
-    switch (action.type) {
-      case GENERATE_ORDER_REQUEST:
-        draft.success = false;
-      case LOAD_ALL_ORDERS_REQUEST:
-      case LOAD_SINGLE_ORDER_REQUEST:
-        draft.loading = true;
-        draft.error = null;
-        break;
+const orderSlice = createSlice({
+  name: "order",
+  initialState,
+  reducers: {
+    generateOrderRequest(state, action: PayloadAction<Order>) {
+      state.success = false;
+      state.latestOrderID = null;
+      state.loading = true;
+      state.error = null;
+    },
+    generateOrderSuccess(state, action: PayloadAction<Order>) {
+      state.loading = false;
+      state.orders.push(action.payload);
+      state.success = true;
+      state.latestOrderID = action.payload.id;
+    },
+    generateOrderFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.success = false;
+      state.error = action.payload;
+    },
+    loadAllOrdersRequest(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    loadAllOrdersSuccess(state, action: PayloadAction<Order[]>) {
+      state.loading = false;
+      state.orders = action.payload;
+    },
+    loadAllOrdersFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    loadSingleOrderRequest(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    loadSingleOrderSuccess(state, action: PayloadAction<Order>) {
+      state.loading = false;
+      state.orders = state.orders.map((order) =>
+        order.id === action.payload.id ? action.payload : order
+      );
+    },
+    loadSingleOrderFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    resetGenerateOrderState(state) {
+      state.loading = false;
+      state.error = null;
+      state.success = false;
+      state.latestOrderID = null;
+    },
+  },
+});
 
-      case GENERATE_ORDER_SUCCESS:
-        draft.loading = false;
-        draft.orders.push(action.payload);
-        draft.success = true;
-        break;
+export const {
+  generateOrderRequest,
+  generateOrderSuccess,
+  generateOrderFailure,
+  loadAllOrdersRequest,
+  loadAllOrdersSuccess,
+  loadAllOrdersFailure,
+  loadSingleOrderRequest,
+  loadSingleOrderSuccess,
+  loadSingleOrderFailure,
+  resetGenerateOrderState,
+} = orderSlice.actions;
 
-      case LOAD_ALL_ORDERS_SUCCESS:
-        draft.loading = false;
-        draft.orders = action.payload;
-        break;
-
-      case LOAD_SINGLE_ORDER_SUCCESS:
-        draft.loading = false;
-        draft.orders = draft.orders.map((order) =>
-          order.id === action.payload.id ? action.payload : order
-        );
-        break;
-
-      case GENERATE_ORDER_FAILURE:
-        draft.success = false;
-        draft.error = action.payload;
-
-      case LOAD_ALL_ORDERS_FAILURE:
-      case LOAD_SINGLE_ORDER_FAILURE:
-        draft.loading = false;
-        draft.error = action.payload;
-        break;
-
-      case RESET_GENERATE_ORDER:
-        draft.loading = false;
-        draft.error = null;
-        draft.success = false;
-        break;
-
-      default:
-        return state;
-    }
-  });
+export default orderSlice.reducer;

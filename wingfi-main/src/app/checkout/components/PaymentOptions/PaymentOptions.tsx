@@ -23,7 +23,6 @@ export default function PaymentOptions({
   generateOrderStatus,
   navigate,
 }: propTypes) {
-  //
   useEffect(() => {
     if (generateOrderStatus) {
       navigate.replace("/review");
@@ -92,23 +91,28 @@ export default function PaymentOptions({
           <h3 className="font-bold text-lg">Confirm Order!</h3>
           <p className="py-4">press continue to confirm this order!</p>
 
-          <div className="flex justify-end">
-            <form method="dialog">
-              <button className="btn btn-error btn-outline mt-2 text-sm font-medium p-4 px-8 rounded-none ">
-                close
-              </button>
+          <div>
+            <form method="dialog" className="flex">
+              {!orderApiLoading && (
+                <button className="btn btn-error btn-outline mt-2 text-sm font-medium p-4 px-8 rounded-none flex-1">
+                  close
+                </button>
+              )}
               <button
-                // onClick={generateOrder}
-                className="btn btn-error mt-2 text-white text-sm font-medium py-4 px-8 rounded-none "
+                onClick={(e) => {
+                  e.preventDefault();
+                  !orderApiLoading && generateOrder();
+                }}
+                className={`flex-1 btn btn-error mt-2 text-white text-sm font-medium py-4 px-8 rounded-none`}
               >
-                {false ? (
-                  "Continue"
-                ) : (
+                {orderApiLoading ? (
                   <AiOutlineLoading3Quarters
                     color="white"
                     size={14}
                     className="animate-spin"
                   />
+                ) : (
+                  "Continue"
                 )}
               </button>
             </form>

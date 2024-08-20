@@ -9,8 +9,8 @@ import {
 import { changePaymentMethod } from "@/redux/actions/cart";
 import {
   generateOrderRequest,
-  resetGenerateOrder,
-} from "@/redux/actions/order";
+  resetGenerateOrderState,
+} from "@/redux/reducers/order";
 import {
   selectGenerateOrderStatusState,
   selectOrderError,
@@ -18,6 +18,7 @@ import {
 } from "@/redux/selectors/order";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { OrderStatus } from "@/redux/constants/order";
 
 interface propTypes {
   checkoutSteps: number;
@@ -39,19 +40,16 @@ export default function PaymentOptionsContainer({ checkoutSteps }: propTypes) {
         ...CartState,
         uid: "daudgasudi",
         id: "",
-        status: {
-          s0: {
-            date: Date.now(),
-          },
-        },
-        name: "VIJAY KUMAR",
-        phone: "8130506284",
+        statuses: [{ status: OrderStatus.Pending, date: Date.now() }],
+        currentStatus: OrderStatus.Pending,
+        customerName: "VIJAY KUMAR",
+        customerPhone: "8130506284",
       })
     );
   };
 
   useEffect(() => {
-    dispatch(resetGenerateOrder());
+    dispatch(resetGenerateOrderState());
   }, [dispatch]);
 
   return (

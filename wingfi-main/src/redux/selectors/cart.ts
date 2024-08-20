@@ -1,4 +1,4 @@
-import { CartItemsState } from "../constants/cart";
+import { CartDataReducer, CartItemsState } from "../constants/cart";
 import { RootState } from "../rootReducer";
 import { createSelector } from "reselect";
 
@@ -13,13 +13,18 @@ export const selectCartAddress = (state: RootState) => state.cart.address;
 export const selectCartPaymentMethod = (state: RootState) =>
   state.cart.paymentMethod;
 
+export const selectCartLoading = (state: { cart: CartDataReducer }) =>
+  state.cart.loading;
+export const selectCartError = (state: { cart: CartDataReducer }) =>
+  state.cart.error;
+
 const selectCartItemsArray = (state: RootState) => state.cart.items;
 
 export const selectCartItems = createSelector(
   [selectCartItemsArray],
   (items) => {
     const itemsObject: CartItemsState = {};
-    items.forEach((item) => {
+    items.forEach((item: any) => {
       itemsObject[item.sku] = {
         qty: item.qty,
         sku: item.sku,

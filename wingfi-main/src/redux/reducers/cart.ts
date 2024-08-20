@@ -1,66 +1,10 @@
-import {
-  ADD_IN_CART,
-  CartData,
-  CartItem,
-  CHANGE_PAYMENT_METHOD,
-  DECREASE_QTY,
-  INCREASE_QTY,
-  RESET_CART,
-} from "../constants/cart";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CartItem, CartDataReducer } from "../constants/cart";
 
-// Constants
 const DELIVERY_FEE = 0;
 const DISCOUNT_AMOUNT = 0;
 
-// Utility function to calculate totals
-const calculateTotals = (items: CartItem[]) => {
-  const qty = items.reduce((totalQty, item) => totalQty + item.qty, 0);
-  const subtotal = items.reduce(
-    (total, item) => total + item.qty * item.price,
-    0
-  );
-  const tax = Math.floor(DELIVERY_FEE * 18) / 100;
-  const total = Math.floor(
-    subtotal + Math.floor(DELIVERY_FEE * 118) / 100 - DISCOUNT_AMOUNT
-  );
-
-  return {
-    qty,
-    subtotal: Math.floor(subtotal),
-    tax,
-    total,
-  };
-};
-
-// Utility function to persist state
-const saveState = (state: CartData): void => {
-  if (typeof window !== "undefined") {
-    try {
-      const serializedState = JSON.stringify(state);
-      localStorage.setItem("CartData", serializedState);
-    } catch (err) {
-      console.error("Could not save state", err);
-    }
-  }
-};
-
-// Utility function to load state
-const loadState = (): CartData | undefined => {
-  if (typeof window !== "undefined") {
-    try {
-      const serializedState = localStorage.getItem("CartData");
-      return serializedState ? JSON.parse(serializedState) : undefined;
-    } catch (err) {
-      console.error("Could not load state", err);
-      return undefined;
-    }
-  }
-  return undefined;
-};
-
-const persistedState = loadState();
-
-const initialState: CartData = persistedState || {
+const initialState: CartDataReducer = {
   items: [],
   total: 0,
   subtotal: 0,
@@ -73,14 +17,31 @@ const initialState: CartData = persistedState || {
     pincode: 0,
   },
   paymentMethod: 1,
+  loading: false,
+  error: null,
 };
 
-export const cartReducer = (state = initialState, action: any): CartData => {
-  switch (action.type) {
-    case ADD_IN_CART: {
+const calculateTotals = (items: CartItem[]) => {
+  const qty = items.reduce((totalQty, item) => totalQty + item.qty, 0);
+  const subtotal = items.reduce(
+    (total, item) => total + item.qty * item.price,
+    0
+  );
+  const tax = Math.floor(DELIVERY_FEE * 18) / 100;
+  const total = Math.floor(
+    subtotal + Math.floor(DELIVERY_FEE * 118) / 100 - DISCOUNT_AMOUNT
+  );
+
+  return { qty, subtotal: Math.floor(subtotal), tax, total };
+};
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState,
+  reducers: {
+    addInCart(state, action: PayloadAction<CartItem>) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.sku === newItem.sku);
-
       const updatedItems = existingItem
         ? state.items.map((item) =>
             item.sku === newItem.sku
@@ -90,88 +51,84 @@ export const cartReducer = (state = initialState, action: any): CartData => {
         : [...state.items, newItem];
 
       const updatedTotals = calculateTotals(updatedItems);
-
-      const newState = {
-        ...state,
-        items: updatedItems,
-        ...updatedTotals,
-        delivery: DELIVERY_FEE,
-        discount: DISCOUNT_AMOUNT,
-      };
-
-      saveState(newState);
-      return newState;
-    }
-
-    case INCREASE_QTY: {
+      state.items = updatedItems;
+      state.total = updatedTotals.total;
+      state.subtotal = updatedTotals.subtotal;
+      state.tax = updatedTotals.tax;
+      state.qty = updatedTotals.qty;
+      state.delivery = DELIVERY_FEE;
+      state.discount = DISCOUNT_AMOUNT;
+    },
+    increaseQty(state, action: PayloadAction<string>) {
       const sku = action.payload;
       const itemIndex = state.items.findIndex((item) => item.sku === sku);
-
       if (itemIndex !== -1) {
-        const updatedItems = state.items.map((item, index) =>
+        state.items = state.items.map((item, index) =>
           index === itemIndex ? { ...item, qty: item.qty + 1 } : item
         );
-
-        console.log("updatedItems => ", updatedItems);
-
-        const updatedTotals = calculateTotals(updatedItems);
-
-        const newState = {
-          ...state,
-          items: updatedItems,
-          ...updatedTotals,
-        };
-
-        saveState(newState);
-        return newState;
+        const updatedTotals = calculateTotals(state.items);
+        state.total = updatedTotals.total;
+        state.subtotal = updatedTotals.subtotal;
+        state.tax = updatedTotals.tax;
+        state.qty = updatedTotals.qty;
       }
-
-      return state;
-    }
-
-    case DECREASE_QTY: {
+    },
+    decreaseQty(state, action: PayloadAction<string>) {
       const sku = action.payload;
       const itemIndex = state.items.findIndex((item) => item.sku === sku);
-
       if (itemIndex !== -1) {
-        const updatedItems =
+        state.items =
           state.items[itemIndex].qty > 1
             ? state.items.map((item, index) =>
                 index === itemIndex ? { ...item, qty: item.qty - 1 } : item
               )
             : state.items.filter((_, index) => index !== itemIndex);
-
-        console.log("updatedItems => ", updatedItems);
-
-        const updatedTotals = calculateTotals(updatedItems);
-
-        const newState = {
-          ...state,
-          items: updatedItems,
-          ...updatedTotals,
-        };
-
-        saveState(newState);
-        return newState;
+        const updatedTotals = calculateTotals(state.items);
+        state.total = updatedTotals.total;
+        state.subtotal = updatedTotals.subtotal;
+        state.tax = updatedTotals.tax;
+        state.qty = updatedTotals.qty;
       }
-
-      return state;
-    }
-
-    case RESET_CART:
-      saveState(initialState);
+    },
+    resetCart(state) {
       return initialState;
+    },
+    changePaymentMethod(state, action: PayloadAction<number>) {
+      state.paymentMethod = action.payload;
+    },
+    fetchCartDataRequest(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    fetchCartDataSuccess(state, action: PayloadAction<CartDataReducer>) {
+      const { items, ...rest } = action.payload;
+      state.items = items;
+      const updatedTotals = calculateTotals(items);
+      state.total = updatedTotals.total;
+      state.subtotal = updatedTotals.subtotal;
+      state.tax = updatedTotals.tax;
+      state.qty = updatedTotals.qty;
+      state.delivery = DELIVERY_FEE;
+      state.discount = DISCOUNT_AMOUNT;
+      Object.assign(state, rest);
+      state.loading = false;
+    },
+    fetchCartDataFailure(state, action: PayloadAction<string>) {
+      state.error = action.payload;
+      state.loading = false;
+    },
+  },
+});
 
-    case CHANGE_PAYMENT_METHOD: {
-      const newState = {
-        ...state,
-        paymentMethod: action.payload,
-      };
-      saveState(newState);
-      return newState;
-    }
+export const {
+  addInCart,
+  increaseQty,
+  decreaseQty,
+  resetCart,
+  changePaymentMethod,
+  fetchCartDataRequest,
+  fetchCartDataSuccess,
+  fetchCartDataFailure,
+} = cartSlice.actions;
 
-    default:
-      return state;
-  }
-};
+export default cartSlice.reducer;

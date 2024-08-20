@@ -14,16 +14,26 @@ export const LOAD_SINGLE_ORDER_FAILURE = "LOAD_SINGLE_ORDER_FAILURE";
 
 export const RESET_GENERATE_ORDER = "RESET_GENERATE_ORDER";
 
+export enum OrderStatus {
+  Pending = "pending",
+  Processing = "processing",
+  Shipped = "shipped",
+  Delivered = "delivered",
+  Cancelled = "cancelled",
+}
+
+export interface StatusTracking {
+  status: OrderStatus;
+  date: number;
+}
+
 export interface Order extends CartData {
   uid: string;
   id: string;
-  status: {
-    s0: {
-      date: number;
-    };
-  };
-  name: string;
-  phone: string;
+  statuses: StatusTracking[];
+  currentStatus: OrderStatus;
+  customerName: string;
+  customerPhone: string;
 }
 
 export interface OrderState {
@@ -31,6 +41,7 @@ export interface OrderState {
   loading: boolean;
   error: string | null;
   success: boolean;
+  latestOrderID: string | null;
 }
 
 export interface GenerateOrderRequestAction {
