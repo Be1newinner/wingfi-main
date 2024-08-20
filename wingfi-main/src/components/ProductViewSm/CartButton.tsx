@@ -3,7 +3,7 @@
 import { Theme_colors_class } from "@/infrastructure/theme";
 import QuantityChangeSelect from "@/app/cart/QuantityChangeSelect";
 import { useDispatch, useSelector } from "react-redux";
-import { addInCart } from "@/redux/actions/cart";
+import { addInCart } from "@/redux/reducers/cart";
 import { useEffect, useState } from "react";
 import { selectCartItems } from "@/redux/selectors/cart"; // Adjust path as needed
 import { CartItemsState } from "@/redux/constants/cart";
@@ -14,6 +14,7 @@ interface CartButtonProps {
     sku: string;
     qty: number;
     price: number;
+    category: number;
   };
   size: string;
   flex: string;
@@ -26,6 +27,7 @@ export function CartButton({
     sku: "",
     qty: 0,
     price: 0,
+    category: 0,
   },
   size = "btn-sm",
   flex = "flex-0",
@@ -57,7 +59,12 @@ export function CartButton({
       ].join(" ")}
       onClick={(e) => {
         e.preventDefault();
-        const newItem = { ...item, price: item.price, qty: 1 };
+        const newItem = {
+          ...item,
+          price: item.price,
+          qty: 1,
+          img: "",
+        };
         console.log("newItem => ", newItem);
         dispatch(addInCart(newItem));
       }}

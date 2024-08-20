@@ -19,7 +19,7 @@ import {
   loadAllOrdersAPI,
   loadSingleOrderAPI,
 } from "@/apis/orderApi";
-import { resetCart } from "../actions/cart";
+import { resetCart } from "../reducers/cart";
 
 interface GenerateOrderRequestAction {
   type: typeof generateOrderRequest.type;

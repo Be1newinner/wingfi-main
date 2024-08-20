@@ -1,7 +1,7 @@
 "use client";
 
 import { useDispatch } from "react-redux";
-import { addInCart } from "@/redux/actions/cart";
+import { addInCart } from "@/redux/reducers/cart";
 
 export default function QuantityChangeSelect({ item, quantity = 1, size }) {
   let selectSize = "select-sm";

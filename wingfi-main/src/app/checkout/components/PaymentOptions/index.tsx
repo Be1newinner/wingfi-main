@@ -6,7 +6,7 @@ import {
   selectCartPaymentMethod,
   selectCartState,
 } from "@/redux/selectors/cart";
-import { changePaymentMethod } from "@/redux/actions/cart";
+import { changePaymentMethod } from "@/redux/reducers/cart";
 import {
   generateOrderRequest,
   resetGenerateOrderState,

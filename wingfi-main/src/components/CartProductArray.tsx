@@ -1,7 +1,7 @@
 "use client";
 
 import CartProduct from "@/components/CartProduct";
-import { decreaseQty, increaseQty } from "@/redux/actions/cart";
+import { decreaseQty, increaseQty } from "@/redux/reducers/cart";
 import { selectCartItems } from "@/redux/selectors/cart";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
