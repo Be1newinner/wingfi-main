@@ -44,8 +44,10 @@ export interface ChangeDefaultAddressesAction {
 
 export interface AddressInitialState {
   addresses: AddressType[];
-  default: number;
+  default: number | null;
   isFetched: boolean;
+  isLoading: boolean;
+  error: string | null;
 }
 
 export type AddressActionTypes =

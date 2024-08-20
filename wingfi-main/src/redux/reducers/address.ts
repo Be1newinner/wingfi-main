@@ -1,83 +1,115 @@
-import { produce } from "immer";
-import {
-  AddressActionTypes,
-  ADD_NEW_ADDRESS,
-  REMOVE_ADDRESS,
-  RESET_ADDRESS,
-  LOAD_ALL_ADDRESSES,
-  CHANGE_DEFAULT_ADDRESSES,
-  AddressInitialState,
-  AddressType,
-} from "../constants/address";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { AddressType } from "../constants/address";
 
-const dummyAddresses: AddressType[] = [
-  {
-    houseNumber: "h550/9",
-    name: "1Vijay Kumar",
-    phoneNumber: 18130506284,
-    pinCode: 1110062,
-    landmark: "1m1, asthal mandir",
-    city: "delhi",
-    state: "delhi",
-    key: 0,
-    type: 0,
-    uid: "abcd",
-  },
-  {
-    houseNumber: "2h449/8",
-    name: "2ajay kumar",
-    phoneNumber: 29717099259,
-    pinCode: 2110080,
-    landmark: "2m2, asthal mandir",
-    city: "delhi",
-    state: "delhi",
-    key: 1,
-    type: 1,
-    uid: "abcd",
-  },
-];
+interface AddressState {
+  addresses: AddressType[];
+  default: number | null;
+  isFetched: boolean;
+  isLoading: boolean;
+  error: string | null;
+  adding: boolean;
+  removing: boolean;
+  updating: boolean;
+}
 
-const initialState: AddressInitialState = {
-  addresses: dummyAddresses,
-  default: 0,
-  isFetched: true,
+const initialState: AddressState = {
+  addresses: [],
+  default: null,
+  isFetched: false,
+  isLoading: false,
+  error: null,
+  adding: false,
+  removing: false,
+  updating: false,
 };
 
-export const addressReducer = (
-  state = initialState,
-  action: AddressActionTypes
-): AddressInitialState =>
-  produce(state, (draft) => {
-    switch (action.type) {
-      case ADD_NEW_ADDRESS: {
-        draft.addresses.push(action.payload);
-        break;
+const addressSlice = createSlice({
+  name: "address",
+  initialState,
+  reducers: {
+    fetchAddressesRequest(state) {
+      state.isLoading = true;
+      state.error = null;
+    },
+    fetchAddressesSuccess(state, action: PayloadAction<AddressType[]>) {
+      state.addresses = action.payload;
+      state.default = action.payload.length ? action.payload[0].key : null;
+      state.isFetched = true;
+      state.isLoading = false;
+    },
+    fetchAddressesFailure(state, action: PayloadAction<string>) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    addNewAddressRequest(state) {
+      state.adding = true;
+      state.error = null;
+    },
+    addNewAddressSuccess(state, action: PayloadAction<AddressType>) {
+      state.addresses.push(action.payload);
+      if (state.default === null) {
+        state.default = action.payload.key;
       }
-      case REMOVE_ADDRESS: {
-        draft.addresses = draft.addresses.filter(
-          (item) => item.key !== action.payload.key
-        );
-        if (action.payload.key === draft.default) {
-          draft.default = draft.addresses.length ? draft.addresses[0].key : 0;
-        }
-        break;
+      state.adding = false;
+    },
+    addNewAddressFailure(state, action: PayloadAction<string>) {
+      state.adding = false;
+      state.error = action.payload;
+    },
+    removeAddressRequest(state) {
+      state.removing = true;
+      state.error = null;
+    },
+    removeAddressSuccess(state, action: PayloadAction<{ key: number }>) {
+      state.addresses = state.addresses.filter(
+        (item) => item.key !== action.payload.key
+      );
+      if (state.default === action.payload.key) {
+        state.default = state.addresses.length ? state.addresses[0].key : null;
       }
-      case RESET_ADDRESS: {
-        draft.addresses = action.payload;
-        draft.default = draft.addresses.length ? draft.addresses[0].key : 0;
-        break;
+      state.removing = false;
+    },
+    removeAddressFailure(state, action: PayloadAction<string>) {
+      state.removing = false;
+      state.error = action.payload;
+    },
+    updateAddressRequest(state) {
+      state.updating = true;
+      state.error = null;
+    },
+    updateAddressSuccess(state, action: PayloadAction<AddressType>) {
+      const index = state.addresses.findIndex(
+        (address) => address.key === action.payload.key
+      );
+      if (index !== -1) {
+        state.addresses[index] = action.payload;
       }
-      case LOAD_ALL_ADDRESSES: {
-        draft.addresses = action.payload;
-        draft.default = draft.addresses.length ? draft.addresses[0].key : 0;
-        draft.isFetched = true;
-        break;
-      }
-      case CHANGE_DEFAULT_ADDRESSES: {
-        draft.default = action.payload.key;
-        break;
-      }
-      default:
-        return state;
-    }
-  });
+      state.updating = false;
+    },
+    updateAddressFailure(state, action: PayloadAction<string>) {
+      state.updating = false;
+      state.error = action.payload;
+    },
+    changeDefaultAddress(state, action: PayloadAction<{ key: number }>) {
+      state.default = action.payload.key;
+    },
+  },
+});
+
+export const {
+  fetchAddressesRequest,
+  fetchAddressesSuccess,
+  fetchAddressesFailure,
+  addNewAddressRequest,
+  addNewAddressSuccess,
+  addNewAddressFailure,
+  removeAddressRequest,
+  removeAddressSuccess,
+  removeAddressFailure,
+  updateAddressRequest,
+  updateAddressSuccess,
+  updateAddressFailure,
+  changeDefaultAddress,
+} = addressSlice.actions;
+
+export default addressSlice.reducer;
