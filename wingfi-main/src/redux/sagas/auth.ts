@@ -1,123 +1,184 @@
-import { call, put, takeLatest } from "redux-saga/effects";
-import { setUser, setAuthErrors, setUserPhone } from "../actions/auth";
-
 import {
-  SIGN_IN_WITH_EMAIL,
-  SIGN_UP_WITH_EMAIL,
-  SIGN_IN_WITH_GOOGLE,
-  SIGN_OUT_USER,
-  CHANGE_USER_DETAILS,
-} from "../constants/auth";
-
+  call,
+  put,
+  takeLatest,
+  fork,
+  cancelled,
+  take,
+} from "redux-saga/effects";
 import {
+  Auth,
   createUserWithEmailAndPassword,
-  signInWithPopup,
+  GoogleAuthProvider,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  User,
   UserCredential,
+  onAuthStateChanged,
 } from "firebase/auth";
-
+import { firebaseAuth } from "@/infrastructure/firebase.config";
 import {
-  firebaseAuth,
-  googleProvider,
-  firebaseRealtime,
-} from "@/infrastructure/firebase.config";
+  rehydrateUser,
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  signupRequest,
+  signupSuccess,
+  signupFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
+  loginRequestByGoogle,
+} from "../reducers/auth";
+import { PayloadAction } from "@reduxjs/toolkit";
+import { EventChannel, eventChannel } from "redux-saga";
 
-import { ref, set } from "firebase/database";
-
-interface SignInWithEmailAction {
-  type: typeof SIGN_IN_WITH_EMAIL;
-  payload: {
-    email: string;
-    password: string;
-  };
-}
-
-interface SignUpWithEmailAction {
-  type: typeof SIGN_UP_WITH_EMAIL;
-  payload: {
-    email: string;
-    password: string;
-  };
-}
-
-interface ChangeUserDetailsAction {
-  type: typeof CHANGE_USER_DETAILS;
-  payload: string;
-}
-
-function* handleSignInWithEmail(action: SignInWithEmailAction) {
-  const { email, password } = action.payload;
-  try {
-    const userCredential: UserCredential = yield call(
-      signInWithEmailAndPassword,
-      firebaseAuth,
-      email,
-      password
+function createAuthStateChannel(auth: Auth): EventChannel<User | null> {
+  return eventChannel((emit) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (user) => {
+        emit(user);
+      },
+      (error) => {
+        console.error(error);
+      }
     );
-    yield put(setUser(userCredential.user));
-  } catch (error: any) {
-    const errorMessage = error?.code.includes("auth/invalid-credential")
-      ? "Email or Password is invalid!"
-      : "Unknown Error! Try again!";
-    yield put(setAuthErrors(errorMessage));
+    return () => unsubscribe();
+  });
+}
+
+function* rehydrateUserSaga(): Generator<any, void, any> {
+  const authStateChannel = yield call(createAuthStateChannel, firebaseAuth);
+
+  try {
+    while (true) {
+      const user: User | null = yield take(authStateChannel);
+      if (user) {
+        yield put(
+          rehydrateUser({
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            phoneNumber: user.phoneNumber,
+            photoURL: user.photoURL,
+            displayName: user.displayName,
+            isAdmin: false,
+          })
+        );
+      } else {
+        yield put(
+          rehydrateUser({
+            uid: null,
+            email: null,
+            emailVerified: false,
+            phoneNumber: null,
+            photoURL: null,
+            displayName: null,
+            isAdmin: false,
+          })
+        );
+      }
+    }
+  } finally {
+    if (yield cancelled()) {
+      authStateChannel.close();
+    }
   }
 }
 
-function* handleSignUpWithEmail(action: SignUpWithEmailAction) {
-  const { email, password } = action.payload;
+function* signupSaga(
+  action: PayloadAction<{ email: string; password: string }>
+) {
   try {
+    const { email, password } = action.payload;
     const userCredential: UserCredential = yield call(
       createUserWithEmailAndPassword,
       firebaseAuth,
       email,
       password
     );
-    yield put(setUser(userCredential.user));
+    yield put(
+      signupSuccess({
+        uid: userCredential.user.uid,
+        email: userCredential.user.email,
+        emailVerified: userCredential.user.emailVerified,
+        phoneNumber: userCredential.user.phoneNumber,
+        photoURL: userCredential.user.photoURL,
+        displayName: userCredential.user.displayName,
+        isAdmin: false,
+      })
+    );
   } catch (error: any) {
-    const errorMessage = error?.code.includes("auth/email-already-in-use")
-      ? "Email is already in use!"
-      : "Unknown Error! Try again!";
-    yield put(setAuthErrors(errorMessage));
+    yield put(signupFailure(error.message));
   }
 }
 
-function* handleSignInWithGoogle() {
+function* loginWithEmailSaga(
+  action: PayloadAction<{ email: string; password: string }>
+) {
   try {
-    yield call(signInWithPopup, firebaseAuth, googleProvider);
+    const { email, password } = action.payload;
+    const userCredential: UserCredential = yield call(
+      signInWithEmailAndPassword,
+      firebaseAuth,
+      email,
+      password
+    );
+    yield put(
+      loginSuccess({
+        uid: userCredential.user.uid,
+        email: userCredential.user.email,
+        emailVerified: userCredential.user.emailVerified,
+        phoneNumber: userCredential.user.phoneNumber,
+        photoURL: userCredential.user.photoURL,
+        displayName: userCredential.user.displayName,
+        isAdmin: false,
+      })
+    );
   } catch (error: any) {
-    console.error(error);
+    yield put(loginFailure(error.message));
   }
 }
 
-function* handleSignOutUser() {
+function* loginWithGoogleSaga() {
+  try {
+    const provider = new GoogleAuthProvider();
+    const userCredential: UserCredential = yield call(
+      signInWithPopup,
+      firebaseAuth,
+      provider
+    );
+    yield put(
+      loginSuccess({
+        uid: userCredential.user.uid,
+        email: userCredential.user.email,
+        emailVerified: userCredential.user.emailVerified,
+        phoneNumber: userCredential.user.phoneNumber,
+        photoURL: userCredential.user.photoURL,
+        displayName: userCredential.user.displayName,
+        isAdmin: false,
+      })
+    );
+  } catch (error: any) {
+    yield put(loginFailure(error.message));
+  }
+}
+
+function* logoutSaga() {
   try {
     yield call(signOut, firebaseAuth);
+    yield put(logoutSuccess());
   } catch (error: any) {
-    console.error(error);
+    yield put(logoutFailure(error.message));
   }
 }
 
-function* handleChangeUserDetails(action: ChangeUserDetailsAction) {
-  const inputPhone = action.payload;
-  try {
-    yield call(
-      set,
-      ref(firebaseRealtime, `users/${firebaseAuth.currentUser?.uid}/phone`),
-      inputPhone
-    );
-    yield put(setUserPhone(inputPhone));
-  } catch (error: any) {
-    console.error(error);
-  }
+export default function* authSaga() {
+  yield fork(rehydrateUserSaga);
+  yield takeLatest(signupRequest.type, signupSaga);
+  yield takeLatest(loginRequest.type, loginWithEmailSaga);
+  yield takeLatest(loginRequestByGoogle.type, loginWithGoogleSaga);
+  yield takeLatest(logoutRequest.type, logoutSaga);
 }
-
-function* watchAuthActions() {
-  yield takeLatest(SIGN_IN_WITH_EMAIL, handleSignInWithEmail);
-  yield takeLatest(SIGN_UP_WITH_EMAIL, handleSignUpWithEmail);
-  yield takeLatest(SIGN_IN_WITH_GOOGLE, handleSignInWithGoogle);
-  yield takeLatest(SIGN_OUT_USER, handleSignOutUser);
-  yield takeLatest(CHANGE_USER_DETAILS, handleChangeUserDetails);
-}
-
-export default watchAuthActions;

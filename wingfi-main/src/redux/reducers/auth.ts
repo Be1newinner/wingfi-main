@@ -1,39 +1,114 @@
-import {
-  SET_USER,
-  SET_AUTH_ERRORS,
-  SET_USER_PHONE,
-  SET_IS_USER_LOADING,
-} from "../constants/auth";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { AuthActionTypes } from "../constants/auth";
-
-interface State {
-  user: any;
-  authErrors: string;
-  userPhone: string;
-  isUserLoading: boolean;
+interface CustomUser {
+  uid: string | null;
+  email: string | null;
+  emailVerified: boolean;
+  phoneNumber: string | null;
+  photoURL: string | null;
+  displayName: string | null;
+  isAdmin: boolean;
 }
 
-const initialState: State = {
-  user: null,
-  authErrors: "",
-  userPhone: "",
-  isUserLoading: true,
+interface AuthState {
+  user: CustomUser;
+  loading: boolean;
+  error: string | null;
+  isRehydrated: boolean;
+}
+
+const initialState: AuthState = {
+  user: {
+    uid: null,
+    email: null,
+    emailVerified: false,
+    phoneNumber: null,
+    photoURL: null,
+    displayName: null,
+    isAdmin: false,
+  },
+  loading: false,
+  error: null,
+  isRehydrated: false,
 };
 
-const authReducer = (state = initialState, action: AuthActionTypes): State => {
-  switch (action.type) {
-    case SET_USER:
-      return { ...state, user: action.payload };
-    case SET_AUTH_ERRORS:
-      return { ...state, authErrors: action.payload };
-    case SET_USER_PHONE:
-      return { ...state, userPhone: action.payload };
-    case SET_IS_USER_LOADING:
-      return { ...state, isUserLoading: action.payload };
-    default:
-      return state;
-  }
-};
+const authSlice = createSlice({
+  name: "auth",
+  initialState,
+  reducers: {
+    signupRequest(
+      state,
+      action: PayloadAction<{ email: string; password: string }>
+    ) {
+      state.loading = true;
+      state.error = null;
+    },
+    signupSuccess(state, action: PayloadAction<CustomUser>) {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    signupFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    loginRequestByGoogle(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    loginRequest(
+      state,
+      action: PayloadAction<{ email: string; password: string }>
+    ) {
+      state.loading = true;
+      state.error = null;
+    },
+    loginSuccess(state, action: PayloadAction<CustomUser>) {
+      state.loading = false;
+      state.user = action.payload;
+    },
+    loginFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    logoutRequest(state) {
+      state.loading = true;
+      state.error = null;
+    },
+    logoutSuccess(state) {
+      state.loading = false;
+      state.user = {
+        uid: null,
+        email: null,
+        emailVerified: false,
+        phoneNumber: null,
+        photoURL: null,
+        displayName: null,
+        isAdmin: false,
+      };
+    },
+    logoutFailure(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    rehydrateUser(state, action: PayloadAction<CustomUser>) {
+      state.user = action.payload;
+      state.isRehydrated = true;
+    },
+  },
+});
 
-export default authReducer;
+export const {
+  signupRequest,
+  signupSuccess,
+  signupFailure,
+  loginRequest,
+  loginSuccess,
+  loginFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
+  rehydrateUser,
+  loginRequestByGoogle,
+} = authSlice.actions;
+
+export default authSlice.reducer;

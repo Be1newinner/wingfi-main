@@ -1,25 +1,29 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-
-import { AuthContext } from "@/registry/context";
+import { useDispatch } from "react-redux";
+import { loginRequest, loginRequestByGoogle } from "@/redux/reducers/auth";
+import { useSelector } from "react-redux";
+import {
+  selectAuthErrors,
+  selectIsUserLoading,
+  selectUser,
+} from "@/redux/selectors/auth";
 
 export default function SignInForm() {
-  const authContextData = useContext(AuthContext);
-
-  const signInWithEmail = authContextData?.signInWithEmail || function () {};
-  const User = authContextData?.state.user ?? {};
-  const signInWithGoogle = authContextData?.signInWithGoogle || function () {};
-  const AuthErrors = authContextData?.state.authErrors ?? "";
-
   const [emailIDInput, setEmailIDInput] = useState("");
   const [PasswordInput, setPasswordInput] = useState("");
   const [ErrorInputs, setErrorInputs] = useState({
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
+  const User = useSelector(selectUser);
+  const AuthErrors = useSelector(selectAuthErrors);
+  const AuthLoading = useSelector(selectIsUserLoading);
 
   const validations = (email: string, password: string): boolean => {
     const tempErrors = { email: "", password: "" };
@@ -45,10 +49,12 @@ export default function SignInForm() {
     event.preventDefault();
 
     if (validations(emailIDInput, PasswordInput)) {
-      await signInWithEmail({
-        email: emailIDInput,
-        password: PasswordInput,
-      });
+      dispatch(
+        loginRequest({
+          email: emailIDInput,
+          password: PasswordInput,
+        })
+      );
       setErrorInputs({ email: "", password: "" });
     }
   };
@@ -121,7 +127,7 @@ export default function SignInForm() {
           className="btn flex flex-row flex-1 rounded-sm"
           onClick={(e) => {
             e.preventDefault();
-            signInWithGoogle();
+            dispatch(loginRequestByGoogle());
           }}
         >
           <svg

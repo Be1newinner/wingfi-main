@@ -1,12 +1,26 @@
 "use client";
+
 import Image from "next/image";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "@/registry/context";
+import { useEffect } from "react";
 import { useState } from "react";
 import { getPhoneNumber, changePhoneNumber } from "./ProfileDetailsController";
+import {
+  selectUser,
+  selectUserEmail,
+  selectUserName,
+  selectUserPhone,
+  selectUserPhoto,
+  selectUserUID,
+} from "@/redux/selectors/auth";
+import { useSelector } from "react-redux";
 
 export function ProfileDetails() {
-  const User = useContext(AuthContext)?.state?.user;
+  const User = useSelector(selectUser);
+  const UserUID = useSelector(selectUserUID);
+  const UserName = useSelector(selectUserName);
+  const UserEmail = useSelector(selectUserEmail);
+  const UserPhone = useSelector(selectUserPhone);
+  const UserPhoto = useSelector(selectUserPhoto);
 
   const [CanEdit, setCanEdit] = useState(false);
   const [inputName, setInputName] = useState("");
@@ -30,14 +44,14 @@ export function ProfileDetails() {
 
   useEffect(() => {
     (async function () {
-      if (User?.uid) {
+      if (UserUID) {
         const data = await getPhoneNumber(User);
-        setInputName(User?.displayName || "");
+        setInputName(UserName);
         setInputPhoneTrack(data);
         setInputPhone(data);
       }
     })();
-  }, [User?.uid]);
+  }, [UserUID]);
 
   const saveChanges = async () => {
     if (!CanEdit) setCanEdit(true);
@@ -78,7 +92,7 @@ export function ProfileDetails() {
     <div className="bg-white shadow rounded-sm border p-4 sm:py-6 sm:px-10 flex flex-col gap-4 w-full">
       <div className="flex gap-4 items-center">
         <Image
-          src={User?.photoURL}
+          src={UserPhoto || "/images/profile_default.webp"}
           width={70}
           height={70}
           style={{
@@ -88,9 +102,9 @@ export function ProfileDetails() {
           alt=""
         />
         <div className="flex flex-col">
-          <p className="font-medium">{User?.displayName}</p>
+          <p className="font-medium">{UserName || "New User"}</p>
           <p className="text-gray-500 text-xs">
-            {User?.phoneNumber ? "+91" + User?.phoneNumber : User?.email}
+            {UserPhone ? "+91" + UserPhone : UserEmail}
           </p>
         </div>
       </div>
@@ -135,7 +149,7 @@ export function ProfileDetails() {
               value={inputPhone}
               onChange={(e) => setInputPhone(e.target.value)}
               required
-              disabled={CanEdit ? (User?.phoneNumber ? true : false) : true}
+              disabled={CanEdit ? (UserPhone ? true : false) : true}
             />
             {Errors.phone && (
               <div className="label">
@@ -154,7 +168,7 @@ export function ProfileDetails() {
               placeholder="e.g. example@abc.com"
               className="input input-bordered rounded-sm  focus:outline-none focus:border-success w-full text-sm"
               maxLength={20}
-              defaultValue={User?.email}
+              defaultValue={UserEmail}
               disabled
             />
             <div className="label">

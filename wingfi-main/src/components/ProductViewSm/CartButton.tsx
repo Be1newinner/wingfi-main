@@ -43,7 +43,6 @@ export function CartButton({
       const quant = selectCartItemsData[sku]?.qty || 0;
       setQuantity(quant);
     }
-    console.log("ITEM -> ", item);
   }, [selectCartItemsData, item.sku]);
 
   return quantity > 0 ? (

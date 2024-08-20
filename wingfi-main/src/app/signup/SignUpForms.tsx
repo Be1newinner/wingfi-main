@@ -1,16 +1,22 @@
 "use client";
 
-import { AuthContext } from "@/registry/context";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import {
+  selectAuthErrors,
+  selectIsUserLoading,
+  selectUser,
+} from "@/redux/selectors/auth";
+import { loginRequestByGoogle, signupRequest } from "@/redux/reducers/auth";
 
 export function SignUpForms() {
-  const authContextData = useContext(AuthContext);
-
-  const signUpWithEmail = authContextData?.signUpWithEmail || function () {};
-  const User = authContextData?.state.user || {};
-  const AuthErrors = authContextData?.state.authErrors || "";
+  const dispatch = useDispatch();
+  const User = useSelector(selectUser);
+  const AuthErrors = useSelector(selectAuthErrors);
+  const AuthLoading = useSelector(selectIsUserLoading);
 
   const [emailIDInput, setEmailIDInput] = useState("");
   const [PasswordInput, setPasswordInput] = useState("");
@@ -97,10 +103,12 @@ export function SignUpForms() {
         PhoneInput
       )
     ) {
-      await signUpWithEmail({
-        email: emailIDInput,
-        password: PasswordInput,
-      });
+      dispatch(
+        signupRequest({
+          email: emailIDInput,
+          password: PasswordInput,
+        })
+      );
       setErrorInputs({
         email: "",
         password: "",
@@ -234,7 +242,13 @@ export function SignUpForms() {
       </div>
       <div className="divider">or continue with</div>
       <div className="flex gap-4 max-w-96">
-        <button className="btn flex flex-row flex-1 rounded-sm">
+        <button
+          className="btn flex flex-row flex-1 rounded-sm"
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(loginRequestByGoogle());
+          }}
+        >
           <svg
             style={{
               width: 20,

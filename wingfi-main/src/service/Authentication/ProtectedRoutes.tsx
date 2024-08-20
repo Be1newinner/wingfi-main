@@ -1,28 +1,18 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import AuthContext from "./AuthContext";
-import { PropsWithChildren, useContext, useEffect } from "react";
+import { PropsWithChildren, useEffect } from "react";
 import { LoadingIndicator } from "@/components";
+import { selectIsUserLoading, selectUserUID } from "@/redux/selectors/auth";
+import { useSelector } from "react-redux";
 
 export default function ProtectedRoute({ children }: PropsWithChildren) {
-  const authContextData = useContext(AuthContext);
-  const User = authContextData?.state.user ?? {};
-  const IsUserLoading = authContextData?.state.isUserLoading;
+  const UserUID = useSelector(selectUserUID);
+  const IsUserLoading = useSelector(selectIsUserLoading);
 
   useEffect(() => {
-    if (!IsUserLoading) {
-      if (User?.uid) {
-        console.log("User at Protected Routes...", User);
-      } else {
-        // console.log("User at Protected Routes... No User");
-        redirect("/signin");
-      }
-    }
-    // else {
-    //   console.log("Protected Routes is Loading...", User);
-    // }
-  }, [User, IsUserLoading]);
+    if (!IsUserLoading && !UserUID) redirect("/signin");
+  }, [UserUID, IsUserLoading]);
 
   return IsUserLoading ? <LoadingIndicator /> : <>{children}</>;
 }

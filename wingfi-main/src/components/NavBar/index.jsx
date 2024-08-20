@@ -5,7 +5,7 @@ import SignOut from "../AccountSidebar/SignOut";
 
 export function NavBar() {
   return (
-    <div
+    <header
       className="navbar bg-base-100 shadow-md "
       style={{
         position: "sticky",
@@ -89,7 +89,7 @@ export function NavBar() {
           </div>
         </div>
         <div className="flex mr-1">
-          <button className="btn btn-ghost btn-circle btn-sm sm:btn-md">
+          {/* <button className="btn btn-ghost btn-circle btn-sm sm:btn-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -104,11 +104,11 @@ export function NavBar() {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg>
-          </button>
+          </button> */}
 
           <CartIcons />
         </div>
       </div>
-    </div>
+    </header>
   );
 }

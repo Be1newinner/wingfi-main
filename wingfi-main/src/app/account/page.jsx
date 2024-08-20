@@ -1,4 +1,4 @@
-import { AccountStructure } from "@/components";
+import { AccountStructure } from "../../components";
 import { ProfileDetails } from "./ProfileDetails";
 
 export default function Account() {

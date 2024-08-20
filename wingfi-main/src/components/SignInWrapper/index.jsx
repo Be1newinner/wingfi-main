@@ -1,12 +1,11 @@
 "use client";
 import { Footer, NavBar } from "@/components";
-import { AuthProvider } from "@/registry/context";
 import Lottie from "lottie-react";
 import animationData from "@/../public/animation/auth-animation.json";
 
 export function SignInWrapper({ children }) {
   return (
-    <AuthProvider>
+    <>
       <NavBar />
       <div className="bg-slate-100 p-4 flex flex-col items-center justify-center bg-white">
         <div
@@ -51,6 +50,6 @@ export function SignInWrapper({ children }) {
         </div>
       </div>
       <Footer />
-    </AuthProvider>
+    </>
   );
 }
