@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 
 interface propType {
   id: number;
-  addressSelected: number;
+  addressSelected: number | null;
   setCheckoutSteps: Dispatch<SetStateAction<number>>;
   setAddressSelected: Dispatch<number>;
 }

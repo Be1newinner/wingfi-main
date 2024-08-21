@@ -15,7 +15,7 @@ interface FormValues {
 }
 
 interface PropTypes {
-  addressSelected: number;
+  addressSelected: number | null;
   setAddressSelected: Dispatch<number>;
 }
 
