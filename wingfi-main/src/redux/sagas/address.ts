@@ -1,5 +1,4 @@
-import { call, put, takeLatest, cancelled, take } from "redux-saga/effects";
-import { EventChannel } from "redux-saga";
+import { call, put, takeLatest, take, select } from "redux-saga/effects";
 import {
   fetchAddressesRequest,
   fetchAddressesSuccess,
@@ -22,28 +21,36 @@ import {
   updateAddress,
   createAddressChannel,
 } from "@/service/Address/addressService";
+import { RootState } from "../rootReducer";
+
+function* isAddressesFetched(): Generator<any, boolean, any> {
+  const { isFetched, addresses } = yield select(
+    (state: RootState) => state.address
+  );
+  return isFetched && addresses.length > 0;
+}
 
 function* fetchAddressesSaga(
   action: PayloadAction<string>
 ): Generator<any, void, any> {
   const userId = action.payload;
 
-  const channel: EventChannel<AddressType[]> = yield call(
-    createAddressChannel,
-    userId
-  );
+  const fetched = yield call(isAddressesFetched);
+  if (fetched) {
+    return;
+  }
+
+  const channel = yield call(createAddressChannel, userId);
 
   try {
     while (true) {
-      const addresses: AddressType[] = yield take(channel);
+      const addresses = yield take(channel);
       yield put(fetchAddressesSuccess(addresses));
     }
   } catch (error: any) {
     yield put(fetchAddressesFailure(error.message));
   } finally {
-    if (yield cancelled()) {
-      channel.close();
-    }
+    channel.close();
   }
 }
 
