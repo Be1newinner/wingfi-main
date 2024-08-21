@@ -27,7 +27,7 @@ const initialState: AuthState = {
     displayName: null,
     isAdmin: false,
   },
-  loading: false,
+  loading: true,
   error: null,
   isRehydrated: false,
 };
@@ -93,6 +93,7 @@ const authSlice = createSlice({
     rehydrateUser(state, action: PayloadAction<CustomUser>) {
       state.user = action.payload;
       state.isRehydrated = true;
+      state.loading = false;
     },
   },
 });

@@ -1,45 +1,39 @@
 "use client";
 
-import { useState, useContext } from "react";
-import { AuthContext } from "@/registry/context";
 import { useEffect } from "react";
-import { deleteAddresses, getAddresses } from "./SavedAddressController";
 import { AddNewAddressDialog } from "./AddNewAddressDialog";
+import { useSelector } from "react-redux";
+import {
+  selectAddresses,
+  selectDefaultAddress,
+} from "@/redux/selectors/address";
+import { selectUserUID } from "@/redux/selectors/auth";
+import { useDispatch } from "react-redux";
+import {
+  changeDefaultAddress,
+  fetchAddressesRequest,
+  removeAddressRequest,
+} from "@/redux/reducers/address";
 
 export function SavedAddresses() {
-  const User = useContext(AuthContext)?.state?.user || {};
-  const [SavedAddress, setSavedAddress] = useState(null);
-  const [defaultAddress, setDefaultAddress] = useState(null);
+  const UserUID = useSelector(selectUserUID);
+
+  const SavedAddress = useSelector(selectAddresses);
+  const defaultAddress = useSelector(selectDefaultAddress);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async function () {
-      const data = await getAddresses(User);
-      setSavedAddress(data);
+      dispatch(fetchAddressesRequest(UserUID));
     })();
-  }, [User]);
-
-  useEffect(() => {
-    const def = localStorage.getItem("defaultAddress");
-
-    if (def) {
-      setDefaultAddress(def);
-    }
-  }, []);
+  }, [UserUID]);
 
   function changeDefaultAddres(key) {
-    setDefaultAddress(key);
-    localStorage.setItem("defaultAddress", key);
+    dispatch(changeDefaultAddress(key));
   }
 
   async function deleteDefaultAddres(key) {
-    const res = await deleteAddresses(User, key);
-    if (res.status == 200) {
-      const data = [...SavedAddress.filter((e) => e.k != key)];
-      setSavedAddress(data);
-      localStorage.setItem("savedAddresses", JSON.stringify(data));
-    } else {
-      console.error("Error in deleting address => ", res.error);
-    }
+    dispatch(removeAddressRequest(key));
   }
 
   return (
@@ -49,7 +43,7 @@ export function SavedAddresses() {
       </p>
       {SavedAddress?.map((item, index) => (
         <div
-          key={item.k || index}
+          key={item.key || index}
           className="flex flex-col gap-4 justify-center py-4"
         >
           <table
@@ -62,20 +56,25 @@ export function SavedAddresses() {
               <tr>
                 <td>Name:</td>
                 <td>
-                  {item?.n} , {item?.p}
+                  {item?.name} , {item?.phoneNumber}
                 </td>
               </tr>
 
               <tr>
                 <td>Address:</td>
                 <td>
-                  {item?.h} , {item?.l}, {item?.c}, {item?.s}, {item?.pi}
+                  {item?.houseNumber} , {item?.landmark}, {item?.city},{" "}
+                  {item?.state}, {item?.pinCode}
                 </td>
               </tr>
               <tr>
                 <td className="pr-6">Address Type: </td>
                 <td>
-                  {item?.t === 0 ? "Home" : item?.t === 1 ? "Office" : "Other"}
+                  {item?.type === 0
+                    ? "Home"
+                    : item?.type === 1
+                    ? "Office"
+                    : "Other"}
                 </td>
               </tr>
             </tbody>
@@ -83,14 +82,14 @@ export function SavedAddresses() {
           <div className="flex gap-2">
             <button
               className="btn btn-error text-white btn-sm rounded-sm"
-              onClick={() => changeDefaultAddres(item.k)}
-              disabled={defaultAddress == item.k ? true : false}
+              onClick={() => changeDefaultAddres(item.key)}
+              disabled={defaultAddress == item.key ? true : false}
             >
               Mark default
             </button>
             <button
               className="btn btn-neutral btn-sm rounded-sm"
-              onClick={() => deleteDefaultAddres(item.k)}
+              onClick={() => deleteDefaultAddres(item.key)}
             >
               Delete
             </button>

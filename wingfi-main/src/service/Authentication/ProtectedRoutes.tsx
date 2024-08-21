@@ -1,7 +1,7 @@
 "use client";
 
 import { redirect } from "next/navigation";
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { LoadingIndicator } from "@/components";
 import { selectIsUserLoading, selectUserUID } from "@/redux/selectors/auth";
 import { useSelector } from "react-redux";
@@ -9,10 +9,25 @@ import { useSelector } from "react-redux";
 export default function ProtectedRoute({ children }: PropsWithChildren) {
   const UserUID = useSelector(selectUserUID);
   const IsUserLoading = useSelector(selectIsUserLoading);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   useEffect(() => {
-    if (!IsUserLoading && !UserUID) redirect("/signin");
+    if (!IsUserLoading) {
+      if (!UserUID) {
+        setShouldRedirect(true);
+      }
+    }
   }, [UserUID, IsUserLoading]);
 
-  return IsUserLoading ? <LoadingIndicator /> : <>{children}</>;
+  useEffect(() => {
+    if (shouldRedirect) {
+      redirect("/signin");
+    }
+  }, [shouldRedirect]);
+
+  if (IsUserLoading) {
+    return <LoadingIndicator />;
+  }
+
+  return <>{children}</>;
 }
