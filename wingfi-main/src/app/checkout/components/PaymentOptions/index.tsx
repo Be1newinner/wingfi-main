@@ -13,6 +13,7 @@ import {
 } from "@/redux/reducers/order";
 import {
   selectGenerateOrderStatusState,
+  selectNewOrderIDState,
   selectOrderError,
   selectOrderLoading,
 } from "@/redux/selectors/order";
@@ -31,6 +32,7 @@ export default function PaymentOptionsContainer({ checkoutSteps }: propTypes) {
   const orderStateLoading = useSelector(selectOrderLoading);
   const orderStateError = useSelector(selectOrderError);
   const GenerateOrderStatus = useSelector(selectGenerateOrderStatusState);
+  const newGeneratedOrderID = useSelector(selectNewOrderIDState);
   const dispatch = useDispatch();
   const navigate: AppRouterInstance = useRouter();
 
@@ -64,6 +66,7 @@ export default function PaymentOptionsContainer({ checkoutSteps }: propTypes) {
       orderApiLoading={orderStateLoading}
       generateOrderStatus={GenerateOrderStatus}
       navigate={navigate}
+      newOrderID={newGeneratedOrderID}
     />
   );
 }

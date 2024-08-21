@@ -27,7 +27,7 @@ const addressSlice = createSlice({
   name: "address",
   initialState,
   reducers: {
-    fetchAddressesRequest(state, payload: PayloadAction<string>) {
+    fetchAddressesRequest(state, payload: PayloadAction<string | null>) {
       state.isLoading = true;
       state.error = null;
     },

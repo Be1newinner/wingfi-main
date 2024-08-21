@@ -11,6 +11,7 @@ interface propTypes {
   orderApiLoading: boolean;
   generateOrderStatus: boolean;
   navigate: AppRouterInstance;
+  newOrderID: string | null;
 }
 
 export default function PaymentOptions({
@@ -22,10 +23,13 @@ export default function PaymentOptions({
   orderApiLoading,
   generateOrderStatus,
   navigate,
+  newOrderID,
 }: propTypes) {
   useEffect(() => {
     if (generateOrderStatus) {
-      navigate.replace("/review");
+      if (newOrderID) {
+        navigate.replace(`/review/${newOrderID}`);
+      }
     }
   }, [generateOrderStatus, navigate]);
 

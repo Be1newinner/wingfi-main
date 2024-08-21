@@ -1,14 +1,14 @@
 "use client";
 
-import { CartProductArray, PricingCart } from "@/components";
+import { CartProductArray, EmptyCart, PricingCart } from "@/components";
 import { selectCartQuantity } from "@/redux/selectors/cart";
-import Lottie from "lottie-react";
 import Link from "next/link";
 import { MdSecurity } from "react-icons/md";
 import { useSelector } from "react-redux";
-import * as animationData from "@/../public/animation/empty_cart.json";
+
 export default function CartComponent() {
   const quantity = useSelector(selectCartQuantity);
+
   return (
     <div className="flex flex-col sm:flex-row w-full gap-4">
       {quantity ? (
@@ -42,24 +42,7 @@ export default function CartComponent() {
           </div>
         </>
       ) : (
-        <div className="flex flex-col justify-center items-center w-full gap-4">
-          <Lottie
-            animationData={animationData}
-            className="flex justify-center items-center"
-            loop={true}
-            style={{
-              maxWidth: 400,
-            }}
-          />
-          <p className="text-2xl">
-            Your cart is{" "}
-            <span className="text-error font-semibold">Empty!</span>
-          </p>
-          <p>Please go to shop page and add some items in cart!</p>
-          <Link href="/shop" className="btn btn-error px-12">
-            RETURN TO SHOP
-          </Link>
-        </div>
+        <EmptyCart />
       )}
     </div>
   );

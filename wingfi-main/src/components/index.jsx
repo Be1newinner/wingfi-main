@@ -23,3 +23,4 @@ export { CartProductArray } from "./CartProductArray";
 export { CartButton } from "./ProductViewSm/CartButton";
 export { ProviderWrapper } from "./ProviderWrapper";
 export { StyledAlert } from "./Alerts";
+export { EmptyCart } from "./EmptyCart";

@@ -31,14 +31,14 @@ function* isAddressesFetched(): Generator<any, boolean, any> {
 }
 
 function* fetchAddressesSaga(
-  action: PayloadAction<string>
+  action: PayloadAction<string | null>
 ): Generator<any, void, any> {
   const userId = action.payload;
 
+  if (!userId) return;
+
   const fetched = yield call(isAddressesFetched);
-  if (fetched) {
-    return;
-  }
+  if (fetched) return;
 
   const channel = yield call(createAddressChannel, userId);
 

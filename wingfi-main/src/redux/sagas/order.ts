@@ -35,6 +35,7 @@ function* generateOrderSaga(action: GenerateOrderRequestAction) {
   try {
     const order: Order = yield call(generateOrderAPI, action.payload);
     yield put(generateOrderSuccess(order));
+    yield delay(1000);
     yield put(resetCart());
     yield put(resetGenerateOrderState());
   } catch (error: any) {
