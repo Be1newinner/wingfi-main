@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { AuthProvider } from "@/registry/context";
-
 import {
   NavBar,
   Footer,
@@ -26,6 +24,7 @@ import {
 import { AddressType } from "@/redux/constants/address";
 import { selectUserUID } from "@/redux/selectors/auth";
 import { selectCartQuantity } from "@/redux/selectors/cart";
+import ProtectedRoute from "@/service/Authentication/ProtectedRoutes";
 
 export default function Checkout() {
   const [checkoutSteps, setCheckoutSteps] = useState<number>(1);
@@ -43,7 +42,7 @@ export default function Checkout() {
   }, [UserUID]);
 
   return (
-    <AuthProvider>
+    <ProtectedRoute>
       <div className="bg-gray-100">
         <NavBar />
 
@@ -180,6 +179,6 @@ export default function Checkout() {
         </main>
         <Footer />
       </div>
-    </AuthProvider>
+    </ProtectedRoute>
   );
 }

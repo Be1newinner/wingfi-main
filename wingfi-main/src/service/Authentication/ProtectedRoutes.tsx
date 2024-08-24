@@ -29,5 +29,5 @@ export default function ProtectedRoute({ children }: PropsWithChildren) {
     return <LoadingIndicator />;
   }
 
-  return <>{children}</>;
+  return children;
 }

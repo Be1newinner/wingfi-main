@@ -1,11 +1,4 @@
-import {
-  call,
-  put,
-  takeLatest,
-  fork,
-  cancelled,
-  take,
-} from "redux-saga/effects";
+import { call, put, takeLatest, cancelled, take } from "redux-saga/effects";
 import {
   Auth,
   createUserWithEmailAndPassword,
@@ -20,6 +13,7 @@ import {
 import { firebaseAuth } from "@/infrastructure/firebase.config";
 import {
   rehydrateUser,
+  triggerRehydrate,
   loginRequest,
   loginSuccess,
   loginFailure,
@@ -39,7 +33,7 @@ function createAuthStateChannel(auth: Auth): EventChannel<User | null> {
     const unsubscribe = onAuthStateChanged(
       auth,
       (user) => {
-        emit(user);
+        if (user) emit(user);
       },
       (error) => {
         console.error(error);
@@ -176,7 +170,7 @@ function* logoutSaga() {
 }
 
 export default function* authSaga() {
-  yield fork(rehydrateUserSaga);
+  yield takeLatest(triggerRehydrate.type, rehydrateUserSaga);
   yield takeLatest(signupRequest.type, signupSaga);
   yield takeLatest(loginRequest.type, loginWithEmailSaga);
   yield takeLatest(loginRequestByGoogle.type, loginWithGoogleSaga);

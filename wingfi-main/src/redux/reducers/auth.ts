@@ -95,6 +95,9 @@ const authSlice = createSlice({
       state.isRehydrated = true;
       state.loading = false;
     },
+    triggerRehydrate(state) {
+      state.loading = true;
+    },
   },
 });
 
@@ -110,6 +113,7 @@ export const {
   logoutFailure,
   rehydrateUser,
   loginRequestByGoogle,
+  triggerRehydrate,
 } = authSlice.actions;
 
 export default authSlice.reducer;

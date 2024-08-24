@@ -3,17 +3,17 @@
 import Link from "next/link";
 import styles from "./Tab_OrdersInfo.module.css";
 import { FaArrowRight } from "react-icons/fa6";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { collection, query, getDocs, limit, where } from "firebase/firestore";
 import { firestore } from "@/infrastructure/firebase.config";
 import { TimeStampToDate } from "@/registry/functions";
-import { AuthContext } from "@/registry/context";
+// import { AuthContext } from "@/registry/context";
 // import { waitForDebugger } from "inspector";
 
 export function Tab_OrdersInfo() {
   const [OrdersData, setOrdersData] = useState(null);
-  const User = useContext(AuthContext)?.state?.user;
-
+  // const User = useContext(AuthContext)?.state?.user;
+  const User = {};
   async function getOrdersData({ lim }) {
     if (User) {
       const AllPromise = await new Promise(async (resolve, reject) => {

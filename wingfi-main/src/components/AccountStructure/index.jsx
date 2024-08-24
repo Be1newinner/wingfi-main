@@ -1,5 +1,5 @@
 import { Footer, NavBar, AccountSidebar } from "@/components";
-import { ProtectedRoute } from "@/registry/context";
+import ProtectedRoute from "@/service/Authentication/ProtectedRoutes";
 import Link from "next/link";
 import { FaUserTie } from "react-icons/fa6";
 

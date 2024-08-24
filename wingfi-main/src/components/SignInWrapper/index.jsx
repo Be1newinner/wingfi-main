@@ -7,7 +7,7 @@ export function SignInWrapper({ children }) {
   return (
     <>
       <NavBar />
-      <div className="bg-slate-100 p-4 flex flex-col items-center justify-center bg-white">
+      <div className="p-4 flex flex-col items-center justify-center bg-white">
         <div
           className="flex flex-row-reverse w-full justify-between"
           style={{
@@ -44,7 +44,7 @@ export function SignInWrapper({ children }) {
               </div>
             </div>
           </div>
-          <form className="p-8 shadow border rounded rounded-sm mt-8 flex flex-col gap-1">
+          <form className="p-8 shadow border rounded-sm mt-8 flex flex-col gap-1">
             {children}
           </form>
         </div>
