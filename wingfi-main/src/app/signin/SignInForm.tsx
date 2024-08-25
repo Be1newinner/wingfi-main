@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { loginRequest, loginRequestByGoogle } from "@/redux/reducers/auth";
@@ -24,6 +24,8 @@ export default function SignInForm() {
   const User = useSelector(selectUser);
   const AuthErrors = useSelector(selectAuthErrors);
   const AuthLoading = useSelector(selectIsUserLoading);
+
+  const searchParams = useSearchParams();
 
   const validations = (email: string, password: string): boolean => {
     const tempErrors = { email: "", password: "" };
@@ -60,9 +62,9 @@ export default function SignInForm() {
   };
 
   useEffect(() => {
-    console.log("User => ", User);
-    if (User?.uid) redirect("/");
-  }, [User?.uid]);
+    const search = searchParams.get("next");
+    if (User?.uid) redirect(search ? "/" + search : "/");
+  }, [User?.uid, searchParams]);
 
   return (
     <>

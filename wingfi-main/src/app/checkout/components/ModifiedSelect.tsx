@@ -10,12 +10,12 @@ export function ModifiedSelect({
   return (
     <div className="basis-1/2">
       <label
-        htmlFor="HeadlineAct"
+        htmlFor="state"
         className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
       >
         <select
-          name="HeadlineAct"
-          id="HeadlineAct"
+          name="state"
+          id="state"
           className="peer border-none bg-white placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 px-2 py-3 w-full rounded-xs"
           defaultValue={value}
           onChange={onChange}
@@ -28,6 +28,7 @@ export function ModifiedSelect({
           <option value="AS">Assam</option>
           <option value="BR">Bihar</option>
           <option value="CT">Chhattisgarh</option>
+          <option value="DL">Delhi</option>
           <option value="GA">Goa</option>
           <option value="GJ">Gujarat</option>
           <option value="HR">Haryana</option>
@@ -55,7 +56,7 @@ export function ModifiedSelect({
         </select>
 
         <span className="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
-          Headliner
+        state
         </span>
       </label>
     </div>

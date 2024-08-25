@@ -64,8 +64,8 @@ export const fetchAddresses = async (
   });
 };
 
-export const addAddress = async (userId: string, address: AddressType) => {
-  await set(addressRef(userId, address.key), toFirebaseAddress(address));
+export const addAddress = async (uid: string, address: AddressType) => {
+  await set(addressRef(uid, address.key), toFirebaseAddress(address));
 };
 
 export const removeAddress = async (userId: string, key: number) => {

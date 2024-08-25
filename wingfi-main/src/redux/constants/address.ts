@@ -4,7 +4,7 @@ export const RESET_ADDRESS = "RESET_ADDRESS";
 export const LOAD_ALL_ADDRESSES = "LOAD_ALL_ADDRESSES";
 export const CHANGE_DEFAULT_ADDRESSES = "CHANGE_DEFAULT_ADDRESSES";
 
-export interface AddressType {
+export interface BasicAddressFields {
   houseNumber: string;
   name: string;
   phoneNumber: number;
@@ -12,8 +12,11 @@ export interface AddressType {
   landmark: string;
   city: string;
   state: string;
+  type: "home" | "work" | "other";
+}
+
+export interface AddressType extends BasicAddressFields {
   key: number;
-  type: number;
   uid: string;
 }
 

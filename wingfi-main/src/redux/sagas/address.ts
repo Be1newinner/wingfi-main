@@ -54,12 +54,11 @@ function* fetchAddressesSaga(
   }
 }
 
-function* addNewAddressSaga(
-  action: PayloadAction<{ userId: string; address: AddressType }>
-) {
+function* addNewAddressSaga(action: PayloadAction<AddressType>) {
   try {
-    const { userId, address } = action.payload;
-    yield call(addAddress, userId, address);
+    const address = action.payload;
+    const uid = action.payload.uid;
+    yield call(addAddress, uid, address);
     yield put(addNewAddressSuccess(address));
   } catch (error: any) {
     yield put(addNewAddressFailure(error.message));

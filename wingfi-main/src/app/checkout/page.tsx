@@ -18,13 +18,19 @@ import {
   selectDefaultAddressObject,
 } from "@/redux/selectors/address";
 import {
+  addNewAddressRequest,
   changeDefaultAddress,
   fetchAddressesRequest,
 } from "@/redux/reducers/address";
-import { AddressType } from "@/redux/constants/address";
+import { AddressType, BasicAddressFields } from "@/redux/constants/address";
 import { selectUserUID } from "@/redux/selectors/auth";
 import { selectCartQuantity } from "@/redux/selectors/cart";
 import ProtectedRoute from "@/service/Authentication/ProtectedRoutes";
+import {
+  selectGenerateOrderStatusState,
+  selectNewOrderIDState,
+} from "@/redux/selectors/order";
+import { useRouter } from "next/navigation";
 
 export default function Checkout() {
   const [checkoutSteps, setCheckoutSteps] = useState<number>(1);
@@ -34,12 +40,43 @@ export default function Checkout() {
   const UserUID = useSelector(selectUserUID);
   const quantity = useSelector(selectCartQuantity);
   const defaultAddressData = useSelector(selectDefaultAddressObject);
+  const GenerateOrderStatus = useSelector(selectGenerateOrderStatusState);
+  const newGeneratedOrderID = useSelector(selectNewOrderIDState);
+  const navigate = useRouter();
+
+  const [formValues, setFormValues] = useState<BasicAddressFields>({
+    houseNumber: "",
+    name: "",
+    phoneNumber: 0,
+    pinCode: 0,
+    landmark: "",
+    city: "",
+    state: "",
+    type: "other",
+  });
 
   useEffect(() => {
     (async function () {
       dispatch(fetchAddressesRequest(UserUID));
     })();
   }, [UserUID]);
+
+  async function addNewAddressController() {
+    if (UserUID) {
+      const keySelected = Date.now();
+      await dispatch(
+        addNewAddressRequest({ ...formValues, key: keySelected, uid: UserUID })
+      );
+    }
+  }
+
+  useEffect(() => {
+    if (GenerateOrderStatus) {
+      if (newGeneratedOrderID) {
+        navigate.replace(`/review/${newGeneratedOrderID}`);
+      }
+    }
+  }, [GenerateOrderStatus, navigate]);
 
   return (
     <ProtectedRoute>
@@ -85,6 +122,9 @@ export default function Checkout() {
                         setAddressSelected={() =>
                           dispatch(changeDefaultAddress(999))
                         }
+                        formValues={formValues}
+                        setFormValues={setFormValues}
+                        addNewAddressController={addNewAddressController}
                       />
                     </div>
                   ) : (

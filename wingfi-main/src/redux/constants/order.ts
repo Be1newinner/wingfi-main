@@ -33,7 +33,11 @@ export interface Order extends CartData {
   statuses: StatusTracking[];
   currentStatus: OrderStatus;
   customerName: string;
-  customerPhone: string;
+  customerPhone: number;
+  customerAddress: {
+    fulladdress: string;
+    pincode: number;
+  };
 }
 
 export interface OrderState {

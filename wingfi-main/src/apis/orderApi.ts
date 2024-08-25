@@ -4,7 +4,7 @@ import { firestore } from "@/infrastructure/firebase.config";
 import { Order } from "@/redux/constants/order";
 
 export async function generateOrderAPI({
-  address,
+  customerAddress,
   statuses,
   items,
   customerName,
@@ -19,56 +19,44 @@ export async function generateOrderAPI({
   paymentMethod,
   currentStatus,
 }: Order): Promise<Order> {
-  // const order = {
-  //   pd: items,
-  //   t: total,
-  //   st: subtotal,
-  //   x: tax,
-  //   dy: delivery,
-  //   q: qty,
-  //   ds: discount,
-  //   ad: address,
-  //   pm: paymentMethod,
-  //   s: statuses,
-  //   n: customerName,
-  //   p: customerPhone,
-  //   u: uid,
-  //   cs:currentStatus
-  // };
+  const order = {
+    pd: items,
+    t: total,
+    st: subtotal,
+    x: tax,
+    dy: delivery,
+    q: qty,
+    ds: discount,
+    ad: customerAddress,
+    pm: paymentMethod,
+    s: statuses,
+    n: customerName,
+    p: customerPhone,
+    u: uid,
+    cs: currentStatus,
+  };
 
-  // throw new Error("CUSTOM ERROR!");
-  // const docRef = await addDoc(collection(firestore, "or84r"), order);
+  const docRef = await addDoc(collection(firestore, "or84r"), order);
 
   // console.log("Document written with ID: ", docRef.id);
 
-  // return docRef.id;
-  const docRef = { id: "DASDAS" };
-  return new Promise((res, rej) => {
-    try {
-      setTimeout(() => {
-        res({
-          items,
-          total,
-          subtotal,
-          tax,
-          delivery,
-          qty,
-          discount,
-          address,
-          paymentMethod,
-          statuses,
-          customerName,
-          customerPhone,
-          uid,
-          id: docRef?.id,
-          currentStatus,
-        });
-        console.log("API SUCCESS");
-      }, 1500);
-    } catch (error) {
-      rej(error);
-    }
-  });
+  return {
+    items,
+    total,
+    subtotal,
+    tax,
+    delivery,
+    qty,
+    discount,
+    customerAddress,
+    paymentMethod,
+    statuses,
+    customerName,
+    customerPhone,
+    uid,
+    id: docRef.id,
+    currentStatus,
+  };
 }
 
 export async function loadAllOrdersAPI(): Promise<Order[]> {
@@ -84,7 +72,7 @@ export async function loadAllOrdersAPI(): Promise<Order[]> {
       delivery: data.dy,
       qty: data.q,
       discount: data.ds,
-      address: data.ad,
+      customerAddress: data.ad,
       paymentMethod: data.pm,
       statuses: data.s,
       customerName: data.n,
@@ -116,7 +104,7 @@ export async function loadSingleOrderAPI(
       delivery: data.dy,
       qty: data.q,
       discount: data.ds,
-      address: data.ad,
+      customerAddress: data.ad,
       paymentMethod: data.pm,
       statuses: data.s,
       customerName: data.n,

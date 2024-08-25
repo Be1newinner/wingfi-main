@@ -35,13 +35,8 @@ function* generateOrderSaga(action: GenerateOrderRequestAction) {
   try {
     const order: Order = yield call(generateOrderAPI, action.payload);
     yield put(generateOrderSuccess(order));
-    yield delay(1000);
-    yield put(resetCart());
-    yield put(resetGenerateOrderState());
   } catch (error: any) {
     yield put(generateOrderFailure(error.message));
-    yield delay(10000);
-    yield put(resetGenerateOrderState());
   }
 }
 
@@ -57,11 +52,10 @@ function* loadAllOrdersSaga() {
 function* loadSingleOrderSaga(action: LoadSingleOrderRequestAction) {
   try {
     const order: Order | null = yield call(loadSingleOrderAPI, action.payload);
-    if (order) {
-      yield put(loadSingleOrderSuccess(order));
-    } else {
-      yield put(loadSingleOrderFailure("Order not found"));
-    }
+    //
+    if (order?.id) yield put(loadSingleOrderSuccess(order));
+    else yield put(loadSingleOrderFailure("Order not found"));
+    //
   } catch (error: any) {
     yield put(loadSingleOrderFailure(error.message));
   }

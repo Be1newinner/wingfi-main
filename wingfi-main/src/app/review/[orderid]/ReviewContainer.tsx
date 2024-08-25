@@ -2,35 +2,68 @@
 
 import { CheckoutSteps } from "@/components";
 import { CiGift } from "react-icons/ci";
-import { OtherDetailsService } from "@/service/OtherDetails/OtherDetailsService";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import {
+  loadSingleOrderRequest,
+  resetGenerateOrderState,
+} from "@/redux/reducers/order";
+import { resetCart } from "@/redux/reducers/cart";
+import { useSelector } from "react-redux";
+import { selectOrderById } from "@/redux/selectors/order";
+import { OrderStatus } from "@/redux/constants/order";
 
-export default function ReviewContainer({ status = true }) {
+export default function ReviewContainer({
+  status = true,
+  orderid,
+}: {
+  status?: boolean;
+  orderid: string;
+}) {
+  const dispatch = useDispatch();
+  const orderData = useSelector(selectOrderById(orderid));
+
+  const OrderDate = orderData?.statuses?.find(
+    (e) => e.status === OrderStatus.Pending
+  )?.date;
+
   const confirmBox = [
     {
       key: 0,
       title: "Order Date",
-      value: "April 10, 2023",
+      value: OrderDate ? new Date(OrderDate).toLocaleString() : OrderDate,
     },
     {
       key: 1,
       title: "Expected Delivery",
-      value: "April 15, 2023",
+      value: "not known",
     },
     {
       key: 2,
       title: "Order ID",
-      value: "SD489DSA889",
+      value: orderData?.id,
     },
     {
       key: 3,
       title: "Payment Method",
-      value: "Online",
+      value: orderData?.paymentMethod === 0 ? "ONLINE" : "COD",
     },
   ];
 
-  const discount = 0;
-  const ProductCart = {};
-  const ProductGrossAmt = 0;
+  useEffect(() => {
+    dispatch(resetCart());
+    dispatch(resetGenerateOrderState());
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log(orderData);
+    dispatch(loadSingleOrderRequest(orderid));
+  }, [orderid]);
+
+  const OtherDetailsService = {
+    t: 18, // Tax Fees
+    s: 50, // Shipping Fees
+  };
   return (
     <div className="px-4 pb-0 sm:pb-8 flex flex-col gap-2 basis-1/2 flex-1">
       <CheckoutSteps step={4} />
@@ -89,24 +122,19 @@ export default function ReviewContainer({ status = true }) {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(ProductCart)?.map((item, index) => {
+              {orderData?.items?.map((item, index) => {
                 return (
                   <tr
-                    key={item}
+                    key={item.sku}
                     style={{
                       borderTop: "1px solid rgba(0,0,0,0.15)",
                     }}
                   >
                     <td className="text-gray-500 py-4 text-sm">
-                      {index +
-                        1 +
-                        ". " +
-                        ProductCart[item].t +
-                        " x " +
-                        ProductCart[item].qty}
+                      {index + 1 + ". " + item.sku + " x " + item.qty}
                     </td>
                     <td className="text-right text-black text-medium">
-                      ₹{ProductCart[item].p * ProductCart[item].qty}/-
+                      ₹{item.price * item.qty}/-
                     </td>
                   </tr>
                 );
@@ -118,7 +146,9 @@ export default function ReviewContainer({ status = true }) {
                 }}
               >
                 <td className="text-gray-500 py-4 text-sm">Subtotal</td>
-                <td className="font-medium text-right">₹{ProductGrossAmt}/-</td>
+                <td className="font-medium text-right">
+                  ₹{orderData?.subtotal}/-
+                </td>
               </tr>
               <tr
                 style={{
@@ -127,7 +157,7 @@ export default function ReviewContainer({ status = true }) {
               >
                 <td className="text-gray-500 py-4 text-sm">Shipping</td>
                 <td className="font-medium text-right">
-                  ₹{OtherDetailsService.s}/-
+                  ₹{orderData?.delivery}/-
                 </td>
               </tr>
 
@@ -140,15 +170,12 @@ export default function ReviewContainer({ status = true }) {
                   Tax ({OtherDetailsService.t}%)
                 </td>
                 <td className="font-medium text-right">
-                  ₹
-                  {((ProductGrossAmt + OtherDetailsService.s) *
-                    OtherDetailsService.t) /
-                    100}
+                  ₹{orderData?.tax}
                   /-
                 </td>
               </tr>
 
-              {discount > 0 && (
+              {Number(orderData?.discount) > 0 && (
                 <tr
                   style={{
                     borderTop: "1px solid rgba(0,0,0,0.15)",
@@ -156,7 +183,7 @@ export default function ReviewContainer({ status = true }) {
                 >
                   <td className="text-gray-500 py-4 text-sm">Discount</td>
                   <td className="font-medium text-right">
-                    ₹{discount}
+                    ₹{orderData?.discount}
                     /-
                   </td>
                 </tr>
@@ -169,13 +196,7 @@ export default function ReviewContainer({ status = true }) {
               >
                 <td className="font-semibold py-4">Order Total</td>
                 <td className="font-semibold text-right">
-                  ₹
-                  {ProductGrossAmt -
-                    discount +
-                    OtherDetailsService.s +
-                    ((ProductGrossAmt + OtherDetailsService.s) *
-                      OtherDetailsService.t) /
-                      100}
+                  ₹{orderData?.total}
                   /-
                 </td>
               </tr>

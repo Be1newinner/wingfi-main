@@ -2,7 +2,7 @@ import { NavBar, Footer, Newsletter } from "@/components";
 import Link from "next/link";
 import ReviewContainer from "./ReviewContainer";
 
-export default function Checkout() {
+export default function Checkout({ params }: { params: { orderid: string } }) {
   return (
     <div className="bg-gray-100">
       <NavBar />
@@ -32,7 +32,7 @@ export default function Checkout() {
         <div className="divider" />
 
         <div className="flex flex-wrap">
-          <ReviewContainer />
+          <ReviewContainer orderid={params.orderid} />
         </div>
 
         <Newsletter />

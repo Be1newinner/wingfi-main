@@ -5,6 +5,7 @@ export interface CartItem {
   price: number;
   category: number;
   [key: string]: any;
+  title: string;
 }
 
 export interface CartData {
@@ -15,10 +16,6 @@ export interface CartData {
   delivery: number;
   qty: number;
   discount: number;
-  address: {
-    fulladdress: string;
-    pincode: number;
-  };
   paymentMethod: number;
 }
 

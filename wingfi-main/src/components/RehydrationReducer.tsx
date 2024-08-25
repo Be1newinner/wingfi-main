@@ -13,7 +13,18 @@ export default function RehydrationReducer({ children }: WrapperProps) {
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user) => {
-      if (user) dispatch(rehydrateUser({ ...user, isAdmin: false }));
+      if (user)
+        dispatch(
+          rehydrateUser({
+            uid: user.uid,
+            email: user.email,
+            emailVerified: user.emailVerified,
+            phoneNumber: user.phoneNumber,
+            photoURL: user.photoURL,
+            displayName: user.displayName,
+            isAdmin: false,
+          })
+        );
       else
         dispatch(
           rehydrateUser({

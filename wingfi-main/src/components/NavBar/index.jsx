@@ -20,7 +20,7 @@ export function NavBar() {
         }}
       >
         <div className="flex flex-1">
-          <div className="flex md:hidden">
+          <div className="flex sm:hidden">
             <div className="dropdown">
               <div
                 tabIndex={0}
@@ -75,7 +75,7 @@ export function NavBar() {
           >
             <span className="mx-auto">Wingfi India</span>
           </Link>
-          <div className="navbar-center hidden lg:flex flex-1 justify-center">
+          <div className="navbar-center hidden sm:flex flex-1 justify-center">
             <ul className="menu menu-horizontal px-1">
               {MenuItems?.filter((e) => e.phoneOnly !== 1)?.map((item) => (
                 <li key={item.id}>

@@ -1,5 +1,3 @@
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { useEffect } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface propTypes {
@@ -7,11 +5,7 @@ interface propTypes {
   radioSelection: number;
   setRadioSelection: (e: number) => void;
   generateOrder: () => void;
-  orderApiError: string | null;
   orderApiLoading: boolean;
-  generateOrderStatus: boolean;
-  navigate: AppRouterInstance;
-  newOrderID: string | null;
 }
 
 export default function PaymentOptions({
@@ -19,20 +13,8 @@ export default function PaymentOptions({
   radioSelection,
   setRadioSelection,
   generateOrder,
-  orderApiError,
   orderApiLoading,
-  generateOrderStatus,
-  navigate,
-  newOrderID,
 }: propTypes) {
-  useEffect(() => {
-    if (generateOrderStatus) {
-      if (newOrderID) {
-        navigate.replace(`/review/${newOrderID}`);
-      }
-    }
-  }, [generateOrderStatus, navigate]);
-
   return checkoutSteps === 3 ? (
     <div className="bg-white shadow">
       <p className="flex gap-2 text-white font-semibold text-sm py-4 px-4 sm:px-8 shadow-md bg-blue-500 ">

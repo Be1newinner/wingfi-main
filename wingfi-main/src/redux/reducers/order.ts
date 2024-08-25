@@ -50,15 +50,21 @@ const orderSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    loadSingleOrderRequest(state) {
+    loadSingleOrderRequest(state, action: PayloadAction<string>) {
       state.loading = true;
       state.error = null;
     },
     loadSingleOrderSuccess(state, action: PayloadAction<Order>) {
       state.loading = false;
-      state.orders = state.orders.map((order) =>
-        order.id === action.payload.id ? action.payload : order
+      const index = state.orders.findIndex(
+        (address) => address.id === action.payload.id
       );
+
+      if (index === -1) state.orders.push(action.payload);
+      // state.orders = state.orders.map((order) =>
+      //   order.id === action.payload.id ? action.payload : order
+      // );
+      state.error = null;
     },
     loadSingleOrderFailure(state, action: PayloadAction<string>) {
       state.loading = false;

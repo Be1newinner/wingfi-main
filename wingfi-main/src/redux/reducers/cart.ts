@@ -12,13 +12,30 @@ const initialState: CartDataReducer = {
   delivery: DELIVERY_FEE,
   qty: 0,
   discount: DISCOUNT_AMOUNT,
-  address: {
-    fulladdress: "",
-    pincode: 0,
-  },
   paymentMethod: 1,
   loading: false,
   error: null,
+};
+
+const loadCartFromLocalStorage = (): CartDataReducer => {
+  try {
+    const serializedState = localStorage.getItem("cart");
+    if (serializedState === null) {
+      return initialState;
+    }
+    return JSON.parse(serializedState);
+  } catch (err) {
+    return initialState;
+  }
+};
+
+const saveCartToLocalStorage = (state: CartDataReducer) => {
+  try {
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem("cart", serializedState);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const calculateTotals = (items: CartItem[]) => {
@@ -37,7 +54,7 @@ const calculateTotals = (items: CartItem[]) => {
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState: loadCartFromLocalStorage(),
   reducers: {
     addInCart(state, action: PayloadAction<CartItem>) {
       const newItem = action.payload;
@@ -58,6 +75,8 @@ const cartSlice = createSlice({
       state.qty = updatedTotals.qty;
       state.delivery = DELIVERY_FEE;
       state.discount = DISCOUNT_AMOUNT;
+
+      saveCartToLocalStorage(state); // Save to local storage
     },
     increaseQty(state, action: PayloadAction<string>) {
       const sku = action.payload;
@@ -71,6 +90,8 @@ const cartSlice = createSlice({
         state.subtotal = updatedTotals.subtotal;
         state.tax = updatedTotals.tax;
         state.qty = updatedTotals.qty;
+
+        saveCartToLocalStorage(state); // Save to local storage
       }
     },
     decreaseQty(state, action: PayloadAction<string>) {
@@ -88,13 +109,18 @@ const cartSlice = createSlice({
         state.subtotal = updatedTotals.subtotal;
         state.tax = updatedTotals.tax;
         state.qty = updatedTotals.qty;
+
+        saveCartToLocalStorage(state); // Save to local storage
       }
     },
     resetCart(state) {
-      return initialState;
+      const newState = initialState;
+      saveCartToLocalStorage(newState); // Save reset state to local storage
+      return newState;
     },
     changePaymentMethod(state, action: PayloadAction<number>) {
       state.paymentMethod = action.payload;
+      saveCartToLocalStorage(state); // Save to local storage
     },
     fetchCartDataRequest(state) {
       state.loading = true;
@@ -112,6 +138,8 @@ const cartSlice = createSlice({
       state.discount = DISCOUNT_AMOUNT;
       Object.assign(state, rest);
       state.loading = false;
+
+      saveCartToLocalStorage(state); // Save to local storage
     },
     fetchCartDataFailure(state, action: PayloadAction<string>) {
       state.error = action.payload;

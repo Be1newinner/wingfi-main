@@ -1,6 +1,7 @@
 "use client";
 
 import { CartProductArray, EmptyCart, PricingCart } from "@/components";
+import { selectUserUID } from "@/redux/selectors/auth";
 import { selectCartQuantity } from "@/redux/selectors/cart";
 import Link from "next/link";
 import { MdSecurity } from "react-icons/md";
@@ -8,6 +9,7 @@ import { useSelector } from "react-redux";
 
 export default function CartComponent() {
   const quantity = useSelector(selectCartQuantity);
+  const UserUID = useSelector(selectUserUID);
 
   return (
     <div className="flex flex-col sm:flex-row w-full gap-4">
@@ -24,7 +26,7 @@ export default function CartComponent() {
                 boxShadow: "0px -2px 5px rgba(0,0,0,0.2)",
               }}
             >
-              <Link href={"/checkout"}>
+              <Link href={!UserUID ? "/signin?next=checkout" : "/checkout"}>
                 <button className="btn bg-blue-500 hover:bg-blue-600 rounded-none text-white px-16 shadow">
                   PLACE ORDER
                 </button>

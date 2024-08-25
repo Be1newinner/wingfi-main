@@ -1,44 +1,30 @@
 "use client";
 
-import { ChangeEvent, Dispatch, useState } from "react";
+import { ChangeEvent, Dispatch } from "react";
 import { ModifiedInput, ModifiedSelect } from "./index";
-
-interface FormValues {
-  fullName: string;
-  mobileNumber: string;
-  pincode: string;
-  locality: string;
-  address: string;
-  cityStateTown: string;
-  landmark?: string;
-  addressType: string;
-}
+import { BasicAddressFields } from "@/redux/constants/address";
 
 interface PropTypes {
   addressSelected: number | null;
   setAddressSelected: Dispatch<number>;
+  addNewAddressController: () => void;
+  setFormValues: Dispatch<any>;
+  formValues: BasicAddressFields;
 }
 
 export const AddAddressItem = ({
   addressSelected,
   setAddressSelected,
+  addNewAddressController,
+  setFormValues,
+  formValues,
 }: PropTypes) => {
-  const [formValues, setFormValues] = useState<FormValues>({
-    fullName: "",
-    mobileNumber: "",
-    pincode: "",
-    locality: "",
-    address: "",
-    cityStateTown: "",
-    landmark: "",
-    addressType: "home",
-  });
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFormValues((prev) => ({
+
+    setFormValues((prev: BasicAddressFields) => ({
       ...prev,
-      [name]: value,
+      [name]: name.includes("phoneNumber") ? Number(value) : value,
     }));
   };
 
@@ -46,9 +32,9 @@ export const AddAddressItem = ({
     e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>
   ) => {
     const { value } = e.target;
-    setFormValues((prev) => ({
+    setFormValues((prev: BasicAddressFields) => ({
       ...prev,
-      addressType: value,
+      type: value,
     }));
   };
 
@@ -75,89 +61,101 @@ export const AddAddressItem = ({
             <ModifiedInput
               title="Full Name"
               className="basis-1/2 pr-4"
-              name="fullName"
-              value={formValues.fullName}
+              name="name"
+              value={formValues.name}
               onChange={handleChange}
             />
             <ModifiedInput
               title="10-digit Mobile Number"
               className="basis-1/2 pr-4"
-              name="mobileNumber"
-              value={formValues.mobileNumber}
-              onChange={handleChange}
+              name="phoneNumber"
+              value={formValues.phoneNumber.toString()}
+              onChange={(e) => handleChange(e)}
               type="tel"
             />
             <ModifiedInput
               title="Pincode"
               className="basis-1/2 pr-4"
-              name="pincode"
-              value={formValues.pincode}
+              name="pinCode"
+              value={formValues.pinCode.toString()}
               onChange={handleChange}
               type="number"
             />
             <ModifiedInput
-              title="Locality"
+              title="House Number (Home, Area and Street)"
               className="basis-1/2 pr-4"
-              name="locality"
-              value={formValues.locality}
+              name="houseNumber"
+              value={formValues.houseNumber}
               onChange={handleChange}
             />
             <ModifiedInput
-              title="Address (Area and Street)"
+              title="Landmark"
               className="basis-full"
-              name="address"
-              value={formValues.address}
+              name="landmark"
+              value={formValues.landmark}
               onChange={handleChange}
             />
             <ModifiedInput
-              title="City/State/Town"
+              title="City"
               className="basis-1/2 pr-4"
-              name="cityStateTown"
-              value={formValues.cityStateTown}
+              name="city"
+              value={formValues.city}
               onChange={handleChange}
             />
             <ModifiedSelect
-              value={formValues.addressType}
+              value={formValues.state}
               onChange={handleSelectChange}
             />
-            <ModifiedInput
-              title="Landmark (Optional)"
-              className="basis-1/2 pr-4"
-              name="landmark"
-              value={formValues.landmark || ""}
-              onChange={handleChange}
-            />
             <span className="basis-full text-gray-500">Address Type</span>
-            <div className="flex gap-6 basis-full">
-              <div className="flex gap-2 cursor-pointer">
+            <div className="flex gap-1 basis-full">
+              <label
+                className="cursor-pointer flex gap-2"
+                htmlFor="address_type_home"
+              >
                 <input
                   type="radio"
                   name="address_type"
                   id="address_type_home"
-                  checked={formValues.addressType === "home"}
+                  checked={formValues.type === "home"}
                   value="home"
                   onChange={handleSelectChange}
                 />
-                <label htmlFor="address_type_home">
-                  Home (All day delivery)
-                </label>
-              </div>
-              <div className="flex gap-2 cursor-pointer">
+                Home <p className="text-xs">(All day delivery)</p>
+              </label>
+              <label
+                className="cursor-pointer flex gap-1"
+                htmlFor="address_type_work"
+              >
                 <input
                   type="radio"
                   name="address_type"
                   id="address_type_work"
-                  checked={formValues.addressType === "work"}
+                  checked={formValues.type === "work"}
                   value="work"
                   onChange={handleSelectChange}
                 />
-                <label htmlFor="address_type_work">
-                  Work (Delivery between 10 AM to 5 PM)
-                </label>
-              </div>
+                Work <p className="text-xs">(Delivery between 10 AM to 5 PM)</p>
+              </label>
+              <label
+                className="cursor-pointer flex gap-1"
+                htmlFor="address_type_other"
+              >
+                <input
+                  type="radio"
+                  name="address_type"
+                  id="address_type_other"
+                  checked={formValues.type === "other"}
+                  value="other"
+                  onChange={handleSelectChange}
+                />
+                Other <p className="text-xs">(All Day Delivery)</p>
+              </label>
             </div>
-            <div className="flex gap-2">
-              <button className="btn btn-error text-white text-xs font-bold px-12 py-4 rounded-none">
+            <div className="flex gap-1">
+              <button
+                onClick={addNewAddressController}
+                className="btn btn-error text-white text-xs font-bold px-12 py-4 rounded-none"
+              >
                 SAVE AND DELIVER HERE
               </button>
               <button className="btn btn-outline btn-error rounded-none px-12 py-4">

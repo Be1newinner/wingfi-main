@@ -41,15 +41,20 @@ const addressSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    addNewAddressRequest(state) {
+    addNewAddressRequest(state, action: PayloadAction<AddressType>) {
       state.adding = true;
       state.error = null;
     },
     addNewAddressSuccess(state, action: PayloadAction<AddressType>) {
-      state.addresses.push(action.payload);
-      if (state.default === null) {
-        state.default = action.payload.key;
+      const index = state.addresses.findIndex(
+        (address) => address.key === action.payload.key
+      );
+
+      if (index === -1) {
+        state.addresses.push(action.payload);
       }
+
+      state.default = action.payload.key;
       state.adding = false;
     },
     addNewAddressFailure(state, action: PayloadAction<string>) {

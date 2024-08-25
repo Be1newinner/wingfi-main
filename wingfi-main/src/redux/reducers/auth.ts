@@ -8,6 +8,15 @@ interface CustomUser {
   photoURL: string | null;
   displayName: string | null;
   isAdmin: boolean;
+  /* 
+   uid: "ABCD",
+   email: "be1ne@gmail.com",
+   emailVerified: true,
+   phoneNumber: "8130506284",
+   photoURL: "",
+   displayName: "ABC",
+   isAdmin: false,
+   */
 }
 
 interface AuthState {
