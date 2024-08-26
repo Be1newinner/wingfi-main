@@ -50,7 +50,10 @@ const orderSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    loadSingleOrderRequest(state, action: PayloadAction<string>) {
+    loadSingleOrderRequest(
+      state,
+      action: PayloadAction<{ orderid: string; uid: string }>
+    ) {
       state.loading = true;
       state.error = null;
     },

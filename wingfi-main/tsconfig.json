@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/service/Products/ProductsContext.js", "src/service/Authentication/AuthContextTemp"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/service/Products/ProductsContext.js", "src/service/Authentication/AuthContextTemp", "src/app/account/ProfileDetailsController.js", "src/app/saved-addresses/SavedAddresses.jsx", "src/app/saved-addresses/AddNewAddressDialog.jsx"],
   "exclude": ["node_modules"]
 }

@@ -65,10 +65,10 @@ export default function PaymentOptionsContainer({ checkoutSteps }: propTypes) {
       dispatch(generateOrderRequest(OrderData));
     } else {
       console.log(
-        "Something went wrong => ",
-        defaultAddress,
-        CartState.total,
-        AuthUID
+        "Something went wrong => "
+        // defaultAddress,
+        // CartState.total,
+        // AuthUID
       );
     }
   };

@@ -2,8 +2,25 @@
 
 import { useDispatch } from "react-redux";
 import { addInCart } from "@/redux/reducers/cart";
+import { CartItem } from "@/redux/constants/cart";
 
-export default function QuantityChangeSelect({ item, quantity = 1, size }) {
+export default function QuantityChangeSelect({
+  item,
+  quantity = 1,
+  size,
+}: {
+  item: CartItem;
+  quantity: number;
+  size:
+    | "btn-sm"
+    | "btn-xs"
+    | "btn-md"
+    | "btn-lg"
+    | "btn-xl"
+    | "btn-2xl"
+    | "btn-3xl"
+    | "btn-4xl";
+}) {
   let selectSize = "select-sm";
   let selectWidth = 100;
   const dispatch = useDispatch();
@@ -41,7 +58,15 @@ export default function QuantityChangeSelect({ item, quantity = 1, size }) {
         width: selectWidth,
       }}
       onChange={(e) => {
-        const newItem = { ...item, price: item.price, qty: e.target.value };
+        const newItem = {
+          price: item.price,
+          qty: Number(e.target.value),
+          sku: item.sku,
+          img: item.img,
+          category: item.category,
+          title: item.title,
+        };
+
         dispatch(addInCart(newItem));
       }}
       onClick={(e) => e.preventDefault()}

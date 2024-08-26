@@ -1,4 +1,13 @@
-import { collection, addDoc, getDocs, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  getDoc,
+  where,
+  query,
+  QuerySnapshot,
+} from "firebase/firestore";
 
 import { firestore } from "@/infrastructure/firebase.config";
 import { Order } from "@/redux/constants/order";
@@ -88,12 +97,22 @@ export async function loadAllOrdersAPI(): Promise<Order[]> {
 }
 
 export async function loadSingleOrderAPI(
-  orderId: string
+  orderId: string,
+  uid: string
 ): Promise<Order | null> {
-  const docRef = doc(firestore, "or84r", orderId);
-  const docSnap = await getDoc(docRef);
+  if (!orderId) throw new Error("No Order ID is provided!");
+  if (!uid) throw new Error("No User ID is provided!");
 
-  if (docSnap.exists()) {
+  const ordersRef = collection(firestore, "or84r");
+  const q = query(
+    ordersRef,
+    where("__name__", "==", orderId),
+    where("uid", "==", uid)
+  );
+  const querySnapshot: QuerySnapshot = await getDocs(q);
+
+  if (!querySnapshot.empty) {
+    const docSnap = querySnapshot.docs[0];
     const data = docSnap.data();
 
     const order: Order = {
@@ -117,7 +136,7 @@ export async function loadSingleOrderAPI(
     console.log("Loaded single order with ID: ", orderId);
     return order;
   } else {
-    console.error("Order not found with ID: ", orderId);
+    console.error("Order not found or unauthorized access with ID: ", orderId);
     return null;
   }
 }

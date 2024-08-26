@@ -6,29 +6,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { addInCart } from "@/redux/reducers/cart";
 import { useEffect, useState } from "react";
 import { selectCartItems } from "@/redux/selectors/cart"; // Adjust path as needed
-import { CartItemsState } from "@/redux/constants/cart";
+import { CartItem, CartItemsState } from "@/redux/constants/cart";
 
 interface CartButtonProps {
   text: string;
-  item: {
-    sku: string;
-    qty: number;
-    price: number;
-    category: number;
-  };
-  size: string;
+  item: CartItem;
+  size:
+    | "btn-sm"
+    | "btn-xs"
+    | "btn-md"
+    | "btn-lg"
+    | "btn-xl"
+    | "btn-2xl"
+    | "btn-3xl"
+    | "btn-4xl";
   flex: string;
   color: string;
 }
 
 export function CartButton({
   text = "Add",
-  item = {
-    sku: "",
-    qty: 0,
-    price: 0,
-    category: 0,
-  },
+  item,
   size = "btn-sm",
   flex = "flex-0",
   color = "",

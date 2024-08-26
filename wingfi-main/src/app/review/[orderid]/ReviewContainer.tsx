@@ -12,6 +12,7 @@ import { resetCart } from "@/redux/reducers/cart";
 import { useSelector } from "react-redux";
 import { selectOrderById } from "@/redux/selectors/order";
 import { OrderStatus } from "@/redux/constants/order";
+import { selectUserUID } from "@/redux/selectors/auth";
 
 export default function ReviewContainer({
   status = true,
@@ -22,6 +23,7 @@ export default function ReviewContainer({
 }) {
   const dispatch = useDispatch();
   const orderData = useSelector(selectOrderById(orderid));
+  const UserID = useSelector(selectUserUID);
 
   const OrderDate = orderData?.statuses?.find(
     (e) => e.status === OrderStatus.Pending
@@ -57,8 +59,10 @@ export default function ReviewContainer({
 
   useEffect(() => {
     console.log(orderData);
-    dispatch(loadSingleOrderRequest(orderid));
-  }, [orderid]);
+    if (UserID) {
+      dispatch(loadSingleOrderRequest({ orderid, uid: UserID }));
+    }
+  }, [orderid, UserID]);
 
   const OtherDetailsService = {
     t: 18, // Tax Fees

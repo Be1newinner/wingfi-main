@@ -28,7 +28,7 @@ interface GenerateOrderRequestAction {
 
 interface LoadSingleOrderRequestAction {
   type: typeof loadSingleOrderRequest.type;
-  payload: string;
+  payload: { orderid: string; uid: string };
 }
 
 function* generateOrderSaga(action: GenerateOrderRequestAction) {
@@ -51,7 +51,11 @@ function* loadAllOrdersSaga() {
 
 function* loadSingleOrderSaga(action: LoadSingleOrderRequestAction) {
   try {
-    const order: Order | null = yield call(loadSingleOrderAPI, action.payload);
+    const order: Order | null = yield call(
+      loadSingleOrderAPI,
+      action.payload.orderid,
+      action.payload.uid
+    );
     //
     if (order?.id) yield put(loadSingleOrderSuccess(order));
     else yield put(loadSingleOrderFailure("Order not found"));

@@ -46,9 +46,9 @@ export function ProfileDetails() {
     (async function () {
       if (UserUID) {
         const data = await getPhoneNumber(User);
-        setInputName(UserName);
-        setInputPhoneTrack(data);
-        setInputPhone(data);
+        if (UserName) setInputName(UserName);
+        if (data) setInputPhoneTrack(data);
+        if (data) setInputPhone(data);
       }
     })();
   }, [UserUID]);
@@ -168,7 +168,7 @@ export function ProfileDetails() {
               placeholder="e.g. example@abc.com"
               className="input input-bordered rounded-sm  focus:outline-none focus:border-success w-full text-sm"
               maxLength={20}
-              defaultValue={UserEmail}
+              defaultValue={UserEmail?.toString()}
               disabled
             />
             <div className="label">

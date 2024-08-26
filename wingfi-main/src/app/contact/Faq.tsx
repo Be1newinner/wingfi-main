@@ -41,9 +41,9 @@ const faqData = [
 ];
 
 const Faq = () => {
-  const [openQuestion, setOpenQuestion] = useState(null);
+  const [openQuestion, setOpenQuestion] = useState<number | null>(null);
 
-  const toggleQuestion = (index) => {
+  const toggleQuestion = (index: number) => {
     setOpenQuestion(openQuestion === index ? null : index);
   };
 

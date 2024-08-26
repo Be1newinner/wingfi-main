@@ -29,7 +29,7 @@ export default function Contact() {
 
           {/* Contact Us Page */}
 
-          <div className="bg-white w-11/12 mx-auto p-4 shadow rounded rounded-md flex flex-col">
+          <div className="bg-white w-11/12 mx-auto p-4 shadow rounded-md flex flex-col">
             <h1 className="text-md font-semibold">Send a Message</h1>
 
             <label className="form-control w-full">
