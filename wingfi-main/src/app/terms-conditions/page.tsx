@@ -1,14 +1,16 @@
 import React from "react";
 import Head from "next/head";
+import { Footer, NavBar } from "@/components";
 
 const TermsOfUse = () => {
   return (
-    <>
+    <div>
       <Head>
         <title>Terms of Use</title>
         <meta name="description" content="Terms of Use for our website" />
       </Head>
-      <div className="container mx-auto p-4">
+      <NavBar />
+      <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">TERMS OF USE</h1>
         <p className="mb-4">Last updated __________</p>
 
@@ -610,7 +612,8 @@ const TermsOfUse = () => {
           </p>
         </section>
       </div>
-    </>
+      <Footer />
+    </div>
   );
 };
 

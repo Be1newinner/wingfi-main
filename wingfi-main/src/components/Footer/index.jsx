@@ -63,7 +63,7 @@ export function Footer() {
         </div>
 
         {/* 2nd Column */}
-        <div >
+        <div>
           <h3 className="text-lg font-bold">My Account</h3>
           <ul
             className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0"
@@ -99,9 +99,6 @@ export function Footer() {
             }}
           >
             <li className="font-medium hover:font-semibold">
-              <Link href="/">Home</Link>
-            </li>
-            <li className="font-medium hover:font-semibold">
               <Link href="/shop">Shop</Link>
             </li>
             <li className="font-medium hover:font-semibold">
@@ -111,7 +108,13 @@ export function Footer() {
               <Link href="/privacy-policy">Privacy Policy</Link>
             </li>
             <li className="font-medium hover:font-semibold">
-              <Link href="/terms-and-conditions">Terms & Conditions</Link>
+              <Link href="/terms-conditions">Terms & Conditions</Link>
+            </li>
+            <li className="font-medium hover:font-semibold">
+              <Link href="/return-policy">Return Policy</Link>
+            </li>
+            <li className="font-medium hover:font-semibold">
+              <Link href="/shipping-policy">Shipping Policy</Link>
             </li>
           </ul>
         </div>
@@ -138,11 +141,6 @@ export function Footer() {
             <FiMapPin size={40} />
             Plot 112, Besides Bata Showroom, deoli, New Delhi, 110062
           </p>
-          <Link href={"/contact"}>
-            <p className="flex gap-1 items-center ml-6 mt-2 text-lg font-medium hover:underline">
-              About
-            </p>
-          </Link>
         </div>
       </div>
       <aside className="mx-auto">
