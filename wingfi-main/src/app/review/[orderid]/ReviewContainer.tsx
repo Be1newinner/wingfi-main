@@ -4,26 +4,18 @@ import { CheckoutSteps } from "@/components";
 import { CiGift } from "react-icons/ci";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import {
-  loadSingleOrderRequest,
-  resetGenerateOrderState,
-} from "@/redux/reducers/order";
+import { resetGenerateOrderState } from "@/redux/reducers/order";
 import { resetCart } from "@/redux/reducers/cart";
-import { useSelector } from "react-redux";
-import { selectOrderById } from "@/redux/selectors/order";
-import { OrderStatus } from "@/redux/constants/order";
-import { selectUserUID } from "@/redux/selectors/auth";
+import { Order, OrderStatus } from "@/redux/constants/order";
 
 export default function ReviewContainer({
   status = true,
-  orderid,
+  orderData,
 }: {
   status?: boolean;
-  orderid: string;
+  orderData: Order | null;
 }) {
   const dispatch = useDispatch();
-  const orderData = useSelector(selectOrderById(orderid));
-  const UserID = useSelector(selectUserUID);
 
   const OrderDate = orderData?.statuses?.find(
     (e) => e.status === OrderStatus.Pending
@@ -56,13 +48,6 @@ export default function ReviewContainer({
     dispatch(resetCart());
     dispatch(resetGenerateOrderState());
   }, [dispatch]);
-
-  useEffect(() => {
-    console.log(orderData);
-    if (UserID) {
-      dispatch(loadSingleOrderRequest({ orderid, uid: UserID }));
-    }
-  }, [orderid, UserID]);
 
   const OtherDetailsService = {
     t: 18, // Tax Fees

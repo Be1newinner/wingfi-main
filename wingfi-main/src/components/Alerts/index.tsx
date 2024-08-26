@@ -27,6 +27,10 @@ export function StyledAlert({ type, text, onClick }: propType) {
     <div
       role="alert"
       className={`alert ${alertType} max-w-max rounded min-w-96 flex items-center fixed bottom-4 left-4`}
+      style={{
+        border: "2px solid rgba(0,0,0,0.15)",
+        boxShadow:"0 0 5px 0px rgba(0,0,0,0.15)"
+      }}
     >
       <IoMdCloseCircleOutline
         size={26}

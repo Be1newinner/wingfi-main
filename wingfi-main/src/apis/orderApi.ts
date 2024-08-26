@@ -103,11 +103,13 @@ export async function loadSingleOrderAPI(
   if (!orderId) throw new Error("No Order ID is provided!");
   if (!uid) throw new Error("No User ID is provided!");
 
+  console.log(orderId, " => ", uid);
+
   const ordersRef = collection(firestore, "or84r");
   const q = query(
     ordersRef,
     where("__name__", "==", orderId),
-    where("uid", "==", uid)
+    where("u", "==", uid)
   );
   const querySnapshot: QuerySnapshot = await getDocs(q);
 

@@ -9,7 +9,6 @@ export const selectCartDelivery = (state: RootState) => state.cart.delivery;
 export const selectCartDiscount = (state: RootState) => state.cart.discount;
 export const selectCartTax = (state: RootState) => state.cart.tax;
 export const selectCartQuantity = (state: RootState) => state.cart.qty;
-export const selectCartAddress = (state: RootState) => state.cart.address;
 export const selectCartPaymentMethod = (state: RootState) =>
   state.cart.paymentMethod;
 
