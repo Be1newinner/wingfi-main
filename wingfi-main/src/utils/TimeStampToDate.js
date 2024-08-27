@@ -1,4 +1,4 @@
-export default function TimeStampToDate(timestamp) {
+export function TimeStampToDate(timestamp) {
   let jsDate = new Date(
     timestamp?.seconds * 1000 + timestamp?.nanoseconds / 1000000
   );

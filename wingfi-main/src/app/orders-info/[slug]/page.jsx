@@ -1,13 +1,13 @@
 "use client";
 
-import { AccountStructure } from "@/components";
 import Image from "next/image";
 import { useEffect } from "react";
 import { firestore } from "@/infrastructure/firebase.config";
 import { collection, doc, getDoc } from "firebase/firestore";
 import { Variants } from "../../../service/Offline/Variants";
-import { TimeStampToDate } from "@/registry/functions";
 import { useState } from "react";
+import { TimeStampToDate } from "@/utils";
+import { AccountStructure } from "@/components";
 
 export default function OrdersInfo({ params }) {
   const [OrderData, setOrderData] = useState({});
@@ -18,7 +18,7 @@ export default function OrdersInfo({ params }) {
     const Product = {};
 
     const docRef = doc(collection(firestore, "or73r"), slug);
-    const docRef1 = doc(collection(firestore, "or84r"), slug);
+    const docRef1 = doc(collection(firest1ore, "or84r"), slug);
 
     const promises = [getDoc(docRef), getDoc(docRef1)];
 

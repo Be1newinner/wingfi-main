@@ -1,5 +1,5 @@
 import { SlMinus, SlPlus } from "react-icons/sl";
-import { formatToIndianCurrency } from "../../../utils/formatToIndianCurrency";
+import { formatToIndianCurrency } from "../../utils/formatToIndianCurrency";
 
 export default function CartProduct({
   sku,

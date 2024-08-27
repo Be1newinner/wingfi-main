@@ -117,15 +117,32 @@ export default function Checkout() {
                           }
                         />
                       ))}
-                      <AddAddressItem
-                        addressSelected={DefaultAddress}
-                        setAddressSelected={() =>
-                          dispatch(changeDefaultAddress(999))
-                        }
-                        formValues={formValues}
-                        setFormValues={setFormValues}
-                        addNewAddressController={addNewAddressController}
-                      />
+                      <div
+                        className={`flex p-6 gap-4 items-start cursor-pointer border-t-2 ${
+                          DefaultAddress === 999 ? "bg-blue-50" : ""
+                        }`}
+                        onClick={() => dispatch(changeDefaultAddress(999))}
+                      >
+                        <input
+                          type="radio"
+                          name="select_address"
+                          className="mt-1"
+                          checked={DefaultAddress === 999}
+                          onChange={() => dispatch(changeDefaultAddress(999))}
+                        />
+                        <div className="flex flex-col flex-1 text-sm gap-2">
+                          <span className="text-sm font-medium text-blue-600 cursor-pointer mb-2">
+                            Add a new address
+                          </span>
+                          {DefaultAddress === 999 && (
+                            <AddAddressItem
+                              formValues={formValues}
+                              setFormValues={setFormValues}
+                              addNewAddressController={addNewAddressController}
+                            />
+                          )}
+                        </div>
+                      </div>
                     </div>
                   ) : (
                     <div className="bg-white shadow flex">

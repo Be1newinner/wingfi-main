@@ -1,5 +1,5 @@
 import React from "react";
-import { formatToIndianCurrency } from "../../../utils/formatToIndianCurrency";
+import { formatToIndianCurrency } from "../../utils/formatToIndianCurrency";
 
 export default function PricingCartData({ price, discount, delivery, total }) {
   return (

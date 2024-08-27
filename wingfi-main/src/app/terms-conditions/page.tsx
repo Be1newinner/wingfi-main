@@ -20,7 +20,7 @@ const TermsOfUse = () => {
           <h2 className="text-xl font-semibold mb-2">
             AGREEMENT TO OUR LEGAL TERMS
           </h2>
-          <p>We are <b>("Company," "we," "us," "our")</b>.</p>
+          <p>We are <b>("Company," "we 'SMART GADGETS WORLD'," "us," "our")</b>.</p>
           <p>
             We operate , as well as any other related products and services that
             refer or link to these legal terms (the "Legal Terms")
