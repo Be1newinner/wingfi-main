@@ -24,3 +24,8 @@ export { CartButton } from "./ProductViewSm/CartButton";
 export { ProviderWrapper } from "./ProviderWrapper";
 export { StyledAlert } from "./Alerts";
 export { EmptyCart } from "./EmptyCart";
+export { BestSellerWrapper } from "./ContextWrappers/BestSellerWrapper";
+export { RecProductsWrapper } from "./ContextWrappers/RecProductsWrapper";
+export { ShopProductsWrapper } from "./ContextWrappers/ShopProductsWrapper";
+export { HomeProductsWrapper } from "./ContextWrappers/HomeProductsWrapper";
+

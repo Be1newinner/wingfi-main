@@ -5,7 +5,7 @@ import { ProductsData } from "./../../service/Products/ProductsService";
 // import { addProductsArray } from "../../store/Slice/AllProductsSlice";
 // import { useRef } from "react";
 
-export default async function ShopProductsWrapper() {
+export async function ShopProductsWrapper() {
   // async function getProducts() {
   //   return await
   // }

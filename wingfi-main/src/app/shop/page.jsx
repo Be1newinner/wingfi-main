@@ -1,5 +1,4 @@
-import { NavBar, Footer, Newsletter } from "@/components";
-import { ShopProductsWrapper } from "@/registry/contextWrappers";
+import { NavBar, Footer, Newsletter, ShopProductsWrapper } from "@/components";
 import Link from "next/link";
 
 export default function Store() {

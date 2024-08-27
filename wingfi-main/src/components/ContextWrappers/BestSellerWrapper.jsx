@@ -1,7 +1,7 @@
 import { ProductViewList3 } from "@/components";
 import { ProductsData } from "./../../service/Products/ProductsService";
 
-export default async function BestSellerWrapper() {
+export async function BestSellerWrapper() {
   const products = await ProductsData({
     lim: 15,
     order: "s",

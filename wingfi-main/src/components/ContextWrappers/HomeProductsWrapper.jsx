@@ -3,7 +3,7 @@
 import { ProductViewList2 } from "@/components";
 import { useSelector } from "react-redux";
 
-export default function HomeProductsWrapper() {
+export function HomeProductsWrapper() {
   const ProductsSelector = useSelector((selector) => selector.AllProducts);
 
   return (

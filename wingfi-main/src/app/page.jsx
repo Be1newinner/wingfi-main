@@ -1,14 +1,12 @@
 import {
-  BestSellerWrapper,
-  RecProductsWrapper,
-} from "@/registry/contextWrappers";
-import {
   NavBar,
   Footer,
   HeroSection,
   HomeFeatures,
   UserFeedBack2,
   Newsletter,
+  BestSellerWrapper,
+  RecProductsWrapper,
 } from "@/components";
 
 export default function Home() {
