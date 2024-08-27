@@ -6,13 +6,10 @@ import { FaArrowRight } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { collection, query, getDocs, limit, where } from "firebase/firestore";
 import { firestore } from "@/infrastructure/firebase.config";
-import { TimeStampToDate } from "@/registry/functions";
-// import { AuthContext } from "@/registry/context";
-// import { waitForDebugger } from "inspector";
+import { TimeStampToDate } from "@/utils";
 
 export function Tab_OrdersInfo() {
   const [OrdersData, setOrdersData] = useState(null);
-  // const User = useContext(AuthContext)?.state?.user;
   const User = {};
   async function getOrdersData({ lim }) {
     if (User) {
@@ -65,8 +62,6 @@ export function Tab_OrdersInfo() {
     process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
       console.log("OrdersData => ", OrdersData);
   }, [OrdersData]);
-
-  // waitForDebugger
 
   return (
     <div className="max-w-screen overflow-auto">
