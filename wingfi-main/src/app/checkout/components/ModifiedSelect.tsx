@@ -3,8 +3,10 @@ import { ChangeEventHandler } from "react";
 export function ModifiedSelect({
   value,
   onChange,
+  error,
 }: {
   value: string;
+  error: string;
   onChange: ChangeEventHandler<HTMLSelectElement>;
 }) {
   return (
@@ -56,9 +58,10 @@ export function ModifiedSelect({
         </select>
 
         <span className="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-white p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
-        state
+          state
         </span>
       </label>
+      <p className="text-error text-xs mt-1">{error}</p>
     </div>
   );
 }

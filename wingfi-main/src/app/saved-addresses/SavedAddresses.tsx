@@ -28,12 +28,23 @@ export function SavedAddresses() {
     })();
   }, [UserUID]);
 
-  function changeDefaultAddres(key) {
+  function changeDefaultAddres(key: number) {
     dispatch(changeDefaultAddress(key));
   }
 
-  async function deleteDefaultAddres(key) {
-    dispatch(removeAddressRequest(key));
+  async function deleteDefaultAddres(key: number, uid: string | null) {
+    if (!uid) {
+      console.log("uid is required! => ", uid);
+      return;
+    }
+
+    if (!key) {
+      console.log("key is required! => ", key);
+      return;
+    }
+
+    console.log("deleting address with key ", key);
+    dispatch(removeAddressRequest({ key, userId: uid }));
   }
 
   return (
@@ -69,13 +80,7 @@ export function SavedAddresses() {
               </tr>
               <tr>
                 <td className="pr-6">Address Type: </td>
-                <td>
-                  {item?.type === 0
-                    ? "Home"
-                    : item?.type === 1
-                    ? "Office"
-                    : "Other"}
-                </td>
+                <td>{item?.type}</td>
               </tr>
             </tbody>
           </table>
@@ -89,25 +94,13 @@ export function SavedAddresses() {
             </button>
             <button
               className="btn btn-neutral btn-sm rounded-sm"
-              onClick={() => deleteDefaultAddres(item.key)}
+              onClick={() => deleteDefaultAddres(item.key, UserUID)}
             >
               Delete
             </button>
           </div>
         </div>
       ))}
-
-      <div
-        className="flex gap-4 items-center py-4"
-        onClick={() => document.getElementById("my_modal_3").showModal()}
-      >
-        <input
-          type="button"
-          name="address-radio"
-          className="btn btn-error text-white rounded-sm"
-          value={"Add a New Address"}
-        />
-      </div>
 
       <AddNewAddressDialog />
     </>

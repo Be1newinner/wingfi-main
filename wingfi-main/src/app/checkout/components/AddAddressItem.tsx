@@ -8,12 +8,14 @@ interface PropTypes {
   addNewAddressController: () => void;
   setFormValues: Dispatch<any>;
   formValues: BasicAddressFields;
+  closeModal?: () => void;
 }
 
 export const AddAddressItem = ({
   addNewAddressController,
   setFormValues,
   formValues,
+  closeModal,
 }: PropTypes) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,8 +32,10 @@ export const AddAddressItem = ({
     const { value } = e.target;
     setFormValues((prev: BasicAddressFields) => ({
       ...prev,
-      type: value,
+      [e.target.name]: value,
     }));
+
+    // console.log("input", value, e.target.name);
   };
 
   const [Errors, setErrors] = useState({
@@ -94,11 +98,24 @@ export const AddAddressItem = ({
       }
     }
 
-    if (Object.keys(newErrors).length > 0) {
+    if (
+      newErrors.city ||
+      newErrors.houseNumber ||
+      newErrors.landmark ||
+      newErrors.name ||
+      newErrors.phoneNumber ||
+      newErrors.pinCode ||
+      newErrors.state ||
+      newErrors.type
+    ) {
       setErrors(newErrors);
+      console.log("ERRORS WHILE SUBMITTING FORM => ", newErrors);
+      console.log("INPUTS => ", formValues);
     } else {
       setErrors(emptyErorrs);
       addNewAddressController();
+      if (closeModal) closeModal();
+      console.log("ADD SUCCESS!");
     }
   };
 
@@ -110,6 +127,7 @@ export const AddAddressItem = ({
         name="name"
         value={formValues.name}
         onChange={handleChange}
+        error={Errors.name}
       />
       <ModifiedInput
         title="10-digit Mobile Number"
@@ -118,6 +136,7 @@ export const AddAddressItem = ({
         value={formValues.phoneNumber.toString()}
         onChange={(e) => handleChange(e)}
         type="tel"
+        error={Errors.phoneNumber}
       />
       <ModifiedInput
         title="Pincode"
@@ -126,6 +145,7 @@ export const AddAddressItem = ({
         value={formValues.pinCode.toString()}
         onChange={handleChange}
         type="number"
+        error={Errors.pinCode}
       />
       <ModifiedInput
         title="House Number (Home, Area and Street)"
@@ -133,6 +153,7 @@ export const AddAddressItem = ({
         name="houseNumber"
         value={formValues.houseNumber}
         onChange={handleChange}
+        error={Errors.houseNumber}
       />
       <ModifiedInput
         title="Landmark"
@@ -140,6 +161,7 @@ export const AddAddressItem = ({
         name="landmark"
         value={formValues.landmark}
         onChange={handleChange}
+        error={Errors.landmark}
       />
       <ModifiedInput
         title="City"
@@ -147,8 +169,13 @@ export const AddAddressItem = ({
         name="city"
         value={formValues.city}
         onChange={handleChange}
+        error={Errors.city}
       />
-      <ModifiedSelect value={formValues.state} onChange={handleSelectChange} />
+      <ModifiedSelect
+        value={formValues.state}
+        onChange={handleSelectChange}
+        error={Errors.state}
+      />
       <span className="basis-full text-gray-500">Address Type</span>
       <div className="flex gap-1 basis-full">
         <label
@@ -157,7 +184,7 @@ export const AddAddressItem = ({
         >
           <input
             type="radio"
-            name="address_type"
+            name="type"
             id="address_type_home"
             checked={formValues.type === "home"}
             value="home"
@@ -171,7 +198,7 @@ export const AddAddressItem = ({
         >
           <input
             type="radio"
-            name="address_type"
+            name="type"
             id="address_type_work"
             checked={formValues.type === "work"}
             value="work"
@@ -185,7 +212,7 @@ export const AddAddressItem = ({
         >
           <input
             type="radio"
-            name="address_type"
+            name="type"
             id="address_type_other"
             checked={formValues.type === "other"}
             value="other"

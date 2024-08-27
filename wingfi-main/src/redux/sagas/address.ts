@@ -71,7 +71,7 @@ function* removeAddressSaga(
   try {
     const { userId, key } = action.payload;
     yield call(removeAddress, userId, key);
-    yield put(removeAddressSuccess({ key }));
+    yield put(removeAddressSuccess(key));
   } catch (error: any) {
     yield put(removeAddressFailure(error.message));
   }

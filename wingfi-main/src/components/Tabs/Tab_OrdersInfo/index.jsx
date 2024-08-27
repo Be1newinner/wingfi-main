@@ -3,59 +3,22 @@
 import Link from "next/link";
 import styles from "./Tab_OrdersInfo.module.css";
 import { FaArrowRight } from "react-icons/fa6";
-import { useEffect, useState } from "react";
-import { collection, query, getDocs, limit, where } from "firebase/firestore";
-import { firestore } from "@/infrastructure/firebase.config";
-import { TimeStampToDate } from "@/utils";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadAllOrdersRequest } from "@/redux/reducers/order";
+import { useSelector } from "react-redux";
+import { selectUserUID } from "@/redux/selectors/auth";
+import { selectAllOrders } from "@/redux/selectors/order";
+import { OrderStatus } from "@/redux/constants/order";
 
 export function Tab_OrdersInfo() {
-  const [OrdersData, setOrdersData] = useState(null);
-  const User = {};
-  async function getOrdersData({ lim }) {
-    if (User) {
-      const AllPromise = await new Promise(async (resolve, reject) => {
-        try {
-          const AllOrders = [];
+  const dispatch = useDispatch();
 
-          const OrdersQuery = query(
-            collection(firestore, "or73r"),
-            where("u", "==", User?.uid),
-            limit(lim)
-          );
-
-          const Ordersnapshot = await getDocs(OrdersQuery);
-
-          Ordersnapshot.forEach((doc) => {
-            const data = doc.data();
-            const orderID = doc.id;
-
-            const modifiedData = {
-              total: data.t,
-              status: data.s,
-              date: data.d,
-              orderID,
-            };
-
-            AllOrders.push(modifiedData);
-          });
-
-          resolve(AllOrders);
-        } catch (error) {
-          reject(error);
-        }
-      });
-      return AllPromise;
-    } else {
-      process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
-        console.log("USER NOT LOGIN!");
-    }
-  }
+  const UserUID = useSelector(selectUserUID);
+  const OrdersData = useSelector(selectAllOrders);
 
   useEffect(() => {
-    (async function () {
-      const resp = await getOrdersData({ lim: 5 });
-      setOrdersData(resp);
-    })();
+    dispatch(loadAllOrdersRequest({ uid: UserUID }));
   }, []);
 
   useEffect(() => {
@@ -112,25 +75,25 @@ export function Tab_OrdersInfo() {
         </thead>
         <tbody>
           {OrdersData?.map((item) => {
-            let status = null;
-
-            if (item.status == 0) status = "Accepted";
-            if (item.status == 1) status = "Shipped";
-            if (item.status == 2) status = "Completed";
+            let date = new Date();
+            const rawDate = item.statuses.find(
+              (e) => e.status === OrderStatus.Pending
+            ).date;
+            if (typeof rawDate === "number") date === new Date(rawDate);
 
             return (
               <tr
-                key={item.orderID}
+                key={item.id}
                 className="bg-white mb-2 border shadow rounded-sm"
               >
                 <td className="p-3">
-                  <span className="text-md font-medium">{item.orderID}</span>
+                  <span className="text-md font-medium">{item.id}</span>
                 </td>
                 <td>
-                  <span>{TimeStampToDate(item.date)}</span>
+                  <span>{`${date.toDateString()} ${date.getHours()}:${date.getMinutes()}`}</span>
                 </td>
                 <td>
-                  <span>{status}</span>
+                  <span>{item.currentStatus}</span>
                 </td>
                 <td>
                   <span>₹ {item.total} /-</span>
@@ -138,7 +101,7 @@ export function Tab_OrdersInfo() {
                 <td className="flex justify-end items-center">
                   <Link
                     className="btn btn-sm btn-circle btn-ghost m-3"
-                    href={"/orders-info/" + item.orderID}
+                    href={"/orders-info/" + item.id}
                   >
                     <FaArrowRight />
                   </Link>

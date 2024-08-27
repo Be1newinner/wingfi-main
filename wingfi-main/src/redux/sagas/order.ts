@@ -1,4 +1,4 @@
-import { call, delay, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from "redux-saga/effects";
 import { Order } from "../constants/order";
 
 import {
@@ -18,8 +18,7 @@ import {
   generateOrderAPI,
   loadAllOrdersAPI,
   loadSingleOrderAPI,
-} from "@/apis/orderApi";
-import { resetCart } from "../reducers/cart";
+} from "@/service/Orders";
 
 interface GenerateOrderRequestAction {
   type: typeof generateOrderRequest.type;
@@ -31,6 +30,11 @@ interface LoadSingleOrderRequestAction {
   payload: { orderid: string; uid: string };
 }
 
+interface LoadAllOrderRequestAction {
+  type: typeof loadAllOrdersRequest.type;
+  payload: { uid: string };
+}
+
 function* generateOrderSaga(action: GenerateOrderRequestAction) {
   try {
     const order: Order = yield call(generateOrderAPI, action.payload);
@@ -40,9 +44,9 @@ function* generateOrderSaga(action: GenerateOrderRequestAction) {
   }
 }
 
-function* loadAllOrdersSaga() {
+function* loadAllOrdersSaga(action: LoadAllOrderRequestAction) {
   try {
-    const orders: Order[] = yield call(loadAllOrdersAPI);
+    const orders: Order[] = yield call(loadAllOrdersAPI, action.payload.uid);
     yield put(loadAllOrdersSuccess(orders));
   } catch (error: any) {
     yield put(loadAllOrdersFailure(error.message));

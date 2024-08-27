@@ -50,9 +50,7 @@ const addressSlice = createSlice({
         (address) => address.key === action.payload.key
       );
 
-      if (index === -1) {
-        state.addresses.push(action.payload);
-      }
+      if (index === -1) state.addresses.push(action.payload);
 
       state.default = action.payload.key;
       state.adding = false;
@@ -61,15 +59,18 @@ const addressSlice = createSlice({
       state.adding = false;
       state.error = action.payload;
     },
-    removeAddressRequest(state, key: PayloadAction<number>) {
+    removeAddressRequest(
+      state,
+      payload: PayloadAction<{ key: number; userId: string }>
+    ) {
       state.removing = true;
       state.error = null;
     },
-    removeAddressSuccess(state, action: PayloadAction<{ key: number }>) {
+    removeAddressSuccess(state, action: PayloadAction<number>) {
       state.addresses = state.addresses.filter(
-        (item) => item.key !== action.payload.key
+        (item) => item.key !== action.payload
       );
-      if (state.default === action.payload.key) {
+      if (state.default === action.payload) {
         state.default = state.addresses.length ? state.addresses[0].key : null;
       }
       state.removing = false;

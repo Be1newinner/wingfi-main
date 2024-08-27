@@ -17,7 +17,3 @@ export const Variants = {
   },
 };
 
-// 1. 0 => Red
-// 2. 1 => Blue
-// 3. 2 => White
-// 4. 3 => Black

@@ -38,7 +38,7 @@ const orderSlice = createSlice({
       state.success = false;
       state.error = action.payload;
     },
-    loadAllOrdersRequest(state) {
+    loadAllOrdersRequest(state, action: PayloadAction<{ uid: string }>) {
       state.loading = true;
       state.error = null;
     },
@@ -64,9 +64,6 @@ const orderSlice = createSlice({
       );
 
       if (index === -1) state.orders.push(action.payload);
-      // state.orders = state.orders.map((order) =>
-      //   order.id === action.payload.id ? action.payload : order
-      // );
       state.error = null;
     },
     loadSingleOrderFailure(state, action: PayloadAction<string>) {

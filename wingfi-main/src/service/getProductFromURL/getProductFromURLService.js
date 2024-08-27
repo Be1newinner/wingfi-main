@@ -1,5 +1,5 @@
 import { firestore } from "@/infrastructure/firebase.config";
-import { collection, doc, getDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc } from "firebase/firestore";
 
 export default async function getProductFromURL({ slug }) {
   if (!slug)
