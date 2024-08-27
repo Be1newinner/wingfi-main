@@ -9,71 +9,9 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import { VscThreeBars } from "react-icons/vsc";
 import LeftSidebar from "../../components/Sidebar";
+import category from "../../offline/categoryList.json" 
 
 export default function CategoryList() {
-  const data = [
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-    {
-      name: "Dried food",
-      quantity: 1638,
-      sale: 20,
-      startdate: "20 nov 2023",
-    },
-  ];
-
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -140,7 +78,7 @@ export default function CategoryList() {
                 <h1>Start date</h1>
                 <h1>Action</h1>
               </div>
-              {data.map((d) => (
+              {category.map((d) => (
                 <div className="flex items-center justify-between w-[130%] hover:bg-gray-200 duration-300 my-4 rounded-xl">
                   <div className="flex items-center font-bold">
                     <img src={image1} alt="" />

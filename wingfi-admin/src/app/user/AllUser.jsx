@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import user1 from "../../assets/images/user-11.png";
-import user2 from "../../assets/images/user-12.png";
-import user3 from "../../assets/images/user-13.png";
 import { GrView } from "react-icons/gr";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
@@ -12,48 +9,6 @@ import LeftSidebar from "../../components/Sidebar";
 import { VscThreeBars } from "react-icons/vsc";
 
 export default function OrderList() {
-  const data = [
-    {
-      id: 1,
-      image: user1,
-    },
-    {
-      id: 2,
-      image: user2,
-    },
-    {
-      id: 3,
-      image: user1,
-    },
-    {
-      id: 4,
-      image: user2,
-    },
-    {
-      id: 5,
-      image: user1,
-    },
-    {
-      id: 6,
-      image: user3,
-    },
-    {
-      id: 7,
-      image: user3,
-    },
-    {
-      id: 8,
-      image: user1,
-    },
-    {
-      id: 9,
-      image: user3,
-    },
-    {
-      id: 10,
-      image: user1,
-    },
-  ];
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -115,7 +70,7 @@ export default function OrderList() {
                 <h1>Email</h1>
                 <h1>Action</h1>
               </div>
-              {data.map((d) => (
+              {/* {data.map((d) => ( */}
                 <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
                   <div className="flex items-center gap-2 font-bold">
                     <img
@@ -138,7 +93,7 @@ export default function OrderList() {
                     <MdDelete color="red" />
                   </div>
                 </div>
-              ))}
+              {/* ))} */}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">

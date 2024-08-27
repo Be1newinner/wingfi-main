@@ -10,49 +10,6 @@ import LeftSidebar from "../../components/Sidebar";
 import { VscThreeBars } from "react-icons/vsc";
 
 export default function OrderList() {
-  const data = [
-    {
-      id: 1,
-      status: "Success",
-    },
-    {
-      id: 2,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      status: "Success",
-    },
-    {
-      id: 4,
-      status: "Pending",
-    },
-    {
-      id: 5,
-      status: "Success",
-    },
-    {
-      id: 6,
-      status: "Cancel",
-    },
-    {
-      id: 7,
-      status: "Cancel",
-    },
-    {
-      id: 8,
-      status: "Success",
-    },
-    {
-      id: 9,
-      status: "Cancel",
-    },
-    {
-      id: 10,
-      status: "Success",
-    },
-  ];
-
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -118,7 +75,7 @@ export default function OrderList() {
                 <h1>Tracking</h1>
                 <h1>Action</h1>
               </div>
-              {data.map((d) => (
+              {/* {data.map((d) => ( */}
                 <div 
                 key={d.id}
                   style={{
@@ -169,7 +126,7 @@ export default function OrderList() {
                     <MdDelete color="red" />
                   </div>
                 </div>
-              ))}
+              {/* ))} */}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">

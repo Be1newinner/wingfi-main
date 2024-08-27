@@ -21,49 +21,6 @@ export default function Report() {
     }
   };
 
-  const data = [
-    {
-      transferId: 11081197,
-      name: "Kathryn Murphy",
-    },
-    {
-      transferId: 11081198,
-      name: "Floyd Milees",
-    },
-    {
-      transferId: 11081197,
-      name: "Brooklyn Simmons",
-    },
-    {
-      transferId: 11081198,
-      name: "Wade Waren",
-    },
-    {
-      transferId: 11081197,
-      name: "Devon Lane",
-    },
-    {
-      transferId: 11081198,
-      name: "Jane Coper",
-    },
-    {
-      transferId: 11081197,
-      name: "Jane Wilson",
-    },
-    {
-      transferId: 11081198,
-      name: "albert flores",
-    },
-    {
-      transferId: 11081197,
-      name: "Robert Fox",
-    },
-    {
-      transferId: 11081198,
-      name: "Theresa",
-    },
-  ];
-
   return (
     <div className="flex flex-row bg-[#f2f7fb] ">
       <div
@@ -108,7 +65,7 @@ export default function Report() {
                 <h1>Total</h1>
                 <h1>Action</h1>
               </div>
-              {data.map((d) => (
+              {/* {data.map((d) => ( */}
                 <div
                   style={{
                     backgroundColor: d.transferId === 11081198 ? "#f5f5f5" : "",
@@ -125,7 +82,7 @@ export default function Report() {
                     <MdDelete color="red" />
                   </div>
                 </div>
-              ))}
+              {/* ))} */}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">

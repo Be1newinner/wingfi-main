@@ -129,7 +129,7 @@ export default function Attribute() {
                 <h1>Action</h1>
               </div>
 
-              {data.map((d) => (
+              {/* {data.map((d) => ( */}
                 <div
                   style={{
                     backgroundColor:
@@ -151,7 +151,7 @@ export default function Attribute() {
                     <MdDelete color="red" />
                   </div>
                 </div>
-              ))}
+              {/* ))} */}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">

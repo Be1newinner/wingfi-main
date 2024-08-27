@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { FaArrowTrendUp } from "react-icons/fa6";  
-// import { Bar } from "react-chartjs-2";
-// import revenueData from "../services/revenueData.json";
+import { Bar } from "react-chartjs-2";
+import revenueData from "../services/revenueData.json";
+
 
 export default function Earnings() {
   const [view, setView] = useState(false);
@@ -67,7 +68,7 @@ export default function Earnings() {
             </div>
           </div>
         </div>
-        {/* <Bar 
+        <Bar 
           data={{
             labels: revenueData.map((d) => d.label),
             datasets: [
@@ -81,7 +82,7 @@ export default function Earnings() {
               },
             ]
           }}
-        /> */}
+        />
       </div>
     </>
   );
