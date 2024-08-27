@@ -41,7 +41,7 @@ export const googleLogin = {
 
 export const googleLog2 = {
   client_id: process.env.NEXT_PUBLIC_LOG2CLIENTID,
-  client_secret: process.env.NEXT_PUBLIC_LOG2_CLIENT_SC,
+  client_secret: process.env.LOG2_CLIENT_SC,
 };
 
 export const app = initializeApp(firebaseConfig);
