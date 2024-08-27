@@ -12,26 +12,27 @@ const TermsOfUse = () => {
       <NavBar />
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">TERMS OF USE</h1>
-        <p className="mb-4">Last updated __________</p>
+        <p className="mb-4">
+          Last updated <b>26/08/2024</b>
+        </p>
 
         <section className="mb-8">
           <h2 className="text-xl font-semibold mb-2">
             AGREEMENT TO OUR LEGAL TERMS
           </h2>
-          <p>We are __________ ("Company," "we," "us," "our").</p>
+          <p>We are <b>("Company," "we," "us," "our")</b>.</p>
           <p>
             We operate , as well as any other related products and services that
             refer or link to these legal terms (the "Legal Terms")
             (collectively, the "Services").
           </p>
           <p>
-            You can contact us by email at __________ or by mail to __________,
-            __________, __________.
+            You can contact us by email at <b>info@wingfiindia.com</b>.
           </p>
           <p>
             These Legal Terms constitute a legally binding agreement made
             between you, whether personally or on behalf of an entity ("you"),
-            and __________, concerning your access to and use of the Services.
+            and <b>("Company," "we," "us," "our")</b>, concerning your access to and use of the Services.
             You agree that by accessing the Services, you have read, understood,
             and agreed to be bound by all of these Legal Terms. IF YOU DO NOT
             AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY
@@ -197,7 +198,7 @@ const TermsOfUse = () => {
           <p>
             If you wish to make any use of the Services, Content, or Marks other
             than as set out in this section or elsewhere in our Legal Terms,
-            please address your request to: __________. If we ever grant you the
+            please address your request to: <b>info@wingfiindia.com</b>. If we ever grant you the
             permission to post, reproduce, or publicly display any part of our
             Services or Content, you must identify us as the owners or licensors
             of the Services, Content, or Marks and ensure that any copyright or

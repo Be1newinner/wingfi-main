@@ -44,7 +44,7 @@ const ShippingPolicy = () => {
               <p className="mb-4">
                 <strong>Free Shipping</strong>
                 <br />
-                We offer free __________ shipping on __________ for __________.
+                We offer free shipping for <b>Orders above Rs. 999 /-</b>.
               </p>
               <p>
                 <strong>Shipping Fees</strong>
@@ -52,9 +52,7 @@ const ShippingPolicy = () => {
                 We also offer shipping at the following rates:
               </p>
               <ul className="list-disc pl-5 mb-4">
-                <li>__________</li>
-                <li>__________</li>
-                <li>__________</li>
+                <li> Rs. 99 /- </li>
               </ul>
               <p>
                 If you select a shipping option, we will follow up after you

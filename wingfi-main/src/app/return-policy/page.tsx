@@ -62,9 +62,9 @@ const ReturnPolicy = () => {
               <h2 className="text-xl font-semibold mb-2">3. REFUNDS</h2>
               <p>
                 After receiving your return and inspecting the condition of your
-                item, we will process your exchange. Please allow at least
+                item, we will process your exchange or refund, whichever suits the ( we, us, company ). Please allow at least
                 thirty (30) days from the receipt of your item to process your
-                exchange. We will notify you by email when your return has been
+                exchange or refund. We will notify you by email when your return has been
                 processed.
               </p>
             </section>
