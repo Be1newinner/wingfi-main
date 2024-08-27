@@ -37,7 +37,7 @@ export const AddressItem = ({
         <p className="flex gap-2 items-center">
           <span className="font-medium">Vijay</span>
           <span className="text-xs bg-gray-200 text-gray-600 font-semibold px-2 py-1 uppercase">
-            {data.type.toUpperCase()}
+            {data.type}
           </span>
           <span className="font-medium">{data.phoneNumber}</span>
         </p>
