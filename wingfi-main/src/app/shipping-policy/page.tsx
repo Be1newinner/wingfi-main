@@ -41,6 +41,12 @@ const ShippingPolicy = () => {
                 supplier may be managing our inventory and will be responsible
                 for shipping your products.
               </p>
+              <br />
+              <p>
+                We offer shipping within 7 to 15 days but sometimes it may goes
+                up to 30 days due to unavoidable cicumstances.{" "}
+              </p>
+              <br />
               <p className="mb-4">
                 <strong>Free Shipping</strong>
                 <br />
