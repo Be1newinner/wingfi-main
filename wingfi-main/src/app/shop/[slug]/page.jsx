@@ -117,8 +117,7 @@ export default async function SingleStore({ params }) {
               {/* Product Details */}
               <div className="px-1 flex flex-col gap-4">
                 <h2 className="ml-1 mb-4 font-bold text-3xl">
-                  {FilteredProduct.data?.model} {FilteredProduct.data?.capacity}
-                  Mah Power Bank
+                  {FilteredProduct.data?.title}
                 </h2>
                 <div className="flex items-end gap-2">
                   <div className="text-error flex">
@@ -154,7 +153,7 @@ export default async function SingleStore({ params }) {
                 </div>
 
                 {/* Color Selection */}
-                <div>
+                {/* <div>
                   <span className="text-md font-medium">
                     Color:{" "}
                     <span>{Variants[FilteredProduct.data?.color]?.name}</span>
@@ -199,7 +198,7 @@ export default async function SingleStore({ params }) {
                         ))
                       : null}
                   </div>
-                </div>
+                </div> */}
 
                 <p>
                   <span className="font-medium">SKU:</span>{" "}

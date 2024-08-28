@@ -43,7 +43,7 @@ export default async function getProductFromURL({ slug }) {
 
       Product = {
         ...Product,
-        title: slug.replaceAll("-", " "),
+        title: data.l,
         price: data.p,
         mrp: data.m,
         slug: slug,

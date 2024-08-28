@@ -50,7 +50,7 @@ export async function ProductsData({
         const slug = doc.id;
 
         const modifiedData = {
-          title: slug.replaceAll("-", " "),
+          title: data.l,
           price: data.p,
           mrp: data.m,
           slug: slug,

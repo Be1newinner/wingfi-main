@@ -3,7 +3,7 @@ import { ProductsData } from "./../../service/Products/ProductsService";
 
 export async function BestSellerWrapper() {
   const products = await ProductsData({
-    lim: 15,
+    lim: 3,
     order: "s",
     coll: "p43duc",
     whereType: 1,
