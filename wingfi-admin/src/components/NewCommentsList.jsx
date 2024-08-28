@@ -1,9 +1,10 @@
 import React from "react";
+import dataNewComments from "../offline/NewCommentsList.json"
 
 export default function NewCommentsList() {
   return (
     <div>
-      {/* {dataNewComments.map((d) => ( */}
+      {dataNewComments.map((d) => (
         <div className="flex gap-2 my-3">
           <div className="w-[50px] overflow-hidden rounded-full">
             <img src={d.image} alt="" />
@@ -20,7 +21,7 @@ export default function NewCommentsList() {
             <p> {d.desc} </p>
           </div>
         </div>
-      {/* ))} */}
+       ))} 
     </div>
   );
 }

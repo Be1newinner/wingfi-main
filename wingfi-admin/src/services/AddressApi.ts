@@ -1,7 +1,7 @@
 import { firebaseRealtime } from "../constants/firebase.config";
 import { ref, set, push, get } from "firebase/database";
 import { AddressType } from "@/redux/constants/address";
-import  db from "../offline/analysisData.json";
+// import analysisData from "../offline/analysisData.json";
 
 interface AddressResponse extends AddressType {
   id: string;
@@ -20,6 +20,14 @@ interface LoadSingleAddressResponse extends AddNewAddressResult {
   address?: AddressResponse;
 }
 
+export async function analysisData() {
+  try {
+    return analysisData;
+  } catch (error) {
+    return { status: 501, error };
+  }
+}
+
 export async function addNewAddressApi({
   houseNumber,
   name,
@@ -31,22 +39,21 @@ export async function addNewAddressApi({
   key,
   type,
   uid,
-}: AddressType
-): Promise<AddNewAddressResult> {
+}: AddressType): Promise<AddNewAddressResult> {
   try {
-    const addressRef = push(ref(firebaseRealtime, `users/${uid}/addresses`));
+    // const addressRef = push(ref(firebaseRealtime, `users/${uid}/addresses`));
 
-    await set(addressRef, {
-      houseNumber,
-      name,
-      phoneNumber,
-      pinCode,
-      landmark,
-      city,
-      state,
-      key,
-      type,
-    });
+    // await set(addressRef, {
+    //   houseNumber,
+    //   name,
+    //   phoneNumber,
+    //   pinCode,
+    //   landmark,
+    //   city,
+    //   state,
+    //   key,
+    //   type,
+    // });
 
     return { status: 200 };
   } catch (error) {

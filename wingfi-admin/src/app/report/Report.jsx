@@ -8,8 +8,11 @@ import ReportAnalysisCart from "../../components/ReportAnalysisCart";
 import { GrView } from "react-icons/gr";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { selectReport } from "../../redux/selectors/report";
 
 export default function Report() {
+  const report = useSelector(selectReport);
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -65,7 +68,7 @@ export default function Report() {
                 <h1>Total</h1>
                 <h1>Action</h1>
               </div>
-              {/* {data.map((d) => ( */}
+              {report.map((d) => (
                 <div
                   style={{
                     backgroundColor: d.transferId === 11081198 ? "#f5f5f5" : "",
@@ -82,7 +85,7 @@ export default function Report() {
                     <MdDelete color="red" />
                   </div>
                 </div>
-              {/* ))} */}
+              ))}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">
