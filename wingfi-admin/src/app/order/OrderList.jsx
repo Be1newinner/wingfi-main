@@ -8,8 +8,11 @@ import { AiOutlineEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
 import LeftSidebar from "../../components/Sidebar";
 import { VscThreeBars } from "react-icons/vsc";
+import { useSelector } from "react-redux";
+import { selectOrder } from "../../redux/selectors/order2";
 
 export default function OrderList() {
+  const order = useSelector(selectOrder);
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -75,9 +78,9 @@ export default function OrderList() {
                 <h1>Tracking</h1>
                 <h1>Action</h1>
               </div>
-              {/* {data.map((d) => ( */}
-                <div 
-                key={d.id}
+              {order.map((d) => (
+                <div
+                  key={d.id}
                   style={{
                     backgroundColor:
                       d.id === 1 ||
@@ -126,7 +129,7 @@ export default function OrderList() {
                     <MdDelete color="red" />
                   </div>
                 </div>
-              {/* ))} */}
+              ))}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">

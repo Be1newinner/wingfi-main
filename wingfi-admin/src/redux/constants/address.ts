@@ -20,10 +20,7 @@ export interface AddressType extends BasicAddressFields {
   uid: string;
 }
 
-export interface AddNewAddressAction {
-  type: typeof ADD_NEW_ADDRESS;
-  payload: AddressType;
-}
+ 
 
 export interface RemoveAddressAction {
   type: typeof REMOVE_ADDRESS;
@@ -54,7 +51,7 @@ export interface AddressInitialState {
 }
 
 export type AddressActionTypes =
-  | AddNewAddressAction
+  // | AddNewAddressAction
   | RemoveAddressAction
   | ResetAddressAction
   | LoadAllAddressesAction

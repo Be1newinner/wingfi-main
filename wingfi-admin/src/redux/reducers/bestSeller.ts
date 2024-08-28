@@ -1,98 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Order } from "../constants/order";
+import bestSeller from "../../offline/BestShopSellerList.json";
 
-interface OrderState {
-  orders: Order[];
-  loading: boolean;
-  error: string | null;
-  success: boolean;
-  latestOrderID: string | null;
-}
-
-const initialState: OrderState = {
-  orders: [],
-  loading: false,
-  error: null,
-  success: false,
-  latestOrderID: null,
+const initialState = {
+  data: bestSeller,
+  bestSellerloading: false,
 };
 
-const orderSlice = createSlice({
-  name: "order",
+const bestSellerSlice = createSlice({
+  name: "bestSeller",
   initialState,
   reducers: {
-    generateOrderRequest(state, action: PayloadAction<Order>) {
-      state.success = false;
-      state.latestOrderID = null;
-      state.loading = true;
-      state.error = null;
+    bestSellerRequest: (state) => {
+      state.bestSellerloading = true;
     },
-    generateOrderSuccess(state, action: PayloadAction<Order>) {
-      state.loading = false;
-      state.orders.push(action.payload);
-      state.success = true;
-      state.latestOrderID = action.payload.id;
-    },
-    generateOrderFailure(state, action: PayloadAction<string>) {
-      state.loading = false;
-      state.success = false;
-      state.error = action.payload;
-    },
-    loadAllOrdersRequest(state) {
-      state.loading = true;
-      state.error = null;
-    },
-    loadAllOrdersSuccess(state, action: PayloadAction<Order[]>) {
-      state.loading = false;
-      state.orders = action.payload;
-    },
-    loadAllOrdersFailure(state, action: PayloadAction<string>) {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    loadSingleOrderRequest(
-      state,
-      action: PayloadAction<{ orderid: string; uid: string }>
-    ) {
-      state.loading = true;
-      state.error = null;
-    },
-    loadSingleOrderSuccess(state, action: PayloadAction<Order>) {
-      state.loading = false;
-      const index = state.orders.findIndex(
-        (address) => address.id === action.payload.id
-      );
 
-      if (index === -1) state.orders.push(action.payload);
-      // state.orders = state.orders.map((order) =>
-      //   order.id === action.payload.id ? action.payload : order
-      // );
-      state.error = null;
-    },
-    loadSingleOrderFailure(state, action: PayloadAction<string>) {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    resetGenerateOrderState(state) {
-      state.loading = false;
-      state.error = null;
-      state.success = false;
-      state.latestOrderID = null;
+    bestSellerSuccess: (state, action: PayloadAction<any>) => {
+      state.bestSellerloading = false;
+      state.data.push(action.payload);
     },
   },
 });
 
-export const {
-  generateOrderRequest,
-  generateOrderSuccess,
-  generateOrderFailure,
-  loadAllOrdersRequest,
-  loadAllOrdersSuccess,
-  loadAllOrdersFailure,
-  loadSingleOrderRequest,
-  loadSingleOrderSuccess,
-  loadSingleOrderFailure,
-  resetGenerateOrderState,
-} = orderSlice.actions;
-
-export default orderSlice.reducer;
+export const { bestSellerRequest, bestSellerSuccess } = bestSellerSlice.actions;
+export default bestSellerSlice.reducer;

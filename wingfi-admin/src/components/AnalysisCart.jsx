@@ -1,12 +1,15 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
-import {Chart as ChartJS} from 'chart.js/auto'
+import { Chart as ChartJS } from "chart.js/auto";
 import revenueData from "../offline/revenueData.json";
+import { useSelector } from "react-redux";
+import { selectAnalysis } from "../redux/selectors/analysis";
 
 export default function AnalysisCart() {
+  const analysis = useSelector(selectAnalysis);
   return (
     <div className="flex flex-wrap">
-      {/* {dataAnalsisCart.map((item, index) => { */}
+      {analysis.map((item, index) => {
         return (
           <div
             key={index}
@@ -40,8 +43,7 @@ export default function AnalysisCart() {
             />
           </div>
         );
-      {/* })} */}
+      })}
     </div>
   );
 }
-

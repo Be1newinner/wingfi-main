@@ -12,7 +12,7 @@ import LeftSidebar from "../../components/Sidebar";
 import { useSelector } from "react-redux";
 import { selectCategory } from "../../redux/selectors/category";
 
-export default function CategoryList() {
+export default function ProductList() {
   const category = useSelector(selectCategory)
   const [show, setShow] = useState(false);
   const handle = () => {
@@ -45,9 +45,9 @@ export default function CategoryList() {
             <div className="flex gap-4 items-center ">
               <h1>Dashboard </h1>
               <IoIosArrowForward />
-              <h1>Category</h1>
+              <h1>product</h1>
               <IoIosArrowForward />
-              <h1>All Category </h1>
+              <h1>Product List </h1>
             </div>
           </div>
 

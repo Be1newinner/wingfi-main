@@ -4,7 +4,7 @@ import { FaDollarSign } from 'react-icons/fa'
 import { FaArrowTrendDown, FaArrowTrendUp } from 'react-icons/fa6'
 import { IoMdCopy } from 'react-icons/io'
 import { LuPackage2 } from 'react-icons/lu'
-import analysisData from "../services/analysisData.json";
+import analysisData from "../offline/analysisData.json";
 
 export default function ReportAnalysisCart() {
   return (

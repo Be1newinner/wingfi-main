@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { FaArrowTrendUp } from "react-icons/fa6";  
+import { FaArrowTrendUp } from "react-icons/fa6";
 import { Bar } from "react-chartjs-2";
-import revenueData from "../services/revenueData.json";
-
+import { useSelector } from "react-redux";
+import { selectRevenue } from "../redux/selectors/revenue";
 
 export default function Earnings() {
+  const revenue = useSelector(selectRevenue);
   const [view, setView] = useState(false);
   const handleViewAll = () => {
     setView(!view);
@@ -24,12 +25,10 @@ export default function Earnings() {
               {view && (
                 <div className="shadow-xl bg-white p-1 border-2 cursor-pointer">
                   <p className="text-sm font-bold hover:text-sky-500 text-gray-700 ">
-                
-                    This Week 
+                    This Week
                   </p>
                   <p className="text-sm font-bold hover:text-sky-500 text-gray-700 ">
-                     
-                    last Week 
+                    last Week
                   </p>
                 </div>
               )}
@@ -68,19 +67,19 @@ export default function Earnings() {
             </div>
           </div>
         </div>
-        <Bar 
+        <Bar
           data={{
-            labels: revenueData.map((d) => d.label),
+            labels: revenue.map((d) => d.label),
             datasets: [
               {
                 label: "profit",
-                data: revenueData.map((d) => d.profit),
+                data: revenue.map((d) => d.profit),
               },
               {
                 label: "revenue",
-                data: revenueData.map((d) => d.revenue),
+                data: revenue.map((d) => d.revenue),
               },
-            ]
+            ],
           }}
         />
       </div>

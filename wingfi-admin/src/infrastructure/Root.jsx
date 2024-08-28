@@ -13,12 +13,14 @@ import CategoryList from "../app/category/CategoryList";
 import NewCategory from "../app/category/NewCategory";
 import LoginPage from "../app/user/login";
 import Report from "../app/report/Report";
+import ProductList from "../app/ecommerce/ProductList";
 
 function Root() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/ecommerce" element={<Ecommerce />} />
+      <Route path="/productlist" element={<ProductList />} />
       <Route path="/attributes" element={<Attributes />} />
       <Route path="/add-attributes" element={<AddAttributes />} />
       <Route path="/category-list" element={<CategoryList />} />

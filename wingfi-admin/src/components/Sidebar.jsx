@@ -21,6 +21,11 @@ export default function LeftSidebar({ handleClose }) {
   const [showAttribute, setShowAttribute] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
   const [showCustomer, setShowCustomer] = useState(false);
+  const [showProductlist, setShowProductlist] = useState(false);
+
+  const handleShowProductlist = () => {
+    setShowProductlist(!showProductlist);
+  };
 
   const handleDashboard = () => {
     setShowDashboard(!showDashboard);
@@ -51,13 +56,15 @@ export default function LeftSidebar({ handleClose }) {
       <aside className="relative overflow-y-scroll h-[700px] no-scrollbar bg-white shadow-md z-50 ">
         <div className="flex items-center justify-between py-[15px] px-5  ">
           <img src={logo} alt="Logo" className="" />
-          <div  onClick={handleClose}>
+          <div onClick={handleClose}>
             <IoCloseSharp className="text-2xl " />
           </div>
         </div>
         <hr />
         <div className="p-4">
-          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">MAIN HOME</h1>
+          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
+            MAIN HOME
+          </h1>
           <div
             onClick={handleDashboard}
             className={
@@ -89,7 +96,9 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {/* =============== all page ================== */}
         <div className="p-4">
-          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">ALL PAGE</h1>
+          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
+            ALL PAGE
+          </h1>
           <div
             onClick={handleEcommerce}
             className={
@@ -118,6 +127,35 @@ export default function LeftSidebar({ handleClose }) {
               </div>
             </Link>
           )}
+           <div
+            onClick={handleShowProductlist}
+            className={
+              showProductlist
+                ? "flex items-center justify-between p-3 hover:text-[#3984FC] cursor-pointer bg-[#E9F1FF] text-[#3984FC] rounded-xl duration-300"
+                : "flex items-center justify-between p-3 hover:text-[#3984FC] cursor-pointer"
+            }
+          >
+            <div className="flex gap-2 items-center font-semibold">
+              <LuShoppingCart />
+
+              <h1>Product List</h1>
+            </div>
+
+            <IoIosArrowDown />
+          </div>
+          {showProductlist && (
+            <Link to="/productlist">
+              <div>
+                <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
+                  <div className="w-2 h-2 bg-gray-300 rotate-45">
+                    <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
+                  </div>
+                  <h1>Product List</h1>
+                </div>
+              </div>
+            </Link>
+          )}
+
           <div
             onClick={handleShowCategory}
             className={
@@ -291,7 +329,9 @@ export default function LeftSidebar({ handleClose }) {
         {/* =============== all page ================== */}
         {/* =============== settings ================== */}
         <div className="p-4">
-          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">SETTING</h1>
+          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
+            SETTING
+          </h1>
           <div className="flex items-center justify-between p-2 hover:text-[#3984FC] cursor-pointer">
             <div className="flex gap-2 items-center font-semibold">
               <LuSettings />
@@ -302,7 +342,9 @@ export default function LeftSidebar({ handleClose }) {
         {/* =============== setting ================== */}
         {/* =============== support ================== */}
         <div className="p-4">
-          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">SUPPORT</h1>
+          <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
+            SUPPORT
+          </h1>
           <Link to="help-center">
             <div className="flex items-center justify-between p-2 hover:text-[#3984FC] cursor-pointer">
               <div className="flex gap-2 items-center font-semibold">
@@ -332,7 +374,9 @@ export default function LeftSidebar({ handleClose }) {
         {/* =============== connect us ================== */}
         <Link to="/connect-us">
           <div className="p-4">
-            <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">CONNECT US</h1>
+            <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
+              CONNECT US
+            </h1>
             <div className="flex items-center justify-between p-2 hover:text-[#3984FC] cursor-pointer"></div>
           </div>
         </Link>

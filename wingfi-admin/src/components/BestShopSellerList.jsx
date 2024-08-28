@@ -1,16 +1,12 @@
+import { SelectBestSeller } from "../redux/selectors/bestSeller";
 import React from "react";
-// import image1 from "../assets/images/Best1.png";
-// import image2 from "../assets/images/Best2.png";
-// import image3 from "../assets/images/Best3.png";
-// import image4 from "../assets/images/Best4.png";
-// import image5 from "../assets/images/best5.png";
-// import image6 from "../assets/images/best6.png";
-// import image7 from "../assets/images/best7.png";
+import { useSelector } from "react-redux";
 
 export default function BestShopSellerList() {
+  const bestSeller = useSelector(SelectBestSeller);
   return (
     <div>
-      {/* {dataBestShopSellerList.map((data) => ( */}
+      {bestSeller.map((data) => (
         <div className="flex justify-between my-2 w-[600px] items-center  ">
           <div className="flex gap-1 w-[190px]">
             <div className="w-[50px] rounded-full overflow-hidden">
@@ -32,8 +28,7 @@ export default function BestShopSellerList() {
           </div>
           <div className="font-bold text-gray-400">100%</div>
         </div>
-      {/* ))} */}
+      ))}
     </div>
   );
 }
-
