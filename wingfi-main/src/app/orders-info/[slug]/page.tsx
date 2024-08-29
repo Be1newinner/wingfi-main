@@ -25,8 +25,7 @@ export default function OrdersInfo({ params }: { params: { slug: string } }) {
 
   useEffect(() => {
     process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
-      console.log("Order Data  => ", OrderData);
-
+      console.log("Order Data=> ", OrderData);
   }, [OrderData]);
 
   return (
