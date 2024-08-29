@@ -6,28 +6,28 @@ export function UserFeedBack2({ rating, reviewsCount }) {
   const feedbackList = [
     {
       id: 0,
-      name: "Vijay Kumar",
+      name: "Ajay Kumar",
       profession: "Entrepreneur",
       desc: "The WingFi Powerbank is fantastic! It charges my phone multiple times, is lightweight, and looks great. The fast-charging feature is a game-changer. Highly recommended!",
     },
     {
       id: 1,
-      name: "Ajay Kumar",
+      name: "Purushottam ",
       profession: "Founded of Wingfi",
       desc: "I love the WingFi Powerbank! It’s lightweight, charges my phone multiple times, and has a sleek design. Fast-charging is a huge plus. Highly recommend it!",
     },
     {
       id: 2,
-      name: "Suraj Kumar",
+      name: "Suraj Gupta",
       profession: "Enthusiast",
       desc: "With a 20,000mAh capacity and fast-charging capability, the WingFi Powerbank is impressive. It’s compact, safe, and perfect for on-the-go charging.",
     },
-    {
-      id: 3,
-      name: "Sanjay Singh",
-      profession: "enthusiast",
-      desc: "super handy. Small, fast, and easy to use, it’s perfect for everyday charging needs. Definitely a winner!",
-    },
+    // {
+    //   id: 3,
+    //   name: "Sanjay Singh",
+    //   profession: "enthusiast",
+    //   desc: "super handy. Small, fast, and easy to use, it’s perfect for everyday charging needs. Definitely a winner!",
+    // },
   ];
 
   return (
@@ -51,9 +51,8 @@ export function UserFeedBack2({ rating, reviewsCount }) {
               key={item.id}
               style={{
                 flex: "1 0 24%",
-                // marginTop: index % 2 === 1 ? 60 : 0,
               }}
-              className={`mt-0 ${index % 2 === 1 ? 'sm:mt-16' : 'mt-0'}`}
+              className={`mt-0 ${index % 2 === 1 ? "sm:mt-16" : "mt-0"}`}
             >
               <div className="mb-4 flex gap-1 ml-1">
                 <Image
@@ -65,7 +64,7 @@ export function UserFeedBack2({ rating, reviewsCount }) {
                 />
                 <div className="flex flex-col">
                   <h2 className="text-sm">{item?.name}</h2>
-                  <h3 className="text-xs text-gray-500">{item?.profession}</h3>
+                  {/* <h3 className="text-xs text-gray-500">{item?.profession}</h3> */}
                 </div>
               </div>
               <div className="bg-white p-4 border shadow-lg rounded-xl">
