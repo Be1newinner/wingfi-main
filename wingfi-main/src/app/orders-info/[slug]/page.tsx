@@ -216,5 +216,3 @@ export default function OrdersInfo({ params }: { params: { slug: string } }) {
     </AccountStructure>
   );
 }
-
-// asdasd
