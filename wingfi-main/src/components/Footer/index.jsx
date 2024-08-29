@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FiMapPin } from "react-icons/fi";
+import BasicDetails from "@/constants/BasicDetails.json";
 
 export function Footer() {
   return (
@@ -20,7 +21,7 @@ export function Footer() {
       >
         {/* 1st Column */}
         <div className="flex flex-col gap-2 max-w-72">
-          <span className="font-bold text-2xl">Wingfi India</span>
+          <span className="font-bold text-2xl">{BasicDetails.company}</span>
           <p>
             We help delivers quality securely. Let&apos;s Shop. We help delivers
             quality securely. Let&apos;s Shop. We help delivers.
@@ -35,30 +36,38 @@ export function Footer() {
 
           {/* Social Icons */}
           <div className="text-gray-200 flex gap-2 mt-2">
-            <Link
-              href={"https://www.facebook.com"}
-              className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
-            >
-              <FaFacebookF size={20} />
-            </Link>
-            <Link
-              href={"https://www.facebook.com"}
-              className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
-            >
-              <FaLinkedinIn size={20} />
-            </Link>
-            <Link
-              href={"https://www.instagram.com"}
-              className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
-            >
-              <FaInstagram size={20} />
-            </Link>
-            <Link
-              href={"https://www.facebook.com"}
-              className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
-            >
-              <FaWhatsapp size={20} />
-            </Link>
+            {BasicDetails.support.facebook && (
+              <Link
+                href={"https://www.facebook.com"}
+                className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
+              >
+                <FaFacebookF size={20} />
+              </Link>
+            )}
+            {BasicDetails.support.linkedin && (
+              <Link
+                href={"https://www.facebook.com"}
+                className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
+              >
+                <FaLinkedinIn size={20} />
+              </Link>
+            )}
+            {BasicDetails.support.instagram && (
+              <Link
+                href={"https://www.instagram.com"}
+                className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
+              >
+                <FaInstagram size={20} />
+              </Link>
+            )}
+            {BasicDetails.support.whatsapp && (
+              <Link
+                href={"https://www.facebook.com"}
+                className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
+              >
+                <FaWhatsapp size={20} />
+              </Link>
+            )}
           </div>
         </div>
 
@@ -127,24 +136,26 @@ export function Footer() {
             <div>
               <p>Got Questions? Contact us 24/7</p>
               <p className="font-medium text-lg">
-                <a href="tel:+918130506284">+91 8130-506-284</a>
+                <a href={`tel:+91${BasicDetails.Phone}`}>
+                  +91 {BasicDetails.Phone}
+                </a>
               </p>
             </div>
           </div>
 
           <p className="flex gap-2 items-center">
             <MdOutlineMailOutline size={24} />
-            info@shipsar.in
+            {BasicDetails.email}
           </p>
 
           <p className="flex gap-1 items-center">
             <FiMapPin size={40} />
-            Plot 112, Besides Bata Showroom, deoli, New Delhi, 110062
+            {BasicDetails.address}
           </p>
         </div>
       </div>
       <aside className="mx-auto">
-        <p>Copyright © 2024 - All Rights Reserved by Wingfi India</p>
+        <p>Copyright © 2024 - All Rights Reserved by {BasicDetails.company}</p>
       </aside>
     </footer>
   );
