@@ -5,6 +5,7 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaWhatsapp,
+  FaTwitter,
 } from "react-icons/fa";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FiMapPin } from "react-icons/fi";
@@ -38,7 +39,7 @@ export function Footer() {
           <div className="text-gray-200 flex gap-2 mt-2">
             {BasicDetails.support.facebook && (
               <Link
-                href={"https://www.facebook.com"}
+                href={BasicDetails.support.facebook}
                 className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
               >
                 <FaFacebookF size={20} />
@@ -46,15 +47,23 @@ export function Footer() {
             )}
             {BasicDetails.support.linkedin && (
               <Link
-                href={"https://www.facebook.com"}
+                href={BasicDetails.support.linkedin}
                 className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
               >
                 <FaLinkedinIn size={20} />
               </Link>
             )}
+            {BasicDetails.support.twitter && (
+              <Link
+                href={BasicDetails.support.twitter}
+                className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
+              >
+                <FaTwitter size={20} />
+              </Link>
+            )}
             {BasicDetails.support.instagram && (
               <Link
-                href={"https://www.instagram.com"}
+                href={BasicDetails.support.instagram}
                 className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
               >
                 <FaInstagram size={20} />
@@ -62,7 +71,7 @@ export function Footer() {
             )}
             {BasicDetails.support.whatsapp && (
               <Link
-                href={"https://www.facebook.com"}
+                href={BasicDetails.support.whatsapp}
                 className="bg-gray-100 p-4 text-black rounded-lg duration-200 hover:bg-gray-200"
               >
                 <FaWhatsapp size={20} />
@@ -81,10 +90,13 @@ export function Footer() {
             }}
           >
             <li className="font-medium hover:font-semibold">
-              <Link href="/">Track Order</Link>
+              <Link href="/shop">Shop</Link>
             </li>
+            {/* <li className="font-medium hover:font-semibold">
+              <Link href="/">Track Order</Link>
+            </li> */}
             <li className="font-medium hover:font-semibold">
-              <Link href="/account/orders-info">Orders History</Link>
+              <Link href="/orders-info">Orders History</Link>
             </li>
             <li className="font-medium hover:font-semibold">
               <Link href="/wishlist">Wish List</Link>
@@ -107,9 +119,6 @@ export function Footer() {
               listStyleType: "disc",
             }}
           >
-            <li className="font-medium hover:font-semibold">
-              <Link href="/shop">Shop</Link>
-            </li>
             <li className="font-medium hover:font-semibold">
               <Link href="/contact">About Us</Link>
             </li>

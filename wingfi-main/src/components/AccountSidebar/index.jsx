@@ -29,7 +29,7 @@ export function AccountSidebar({ state = 0 }) {
             <span className="group-hover:text-error">Orders</span>
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             href={"/wishlist"}
             className={[
@@ -40,7 +40,7 @@ export function AccountSidebar({ state = 0 }) {
             <IoIosHeartEmpty size={20} className="group-hover:text-error" />
             <span className="group-hover:text-error">Wishlist</span>
           </Link>
-        </li>
+        </li> */}
       </ul>
 
       <p className="text-xs text-gray-500 mt-4 px-6">ACCOUNT SETTINGS</p>

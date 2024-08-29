@@ -48,6 +48,7 @@ export default function OrdersInfo({ params }: { params: { slug: string } }) {
                 OrderStatus.Delivered,
               ].map((item, index) => (
                 <li
+                  key={item + "" + index}
                   className={[
                     "step",
                     OrderData?.currentStatus === item

@@ -16,7 +16,14 @@ const toAddressType = (
   city: firebaseAddress.c,
   state: firebaseAddress.s,
   key,
-  type: firebaseAddress.t,
+  type:
+    firebaseAddress.t === 0
+      ? "home"
+      : firebaseAddress.t === 1
+      ? "work"
+      : firebaseAddress.t === 2
+      ? "other"
+      : firebaseAddress.t,
   uid,
 });
 
@@ -28,7 +35,14 @@ const toFirebaseAddress = (address: AddressType): any => ({
   l: address.landmark,
   c: address.city,
   s: address.state,
-  t: address.type,
+  t:
+    address.type === "home"
+      ? 0
+      : address.type === "work"
+      ? 1
+      : address.type === "other"
+      ? 2
+      : address.type,
 });
 
 const addressRef = (userId: string, key?: number) => {

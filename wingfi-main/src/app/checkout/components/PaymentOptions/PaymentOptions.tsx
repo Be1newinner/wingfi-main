@@ -32,6 +32,7 @@ export default function PaymentOptions({
             className="cursor-pointer"
             checked={radioSelection === 0 ? true : false}
             onChange={() => setRadioSelection(0)}
+            disabled={true}
           />
           <label
             htmlFor="online_payment"
