@@ -1,7 +1,4 @@
-// pages/api/initiate-payment.js
-
-import axios from "axios";
-import crypto from "crypto";
+const crypto = require("crypto");
 
 // Function to create SHA-256 hash
 function createSHA256Hash(data) {
@@ -18,11 +15,11 @@ function encodeJSONBase64(jsonData) {
 const PHONEPE_API_KEY = process.env.PHONEPE_API_KEY;
 
 // API Route handler
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Check the request method
-  //   if (req.method !== "POST") {
-  //     return res.status(405).json({ message: "Method Not Allowed" });
-  //   }
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Method Not Allowed" });
+  }
 
   // Extract parameters from the request body
   const { transactionID, userID, amt, contact } = req.body;
@@ -50,22 +47,31 @@ export default async function handler(req, res) {
   });
 
   try {
-    // Make the API request
-    const response = await axios.post(
+    // Make the API request using fetch
+    const response = await fetch(
       "https://api.phonepe.com/apis/hermes/pg/v1/pay",
-      payloadString,
       {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           "X-VERIFY": xVerify,
         },
+        body: payloadString,
       }
     );
 
+    // Parse the response
+    const data = await response.json();
+
+    // Check if the response was successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
     // Return the response data
-    res.status(200).json(response.data);
+    res.status(200).json(data);
   } catch (error) {
     console.error("Error initiating payment:", error);
     res.status(500).json({ message: "Error initiating payment" });
   }
-}
+};
