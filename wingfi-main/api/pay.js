@@ -20,9 +20,9 @@ const PHONEPE_API_KEY = process.env.PHONEPE_API_KEY;
 // API Route handler
 export default async function handler(req, res) {
   // Check the request method
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
-  }
+  //   if (req.method !== "POST") {
+  //     return res.status(405).json({ message: "Method Not Allowed" });
+  //   }
 
   // Extract parameters from the request body
   const { transactionID, userID, amt, contact } = req.body;
