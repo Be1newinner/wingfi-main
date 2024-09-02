@@ -1,4 +1,5 @@
-const { firestore } = require("../firebaseInit");
+const { firestore } = require("../config/firebaseInit");
+const { authMiddleware } = require("../config/authMiddleware");
 
 async function deleteDocumentHandler(req, res) {
   try {
@@ -11,6 +12,13 @@ async function deleteDocumentHandler(req, res) {
     if (!documentPath) {
       return res.status(400).json({ error: "Document path is required" });
     }
+
+    await new Promise((resolve, reject) => {
+      authMiddleware(req, res, (err) => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
 
     // Get a reference to the document
     const docRef = firestore.doc(documentPath);

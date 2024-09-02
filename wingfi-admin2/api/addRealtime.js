@@ -1,4 +1,5 @@
-const { realtimeDb } = require("../firebaseInit");
+const { realtimeDb } = require("../config/firebaseInit");
+const { authMiddleware } = require("../config/authMiddleware");
 
 async function createHandler(req, res) {
   try {
@@ -11,6 +12,12 @@ async function createHandler(req, res) {
     if (!path || !data) {
       return res.status(400).json({ error: "Path and data are required" });
     }
+    await new Promise((resolve, reject) => {
+      authMiddleware(req, res, (err) => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
 
     const ref = realtimeDb.ref(path);
     const newRef = ref.push();

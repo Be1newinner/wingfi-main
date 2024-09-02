@@ -1,4 +1,5 @@
-const { firestore } = require("../firebaseInit");
+const { firestore } = require("../config/firebaseInit");
+const { authMiddleware } = require("../config/authMiddleware");
 
 async function handler(req, res) {
   try {
@@ -13,6 +14,13 @@ async function handler(req, res) {
         .status(400)
         .json({ error: "collectionPath and docId are required" });
     }
+
+    await new Promise((resolve, reject) => {
+      authMiddleware(req, res, (err) => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
 
     // Get the document reference
     const docRef = firestore.collection(collectionPath).doc(docId);

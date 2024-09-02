@@ -1,4 +1,5 @@
-const { firestore } = require("../firebaseInit");
+const { firestore } = require("../config/firebaseInit");
+const { authMiddleware } = require("../config/authMiddleware");
 
 async function handler(req, res) {
   try {
@@ -11,6 +12,13 @@ async function handler(req, res) {
     if (!collectionPath) {
       return res.status(400).json({ error: "collectionPath is required" });
     }
+
+    await new Promise((resolve, reject) => {
+      authMiddleware(req, res, (err) => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
 
     let query = firestore.collection(collectionPath);
 
