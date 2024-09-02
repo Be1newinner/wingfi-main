@@ -17,6 +17,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "src/redux/constants/analysis.js"],
+  "include": ["**/*.ts", "**/*.tsx", "src/redux/constants/analysis.js", "api/firebaseInit.js", "api/fetchCollection.js"],
   "exclude": ["node_modules"]
 }

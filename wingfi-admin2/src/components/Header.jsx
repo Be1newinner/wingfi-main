@@ -11,7 +11,7 @@ import {
 } from "react-icons/md";
 import { IoMoonOutline } from "react-icons/io5";
 import imageUser from "../assets/images/user-1.png";
-import MessageCart from "./MessageCart";
+// import MessageCart from "./MessageCart";
 import NotificationCart from "./NotificationCart";
 import RelatedApps from "./RelatedApps";
 import { BiTask } from "react-icons/bi";
@@ -61,7 +61,7 @@ export default function Header() {
                 <h1 className="font-bold text-xl py-4 px-2 border-b-2">
                   Message
                 </h1>
-                <MessageCart />
+                {/* <MessageCart /> */}
                 <button className="w-full bg-sky-500 py-4 text-white font-bold rounded-2xl hover:bg-white hover:text-sky-500 border-sky-500 border-2">
                   View All
                 </button>
