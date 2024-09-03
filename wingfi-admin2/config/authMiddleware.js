@@ -18,6 +18,8 @@ async function authMiddleware(req, res, next) {
     // Verify token
     const decodedToken = await auth.verifyIdToken(token);
 
+    console.log(decodedToken);
+
     // Check authorization
     if (!decodedToken.admin) {
       return res

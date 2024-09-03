@@ -1,5 +1,5 @@
 const { firestore } = require("../config/firebaseInit");
-const { authMiddleware } = require("../config/authMiddleware");
+const authMiddleware = require("../config/authMiddleware");
 
 async function handler(req, res) {
   try {

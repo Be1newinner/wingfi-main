@@ -120,6 +120,8 @@ function* loginWithEmailSaga(
       email,
       password
     );
+
+    console.log("userCredential => ", userCredential);
     yield put(
       loginSuccess({
         uid: userCredential.user.uid,
@@ -144,6 +146,8 @@ function* loginWithGoogleSaga() {
       firebaseAuth,
       provider
     );
+    console.log("userCredential => ", userCredential);
+
     yield put(
       loginSuccess({
         uid: userCredential.user.uid,
