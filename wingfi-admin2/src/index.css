@@ -13,3 +13,30 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+/* Default styles (for screens wider than 1080px) */
+body::before {
+  content: "";
+  display: none;
+}
+/* Styles for screens narrower than 1080px */
+@media screen and (max-width: 1079px) {
+  /* Hide all content */
+  body > * {
+    display: none;
+  }
+
+  /* Display the message using a pseudo-element */
+  body::before {
+    content: "Minimum screen width of 1080px is required to view this content.";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background-color: #fff;
+    color: #000;
+    font-size: 24px;
+    text-align: center;
+  }
+}

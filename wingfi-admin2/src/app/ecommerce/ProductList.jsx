@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import image1 from "../../assets/images/1.png";
 import { IoFastFoodSharp } from "react-icons/io5";
@@ -13,22 +12,26 @@ import { useSelector } from "react-redux";
 import { selectCategory } from "../../redux/selectors/category";
 
 export default function ProductList() {
-  const category = useSelector(selectCategory)
+  const category = useSelector(selectCategory);
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
   };
 
   const handleClose = () => {
-    if(show) {
-      setShow(false)
+    if (show) {
+      setShow(false);
     }
-  }
-  
+  };
+
   return (
-    <div className="flex flex-row bg-[#f2f7fb] ">
-      <div className={show ? "w-[280px] duration-500 max-sm:absolute  " : "w-0 duration-500"}>
-        <LeftSidebar handleClose={handleClose}/>
+    <div className="flex flex-row bg-slate-100 pb-8">
+      <div
+        className={
+          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-0 duration-500"
+        }
+      >
+        <LeftSidebar handleClose={handleClose} />
       </div>
 
       <div className={show ? "w-[60%] flex-1 " : "w-full"}>
@@ -72,7 +75,7 @@ export default function ProductList() {
               </button>
             </div>
             <div className="overflow-x-scroll no-scrollbar py-4">
-              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-2 w-[130%]  ">
+              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-2 w-full  ">
                 <h1>Category</h1>
                 <h1>Icon</h1>
                 <h1>Quantity</h1>
@@ -81,7 +84,7 @@ export default function ProductList() {
                 <h1>Action</h1>
               </div>
               {category.map((d) => (
-                <div className="flex items-center justify-between w-[130%] hover:bg-gray-200 duration-300 my-4 rounded-xl">
+                <div className="flex items-center justify-between w-full hover:bg-gray-200 duration-300 my-4 rounded-xl">
                   <div className="flex items-center font-bold">
                     <img src={image1} alt="" />
                     <h1>{d.name}</h1>
@@ -121,10 +124,6 @@ export default function ProductList() {
             </div>
           </div>
         </main>
-
-        <footer>
-          <Footer />
-        </footer>
       </div>
     </div>
   );

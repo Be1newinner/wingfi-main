@@ -8,6 +8,7 @@ interface CustomUser {
   photoURL: string | null;
   displayName: string | null;
   isAdmin: boolean;
+  token: string | null;
   /* 
    uid: "ABCD",
    email: "be1ne@gmail.com",
@@ -35,6 +36,7 @@ const initialState: AuthState = {
     photoURL: null,
     displayName: null,
     isAdmin: false,
+    token: null,
   },
   loading: true,
   error: null,
@@ -45,21 +47,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signupRequest(
-      state,
-      action: PayloadAction<{ email: string; password: string }>
-    ) {
-      state.loading = true;
-      state.error = null;
-    },
-    signupSuccess(state, action: PayloadAction<CustomUser>) {
-      state.loading = false;
-      state.user = action.payload;
-    },
-    signupFailure(state, action: PayloadAction<string>) {
-      state.loading = false;
-      state.error = action.payload;
-    },
     loginRequestByGoogle(state) {
       state.loading = true;
       state.error = null;
@@ -93,6 +80,7 @@ const authSlice = createSlice({
         photoURL: null,
         displayName: null,
         isAdmin: false,
+        token: null,
       };
     },
     logoutFailure(state, action: PayloadAction<string>) {
@@ -111,9 +99,6 @@ const authSlice = createSlice({
 });
 
 export const {
-  signupRequest,
-  signupSuccess,
-  signupFailure,
   loginRequest,
   loginSuccess,
   loginFailure,

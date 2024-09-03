@@ -1,15 +1,46 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Root from "./infrastructure/Root";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { Route, Routes } from "react-router-dom";
+import React from "react";
+import HomePage from "./app/homepage/HomePage";
+import Ecommerce from "./app/ecommerce/Ecommerce";
+import AddAttributes from "./app/attributes/AddAttributes";
+import OrderList from "./app/order/OrderList";
+import OrderDetails from "./app/order/OrderDetails";
+import OrderTracking from "./app/order/OrderTracking";
+import AddNewUser from "./app/user/AddNewUser";
+import CategoryList from "./app/category/CategoryList";
+import NewCategory from "./app/category/NewCategory";
+import LoginPage from "./app/signin";
+import Report from "./app/report/Report";
+import ProductList from "./app/ecommerce/ProductList";
+import { ProviderWrapper } from "./components";
+
+function Root() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/ecommerce" element={<Ecommerce />} />
+      <Route path="/productlist" element={<ProductList />} />
+      <Route path="/add-attributes" element={<AddAttributes />} />
+      <Route path="/category-list" element={<CategoryList />} />
+      <Route path="/new-category" element={<NewCategory />} />
+      <Route path="/order-list" element={<OrderList />} />
+      <Route path="/order-details" element={<OrderDetails />} />
+      <Route path="/order-tracking" element={<OrderTracking />} />
+      <Route path="/add-new-user" element={<AddNewUser />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/report" element={<Report />} />
+    </Routes>
+  );
+}
 
 const router = createBrowserRouter([{ path: "*", element: <Root /> }]);
 
 function App() {
   return (
-    <Provider store={store}>
+    <ProviderWrapper>
       <RouterProvider router={router} />
-    </Provider>
+    </ProviderWrapper>
   );
 }
 

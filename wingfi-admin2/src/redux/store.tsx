@@ -1,16 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import createSagaMiddleware from "redux-saga";
-// import rootSaga from "./rootSagas";
+import createSagaMiddleware from "redux-saga";
+import rootSaga from "./rootSagas";
 import { rootReducer as reducer } from "./rootReducer";
 import {
   loginRequest,
   loginSuccess,
   logoutRequest,
   rehydrateUser,
-  signupRequest,
 } from "./reducers/auth";
 
-// const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
 const actionCreators = {
   loginRequest,
@@ -23,21 +22,21 @@ const actionCreators = {
       photoURL: "",
       displayName: "ABC",
       isAdmin: false,
+      token: "",
     }),
-  signupRequest,
-  logoutRequest,
+  logoutRequest,  
   rehydrateUser,
 };
 
 export const store = configureStore({
   reducer,
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(sagaMiddleware),
   devTools: {
     actionCreators,
   },
 });
 
-// sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
 export type AppDispatch = typeof store.dispatch;

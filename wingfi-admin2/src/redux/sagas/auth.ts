@@ -1,7 +1,6 @@
 import { call, put, takeLatest, cancelled, take } from "redux-saga/effects";
 import {
   Auth,
-  createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -9,6 +8,7 @@ import {
   User,
   UserCredential,
   onAuthStateChanged,
+  IdTokenResult,
 } from "firebase/auth";
 import { firebaseAuth } from "../../constants/firebase.config";
 import {
@@ -17,9 +17,6 @@ import {
   loginRequest,
   loginSuccess,
   loginFailure,
-  signupRequest,
-  signupSuccess,
-  signupFailure,
   logoutRequest,
   logoutSuccess,
   logoutFailure,
@@ -49,7 +46,14 @@ function* rehydrateUserSaga(): Generator<any, void, any> {
   try {
     while (true) {
       const user: User | null = yield take(authStateChannel);
+      const result: IdTokenResult | null = user
+        ? yield user.getIdTokenResult()
+        : null;
+
+      console.log("rehydrate user => ", result);
+
       if (user) {
+        const token = yield user.getIdToken();
         yield put(
           rehydrateUser({
             uid: user.uid,
@@ -58,7 +62,12 @@ function* rehydrateUserSaga(): Generator<any, void, any> {
             phoneNumber: user.phoneNumber,
             photoURL: user.photoURL,
             displayName: user.displayName,
-            isAdmin: false,
+            isAdmin:
+              result?.claims?.admin &&
+              typeof result?.claims?.admin === "boolean"
+                ? result?.claims?.admin
+                : false,
+            token,
           })
         );
       } else {
@@ -71,6 +80,7 @@ function* rehydrateUserSaga(): Generator<any, void, any> {
             photoURL: null,
             displayName: null,
             isAdmin: false,
+            token: null,
           })
         );
       }
@@ -79,33 +89,6 @@ function* rehydrateUserSaga(): Generator<any, void, any> {
     if (yield cancelled()) {
       authStateChannel.close();
     }
-  }
-}
-
-function* signupSaga(
-  action: PayloadAction<{ email: string; password: string }>
-) {
-  try {
-    const { email, password } = action.payload;
-    const userCredential: UserCredential = yield call(
-      createUserWithEmailAndPassword,
-      firebaseAuth,
-      email,
-      password
-    );
-    yield put(
-      signupSuccess({
-        uid: userCredential.user.uid,
-        email: userCredential.user.email,
-        emailVerified: userCredential.user.emailVerified,
-        phoneNumber: userCredential.user.phoneNumber,
-        photoURL: userCredential.user.photoURL,
-        displayName: userCredential.user.displayName,
-        isAdmin: false,
-      })
-    );
-  } catch (error: any) {
-    yield put(signupFailure(error.message));
   }
 }
 
@@ -120,6 +103,8 @@ function* loginWithEmailSaga(
       email,
       password
     );
+    const token: string = yield userCredential.user.getIdToken();
+    const result: IdTokenResult = yield userCredential.user.getIdTokenResult();
     yield put(
       loginSuccess({
         uid: userCredential.user.uid,
@@ -128,10 +113,16 @@ function* loginWithEmailSaga(
         phoneNumber: userCredential.user.phoneNumber,
         photoURL: userCredential.user.photoURL,
         displayName: userCredential.user.displayName,
-        isAdmin: false,
+        isAdmin:
+          result?.claims?.admin && typeof result?.claims?.admin === "boolean"
+            ? result?.claims?.admin
+            : false,
+        token,
       })
     );
+    console.log("userCredential => ", result.claims);
   } catch (error: any) {
+    console.log(error);
     yield put(loginFailure(error.message));
   }
 }
@@ -144,6 +135,9 @@ function* loginWithGoogleSaga() {
       firebaseAuth,
       provider
     );
+    const token: string = yield userCredential.user.getIdToken();
+    const result: IdTokenResult = yield userCredential.user.getIdTokenResult();
+
     yield put(
       loginSuccess({
         uid: userCredential.user.uid,
@@ -152,7 +146,11 @@ function* loginWithGoogleSaga() {
         phoneNumber: userCredential.user.phoneNumber,
         photoURL: userCredential.user.photoURL,
         displayName: userCredential.user.displayName,
-        isAdmin: false,
+        isAdmin:
+          result?.claims?.admin && typeof result?.claims?.admin === "boolean"
+            ? result?.claims?.admin
+            : false,
+        token,
       })
     );
   } catch (error: any) {
@@ -171,7 +169,6 @@ function* logoutSaga() {
 
 export default function* authSaga() {
   yield takeLatest(triggerRehydrate.type, rehydrateUserSaga);
-  yield takeLatest(signupRequest.type, signupSaga);
   yield takeLatest(loginRequest.type, loginWithEmailSaga);
   yield takeLatest(loginRequestByGoogle.type, loginWithGoogleSaga);
   yield takeLatest(logoutRequest.type, logoutSaga);
