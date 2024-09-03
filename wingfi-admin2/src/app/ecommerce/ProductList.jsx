@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import Header from "../../components/Header";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import image1 from "../../assets/images/1.png";
-import { IoFastFoodSharp } from "react-icons/io5";
-import { GrView } from "react-icons/gr";
 import { AiOutlineEdit } from "react-icons/ai";
-import { MdDelete } from "react-icons/md";
 import { VscThreeBars } from "react-icons/vsc";
 import LeftSidebar from "../../components/Sidebar";
 import { useSelector } from "react-redux";
@@ -74,33 +71,46 @@ export default function ProductList() {
                 Add New
               </button>
             </div>
-            <div className="overflow-x-scroll no-scrollbar py-4">
-              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-2 w-full  ">
-                <h1>Category</h1>
-                <h1>Icon</h1>
-                <h1>Quantity</h1>
-                <h1>Sale</h1>
-                <h1>Start date</h1>
-                <h1>Action</h1>
-              </div>
-              {category.map((d) => (
-                <div className="flex items-center justify-between w-full hover:bg-gray-200 duration-300 my-4 rounded-xl">
-                  <div className="flex items-center font-bold">
-                    <img src={image1} alt="" />
-                    <h1>{d.name}</h1>
-                  </div>
-                  <IoFastFoodSharp />
-                  <p>{d.quantity}</p>
-                  <p>{d.sale}</p>
-                  <p>{d.startdate}</p>
-                  <div className="flex gap-2">
-                    <GrView />
-                    <AiOutlineEdit />
-                    <MdDelete />
-                  </div>
-                </div>
-              ))}
-            </div>
+            <table className="overflow-x-scroll no-scrollbar py-4 w-full border-collapse">
+              <thead>
+                <tr className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-2 w-full  ">
+                  <th className="h-16 flex items-center flex-1">Image</th>
+                  <th className="h-16 flex items-center flex-1">Title</th>
+                  <th className="h-16 flex items-center flex-1">Price</th>
+                  <th className="h-16 flex items-center flex-1">MRP</th>
+                  <th className="h-16 flex items-center flex-1">Status</th>
+                  <th className="h-16 flex items-center flex-1">SKU</th>
+                  <th className="h-16 flex items-center flex-1">Start date</th>
+                  <th className="h-16 flex items-center justify-center flex-1">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {category.map((d) => (
+                  <tr className="flex items-center justify-between flex-1 hover:bg-gray-200 duration-300 rounded-xl cursor-pointer border-b">
+                    <td className="font-bold h-16 flex items-center flex-1">
+                      <img src={image1} alt="" />
+                    </td>
+                    <td className="h-16 flex items-center flex-1">
+                      <h1>{d.name}</h1>
+                    </td>
+                    <td className=" h-16 flex items-center flex-1">₹ 240 /-</td>
+                    <td className=" h-16 flex items-center flex-1">₹ 240 /-</td>
+                    <td className=" h-16 flex items-center flex-1">
+                      {d.quantity}
+                    </td>
+                    <td className=" h-16 flex items-center flex-1">{d.sale}</td>
+                    <td className=" h-16 flex items-center flex-1">
+                      {d.startdate}
+                    </td>
+                    <td className=" h-16 flex items-center flex-1 justify-center">
+                      <AiOutlineEdit size={24} />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
             <hr />
             <div className="flex flex-wrap gap-2 justify-between items-center py-4">
               <h1 className="font-semibold text-gra-400">Showing 10 entries</h1>
