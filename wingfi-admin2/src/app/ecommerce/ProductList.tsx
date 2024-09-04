@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import image1 from "../../assets/images/1.png";
-import { AiOutlineEdit } from "react-icons/ai";
 import { VscThreeBars } from "react-icons/vsc";
 import LeftSidebar from "../../components/Sidebar";
-import { useSelector } from "react-redux";
-import { selectCategory } from "../../redux/selectors/category";
+import { ListView } from "../../components";
 
 export default function ProductList() {
-  const category = useSelector(selectCategory);
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -20,6 +16,37 @@ export default function ProductList() {
       setShow(false);
     }
   };
+
+  const HeaderData: { id: number; title: string }[] = [
+    {
+      title: "Image",
+      id: 0,
+    },
+    {
+      title: "Title",
+      id: 1,
+    },
+    {
+      title: "Price",
+      id: 2,
+    },
+    {
+      title: "MRP",
+      id: 3,
+    },
+    {
+      title: "SKU",
+      id: 4,
+    },
+    {
+      title: "Rating",
+      id: 5,
+    },
+    {
+      title: "Action",
+      id: 6,
+    },
+  ];
 
   return (
     <div className="flex flex-row bg-slate-100 pb-8">
@@ -71,46 +98,7 @@ export default function ProductList() {
                 Add New
               </button>
             </div>
-            <table className="overflow-x-scroll no-scrollbar py-4 w-full border-collapse">
-              <thead>
-                <tr className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-2 w-full  ">
-                  <th className="h-16 flex items-center flex-1">Image</th>
-                  <th className="h-16 flex items-center flex-1">Title</th>
-                  <th className="h-16 flex items-center flex-1">Price</th>
-                  <th className="h-16 flex items-center flex-1">MRP</th>
-                  <th className="h-16 flex items-center flex-1">Status</th>
-                  <th className="h-16 flex items-center flex-1">SKU</th>
-                  <th className="h-16 flex items-center flex-1">Start date</th>
-                  <th className="h-16 flex items-center justify-center flex-1">
-                    Action
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {category.map((d) => (
-                  <tr className="flex items-center justify-between flex-1 hover:bg-gray-200 duration-300 rounded-xl cursor-pointer border-b">
-                    <td className="font-bold h-16 flex items-center flex-1">
-                      <img src={image1} alt="" />
-                    </td>
-                    <td className="h-16 flex items-center flex-1">
-                      <h1>{d.name}</h1>
-                    </td>
-                    <td className=" h-16 flex items-center flex-1">₹ 240 /-</td>
-                    <td className=" h-16 flex items-center flex-1">₹ 240 /-</td>
-                    <td className=" h-16 flex items-center flex-1">
-                      {d.quantity}
-                    </td>
-                    <td className=" h-16 flex items-center flex-1">{d.sale}</td>
-                    <td className=" h-16 flex items-center flex-1">
-                      {d.startdate}
-                    </td>
-                    <td className=" h-16 flex items-center flex-1 justify-center">
-                      <AiOutlineEdit size={24} />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <ListView Header={HeaderData} Data={[]} />
             <hr />
             <div className="flex flex-wrap gap-2 justify-between items-center py-4">
               <h1 className="font-semibold text-gra-400">Showing 10 entries</h1>
