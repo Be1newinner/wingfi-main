@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #ff5861;
+}
+
+::selection {
+  background-color: var(--primary-color);
+  color: white;
+}
