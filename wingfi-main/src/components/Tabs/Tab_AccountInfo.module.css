@@ -1,0 +1,5 @@
+.Gender > input:checked {
+  background-color: var(--primary-color) !important;
+  border: none;
+  color: white !important;
+}
