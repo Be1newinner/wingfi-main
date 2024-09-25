@@ -22,7 +22,7 @@ const loadCartFromLocalStorage = (): CartDataReducer => {
     const serializedState = localStorage.getItem("cart");
     if (serializedState === null) {
       return initialState;
-    }
+    } 
     return JSON.parse(serializedState);
   } catch (err) {
     return initialState;
