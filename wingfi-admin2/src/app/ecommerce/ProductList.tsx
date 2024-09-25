@@ -1,12 +1,75 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { VscThreeBars } from "react-icons/vsc";
-import LeftSidebar from "../../components/Sidebar";
 import { ListView } from "../../components";
+import LeftSidebar from "../../components/Sidebar";
+import { Product } from "@/constants/types";
 
 export default function ProductList() {
   const [show, setShow] = useState(false);
+  const [ProductData, setProductData] = useState<Product[]>([
+    {
+      image:
+        "https://cdn-icons-png.freepik.com/512/679/679821.png?fd=1&filename=box_679821.png",
+      title: "ABC2",
+      price: 500,
+      mrp: 750,
+      sku: "AB7043",
+      rating: 4.5,
+      id: "1",
+      slug: "ABC",
+      special: 0,
+    },
+    {
+      image:
+        "https://cdn-icons-png.freepik.com/512/679/679821.png?fd=1&filename=box_679821.png",
+      title: "ABC2",
+      price: 500,
+      mrp: 750,
+      sku: "AB7043",
+      rating: 4.5,
+      id: "2",
+      slug: "ABC",
+      special: 0,
+    },
+    {
+      image:
+        "https://cdn-icons-png.freepik.com/512/679/679821.png?fd=1&filename=box_679821.png",
+      title: "ABC2",
+      price: 500,
+      mrp: 750,
+      sku: "AB7043",
+      rating: 4.5,
+      id: "3",
+      slug: "ABC",
+      special: 0,
+    },
+    {
+      image:
+        "https://cdn-icons-png.freepik.com/512/679/679821.png?fd=1&filename=box_679821.png",
+      title: "ABC2",
+      price: 500,
+      mrp: 750,
+      sku: "AB7043",
+      rating: 4.5,
+      id: "4",
+      slug: "ABC",
+      special: 0,
+    },
+    {
+      image:
+        "https://cdn-icons-png.freepik.com/512/679/679821.png?fd=1&filename=box_679821.png",
+      title: "ABC2",
+      price: 500,
+      mrp: 750,
+      sku: "AB7043",
+      rating: 4.5,
+      id: "5",
+      slug: "ABC",
+      special: 0,
+    },
+  ]);
   const handle = () => {
     setShow(true);
   };
@@ -16,6 +79,13 @@ export default function ProductList() {
       setShow(false);
     }
   };
+
+  useEffect(() => {
+    async function getProducts() {
+      
+    }
+    getProducts();
+  }, []);
 
   const HeaderData: { id: number; title: string }[] = [
     {
@@ -98,7 +168,7 @@ export default function ProductList() {
                 Add New
               </button>
             </div>
-            <ListView Header={HeaderData} Data={[]} />
+            <ListView Header={HeaderData} Data={ProductData} />
             <hr />
             <div className="flex flex-wrap gap-2 justify-between items-center py-4">
               <h1 className="font-semibold text-gra-400">Showing 10 entries</h1>

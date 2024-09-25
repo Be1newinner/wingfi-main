@@ -19,10 +19,12 @@ export function ListView({ Header, Data }: ListViewProps) {
         </tr>
       </thead>
       <tbody>
-        {Data.map((item) => (
+        {Data?.map((item) => (
           <tr className="flex items-center justify-between flex-1 hover:bg-gray-200 duration-300 rounded-xl cursor-pointer border-b">
             <td className="font-bold h-16 flex items-center flex-1">
-              {item.image && <img src={item.image} alt="" />}
+              {item.image && (
+                <img src={item.image} alt="" className="max-h-10" />
+              )}
             </td>
             <td className="h-16 flex items-center flex-1">
               <h1>{item.title}</h1>

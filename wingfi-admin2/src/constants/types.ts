@@ -7,6 +7,7 @@ export interface Product {
   rating: number;
   sku: string;
   special: number;
+  id?: string;
 }
 
 export enum productType {

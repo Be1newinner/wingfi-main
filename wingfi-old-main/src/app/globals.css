@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-primary,
+.body {
+  background-color: #061538;
+}
+
+.bg-secondary {
+  background-color: #fb3232;
+}
+
+.text-primary,
+.bg-secondary {
+  color: #061538;
+}
+
+.text-secondary,
+.bg-primary,
+.dark-icon {
+  color: #fb3232;
+}
+
+.dark-icon {
+  font-size: 24px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0px auto;
+}
+
+.border-primary {
+  border-color: #061538;
+}
+
+.border-secondary {
+  border-color: #fb3232;
+}
+
+::selection {
+  color: white;
+  background: #fb3232;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 24px;
+}
+

@@ -1,0 +1,7 @@
+.featureRight {
+  gap: 20px;
+}
+
+.featureRight > div {
+  width: calc(50% - 20px);
+}

@@ -1,0 +1,14 @@
+.menu > li:hover {
+  cursor: pointer;
+  border-color: #fb3232;
+}
+
+.menu > li {
+  font-weight: 600;
+}
+
+.menu > li {
+  margin-top: 14px;
+  border-bottom: 4px solid white;
+  padding-bottom: 10px;
+}
