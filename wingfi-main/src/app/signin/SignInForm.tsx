@@ -6,11 +6,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { loginRequest, loginRequestByGoogle } from "@/redux/reducers/auth";
 import { useSelector } from "react-redux";
-import {
-  selectAuthErrors,
-  selectIsUserLoading,
-  selectUser,
-} from "@/redux/selectors/auth";
+import { selectAuthErrors, selectUser } from "@/redux/selectors/auth";
 
 export default function SignInForm() {
   const [emailIDInput, setEmailIDInput] = useState("");
@@ -23,7 +19,6 @@ export default function SignInForm() {
   const dispatch = useDispatch();
   const User = useSelector(selectUser);
   const AuthErrors = useSelector(selectAuthErrors);
-  const AuthLoading = useSelector(selectIsUserLoading);
 
   const searchParams = useSearchParams();
 
@@ -47,8 +42,8 @@ export default function SignInForm() {
     } else return true;
   };
 
-  const emailSignIn = async (event: any) => {
-    event.preventDefault();
+  const emailSignIn = async () => {
+    // event.preventDefault();
 
     if (validations(emailIDInput, PasswordInput)) {
       dispatch(
@@ -118,7 +113,7 @@ export default function SignInForm() {
         Sign In
       </button>
       <div className="text-xs mt-2">
-        Don't have an Account?{" "}
+        Don{`&apos;`}t have an Account?{" "}
         <Link href={"/signup"} className="text-blue-500 hover:text-blue-900">
           Sign Up
         </Link>

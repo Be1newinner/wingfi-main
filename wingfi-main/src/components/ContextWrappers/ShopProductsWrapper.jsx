@@ -23,13 +23,13 @@ export async function ShopProductsWrapper() {
 
   return productsArray?.map((item) => (
     <ProductViewList
-      key={item.slug}
-      title={item.title}
-      price={item.price}
-      mrp={item.mrp}
-      slug={item.slug}
-      sku={item.sku}
-      rating={item.rating}
+      key={item?.slug}
+      title={item?.title}
+      price={item?.price}
+      mrp={item?.mrp}
+      slug={item?.slug}
+      sku={item?.sku}
+      rating={item?.rating}
     />
   ));
 }

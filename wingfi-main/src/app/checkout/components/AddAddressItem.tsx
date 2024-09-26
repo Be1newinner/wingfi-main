@@ -1,12 +1,12 @@
 "use client";
 
-import { ChangeEvent, Dispatch, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import { ModifiedInput, ModifiedSelect } from "./index";
 import { BasicAddressFields } from "@/redux/constants/address";
 
 interface PropTypes {
   addNewAddressController: () => void;
-  setFormValues: Dispatch<any>;
+  setFormValues: Dispatch<SetStateAction<BasicAddressFields>>;
   formValues: BasicAddressFields;
   closeModal?: () => void;
 }
@@ -49,9 +49,7 @@ export const AddAddressItem = ({
     type: "dasdasd",
   });
 
-  const onSubmit = async (e: any) => {
-    e.preventDefault();
-
+  const onSubmit = async () => {
     const newErrors = {
       houseNumber: "",
       name: "",

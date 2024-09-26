@@ -88,7 +88,7 @@ export default function PaymentOptions({
               <button
                 onClick={(e) => {
                   e.preventDefault();
-                  !orderApiLoading && generateOrder();
+                  if (!orderApiLoading) generateOrder();
                 }}
                 className={`flex-1 btn btn-error mt-2 text-white text-sm font-medium py-4 px-8 rounded-none`}
               >

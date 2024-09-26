@@ -24,9 +24,9 @@ export function SavedAddresses() {
 
   useEffect(() => {
     (async function () {
-      dispatch(fetchAddressesRequest(UserUID));
+      if (UserUID) dispatch(fetchAddressesRequest(UserUID));
     })();
-  }, [UserUID]);
+  }, [UserUID, dispatch]);
 
   function changeDefaultAddres(key: number) {
     dispatch(changeDefaultAddress(key));

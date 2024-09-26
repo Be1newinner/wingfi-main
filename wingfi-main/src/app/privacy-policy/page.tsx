@@ -10,8 +10,8 @@ const PrivacyPolicy = () => {
           <div className="p-6">
             <h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
             <p className="mb-4">
-              This Privacy Policy describes how Wingfi India ("we," "our," or
-              "us") collects, uses, and discloses your personal information when
+              This Privacy Policy describes how Wingfi India (&quot;we,&quot; &quot;our,&quot; or
+              &quot;us&quot;) collects, uses, and discloses your personal information when
               you use our website and services.
             </p>
 

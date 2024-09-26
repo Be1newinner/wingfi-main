@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
-import { Variants } from "../../../service/Offline/Variants";
 import { AccountStructure } from "@/components";
 import { useDispatch } from "react-redux";
 import { loadSingleOrderRequest } from "@/redux/reducers/order";
@@ -21,10 +20,10 @@ export default function OrdersInfo({ params }: { params: { slug: string } }) {
   useEffect(() => {
     if (UserUID)
       dispatch(loadSingleOrderRequest({ uid: UserUID, orderid: params.slug }));
-  }, []);
+  }, [dispatch, UserUID, params]);
 
   useEffect(() => {
-    process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
+    if (process.env.NEXT_PUBLIC_ENVIRONMENT === "development")
       console.log("Order Data=> ", OrderData);
   }, [OrderData]);
 

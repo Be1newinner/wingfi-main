@@ -24,7 +24,7 @@ export default function Checkout({ params }: { params: { orderid: string } }) {
     } else {
       console.log("user not logged in!");
     }
-  }, [params.orderid, UserID]);
+  }, [params.orderid, UserID, dispatch]);
 
   return (
     <div className="bg-gray-100">

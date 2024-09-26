@@ -21,7 +21,8 @@ const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    generateOrderRequest(state) {
+    generateOrderRequest(state, action: PayloadAction<Order>) {
+      console.log(action.payload);
       state.success = false;
       state.latestOrderID = null;
       state.loading = true;
@@ -38,7 +39,8 @@ const orderSlice = createSlice({
       state.success = false;
       state.error = action.payload;
     },
-    loadAllOrdersRequest(state) {
+    loadAllOrdersRequest(state, action: PayloadAction<Order>) {
+      console.log(action.payload);
       state.loading = true;
       state.error = null;
     },
@@ -50,7 +52,11 @@ const orderSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    loadSingleOrderRequest(state) {
+    loadSingleOrderRequest(
+      state,
+      action: PayloadAction<{ uid: string; orderid: string }>
+    ) {
+      console.log(action.payload);
       state.loading = true;
       state.error = null;
     },

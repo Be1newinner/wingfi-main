@@ -15,8 +15,8 @@ const ShippingPolicy = () => {
 
             <p className="mb-4">
               This Shipping & Delivery Policy is part of our Terms and
-              Conditions ("Terms") and should be therefore read alongside our
-              main Terms:{" "}
+              Conditions (&quot;Terms&quot;) and should be therefore read
+              alongside our main Terms:{" "}
               <a
                 href="https://wingfiindia.com/terms-conditions"
                 className="text-blue-500"

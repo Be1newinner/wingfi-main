@@ -5,18 +5,13 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import {
-  selectAuthErrors,
-  selectIsUserLoading,
-  selectUser,
-} from "@/redux/selectors/auth";
+import { selectAuthErrors, selectUser } from "@/redux/selectors/auth";
 import { loginRequestByGoogle, signupRequest } from "@/redux/reducers/auth";
 
 export function SignUpForms() {
   const dispatch = useDispatch();
   const User = useSelector(selectUser);
   const AuthErrors = useSelector(selectAuthErrors);
-  const AuthLoading = useSelector(selectIsUserLoading);
 
   const [emailIDInput, setEmailIDInput] = useState("");
   const [PasswordInput, setPasswordInput] = useState("");
@@ -91,9 +86,7 @@ export function SignUpForms() {
     }
   };
 
-  const SignUpUser = async (event: any) => {
-    event.preventDefault();
-
+  const SignUpUser = async () => {
     if (
       validations(
         emailIDInput,
@@ -229,8 +222,8 @@ export function SignUpForms() {
         )}
       </label>
       <button
-        className="btn btn-primary rounded max-w-96 rounded-sm"
-        onClick={(event) => SignUpUser(event)}
+        className="btn btn-primary  max-w-96 rounded-sm"
+        onClick={SignUpUser}
       >
         Sign Up
       </button>

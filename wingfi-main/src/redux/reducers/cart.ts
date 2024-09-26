@@ -19,11 +19,16 @@ const initialState: CartDataReducer = {
 
 const loadCartFromLocalStorage = (): CartDataReducer => {
   try {
-    const serializedState = localStorage.getItem("cart");
-    if (serializedState === null) {
+    if (typeof localStorage != "undefined") {
+      const serializedState = localStorage.getItem("cart");
+      if (serializedState === null) {
+        return initialState;
+      }
+      return JSON.parse(serializedState);
+    } else {
+      console.log("Localstorage not initialised!");
       return initialState;
     }
-    return JSON.parse(serializedState);
   } catch (err) {
     console.error(err);
     return initialState;
@@ -32,8 +37,13 @@ const loadCartFromLocalStorage = (): CartDataReducer => {
 
 const saveCartToLocalStorage = (state: CartDataReducer) => {
   try {
-    const serializedState = JSON.stringify(state);
-    localStorage.setItem("cart", serializedState);
+    if (typeof localStorage != "undefined") {
+      const serializedState = JSON.stringify(state);
+
+      localStorage.setItem("cart", serializedState);
+    } else {
+      console.log("Localstorage not initialised!");
+    }
   } catch (err) {
     console.error(err);
   }
