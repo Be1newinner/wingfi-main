@@ -22,9 +22,10 @@ const loadCartFromLocalStorage = (): CartDataReducer => {
     const serializedState = localStorage.getItem("cart");
     if (serializedState === null) {
       return initialState;
-    } 
+    }
     return JSON.parse(serializedState);
   } catch (err) {
+    console.error(err);
     return initialState;
   }
 };
@@ -113,7 +114,7 @@ const cartSlice = createSlice({
         saveCartToLocalStorage(state); // Save to local storage
       }
     },
-    resetCart(state) {
+    resetCart() {
       const newState = initialState;
       saveCartToLocalStorage(newState); // Save reset state to local storage
       return newState;

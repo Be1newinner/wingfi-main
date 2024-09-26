@@ -32,8 +32,12 @@ function* fetchCartDataSaga() {
         error: null,
       })
     );
-  } catch (error: any) {
-    yield put(fetchCartDataFailure(error.message));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      yield put(fetchCartDataFailure(error.message));
+    } else {
+      yield put(fetchCartDataFailure("An unknown error occurred"));
+    }
   }
 }
 

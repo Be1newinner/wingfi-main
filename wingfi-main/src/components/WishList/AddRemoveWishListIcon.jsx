@@ -7,7 +7,7 @@ import { Theme_colors } from "@/infrastructure/theme";
 export default function AddRemoveWishListIcon({ item, text, size = "btn-sm" }) {
   const [Selected, IsSelected] = useState(false);
 
-  const ProductWishList = {};
+  const [ProductWishList] = useState({});
   const ToggleProductInWishList = () => null;
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export default function AddRemoveWishListIcon({ item, text, size = "btn-sm" }) {
   return (
     <button
       className={["btn border shadow btn-ghost rounded-sm", size].join(" ")}
-      onClick={(e) => {
+      onClick={() => {
         ToggleProductInWishList({ item });
         IsSelected(!Selected);
       }}

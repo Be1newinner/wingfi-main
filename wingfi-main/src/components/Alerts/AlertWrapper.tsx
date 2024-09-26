@@ -5,20 +5,19 @@ import { StyledAlert } from ".";
 import { selectOrderError } from "@/redux/selectors/order";
 import { useDispatch } from "react-redux";
 import { resetGenerateOrderState } from "@/redux/reducers/order";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 export default function AlertWrapper() {
   const OrderError = useSelector(selectOrderError);
   const dispatch = useDispatch();
 
-  const exitAlertFunction = () => {
+  const exitAlertFunction = useCallback(() => {
     dispatch(resetGenerateOrderState());
-  };
+  }, [dispatch]);
 
   useEffect(() => {
-    const timeout = setTimeout(() => exitAlertFunction(), 10000);
-    // return clearTimeout(timeout);
-  }, [OrderError]);
+    setTimeout(() => exitAlertFunction(), 10000);
+  }, [exitAlertFunction]);
 
   return (
     <StyledAlert type="error" text={OrderError} onClick={exitAlertFunction} />

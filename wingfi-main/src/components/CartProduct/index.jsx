@@ -1,5 +1,6 @@
 import { SlMinus, SlPlus } from "react-icons/sl";
 import { formatToIndianCurrency } from "../../utils/formatToIndianCurrency";
+import Image from "next/image";
 
 export default function CartProduct({
   sku,
@@ -14,7 +15,7 @@ export default function CartProduct({
     <div className="flex flex-col gap-2  border-y-2 border-gray-200 py-8 px-4 sm:px-8">
       <div className="flex justify-between items-center">
         <div className="flex gap-4">
-          <img
+          <Image
             src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${sku}%2F1.webp?alt=media`}
             className="w-28 aspect-square rounded-md shadow-md"
             alt="product"

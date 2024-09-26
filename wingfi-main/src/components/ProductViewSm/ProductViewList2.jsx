@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Theme_text_colors_class } from "@/infrastructure/theme";
 import { FaRegHeart, FaStar } from "react-icons/fa";
 
-export function ProductViewList2({ item, key }) {
+export function ProductViewList2({ item }) {
   return (
     <div className="flex items-center bg-white border shadow p-2 sm:p-3 gap-1 sm:gap-4 overflow-hidden rounded-sm flex-col sm:flex-row basis-1/2">
       <Image

@@ -22,7 +22,7 @@ export default function QuantityChangeSelect({
     | "btn-4xl";
 }) {
   let selectSize = "select-sm";
-  let selectWidth = 100;
+  const selectWidth = 100;
   const dispatch = useDispatch();
 
   switch (size) {
@@ -65,6 +65,7 @@ export default function QuantityChangeSelect({
           img: item.img,
           category: item.category,
           title: item.title,
+          mrp: item.mrp,
         };
 
         dispatch(addInCart(newItem));

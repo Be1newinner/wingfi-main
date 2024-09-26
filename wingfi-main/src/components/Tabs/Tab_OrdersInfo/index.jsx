@@ -19,10 +19,10 @@ export function Tab_OrdersInfo() {
 
   useEffect(() => {
     dispatch(loadAllOrdersRequest({ uid: UserUID }));
-  }, []);
+  }, [dispatch, UserUID]);
 
   useEffect(() => {
-    process.env.NEXT_PUBLIC_ENVIRONMENT === "development" &&
+    if (process.env.NEXT_PUBLIC_ENVIRONMENT === "development")
       console.log("OrdersData => ", OrdersData);
   }, [OrdersData]);
 
@@ -79,7 +79,9 @@ export function Tab_OrdersInfo() {
             const rawDate = item.statuses.find(
               (e) => e.status === OrderStatus.Pending
             ).date;
-            if (typeof rawDate === "number") date === new Date(rawDate);
+            if (typeof rawDate === "number") {
+              date = new Date(rawDate);
+            }
 
             return (
               <tr

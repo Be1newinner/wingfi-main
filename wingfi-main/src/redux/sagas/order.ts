@@ -8,7 +8,6 @@ import {
   loadAllOrdersFailure,
   loadSingleOrderSuccess,
   loadSingleOrderFailure,
-  resetGenerateOrderState,
   generateOrderRequest,
   loadSingleOrderRequest,
   loadAllOrdersRequest,
@@ -39,8 +38,12 @@ function* generateOrderSaga(action: GenerateOrderRequestAction) {
   try {
     const order: Order = yield call(generateOrderAPI, action.payload);
     yield put(generateOrderSuccess(order));
-  } catch (error: any) {
-    yield put(generateOrderFailure(error.message));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      yield put(generateOrderFailure(error.message));
+    } else {
+      yield put(generateOrderFailure("Unknown error occurred"));
+    }
   }
 }
 
@@ -48,8 +51,12 @@ function* loadAllOrdersSaga(action: LoadAllOrderRequestAction) {
   try {
     const orders: Order[] = yield call(loadAllOrdersAPI, action.payload.uid);
     yield put(loadAllOrdersSuccess(orders));
-  } catch (error: any) {
-    yield put(loadAllOrdersFailure(error.message));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      yield put(loadAllOrdersFailure(error.message));
+    } else {
+      yield put(loadAllOrdersFailure("Unknown error occurred"));
+    }
   }
 }
 
@@ -64,8 +71,12 @@ function* loadSingleOrderSaga(action: LoadSingleOrderRequestAction) {
     if (order?.id) yield put(loadSingleOrderSuccess(order));
     else yield put(loadSingleOrderFailure("Order not found"));
     //
-  } catch (error: any) {
-    yield put(loadSingleOrderFailure(error.message));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      yield put(loadSingleOrderFailure(error.message));
+    } else {
+      yield put(loadSingleOrderFailure("Unknown error occurred"));
+    }
   }
 }
 

@@ -10,7 +10,7 @@ export function CartProductArray() {
   const CartSelector = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
-  return Object.values(CartSelector)?.map((item: any) => {
+  return Object.values(CartSelector)?.map((item) => {
     return (
       <CartProduct
         key={item.sku}

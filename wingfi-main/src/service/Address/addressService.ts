@@ -3,8 +3,19 @@ import { firebaseRealtime } from "@/infrastructure/firebase.config";
 import { AddressType } from "@/redux/constants/address";
 import { EventChannel, eventChannel } from "redux-saga";
 
+interface firebaseAddressType {
+  h: string;
+  n: string;
+  p: number;
+  pi: number;
+  l: string;
+  c: string;
+  s: string;
+  t: number;
+}
+
 const toAddressType = (
-  firebaseAddress: any,
+  firebaseAddress: firebaseAddressType,
   key: number,
   uid: string
 ): AddressType => ({
@@ -21,13 +32,11 @@ const toAddressType = (
       ? "home"
       : firebaseAddress.t === 1
       ? "work"
-      : firebaseAddress.t === 2
-      ? "other"
-      : firebaseAddress.t,
+      : "other",
   uid,
 });
 
-const toFirebaseAddress = (address: AddressType): any => ({
+const toFirebaseAddress = (address: AddressType): firebaseAddressType => ({
   h: address.houseNumber,
   n: address.name,
   p: address.phoneNumber,
@@ -61,14 +70,14 @@ export const fetchAddresses = async (
         const data = snapshot.val();
         if (data) {
           const addresses = Object.entries(data).map(([key, value]) =>
-            toAddressType(value, Number(key), userId)
+            toAddressType(value as firebaseAddressType, Number(key), userId)
           );
           resolve(addresses);
         } else {
           resolve([]);
         }
       },
-      (error: any) => {
+      (error: Error) => {
         reject(error);
       },
       {
@@ -103,7 +112,7 @@ export function createAddressChannel(
           const data = snapshot.val();
           if (data) {
             const addresses = Object.entries(data).map(([key, value]) =>
-              toAddressType(value, Number(key), userId)
+              toAddressType(value as firebaseAddressType, Number(key), userId)
             );
             emit(addresses);
           } else {

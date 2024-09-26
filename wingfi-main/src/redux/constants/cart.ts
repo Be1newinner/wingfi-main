@@ -5,6 +5,7 @@ export interface CartItem {
   price: number;
   category: number;
   title: string;
+  mrp: number;
 }
 
 export interface CartData {
@@ -27,7 +28,7 @@ export interface CartItemData {
   qty: number;
   sku: string;
   title: string;
-  mrp: string;
+  mrp: number;
   price: number;
 }
 
