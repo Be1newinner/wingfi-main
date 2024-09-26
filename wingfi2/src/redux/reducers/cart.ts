@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CartItem, CartDataReducer } from "../constants/cart";
-import { error } from "console";
 
 const DELIVERY_FEE = 0;
 const DISCOUNT_AMOUNT = 0;
