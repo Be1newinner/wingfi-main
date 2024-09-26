@@ -1,6 +1,7 @@
 import { Footer, NavBar } from "@/components";
 import Faq from "./Faq";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Contact() {
   return (
@@ -52,7 +53,7 @@ export default function Contact() {
             </div>
             <div className="">
               <div className="h-[350px]  w-full">
-                <img
+                <Image
                   src="./images/1.jpg"
                   alt="img"
                   className="h-full w-full rounded-t-md"

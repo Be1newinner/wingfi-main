@@ -20,24 +20,32 @@ const TermsOfUse = () => {
           <h2 className="text-xl font-semibold mb-2">
             AGREEMENT TO OUR LEGAL TERMS
           </h2>
-          <p>We are <b>("Company," "we 'SMART GADGETS WORLD'," "us," "our")</b>.</p>
           <p>
-            We operate , as well as any other related products and services that
-            refer or link to these legal terms (the "Legal Terms")
-            (collectively, the "Services").
+            We are{" "}
+            <b>(&quot;Company,&quot; &quot;we &apos;SMART GADGETS WORLD,&quot; &quot;us,&quot; &quot;our&quot;)</b>
+            .
+          </p>
+          <p>
+            We operate, as well as any other related products and services that
+            refer or link to these legal terms (the &quot;Legal Terms&quot;)
+            (collectively, the &quot;Services&quot;).
           </p>
           <p>
             You can contact us by email at <b>info@wingfiindia.com</b>.
           </p>
           <p>
             These Legal Terms constitute a legally binding agreement made
-            between you, whether personally or on behalf of an entity ("you"),
-            and <b>("Company," "we," "us," "our")</b>, concerning your access to and use of the Services.
-            You agree that by accessing the Services, you have read, understood,
-            and agreed to be bound by all of these Legal Terms. IF YOU DO NOT
-            AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY
-            PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE
-            IMMEDIATELY.
+            between you, whether personally or on behalf of an entity
+            (&quot;you&quot;), and{" "}
+            <b>
+              (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot;
+              &quot;our&quot;)
+            </b>
+            , concerning your access to and use of the Services. You agree that
+            by accessing the Services, you have read, understood, and agreed to
+            be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL
+            OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING
+            THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.
           </p>
           <p>
             Supplemental terms and conditions or documents that may be posted on
@@ -45,11 +53,11 @@ const TermsOfUse = () => {
             herein by reference. We reserve the right, in our sole discretion,
             to make changes or modifications to these Legal Terms at any time
             and for any reason. We will alert you about any changes by updating
-            the "Last updated" date of these Legal Terms, and you waive any
-            right to receive specific notice of each such change. It is your
-            responsibility to periodically review these Legal Terms to stay
-            informed of updates. You will be subject to, and will be deemed to
-            have been made aware of and to have accepted, the changes in any
+            the &quot;Last updated&quot; date of these Legal Terms, and you
+            waive any right to receive specific notice of each such change. It
+            is your responsibility to periodically review these Legal Terms to
+            stay informed of updates. You will be subject to, and will be deemed
+            to have been made aware of and to have accepted, the changes in any
             revised Legal Terms by your continued use of the Services after the
             date such revised Legal Terms are posted.
           </p>
@@ -157,8 +165,8 @@ const TermsOfUse = () => {
             in our Services, including all source code, databases,
             functionality, software, website designs, audio, video, text,
             photographs, and graphics in the Services (collectively, the
-            "Content"), as well as the trademarks, service marks, and logos
-            contained therein (the "Marks").
+            &quot;Content&quot;), as well as the trademarks, service marks, and logos
+            contained therein (the &quot;Marks&quot;).
           </p>
           <p>
             Our Content and Marks are protected by copyright and trademark laws
@@ -167,15 +175,15 @@ const TermsOfUse = () => {
             world.
           </p>
           <p>
-            The Content and Marks are provided in or through the Services "AS
-            IS" for your personal, non-commercial use or internal business
+            The Content and Marks are provided in or through the Services &quot;AS
+            IS&quot; for your personal, non-commercial use or internal business
             purpose only.
           </p>
           <p>
             <strong>Your use of our Services</strong>
             <br />
             Subject to your compliance with these Legal Terms, including the
-            "PROHIBITED ACTIVITIES" section below, we grant you a non-exclusive,
+            &quot;PROHIBITED ACTIVITIES&quot; section below, we grant you a non-exclusive,
             non-transferable, revocable license to:
             <ul className="list-disc list-inside mb-4">
               <li>access the Services; and</li>
@@ -198,12 +206,12 @@ const TermsOfUse = () => {
           <p>
             If you wish to make any use of the Services, Content, or Marks other
             than as set out in this section or elsewhere in our Legal Terms,
-            please address your request to: <b>info@wingfiindia.com</b>. If we ever grant you the
-            permission to post, reproduce, or publicly display any part of our
-            Services or Content, you must identify us as the owners or licensors
-            of the Services, Content, or Marks and ensure that any copyright or
-            proprietary notice appears or is visible on posting, reproducing, or
-            displaying our Content.
+            please address your request to: <b>info@wingfiindia.com</b>. If we
+            ever grant you the permission to post, reproduce, or publicly
+            display any part of our Services or Content, you must identify us as
+            the owners or licensors of the Services, Content, or Marks and
+            ensure that any copyright or proprietary notice appears or is
+            visible on posting, reproducing, or displaying our Content.
           </p>
           <p>
             We reserve all rights not expressly granted to you in and to the
@@ -217,7 +225,7 @@ const TermsOfUse = () => {
           <p>
             <strong>Your submissions</strong>
             <br />
-            Please review this section and the "PROHIBITED ACTIVITIES" section
+            Please review this section and the &quot;PROHIBITED ACTIVITIES&quot; section
             carefully prior to using our Services to understand the (a) rights
             you give us and (b) obligations you have when you post or upload any
             content through the Services.
@@ -225,7 +233,7 @@ const TermsOfUse = () => {
           <p>
             <strong>Submissions:</strong> By directly sending us any question,
             comment, suggestion, idea, feedback, or other information about the
-            Services ("Submissions"), you agree to assign to us all intellectual
+            Services (&quot;Submissions&quot;), you agree to assign to us all intellectual
             property rights in such Submission. You agree that we shall own this
             Submission and be entitled to its unrestricted use and dissemination
             for any lawful purpose, commercial or otherwise, without
@@ -334,7 +342,7 @@ const TermsOfUse = () => {
                 upload or transmit (or attempt to upload or to transmit)
                 viruses, Trojan horses, or other material, including excessive
                 use of capital letters and spamming (continuous posting of
-                repetitive text), that interferes with any party's uninterrupted
+                repetitive text), that interferes with any party&apos;s uninterrupted
                 use and enjoyment of the Services or modifies, impairs,
                 disrupts, alters, or interferes with the use, features,
                 function, operation, or maintenance of the Services;
@@ -344,8 +352,8 @@ const TermsOfUse = () => {
                 material that acts as a passive or active information collection
                 or transmission mechanism, including without limitation, clear
                 gifs, pixel tags, web bugs, cookies, or other similar devices
-                (sometimes referred to as "spyware" or "passive collection
-                mechanisms" or "pcms");
+                (sometimes referred to as &quot;spyware&quot; or &quot;passive collection
+                mechanisms&quot; or &quot;pcms&quot;);
               </li>
               <li>
                 disguise the origin of any content transmitted through the
@@ -359,7 +367,7 @@ const TermsOfUse = () => {
                 Content contained therein;
               </li>
               <li>
-                copy or adapt the Services' software, including but not limited
+                copy or adapt the Services&apos; software, including but not limited
                 to Flash, PHP, HTML, JavaScript, or other code;
               </li>
               <li>
@@ -375,7 +383,7 @@ const TermsOfUse = () => {
               <li>
                 use the Services in a manner that could damage, disable,
                 overburden, or impair the Services or interfere with any other
-                party's use and enjoyment of the Services;
+                party&apso;s use and enjoyment of the Services;
               </li>
               <li>
                 attempt to gain unauthorized access to the Services, or any part
@@ -413,7 +421,7 @@ const TermsOfUse = () => {
             content and materials to us or on the Services, including but not
             limited to text, writings, video, audio, photographs, graphics,
             comments, suggestions, or personal information or other material
-            (collectively, "Contributions").
+            (collectively, &quot;Contributions&quot;).
           </p>
           <p>
             Contributions may be viewable by other users of the Services and
@@ -540,7 +548,7 @@ const TermsOfUse = () => {
         <section id="disclaimer" className="mb-8">
           <h2 className="text-xl font-semibold mb-2">11. DISCLAIMER</h2>
           <p>
-            The Services are provided on an "AS IS" and "AS AVAILABLE" basis. We
+            The Services are provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. We
             make no warranties or representations about the accuracy or
             completeness of the Services or the content provided. We disclaim
             all warranties of any kind, whether express or implied, including,
@@ -572,7 +580,7 @@ const TermsOfUse = () => {
             You agree to indemnify, defend, and hold harmless us, our
             affiliates, and our respective officers, directors, employees, and
             agents from and against any claims, liabilities, damages, losses,
-            and expenses, including reasonable attorneys' fees, arising out of
+            and expenses, including reasonable attorneys&apos; fees, arising out of
             or in any way connected with your access to or use of the Services,
             or your violation of these Legal Terms.
           </p>

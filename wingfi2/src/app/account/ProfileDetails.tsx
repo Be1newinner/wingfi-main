@@ -51,7 +51,7 @@ export function ProfileDetails() {
         if (data) setInputPhone(data);
       }
     })();
-  }, [UserUID]);
+  }, [UserUID, User, UserName]);
 
   const saveChanges = async () => {
     if (!CanEdit) setCanEdit(true);

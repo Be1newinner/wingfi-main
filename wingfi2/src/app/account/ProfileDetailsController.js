@@ -33,6 +33,7 @@ export async function changePhoneNumber({ User, phone }) {
       localStorage.setItem("wi-phone", phone);
       return { status: 200, response, error: null };
     } catch (error) {
+      console.error(error);
       return { status: 502, error: "Unknown Error!", response: null };
     }
   } else {

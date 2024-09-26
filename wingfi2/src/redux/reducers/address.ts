@@ -27,7 +27,8 @@ const addressSlice = createSlice({
   name: "address",
   initialState,
   reducers: {
-    fetchAddressesRequest(state) {
+    fetchAddressesRequest(state, action: PayloadAction<string>) {
+      console.log(action.payload);
       state.isLoading = true;
       state.error = null;
     },
@@ -41,7 +42,8 @@ const addressSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    addNewAddressRequest(state) {
+    addNewAddressRequest(state, action: PayloadAction<AddressType>) {
+      console.log(action.payload);
       state.adding = true;
       state.error = null;
     },
@@ -59,7 +61,11 @@ const addressSlice = createSlice({
       state.adding = false;
       state.error = action.payload;
     },
-    removeAddressRequest(state) {
+    removeAddressRequest(
+      state,
+      action: PayloadAction<{ key: number; userId: string }>
+    ) {
+      console.log(action.payload);
       state.removing = true;
       state.error = null;
     },
@@ -76,7 +82,8 @@ const addressSlice = createSlice({
       state.removing = false;
       state.error = action.payload;
     },
-    updateAddressRequest(state) {
+    updateAddressRequest(state, action: PayloadAction<string>) {
+      console.log(action.payload);
       state.updating = true;
       state.error = null;
     },

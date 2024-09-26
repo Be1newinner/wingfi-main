@@ -4,7 +4,6 @@ import { FaStar } from "react-icons/fa";
 
 import { NavBar, Footer, UserFeedBack2, CartButton } from "@/components";
 import getProductFromURL from "@/service/getProductFromURL/getProductFromURLService";
-import { Variants } from "@/service/Offline/Variants";
 
 import styles from "./style.module.css";
 import { ExtraFeaturesCards } from "./ExtraFeaturesCards";
@@ -72,7 +71,7 @@ export default async function SingleStore({ params }) {
                       className="carousel-item w-full"
                     >
                       <Image
-                        className="bg-slate-200 rounded rounded-sm shadow px-2 sm:px-0 w-full"
+                        className="bg-slate-200 rounded-sm shadow px-2 sm:px-0 w-full"
                         src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${FilteredProduct.data.sku}%2F${item}.webp?alt=media`}
                         alt={`${FilteredProduct.data?.modal} Black Power Bank`}
                         width={1000}
@@ -94,7 +93,7 @@ export default async function SingleStore({ params }) {
                     return (
                       <a href={`#head-carousal-item${index}`} key={index}>
                         <Image
-                          className="bg-slate-200 mx-auto sm:mx-0 rounded rounded-sm shadow"
+                          className="bg-slate-200 mx-auto sm:mx-0 rounded-sm shadow"
                           src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${FilteredProduct.data.sku}%2F${item}.webp?alt=media`}
                           alt={`${FilteredProduct.data?.model} Black Power Bank`}
                           width={200}
@@ -369,10 +368,10 @@ export default async function SingleStore({ params }) {
                   <li>
                     <b>Peace of mind:</b> Backed by a <b>3-month warranty</b>{" "}
                     that covers manufacturing defects, you can be assured of the
-                    product's quality and durability.
+                    product{`&apos`}s quality and durability.
                   </li>
                   <li>
-                    <b>Reliable performance:</b> Wingfi India's{" "}
+                    <b>Reliable performance:</b> Wingfi India{`&apos`}s{" "}
                     <b>own manufacturing</b> ensures rigorous quality control
                     for consistent performance.
                   </li>

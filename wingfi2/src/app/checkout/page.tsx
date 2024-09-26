@@ -57,9 +57,13 @@ export default function Checkout() {
 
   useEffect(() => {
     (async function () {
-      dispatch(fetchAddressesRequest(UserUID));
+      if (UserUID) {
+        dispatch(fetchAddressesRequest(UserUID));
+      } else {
+        console.error("Error: E1156");
+      }
     })();
-  }, [UserUID]);
+  }, [UserUID, dispatch]);
 
   async function addNewAddressController() {
     if (UserUID) {
@@ -76,7 +80,7 @@ export default function Checkout() {
         navigate.replace(`/review/${newGeneratedOrderID}`);
       }
     }
-  }, [GenerateOrderStatus, navigate]);
+  }, [GenerateOrderStatus, navigate, newGeneratedOrderID]);
 
   return (
     <ProtectedRoute>
