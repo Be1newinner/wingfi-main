@@ -9,26 +9,26 @@ async function authMiddleware(req, res, next) {
       return res.status(403).json({ error: "Forbidden: Invalid API key" });
     }
 
-    // Check token
-    const token = req.headers["authorization"]?.split("Bearer ")[1];
-    if (!token) {
-      return res.status(401).json({ error: "Unauthorized: No token provided" });
-    }
+    // // Check token
+    // const token = req.headers["authorization"]?.split("Bearer ")[1];
+    // if (!token) {
+    //   return res.status(401).json({ error: "Unauthorized: No token provided" });
+    // }
 
-    // Verify token
-    const decodedToken = await auth.verifyIdToken(token);
+    // // Verify token
+    // const decodedToken = await auth.verifyIdToken(token);
 
-    console.log(decodedToken);
+    // console.log(decodedToken);
 
-    // Check authorization
-    if (!decodedToken.admin) {
-      return res
-        .status(403)
-        .json({ error: "Forbidden: Insufficient permissions" });
-    }
+    // // Check authorization
+    // if (!decodedToken.admin) {
+    //   return res
+    //     .status(403)
+    //     .json({ error: "Forbidden: Insufficient permissions" });
+    // }
 
-    // Attach decoded token to request object
-    req.user = decodedToken;
+    // // Attach decoded token to request object
+    // req.user = decodedToken;
 
     // Call next middleware or route handler
     next();
