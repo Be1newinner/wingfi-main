@@ -15,8 +15,8 @@ import loadProductService from "../../services/products/loadProductService";
 function* loadAllProductsSaga(action) {
         try {
                 console.log("payload => ", action.payload)
-                const order = yield call(loadProductService, action.payload);
-                yield put(loadAllProductsSuccess(order));
+                const products = yield call(loadProductService, action.payload);
+                yield put(loadAllProductsSuccess(products));
         } catch (error) {
                 if (error instanceof Error) {
                         yield put(loadAllProductsFailure(error.message));
