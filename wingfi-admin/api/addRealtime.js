@@ -1,5 +1,5 @@
-const { realtimeDb } = require("../config/firebaseInit");
-const authMiddleware = require("../config/authMiddleware");
+import { realtimeDb } from "../config/firebaseInit";
+import authMiddleware from "../config/authMiddleware";
 
 async function createHandler(req, res) {
   try {
