@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "/images/flag1.png",
+    "image": "/images/flag.png",
     "name": "Turkish Flag"
   },
 
@@ -30,7 +30,7 @@
   },
   {
     "id": 6,
-    "image": "/images/flag6.png",
+    "image": "/images/flag5.png",
     "name": "Saudi Arabia"
   }
 ]

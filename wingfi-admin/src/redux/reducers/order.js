@@ -13,32 +13,12 @@ const initialState = {
   orders: [],
   loading: false,
   error: null,
-  success: false,
-  latestOrderID: null,
 };
 
 const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    generateOrderRequest(state, action) {
-      console.log(action);
-      state.success = false;
-      state.latestOrderID = null;
-      state.loading = true;
-      state.error = null;
-    },
-    generateOrderSuccess(state, action) {
-      state.loading = false;
-      state.orders.push(action.payload);
-      state.success = true;
-      state.latestOrderID = action.payload.id;
-    },
-    generateOrderFailure(state, action) {
-      state.loading = false;
-      state.success = false;
-      state.error = action.payload;
-    },
     loadAllOrdersRequest(state) {
       state.loading = true;
       state.error = null;
@@ -75,26 +55,16 @@ const orderSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    resetGenerateOrderState(state) {
-      state.loading = false;
-      state.error = null;
-      state.success = false;
-      state.latestOrderID = null;
-    },
   },
 });
 
 export const {
-  generateOrderRequest,
-  generateOrderSuccess,
-  generateOrderFailure,
   loadAllOrdersRequest,
   loadAllOrdersSuccess,
   loadAllOrdersFailure,
   loadSingleOrderRequest,
   loadSingleOrderSuccess,
   loadSingleOrderFailure,
-  resetGenerateOrderState,
 } = orderSlice.actions;
 
 export default orderSlice.reducer;

@@ -1,13 +1,14 @@
 import Image from "next/image";
-import { selectProductOverview } from "@/redux/selectors/productOverview";
+// import { selectProductOverview } from "@/redux/selectors/productOverview";
 import React from "react";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 export default function ProductOverivewList() {
-  const productOverview = useSelector(selectProductOverview);
+  // const productOverview = useSelector(selectProductOverview);
+  const productOverview = [];
   return (
     <div>
-      {productOverview.map((d, index) => (
+      {productOverview?.map((d, index) => (
         <div
           key={index}
           className="text-gray-400 flex items-center my-5 w-[800px]"

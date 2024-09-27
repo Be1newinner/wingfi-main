@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { selectOrder } from "@/redux/selectors/order2";
+import { selectAllOrders } from "@/redux/selectors/order";
 import React from "react";
 import { useSelector } from "react-redux";
 
 export default function OrdersList() {
-  const order = useSelector(selectOrder);
+  const order = useSelector(selectAllOrders);
   return (
     <div>
       {order.map((d, index) => (

@@ -13,8 +13,6 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_APPID,
 };
 
-console.log(firebaseConfig)
-
 export const googleLogin = {
   web: {
     client_id: process.env.NEXT_PUBLIC_CLIENTID,

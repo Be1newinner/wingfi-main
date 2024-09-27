@@ -45,7 +45,7 @@
   
     {
       "id": 1,
-      "image": "produc/images/empty.pngt5",
+      "image": "/images/empty.png",
       "name": "Best Buddy Bits Dog Treats",
       "productID": "#293",
       "price": "$6.48",
