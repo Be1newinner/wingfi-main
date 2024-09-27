@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import category from "../../offline/categoryList.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const categorySlice = createSlice({
       state.categoryloading = true;
     },
 
-    categorySuccess: (state, action: PayloadAction<any>) => {
+    categorySuccess: (state, action) => {
       state.categoryloading = false;
       state.data.push(action.payload);
     },

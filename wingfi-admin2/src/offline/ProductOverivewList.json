@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "product1",
+    "image": "/images/empty.png",
     "name": "Soft Fluffy Cats",
     "productID": "#327",
     "price": "$11.00",
@@ -12,7 +12,7 @@
 
   {
     "id": 2,
-    "image": "product2",
+    "image": "/images/empty.png",
     "name": "Taste of the Wild Formula Finder",
     "productID": "#380",
     "price": "$8.99",
@@ -23,7 +23,7 @@
 
   {
     "id": 3,
-    "image": "product3",
+    "image": "/images/empty.png",
     "name": "Wellness Natural Food",
     "productID": "#126",
     "price": "$5.22",
@@ -34,7 +34,7 @@
 
   {
     "id": 4,
-    "image": "product4",
+    "image": "/images/empty.png",
     "name": "Dog Food Rachael Ray",
     "productID": "#582",
     "price": "$11.00",
@@ -45,7 +45,7 @@
 
   {
     "id": 5,
-    "image": "product5",
+    "image": "/images/empty.png",
     "name": "Best Buddy Bits Dog Treats",
     "productID": "#293",
     "price": "$6.48",

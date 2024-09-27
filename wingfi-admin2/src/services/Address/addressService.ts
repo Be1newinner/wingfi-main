@@ -1,10 +1,21 @@
 import { ref, set, remove, update, onValue } from "firebase/database";
-import { firebaseRealtime } from "../../constants/firebase.config";
-import { AddressType } from "../../redux/constants/address";
+import { firebaseRealtime } from "@/infrastructure/firebase.config";
+import { AddressType } from "@/redux/constants/address";
 import { EventChannel, eventChannel } from "redux-saga";
 
+interface firebaseAddressType {
+  h: string;
+  n: string;
+  p: number;
+  pi: number;
+  l: string;
+  c: string;
+  s: string;
+  t: number;
+}
+
 const toAddressType = (
-  firebaseAddress: any,
+  firebaseAddress: firebaseAddressType,
   key: number,
   uid: string
 ): AddressType => ({
@@ -16,11 +27,16 @@ const toAddressType = (
   city: firebaseAddress.c,
   state: firebaseAddress.s,
   key,
-  type: firebaseAddress.t,
+  type:
+    firebaseAddress.t === 0
+      ? "home"
+      : firebaseAddress.t === 1
+      ? "work"
+      : "other",
   uid,
 });
 
-const toFirebaseAddress = (address: AddressType): any => ({
+const toFirebaseAddress = (address: AddressType): firebaseAddressType => ({
   h: address.houseNumber,
   n: address.name,
   p: address.phoneNumber,
@@ -28,7 +44,14 @@ const toFirebaseAddress = (address: AddressType): any => ({
   l: address.landmark,
   c: address.city,
   s: address.state,
-  t: address.type,
+  t:
+    address.type === "home"
+      ? 0
+      : address.type === "work"
+      ? 1
+      : address.type === "other"
+      ? 2
+      : address.type,
 });
 
 const addressRef = (userId: string, key?: number) => {
@@ -47,14 +70,14 @@ export const fetchAddresses = async (
         const data = snapshot.val();
         if (data) {
           const addresses = Object.entries(data).map(([key, value]) =>
-            toAddressType(value, Number(key), userId)
+            toAddressType(value as firebaseAddressType, Number(key), userId)
           );
           resolve(addresses);
         } else {
           resolve([]);
         }
       },
-      (error: any) => {
+      (error: Error) => {
         reject(error);
       },
       {
@@ -89,7 +112,7 @@ export function createAddressChannel(
           const data = snapshot.val();
           if (data) {
             const addresses = Object.entries(data).map(([key, value]) =>
-              toAddressType(value, Number(key), userId)
+              toAddressType(value as firebaseAddressType, Number(key), userId)
             );
             emit(addresses);
           } else {

@@ -1,4 +1,5 @@
-import { selectProductOverview } from "../redux/selectors/productOverview";
+import Image from "next/image";
+import { selectProductOverview } from "@/redux/selectors/productOverview";
 import React from "react";
 import { useSelector } from "react-redux";
 
@@ -6,11 +7,22 @@ export default function ProductOverivewList() {
   const productOverview = useSelector(selectProductOverview);
   return (
     <div>
-      {productOverview.map((d) =>
-        <div className="text-gray-400 flex items-center my-5 w-[800px]">
+      {productOverview.map((d, index) => (
+        <div
+          key={index}
+          className="text-gray-400 flex items-center my-5 w-[800px]"
+        >
           <div className="flex items-center font-bold  gap-2 w-[350px] ">
             <div className="w-[50px] bg-gray-100  ">
-              <img className="p-1" src={d.image} alt="" />
+              {d.image && (
+                <Image
+                  className="p-1"
+                  src={d.image}
+                  alt=""
+                  width={1080}
+                  height={1080}
+                />
+              )}
             </div>
             <div>
               <h1> {d.name} </h1>
@@ -35,8 +47,7 @@ export default function ProductOverivewList() {
             <p> {d.status} </p>
           </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }
-

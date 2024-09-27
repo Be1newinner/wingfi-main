@@ -6,8 +6,8 @@ export default function NotificationCart() {
   const notification = useSelector(selectNotification);
   return (
     <div>
-      {notification.map((d) => (
-        <div className="flex gap-3 my-2">
+      {notification.map((d, index) => (
+        <div key={index} className="flex gap-3 my-2">
           <div className="bg-gray-100 text-3xl h-[37px] w-[37px] my-3 rounded-full p-1">
             <span className="">{d.icons}</span>
           </div>

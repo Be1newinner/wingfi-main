@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import bestSeller from "../../offline/BestShopSellerList.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const bestSellerSlice = createSlice({
       state.bestSellerloading = true;
     },
 
-    bestSellerSuccess: (state, action: PayloadAction<any>) => {
+    bestSellerSuccess: (state, action) => {
       state.bestSellerloading = false;
       state.data.push(action.payload);
     },

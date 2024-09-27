@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import revenue from "../../offline/revenueData.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const revenueSlice = createSlice({
       state.revenueloading = true;
     },
 
-    revenueSuccess: (state, action: PayloadAction<any>) => {
+    revenueSuccess: (state, action) => {
       state.revenueloading = false;
       state.data.push(action.payload);
     },

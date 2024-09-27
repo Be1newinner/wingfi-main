@@ -13,8 +13,8 @@ import { FaFilePdf } from "react-icons/fa";
 export default function RelatedApps() {
   return (
     <div className='flex flex-wrap justify-between my-1 '>
-        {dataApps.map((d) => 
-            <div className='w-24 h-24 text-center border-2 rounded-xl text-xl py-1 my-1 font-bold '>
+        {dataApps.map((d, index) => 
+            <div key={index} className='w-24 h-24 text-center border-2 rounded-xl text-xl py-1 my-1 font-bold '>
                 <div className='py-2 px-6'>
                 <span className='text-4xl '>  {d.icons} </span>
                 </div>

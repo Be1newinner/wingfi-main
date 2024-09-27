@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "user1",
+    "image": "/images/user-1.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -9,7 +9,7 @@
 
   {
     "id": 2,
-    "image": "user2",
+    "image": "/images/user-2.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -17,7 +17,7 @@
 
   {
     "id": 3,
-    "image": "user3",
+    "image": "/images/user-3.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -25,7 +25,7 @@
 
   {
     "id": 4,
-    "image": "user4",
+    "image": "/images/user-4.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -33,7 +33,7 @@
 
   {
     "id": 5,
-    "image": "user1",
+    "image": "/images/user-1.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -41,7 +41,7 @@
 
   {
     "id": 6,
-    "image": "user5",
+    "image": "/images/user-5.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -49,7 +49,7 @@
 
   {
     "id": 7,
-    "image": "user1",
+    "image": "/images/user-1.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -57,7 +57,7 @@
 
   {
     "id": 8,
-    "image": "user3",
+    "image": "/images/user-3.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -65,7 +65,7 @@
 
   {
     "id": 9,
-    "image": "user2",
+    "image": "/images/user-2.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."
@@ -73,7 +73,7 @@
 
   {
     "id": 10,
-    "image": "user5",
+    "image": "/images/user-5.png",
     "name": "Kathryn Murphy",
     "ratings": "",
     "desc": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque nulla alias harum porro consequuntur, sapiente nostrum sint repellat id quos sunt, laborum voluptate quis provident ex cupiditate explicabo cumque accusantium."

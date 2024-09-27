@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SelectBestSeller } from "../redux/selectors/bestSeller";
 import React from "react";
 import { useSelector } from "react-redux";
@@ -6,11 +7,16 @@ export default function BestShopSellerList() {
   const bestSeller = useSelector(SelectBestSeller);
   return (
     <div>
-      {bestSeller.map((data) => (
-        <div className="flex justify-between my-2 w-[600px] items-center  ">
+      {bestSeller.map((data, index) => (
+        <div
+          key={index}
+          className="flex justify-between my-2 w-[600px] items-center  "
+        >
           <div className="flex gap-1 w-[190px]">
             <div className="w-[50px] rounded-full overflow-hidden">
-              <img src={data.image} alt="" />
+              {data.image && (
+                <Image src={data.image} alt="" height={1080} width={1080} />
+              )}
             </div>
             <div className="font-semibold">
               <h1 className="text-xl">{data.name}</h1>

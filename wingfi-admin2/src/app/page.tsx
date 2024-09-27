@@ -1,15 +1,17 @@
+"use client";
+
 import React, { useState } from "react";
-import Header from "../../components/Header";
-import AnalysisCart from "../../components/AnalysisCart";
-import TopProducts from "../../components/TopProducts";
-import TopCountrySales from "../../components/TopCountrySales";
-import BestShopSeller from "../../components/BestShopSeller";
-import ProductOverview from "../../components/ProductOverview";
-import Orders from "../../components/Orders";
-import Earnings from "../../components/Earning";
-import NewComments from "../../components/NewComments";
-import Footer from "../../components/Footer";
-import LeftSidebar from "../../components/Sidebar";
+import Header from "@/components/Header";
+import AnalysisCart from "@/components/AnalysisCart";
+import TopProducts from "@/components/TopProducts";
+import TopCountrySales from "@/components/TopCountrySales";
+import BestShopSeller from "@/components/BestShopSeller";
+// import ProductOverview from "@/components/ProductOverview";
+import Orders from "@/components/Orders";
+// import Earnings from "@/components/Earning";
+import NewComments from "@/components/NewComments";
+import Footer from "@/components/Footer";
+import LeftSidebar from "@/components/Sidebar";
 import { VscThreeBars } from "react-icons/vsc";
 
 export default function HomePage() {
@@ -54,11 +56,11 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap">
             <BestShopSeller />
-            <ProductOverview />
+            {/* <ProductOverview /> */}
           </div>
           <div className="flex flex-wrap">
             <Orders />
-            <Earnings />
+            {/* <Earnings /> */}
           </div>
           <div>
             <NewComments />

@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItem, CartDataReducer } from "../constants/cart";
+import { createSlice } from "@reduxjs/toolkit";
+// import { CartItem, CartDataReducer } from "../constants/cart";
 
 const DELIVERY_FEE = 0;
 const DISCOUNT_AMOUNT = 0;
 
-const initialState: CartDataReducer = {
+const initialState = {
   items: [],
   total: 0,
   subtotal: 0,
@@ -17,7 +17,7 @@ const initialState: CartDataReducer = {
   error: null,
 };
 
-const loadCartFromLocalStorage = (): CartDataReducer => {
+const loadCartFromLocalStorage = () => {
   try {
     const serializedState = localStorage.getItem("cart");
     if (serializedState === null) {
@@ -25,11 +25,12 @@ const loadCartFromLocalStorage = (): CartDataReducer => {
     }
     return JSON.parse(serializedState);
   } catch (err) {
+    console.error(err)
     return initialState;
   }
 };
 
-const saveCartToLocalStorage = (state: CartDataReducer) => {
+const saveCartToLocalStorage = (state) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem("cart", serializedState);
@@ -38,7 +39,7 @@ const saveCartToLocalStorage = (state: CartDataReducer) => {
   }
 };
 
-const calculateTotals = (items: CartItem[]) => {
+const calculateTotals = (items) => {
   const qty = items.reduce((totalQty, item) => totalQty + item.qty, 0);
   const subtotal = items.reduce(
     (total, item) => total + item.qty * item.price,
@@ -56,15 +57,15 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: loadCartFromLocalStorage(),
   reducers: {
-    addInCart(state, action: PayloadAction<CartItem>) {
+    addInCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.sku === newItem.sku);
       const updatedItems = existingItem
         ? state.items.map((item) =>
-            item.sku === newItem.sku
-              ? { ...item, qty: Number(newItem.qty) }
-              : item
-          )
+          item.sku === newItem.sku
+            ? { ...item, qty: Number(newItem.qty) }
+            : item
+        )
         : [...state.items, newItem];
 
       const updatedTotals = calculateTotals(updatedItems);
@@ -78,7 +79,7 @@ const cartSlice = createSlice({
 
       saveCartToLocalStorage(state); // Save to local storage
     },
-    increaseQty(state, action: PayloadAction<string>) {
+    increaseQty(state, action) {
       const sku = action.payload;
       const itemIndex = state.items.findIndex((item) => item.sku === sku);
       if (itemIndex !== -1) {
@@ -94,15 +95,15 @@ const cartSlice = createSlice({
         saveCartToLocalStorage(state); // Save to local storage
       }
     },
-    decreaseQty(state, action: PayloadAction<string>) {
+    decreaseQty(state, action) {
       const sku = action.payload;
       const itemIndex = state.items.findIndex((item) => item.sku === sku);
       if (itemIndex !== -1) {
         state.items =
           state.items[itemIndex].qty > 1
             ? state.items.map((item, index) =>
-                index === itemIndex ? { ...item, qty: item.qty - 1 } : item
-              )
+              index === itemIndex ? { ...item, qty: item.qty - 1 } : item
+            )
             : state.items.filter((_, index) => index !== itemIndex);
         const updatedTotals = calculateTotals(state.items);
         state.total = updatedTotals.total;
@@ -113,12 +114,12 @@ const cartSlice = createSlice({
         saveCartToLocalStorage(state); // Save to local storage
       }
     },
-    resetCart(state) {
+    resetCart() {
       const newState = initialState;
       saveCartToLocalStorage(newState); // Save reset state to local storage
       return newState;
     },
-    changePaymentMethod(state, action: PayloadAction<number>) {
+    changePaymentMethod(state, action) {
       state.paymentMethod = action.payload;
       saveCartToLocalStorage(state); // Save to local storage
     },
@@ -126,7 +127,7 @@ const cartSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    fetchCartDataSuccess(state, action: PayloadAction<CartDataReducer>) {
+    fetchCartDataSuccess(state, action) {
       const { items, ...rest } = action.payload;
       state.items = items;
       const updatedTotals = calculateTotals(items);
@@ -141,7 +142,7 @@ const cartSlice = createSlice({
 
       saveCartToLocalStorage(state); // Save to local storage
     },
-    fetchCartDataFailure(state, action: PayloadAction<string>) {
+    fetchCartDataFailure(state, action) {
       state.error = action.payload;
       state.loading = false;
     },

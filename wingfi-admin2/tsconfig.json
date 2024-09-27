@@ -12,11 +12,15 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [],
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", "src/redux/constants/analysis.js", "api/firebaseInit.js", "api/fetchCollection.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/redux/reducers/auth.js", "src/redux/reducers/order.js"],
   "exclude": ["node_modules"]
 }

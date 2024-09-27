@@ -1,4 +1,5 @@
 import { Product } from "@/constants/types";
+import Image from "next/image";
 import { AiOutlineEdit } from "react-icons/ai";
 
 interface ListViewProps {
@@ -19,10 +20,15 @@ export function ListView({ Header, Data }: ListViewProps) {
         </tr>
       </thead>
       <tbody>
-        {Data.map((item) => (
-          <tr className="flex items-center justify-between flex-1 hover:bg-gray-200 duration-300 rounded-xl cursor-pointer border-b">
+        {Data.map((item, index) => (
+          <tr
+            key={index}
+            className="flex items-center justify-between flex-1 hover:bg-gray-200 duration-300 rounded-xl cursor-pointer border-b"
+          >
             <td className="font-bold h-16 flex items-center flex-1">
-              {item.image && <img src={item.image} alt="" />}
+              {item.image && (
+                <Image src={item.image} alt="" width={1080} height={1080} />
+              )}
             </td>
             <td className="h-16 flex items-center flex-1">
               <h1>{item.title}</h1>

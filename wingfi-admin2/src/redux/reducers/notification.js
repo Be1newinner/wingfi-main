@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import notification from "../../offline/notificationCart.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const notificationSlice = createSlice({
       state.notificationloading = true;
     },
 
-    notificationSuccess: (state, action: PayloadAction<any>) => {
+    notificationSuccess: (state, action) => {
       state.notificationloading = false;
       state.data.push(action.payload);
     },

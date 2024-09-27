@@ -1,10 +1,9 @@
+"use client";
 import React from "react";
-import { Line } from "react-chartjs-2";
-// eslint-disable-next-line
-import { Chart as ChartJS } from "chart.js/auto";
-import revenueData from "../offline/revenueData.json";
+// import { Line } from "react-chartjs-2";
+// import revenueData from "@/offline/revenueData.json";
 import { useSelector } from "react-redux";
-import { selectAnalysis } from "../redux/selectors/analysis";
+import { selectAnalysis } from "@/redux/selectors/analysis";
 
 export default function AnalysisCart() {
   const analysis = useSelector(selectAnalysis);
@@ -27,7 +26,7 @@ export default function AnalysisCart() {
               <span>{item.trendIcon} </span>
               <p>{item.trend}</p>
             </div>
-            <Line
+            {/* <Line
               data={{
                 labels: revenueData.map((d) => d.label),
                 datasets: [
@@ -41,7 +40,7 @@ export default function AnalysisCart() {
                   },
                 ],
               }}
-            />
+            /> */}
           </div>
         );
       })}

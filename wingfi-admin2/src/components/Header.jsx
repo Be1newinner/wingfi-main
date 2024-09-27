@@ -3,8 +3,8 @@ import { LuLogOut } from "react-icons/lu";
 import { FiUser } from "react-icons/fi";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdForwardToInbox, MdOutlineHeadset } from "react-icons/md";
-import imageUser from "../assets/images/user-1.png";
 import { BiTask } from "react-icons/bi";
+import Image from "next/image";
 
 export default function Header() {
   const [activeBtn, setActiveBtn] = useState(null);
@@ -28,7 +28,7 @@ export default function Header() {
           className=" flex cursor-pointer gap-4"
         >
           <div className=" cursor-pointer rounded-full bg-gray-300 w-[38px] h-[38px] gap-4">
-            <img src={imageUser} alt="" />
+            <Image src="/images/user-1.png" alt="" height={1080} width={1080} />
           </div>
           <div className="border-r-2 cursor-pointer w-[130px]">
             <h1 className="font-bold ">kritsan Watson</h1>

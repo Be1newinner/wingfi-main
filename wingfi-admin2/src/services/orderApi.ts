@@ -2,8 +2,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  doc,
-  getDoc,
   where,
   query,
   QuerySnapshot,

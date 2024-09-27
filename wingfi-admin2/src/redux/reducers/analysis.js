@@ -1,4 +1,6 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+"use client";
+
+import { createSlice } from "@reduxjs/toolkit";
 import analysisData from "../../offline/dataAnalytics.json";
 
 const initialState = {
@@ -14,7 +16,7 @@ const analysisSlice = createSlice({
       state.analysisloading = true;
     },
 
-    AnalysisSuccess: (state, action: PayloadAction<any>) => {
+    AnalysisSuccess: (state, action) => {
       state.analysisloading = false;
       state.data.push(action.payload);
     },

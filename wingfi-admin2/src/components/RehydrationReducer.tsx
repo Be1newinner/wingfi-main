@@ -1,3 +1,5 @@
+"use client";
+
 import { firebaseAuth } from "../infrastructure/firebase.config";
 import { rehydrateUser } from "../redux/reducers/auth";
 import { IdTokenResult, onAuthStateChanged } from "firebase/auth";

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import order from "../../offline/OrdersList.json";
 
 const initialState = {
@@ -8,13 +8,13 @@ const initialState = {
 
 const orderSlice = createSlice({
   name: "order",
-  initialState, 
+  initialState,
   reducers: {
     orderRequest: (state) => {
       state.orderloading = true;
     },
 
-    orderSuccess: (state, action: PayloadAction<any>) => {
+    orderSuccess: (state, action) => {
       state.orderloading = false;
       state.data.push(action.payload);
     },

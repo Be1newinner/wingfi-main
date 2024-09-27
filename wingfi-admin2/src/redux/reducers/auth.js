@@ -1,33 +1,33 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-interface CustomUser {
-  uid: string | null;
-  email: string | null;
-  emailVerified: boolean;
-  phoneNumber: string | null;
-  photoURL: string | null;
-  displayName: string | null;
-  isAdmin: boolean;
-  token: string | null;
-  /* 
-   uid: "ABCD",
-   email: "be1ne@gmail.com",
-   emailVerified: true,
-   phoneNumber: "8130506284",
-   photoURL: "",
-   displayName: "ABC",
-   isAdmin: false,
-   */
-}
+// interface CustomUser {
+//   uid: string | null;
+//   email: string | null;
+//   emailVerified: boolean;
+//   phoneNumber: string | null;
+//   photoURL: string | null;
+//   displayName: string | null;
+//   isAdmin: boolean;
+//   token: string | null;
+// }
+/* 
+ uid: "ABCD",
+ email: "be1ne@gmail.com",
+ emailVerified: true,
+ phoneNumber: "8130506284",
+ photoURL: "",
+ displayName: "ABC",
+ isAdmin: false,
+ */
 
-interface AuthState {
-  user: CustomUser;
-  loading: boolean;
-  error: string | null;
-  isRehydrated: boolean;
-}
+// interface AuthState {
+//   user: CustomUser;
+//   loading: boolean;
+//   error: string | null;
+//   isRehydrated: boolean;
+// }
 
-const initialState: AuthState = {
+const initialState = {
   user: {
     uid: null,
     email: null,
@@ -53,16 +53,17 @@ const authSlice = createSlice({
     },
     loginRequest(
       state,
-      action: PayloadAction<{ email: string; password: string }>
+      action
     ) {
+      console.log(action)
       state.loading = true;
       state.error = null;
     },
-    loginSuccess(state, action: PayloadAction<CustomUser>) {
+    loginSuccess(state, action) {
       state.loading = false;
       state.user = action.payload;
     },
-    loginFailure(state, action: PayloadAction<string>) {
+    loginFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -83,11 +84,11 @@ const authSlice = createSlice({
         token: null,
       };
     },
-    logoutFailure(state, action: PayloadAction<string>) {
+    logoutFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
-    rehydrateUser(state, action: PayloadAction<CustomUser>) {
+    rehydrateUser(state, action) {
       state.user = action.payload;
       state.isRehydrated = true;
       state.loading = false;

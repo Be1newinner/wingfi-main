@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import report from "../../offline/report.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const reportSlice = createSlice({
       state.reportloading = true;
     },
 
-    reportSuccess: (state, action: PayloadAction<any>) => {
+    reportSuccess: (state, action) => {
       state.reportloading = false;
       state.data.push(action.payload);
     },

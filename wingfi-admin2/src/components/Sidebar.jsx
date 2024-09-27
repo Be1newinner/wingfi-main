@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { BsClipboardCheck } from "react-icons/bs";
 import { FiLayers, FiPieChart } from "react-icons/fi";
@@ -11,8 +13,9 @@ import {
 } from "react-icons/lu";
 import { MdHeadsetMic } from "react-icons/md";
 import { RiUserLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
-import logo from "../assets/images/logo.png";
+// import logo from "../assets/images/logo.png";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function LeftSidebar({ handleClose }) {
   const [showDashboard, setShowDashboard] = useState(false);
@@ -21,11 +24,11 @@ export default function LeftSidebar({ handleClose }) {
   const [showAttribute, setShowAttribute] = useState(false);
   const [showOrder, setShowOrder] = useState(false);
   const [showCustomer, setShowCustomer] = useState(false);
-  const [showProductlist, setShowProductlist] = useState(false);
+  // const [showProductlist, setShowProductlist] = useState(false);
 
-  const handleShowProductlist = () => {
-    setShowProductlist(!showProductlist);
-  };
+  // const handleShowProductlist = () => {
+  //   setShowProductlist(!showProductlist);
+  // };
 
   const handleDashboard = () => {
     setShowDashboard(!showDashboard);
@@ -54,7 +57,7 @@ export default function LeftSidebar({ handleClose }) {
   return (
     <aside className="relative overflow-y-scroll h-full no-scrollbar bg-white shadow-md z-50 ">
       <div className="flex items-center justify-between py-[15px] px-5  ">
-        <img src={logo} alt="Logo" className="" />
+        <Image src={"/images/logo.png"} alt="Logo" className="" width={1080} height={1080} />
         <div onClick={handleClose}>
           <IoCloseSharp className="text-2xl " />
         </div>
@@ -64,7 +67,7 @@ export default function LeftSidebar({ handleClose }) {
         <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
           MAIN HOME
         </h1>
-        <Link to="/">
+        <Link href="/">
           <div
             onClick={handleDashboard}
             className={
@@ -104,7 +107,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showEcommerce && (
           <>
-            <Link to="/ecommerce">
+            <Link href="/ecommerce">
               <div>
                 <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                   <div className="w-2 h-2 bg-gray-300 rotate-45">
@@ -114,7 +117,7 @@ export default function LeftSidebar({ handleClose }) {
                 </div>
               </div>
             </Link>
-            <Link to="/productlist">
+            <Link href="/productlist">
               <div>
                 <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                   <div className="w-2 h-2 bg-gray-300 rotate-45">
@@ -145,7 +148,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showCategory && (
           <div>
-            <Link to="/category-list">
+            <Link href="/category-list">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -153,7 +156,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Category List</h1>
               </div>
             </Link>
-            <Link to="/new-category">
+            <Link href="/new-category">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -181,7 +184,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showAttribute && (
           <div>
-            <Link to="/attributes">
+            <Link href="/attributes">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -189,7 +192,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Attributes</h1>
               </div>
             </Link>
-            <Link to="/add-attributes">
+            <Link href="/add-attributes">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -217,7 +220,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showOrder && (
           <div>
-            <Link to="/order-list">
+            <Link href="/order-list">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -225,7 +228,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Order List</h1>
               </div>
             </Link>
-            <Link to="/order-details">
+            <Link href="/order-details">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -233,7 +236,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Order Detail</h1>
               </div>
             </Link>
-            <Link to="/order-tracking">
+            <Link href="/order-tracking">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -261,7 +264,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showCustomer && (
           <div>
-            <Link to="/all-user">
+            <Link href="/all-user">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -269,7 +272,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>All User</h1>
               </div>
             </Link>
-            <Link to="/add-new-user">
+            <Link href="/add-new-user">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -277,7 +280,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Add New User</h1>
               </div>
             </Link>
-            <Link to="/login">
+            <Link href="/login">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -288,7 +291,7 @@ export default function LeftSidebar({ handleClose }) {
           </div>
         )}
 
-        <Link to="/report">
+        <Link href="/report">
           <div className="flex items-center justify-between p-2 hover:text-[#3984FC]  cursor-pointer">
             <div className="flex gap-2 items-center font-semibold">
               <FiPieChart />
@@ -316,7 +319,7 @@ export default function LeftSidebar({ handleClose }) {
         <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
           SUPPORT
         </h1>
-        <Link to="help-center">
+        <Link href="help-center">
           <div className="flex items-center justify-between p-2 hover:text-[#3984FC] cursor-pointer">
             <div className="flex gap-2 items-center font-semibold">
               <LuHelpCircle />
@@ -324,7 +327,7 @@ export default function LeftSidebar({ handleClose }) {
             </div>
           </div>
         </Link>
-        <Link to="/faqs">
+        <Link href="/faqs">
           <div className="flex items-center justify-between p-2 hover:text-[#3984FC] cursor-pointer">
             <div className="flex gap-2 items-center font-semibold">
               <MdHeadsetMic />
@@ -332,7 +335,7 @@ export default function LeftSidebar({ handleClose }) {
             </div>
           </div>
         </Link>
-        <Link to="/privacy-policy">
+        <Link href="/privacy-policy">
           <div className="flex items-center justify-between p-2 hover:text-[#3984FC] cursor-pointer">
             <div className="flex gap-2 items-center font-semibold">
               <BsClipboardCheck />
@@ -343,7 +346,7 @@ export default function LeftSidebar({ handleClose }) {
       </div>
       {/* =============== support ================== */}
       {/* =============== connect us ================== */}
-      <Link to="/connect-us">
+      <Link href="/connect-us">
         <div className="p-4">
           <h1 className="font-bold text-xs text-gray-400 pl-3 mb-[10px]">
             CONNECT US

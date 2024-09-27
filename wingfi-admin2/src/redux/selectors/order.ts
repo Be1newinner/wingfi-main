@@ -12,10 +12,12 @@ export const selectAllOrders = createSelector(
   (orderState) => orderState.orders
 );
 
-export const selectOrderById = (orderId: string) =>
-  createSelector([selectAllOrders], (orders) =>
-    orders.find((order) => order.id === orderId)
-  );
+// export const selectOrderById = (orderId: string) =>
+//   createSelector([selectAllOrders], (orders) =>
+//     orders.find((order) => order.id === orderId)
+//   );
+
+export const selectOrderById = () => null;
 
 export const selectOrderLoading = createSelector(
   [selectOrderState],

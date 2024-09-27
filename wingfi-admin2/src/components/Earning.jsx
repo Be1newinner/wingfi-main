@@ -1,8 +1,10 @@
+"use client";
+
 import React, { useState } from "react";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { Bar } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { selectRevenue } from "../redux/selectors/revenue";
+import { selectRevenue } from "@/redux/selectors/revenue";
 
 export default function Earnings() {
   const revenue = useSelector(selectRevenue);

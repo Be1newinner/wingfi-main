@@ -4,8 +4,8 @@
     "name": "Patimax Fragrance Long...",
     "price": "27.00",
     "percentage": "-15%",
-    "image": "product1",
-    "images": "flag"
+    "image": "/images/empty.png",
+    "images": "/images/flag.png"
   },
 
   {
@@ -13,7 +13,7 @@
     "name": "Nulo MedalSeries Adult Cat...",
     "price": "27.00",
     "percentage": "-15%",
-    "image": "product2",
+    "image": "/images/empty.png",
     "flag": "flag2"
   },
 
@@ -22,7 +22,7 @@
     "name": "Pedigree Puppy Dry Dog...",
     "price": "27.00",
     "percentage": "-15%",
-    "image": "product3",
+    "image": "/images/empty.png",
     "flag": "flag3"
   },
 
@@ -31,7 +31,7 @@
     "name": "Biscoito Premier Cookie...",
     "price": "27.00",
     "percentage": "-15%",
-    "image": "product4",
+    "image": "/images/empty.png",
     "flag": "flag4"
   },
 
@@ -40,7 +40,7 @@
     "name": "Pedigree Adult Dry Dog...",
     "price": "27.00",
     "percentage": "-15%",
-    "image": "product5",
+    "image": "/images/empty.png",
     "flag": "flag5"
   }
 ]

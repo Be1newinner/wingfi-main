@@ -1,15 +1,15 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Order } from "../constants/order";
+import { createSlice } from "@reduxjs/toolkit";
+// import { Order } from "../constants/order";
 
-interface OrderState {
-  orders: Order[];
-  loading: boolean;
-  error: string | null;
-  success: boolean;
-  latestOrderID: string | null;
-}
+// interface OrderState {
+//   orders: Order[];
+//   loading: boolean;
+//   error: string | null;
+//   success: boolean;
+//   latestOrderID: string | null;
+// }
 
-const initialState: OrderState = {
+const initialState = {
   orders: [],
   loading: false,
   error: null,
@@ -21,19 +21,20 @@ const orderSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    generateOrderRequest(state, action: PayloadAction<Order>) {
+    generateOrderRequest(state, action) {
+      console.log(action);
       state.success = false;
       state.latestOrderID = null;
       state.loading = true;
       state.error = null;
     },
-    generateOrderSuccess(state, action: PayloadAction<Order>) {
+    generateOrderSuccess(state, action) {
       state.loading = false;
       state.orders.push(action.payload);
       state.success = true;
       state.latestOrderID = action.payload.id;
     },
-    generateOrderFailure(state, action: PayloadAction<string>) {
+    generateOrderFailure(state, action) {
       state.loading = false;
       state.success = false;
       state.error = action.payload;
@@ -42,22 +43,23 @@ const orderSlice = createSlice({
       state.loading = true;
       state.error = null;
     },
-    loadAllOrdersSuccess(state, action: PayloadAction<Order[]>) {
+    loadAllOrdersSuccess(state, action) {
       state.loading = false;
       state.orders = action.payload;
     },
-    loadAllOrdersFailure(state, action: PayloadAction<string>) {
+    loadAllOrdersFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },
     loadSingleOrderRequest(
       state,
-      action: PayloadAction<{ orderid: string; uid: string }>
+      action
     ) {
+      console.log(action);
       state.loading = true;
       state.error = null;
     },
-    loadSingleOrderSuccess(state, action: PayloadAction<Order>) {
+    loadSingleOrderSuccess(state, action) {
       state.loading = false;
       const index = state.orders.findIndex(
         (address) => address.id === action.payload.id
@@ -69,7 +71,7 @@ const orderSlice = createSlice({
       // );
       state.error = null;
     },
-    loadSingleOrderFailure(state, action: PayloadAction<string>) {
+    loadSingleOrderFailure(state, action) {
       state.loading = false;
       state.error = action.payload;
     },

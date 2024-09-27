@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import productOverview from "../../offline/productOverview.json";
+import { createSlice } from "@reduxjs/toolkit";
+import productOverview from "@/offline/productOverview.json";
 
 const initialState = {
   data: productOverview,
@@ -14,7 +14,7 @@ const productOverviewSlice = createSlice({
       state.productOverviewloading = true;
     },
 
-    productOverviewSuccess: (state, action: PayloadAction<any>) => {
+    productOverviewSuccess: (state, action) => {
       state.productOverviewloading = false;
       state.data.push(action.payload);
     },

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import product from "../../offline/topProductList.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const productSlice = createSlice({
       state.productloading = true;
     },
 
-    productSuccess: (state, action: PayloadAction<any>) => {
+    productSuccess: (state, action) => {
       state.productloading = false;
       state.data.push(action.payload);
     },

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { FaArrowTrendUp } from "react-icons/fa6";

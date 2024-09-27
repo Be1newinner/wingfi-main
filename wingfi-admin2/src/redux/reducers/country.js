@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import country from "../../offline/topCountrySalesList.json";
 
 const initialState = {
@@ -14,7 +14,7 @@ const countrySlice = createSlice({
       state.countryloading = true;
     },
 
-    countrySuccess: (state, action: PayloadAction<any>) => {
+    countrySuccess: (state, action) => {
       state.countryloading = false;
       state.data.push(action.payload);
     },

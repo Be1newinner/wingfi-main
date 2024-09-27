@@ -2,35 +2,35 @@
   {
     "id": 1,
     "status": "Success",
-    "image": "product1",
+    "image": "/images/empty.png",
     "name": "Prodotti per il tuo cane..."
   },
 
   {
     "id": 2,
     "status": "Pending",
-    "image": "product2",
+    "image": "/images/empty.png",
     "name": "Wholesome Pride..."
   },
 
   {
     "id": 3,
     "status": "Pending",
-    "image": "product3",
+    "image": "/images/empty.png",
     "name": "Beneful Baked Delights..."
   },
 
   {
     "id": 4,
     "status": "Pending",
-    "image": "product4",
+    "image": "/images/empty.png",
     "name": "Taste of the Wild..."
   },
 
   {
     "id": 5,
     "status": "Pending",
-    "image": "product5",
+    "image": "/images/empty.png",
     "name": "Canagan - Britain's..."
   }
 ]
