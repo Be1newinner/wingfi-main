@@ -1,16 +1,11 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-// import { Order } from "../constants/order";
 
 import {
-        loadAllProductsRequest, loadAllProductsSuccess, loadAllProductsFailure
+        loadAllProductsRequest, loadAllProductsSuccess, loadAllProductsFailure,
+
 } from "../reducers/products";
 
 import loadProductService from "../../services/products/loadProductService";
-
-// interface GenerateOrderRequestAction {
-//         type: typeof generateOrderRequest.type;
-//         payload: Order;
-// }
 
 function* loadAllProductsSaga(action) {
         try {

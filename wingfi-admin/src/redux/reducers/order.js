@@ -1,70 +1,66 @@
-import { createSlice } from "@reduxjs/toolkit";
-// import { Order } from "../constants/order";
-
-// interface OrderState {
-//   orders: Order[];
-//   loading: boolean;
-//   error: string | null;
-//   success: boolean;
-//   latestOrderID: string | null;
-// }
+// features/ordersSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+import { ORDER_SLICE } from "../constants/slices";
 
 const initialState = {
-  orders: [],
+  orders: {},
+  totalOrders: 0,
+  currentPage: 1,
   loading: false,
   error: null,
 };
 
-const orderSlice = createSlice({
-  name: "order",
+const ordersSlice = createSlice({
+  name: ORDER_SLICE,
   initialState,
   reducers: {
-    loadAllOrdersRequest(state) {
+    ordersLoadRequest: (state) => {
       state.loading = true;
       state.error = null;
     },
-    loadAllOrdersSuccess(state, action) {
+    ordersLoadSuccess: (state, action) => {
+      // Normalize the orders for easier access
+      action.payload.orders.forEach(order => {
+        state.orders[order.id] = order;
+      });
+      state.totalOrders = action.payload.totalCount;
       state.loading = false;
-      state.orders = action.payload;
     },
-    loadAllOrdersFailure(state, action) {
+    ordersLoadFailure: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.payload.error || "An error occurred";
     },
-    loadSingleOrderRequest(
-      state,
-      action
-    ) {
-      console.log(action);
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload.page;
+    },
+    totalOrdersRequest: (state) => {
       state.loading = true;
       state.error = null;
     },
-    loadSingleOrderSuccess(state, action) {
+    totalOrdersSuccess: (state, action) => {
+      state.totalOrders = action.payload.count;
       state.loading = false;
-      const index = state.orders.findIndex(
-        (address) => address.id === action.payload.id
-      );
-
-      if (index === -1) state.orders.push(action.payload);
-      // state.orders = state.orders.map((order) =>
-      //   order.id === action.payload.id ? action.payload : order
-      // );
-      state.error = null;
     },
-    loadSingleOrderFailure(state, action) {
+    totalOrdersFailure: (state, action) => {
       state.loading = false;
-      state.error = action.payload;
+      state.error = action.payload.error || "An error occurred";
     },
   },
 });
 
+// Export actions and reducer
 export const {
-  loadAllOrdersRequest,
-  loadAllOrdersSuccess,
-  loadAllOrdersFailure,
-  loadSingleOrderRequest,
-  loadSingleOrderSuccess,
-  loadSingleOrderFailure,
-} = orderSlice.actions;
+  ordersLoadRequest,
+  ordersLoadSuccess,
+  ordersLoadFailure,
+  setCurrentPage,
+  totalOrdersRequest,
+  totalOrdersSuccess,
+  totalOrdersFailure,
+} = ordersSlice.actions;
 
-export default orderSlice.reducer;
+export default ordersSlice.reducer;
+
+// Selectors
+const selectOrdersSlice = (state) => state[ORDER_SLICE];
+export const orderSelectors = ordersSlice.getSelectors(selectOrdersSlice);
