@@ -117,7 +117,7 @@ export default function LeftSidebar({ handleClose }) {
                 </div>
               </div>
             </Link>
-            <Link href="/productlist">
+            <Link href="/products/products-list">
               <div>
                 <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                   <div className="w-2 h-2 bg-gray-300 rotate-45">
@@ -264,7 +264,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showCustomer && (
           <div>
-            <Link href="/all-user">
+            <Link href="/user/all-user">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -272,7 +272,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>All User</h1>
               </div>
             </Link>
-            <Link href="/add-new-user">
+            <Link href="/user/add-new-user">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -280,7 +280,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Add New User</h1>
               </div>
             </Link>
-            <Link href="/login">
+            <Link href="/user/login">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>

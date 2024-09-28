@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import AnalysisCart from "@/components/AnalysisCart";
 import TopProducts from "@/components/TopProducts";
+// import TopProducts from "@/components/";
 // import ProductOverview from "@/components/ProductOverview";
 import Orders from "@/components/Orders";
 // import Earnings from "@/components/Earning";
@@ -60,10 +61,10 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap justify-between">
             <TopProducts />
-            <TopCountrySales />
+            {/* <TopCountrySales /> */}
           </div>
           <div className="flex flex-wrap justify-between">
-            <BestShopSeller />
+            {/* <BestShopSeller /> */}
             <Orders />
             {/* <ProductOverview /> */}
           </div>
