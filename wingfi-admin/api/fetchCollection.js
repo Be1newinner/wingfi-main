@@ -1,11 +1,15 @@
-const { firestore } = require("../config/firebaseInit");
-const authMiddleware = require("../config/authMiddleware");
+import { firestore } from "../config/firebaseInit";
+import authMiddleware from "../config/authMiddleware";
+import runMiddleware from "../config/cors";
 
 async function handler(req, res) {
   try {
-    if (req.method !== "POST") {
-      return res.status(405).json({ error: "Method Not Allowed" });
-    }
+
+    await runMiddleware(req, res);
+
+    // if (req.method !== "POST") {
+    //   return res.status(405).json({ error: "Method Not Allowed" });
+    // }
 
     const { collectionPath, where = [], limit = 10 } = req.body;
 

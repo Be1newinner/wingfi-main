@@ -20,8 +20,6 @@ export interface AddressType extends BasicAddressFields {
   uid: string;
 }
 
- 
-
 export interface RemoveAddressAction {
   type: typeof REMOVE_ADDRESS;
   payload: { key: number };

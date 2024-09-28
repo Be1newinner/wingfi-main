@@ -7,7 +7,7 @@ export default function TopProductsList() {
   const product = useSelector(selectProduct);
   return (
     <div>
-      {product.map((d, index) => (
+      {product?.map((d, index) => (
         <div key={index} className="flex justify-between my-1">
           <div className="w-[50px] bg-gray-100 rounded-lg p-1 m-2">
             {d.image && (

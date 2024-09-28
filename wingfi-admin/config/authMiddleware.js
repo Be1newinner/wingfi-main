@@ -1,4 +1,4 @@
-const { auth } = require("./firebaseInit"); // Make sure this file is correctly configured to initialize Firebase
+// import { auth } from "./firebaseInit"; // Make sure this file is correctly configured to initialize Firebase
 
 // Middleware function
 async function authMiddleware(req, res, next) {

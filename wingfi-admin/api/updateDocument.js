@@ -1,5 +1,5 @@
-const { firestore } = require("../config/firebaseInit");
-const authMiddleware = require("../config/authMiddleware");
+import { firestore } from "../config/firebaseInit";
+import authMiddleware from "../config/authMiddleware";
 
 async function handler(req, res) {
   try {

@@ -2,10 +2,6 @@ import { createSelector } from "reselect";
 import { RootState } from "../rootReducer";
 
 export const selectOrderState = (state: RootState) => state.order;
-export const selectNewOrderIDState = (state: RootState) =>
-  state.order.latestOrderID;
-export const selectGenerateOrderStatusState = (state: RootState) =>
-  state.order.success;
 
 export const selectAllOrders = createSelector(
   [selectOrderState],

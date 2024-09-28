@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import AnalysisCart from "@/components/AnalysisCart";
 import TopProducts from "@/components/TopProducts";
-import TopCountrySales from "@/components/TopCountrySales";
-import BestShopSeller from "@/components/BestShopSeller";
 // import ProductOverview from "@/components/ProductOverview";
 import Orders from "@/components/Orders";
 // import Earnings from "@/components/Earning";
@@ -13,6 +11,8 @@ import NewComments from "@/components/NewComments";
 import Footer from "@/components/Footer";
 import LeftSidebar from "@/components/Sidebar";
 import { VscThreeBars } from "react-icons/vsc";
+import { useDispatch } from "react-redux";
+import { loadAllProductsRequest } from "@/redux/reducers/products";
 
 export default function HomePage() {
   const [show, setShow] = useState(false);
@@ -20,11 +20,19 @@ export default function HomePage() {
     setShow(true);
   };
 
+  const dispatch = useDispatch();
+
   const handleClose = () => {
     if (show) {
       setShow(false);
     }
   };
+
+  useEffect(() => {
+    dispatch(
+      loadAllProductsRequest({ name: "Vijay", email: "vijay@gmail.com" })
+    );
+  }, [dispatch]);
 
   return (
     <div className="flex flex-row ">
