@@ -12,16 +12,16 @@ export default function OrdersList() {
       {order.map((d, index) => (
         <div
           key={index}
-          className="my-4 flex w-[600px] hover:bg-gray-200 hover:rounded-lg hover:text-sky-400 duration-300 mx-5  items-center"
+          className="my-4 flex hover:bg-gray-200 hover:rounded-lg hover:text-sky-400 duration-300 mx-5  items-center"
         >
           <div className="flex gap-2 items-center w-[300px]">
             <div className="">
               {d.image && (
-                <Image src={d.image} alt="img" width={1080} height={1080} />
+                <Image src={d.image} alt="img" width={50} height={50} />
               )}
             </div>
             <div>
-              <h3>{d.name}</h3>
+              <h3 className="font-semibold">{d.name}</h3>
             </div>
           </div>
           <div className="w-[150px] mr-14">

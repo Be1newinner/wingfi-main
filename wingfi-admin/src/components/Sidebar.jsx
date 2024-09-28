@@ -55,7 +55,7 @@ export default function LeftSidebar({ handleClose }) {
   };
 
   return (
-    <aside className="relative overflow-y-scroll h-full no-scrollbar bg-white shadow-md z-50 ">
+    <aside className="relative overflow-y-scroll  h-screen no-scrollbar bg-white shadow-md z-50 ">
       <div className="flex items-center justify-between py-[15px] px-5  ">
         <Image src={"/images/logo.png"} alt="Logo" className="" width={1080} height={1080} />
         <div onClick={handleClose}>
@@ -107,7 +107,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showEcommerce && (
           <>
-            <Link href="/ecommerce">
+            <Link href="/products/add-products">
               <div>
                 <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                   <div className="w-2 h-2 bg-gray-300 rotate-45">
@@ -148,7 +148,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showCategory && (
           <div>
-            <Link href="/category-list">
+            <Link href="/category/category-list">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -156,7 +156,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Category List</h1>
               </div>
             </Link>
-            <Link href="/new-category">
+            <Link href="/category/new-category">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -220,7 +220,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showOrder && (
           <div>
-            <Link href="/order-list">
+            <Link href="/order/order-list">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -228,7 +228,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Order List</h1>
               </div>
             </Link>
-            <Link href="/order-details">
+            <Link href="/order/order-details">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -236,7 +236,7 @@ export default function LeftSidebar({ handleClose }) {
                 <h1>Order Detail</h1>
               </div>
             </Link>
-            <Link href="/order-tracking">
+            <Link href="/order/order-tracking">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>

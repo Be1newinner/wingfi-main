@@ -11,7 +11,7 @@ export default function Orders() {
 
   return (
     <>
-    <div className="border-2 w-[48%] max-sm:w-full m-2  bg-white rounded-2xl shadow-xl p-4 ">
+    <div className="border-2 w-[60%] max-sm:w-full m-2  bg-white rounded-2xl shadow-xl p-4 ">
     <div className="flex justify-between items-center py-2">
       <h1 className="font-bold text-xl"> Orders </h1>
       <p

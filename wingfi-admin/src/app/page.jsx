@@ -46,22 +46,23 @@ export default function HomePage() {
           <Header />
         </header>
 
-        <main className="mx-5  justify-center">
+        <main className="mx-5 h-screen overflow-scroll  justify-center">
           <div>
             <AnalysisCart />
           </div>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap justify-between">
             <TopProducts />
             <TopCountrySales />
           </div>
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap justify-between">
             <BestShopSeller />
+            <Orders />
             {/* <ProductOverview /> */}
           </div>
-          <div className="flex flex-wrap">
-            <Orders />
+          {/* <div className="flex flex-wrap"> */}
+            
             {/* <Earnings /> */}
-          </div>
+          {/* </div> */}
           <div>
             <NewComments />
           </div>
