@@ -85,7 +85,7 @@ export default function OrderList() {
           <Header />
         </header>
 
-        <main className="bg-gray-100">
+        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
             <h1 className="font-bold text-2xl ">Add Attribute </h1>
             <div className="flex gap-4 items-center ">

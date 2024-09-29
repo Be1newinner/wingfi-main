@@ -9,52 +9,11 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
 import { GrView } from "react-icons/gr";
-import Image from "next/image";
+import user1 from "../../../../public/images/user-11.png";
+import user2 from "../../../../public/images/user-12.png";
+import user3 from "../../../../public/images/user-13.png";
 
-export default function OrderList() {
-    const data = [
-        {
-          id: 1,
-          status: "Success",
-        },
-        {
-          id: 2,
-          status: "Pending",
-        },
-        {
-          id: 3,
-          status: "Success",
-        },
-        {
-          id: 4,
-          status: "Pending",
-        },
-        {
-          id: 5,
-          status: "Success",
-        },
-        {
-          id: 6,
-          status: "Cancel",
-        },
-        {
-          id: 7,
-          status: "Cancel",
-        },
-        {
-          id: 8,
-          status: "Success",
-        },
-        {
-          id: 9,
-          status: "Cancel",
-        },
-        {
-          id: 10,
-          status: "Success",
-        },
-      ];
-
+export default function OrderTracking() {
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -65,6 +24,49 @@ export default function OrderList() {
       setShow(false);
     }
   };
+
+  const data = [
+    {
+      id: 1,
+      image: user1,
+    },
+    {
+      id: 2,
+      image: user2,
+    },
+    {
+      id: 3,
+      image: user1,
+    },
+    {
+      id: 4,
+      image: user2,
+    },
+    {
+      id: 5,
+      image: user1,
+    },
+    {
+      id: 6,
+      image: user3,
+    },
+    {
+      id: 7,
+      image: user3,
+    },
+    {
+      id: 8,
+      image: user1,
+    },
+    {
+      id: 9,
+      image: user3,
+    },
+    {
+      id: 10,
+      image: user1,
+    },
+  ];
 
   return (
     <div className="flex flex-row bg-[#f2f7fb] ">
@@ -84,88 +86,56 @@ export default function OrderList() {
           <Header />
         </header>
 
-        <main className="bg-gray-100">
+        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
             <h1 className="font-bold text-2xl ">Add Attribute </h1>
             <div className="flex gap-4 items-center ">
               <h1>Dashboard </h1>
               <IoIosArrowForward />
-              <h1>Order</h1>
+              <h1>User</h1>
               <IoIosArrowForward />
-              <h1> Order List </h1>
+              <h1> All User </h1>
             </div>
           </div>
 
           <div className="border-2 rounded-xl  shadow-xl bg-white w-[95%] max-sm:mx-auto mx-10 p-4 ">
-            <div className="flex flex-wrap gap-4 justify-between ">
+            <div className="flex flex-wrap gap-2 max-sm:w-full justify-between ">
               <div className="flex flex-wrap max-sm:w-full gap-4 items-center">
                 <input
-                  className="w-[400px] max-sm:w-full border-2 rounded-xl p-2 h-10 "
+                  className="w-[400px]  border-2 rounded-xl p-2 h-10 "
                   type="search"
                   placeholder="Search Here"
                 />
               </div>
               <button className="w-[200px] max-sm:w-full font-bold text-blue-500 border-2 border-blue-500 rounded-xl px-4 py-2 hover:text-white hover:bg-blue-500">
-                Export all order
+                + Add New
               </button>
             </div>
             <div className="overflow-x-scroll no-scrollbar py-5">
-              <div className="font-bold flex justify-between bg-gray-50 h-14 rounded-xl items-center p-4 w-[150%]  ">
-                <h1 className="w-[9%]">Product</h1>
-                <h1>Order ID</h1>
-                <h1>Price</h1>
-                <h1>Quantity</h1>
-                <h1>Payment</h1>
-                <h1>Status</h1>
-                <h1>Tracking</h1>
+              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-4 px-20 w-[120%]  ">
+                <h1 className="w-[8%]">User</h1>
+                <h1>Phone</h1>
+                <h1>Email</h1>
                 <h1>Action</h1>
               </div>
               {data.map((d) => (
-                <div 
-                key={d.id}
-                  style={{
-                    backgroundColor:
-                      d.id === 1 ||
-                      d.id === 3 ||
-                      d.id === 5 ||
-                      d.id === 7 ||
-                      d.id === 9
-                        ? "#f5f5f5"
-                        : "",
-                  }}
-                  className="flex items-center justify-between w-[150%] hover:bg-gray-300 my-4 rounded-xl"
-                >
-                  <div className="flex items-center font-bold">
-                    <Image src="/images/1.png" alt="" width={50} height={50} />
-                    <h1>Kristin Watson</h1>
+                <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
+                  <div className="flex items-center gap-2 font-bold">
+                    <img
+                      width={50}
+                      height={50}
+                      className="rounded-xl"
+                      src={d.image}
+                      alt=""
+                    />
+                    <div>
+                      <h1>Kristin Watson</h1>
+                      <p className="text-gray-400 text-xs">Product Name </p>
+                    </div>
                   </div>
-                  <p>#77123435</p>
                   <p>$1,434.500</p>
                   <p>1650</p>
-                  <p>20</p>
-                  <p
-                    style={{
-                      background:
-                        d.status === "Pending"
-                          ? "#ebdfdf"
-                          : d.status === "Cancel"
-                          ? "#f79494"
-                          : "",
-                      color:
-                        d.status === "Pending"
-                          ? "gray"
-                          : d.status === "Cancel"
-                          ? "red"
-                          : "",
-                    }}
-                    className="font-semibold p-2 text-green-400 bg-green-200 rounded-xl"
-                  >
-                    {d.status}
-                  </p>
-                  <p className="font-semibold p-2 text-blue-400 bg-blue-200 rounded-xl">
-                    Tracking
-                  </p>
-                  <div className="flex gap-3">
+                  <div className="flex gap-4">
                     <GrView color="blue" />
                     <AiOutlineEdit color="green" />
                     <MdDelete color="red" />

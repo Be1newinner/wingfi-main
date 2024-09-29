@@ -5,10 +5,7 @@ import { useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
-import { AiOutlineEdit } from "react-icons/ai";
-import { GrView } from "react-icons/gr";
+import { IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
 import { FaCheckCircle } from "react-icons/fa";
 
@@ -42,7 +39,7 @@ export default function OrderTracking() {
           <Header />
         </header>
 
-        <main className="bg-gray-100 max-sm:w-full">
+        <main className="bg-gray-100 max-sm:w-full h-screen overflow-scroll no-scrollbar">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
             <h1 className="font-bold text-2xl ">Add Attribute </h1>
             <div className="flex gap-4 items-center ">

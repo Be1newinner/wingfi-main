@@ -6,29 +6,26 @@ const preURL =
     ? "https://wingfi-admin.vercel.app"
     : "";
 
-export default async function loadProductService() {
+export default async function loadOrdersService() {
   try {
     const data = await axios.post(
       preURL + "/api/fetchCollection",
       {
-        collectionPath: "p43duc",
+        collectionPath: "or73r",
       },
       {
         headers: { "x-api-key": "da4T38fwe4fwDDW238" },
       }
     );
     const response = await data.data;
-    // console.log("your res is : ", response);
+    console.log("order data is :",response)
     const mutatedData = response.map((item, index) => {
       return {
-        id: item.id || "",
-        label: item.l || "",
-        mrp: item.m || 0,
-        price: item.p || 0,
-        rating: item.r || 0,
-        status: StatusConverter(item.r),
-        sku: item.sk || 0,
         index: index + 1,
+        date: item.d,
+        status: StatusConverter(item.s),
+        total: item.t,
+        UID: item.u,
       };
     });
     return mutatedData;

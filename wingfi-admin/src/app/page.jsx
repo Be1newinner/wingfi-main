@@ -55,7 +55,7 @@ export default function HomePage() {
           <Header />
         </header>
 
-        <main className="mx-5 h-screen overflow-scroll  justify-center">
+        <main className="mx-5 h-screen overflow-scroll scrollbar-hide  justify-center">
           <div>
             <AnalysisCart />
           </div>

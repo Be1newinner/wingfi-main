@@ -39,7 +39,7 @@ function AddProduct() {
           </div>
           <Header />
         </header>
-        <main>
+        <main className="h-screen overflow-scroll no-scrollbar pb-10">
           <div className="flex flex-wrap justify-between p-4">
             <h1 className="font-bold text-2xl ">Add Attribute </h1>
             <div className="flex gap-4  ">
@@ -50,7 +50,7 @@ function AddProduct() {
           </div>
           {/* ================cart input ================= */}
           <div >
-            <div className="w-full overflow-scroll h-screen flex gap-4">
+            <div className="w-full flex gap-4">
               <div className="w-[48%] max-sm:w-full px-4 mx-4 shadow-xl bg-white border-2 rounded-xl">
                 <h1 className="py-4 font-bold text-lg ">Product Name </h1>
                 <input

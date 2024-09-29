@@ -1,19 +1,24 @@
 "use client";
 import { VscThreeBars } from "react-icons/vsc";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
-import { AiOutlineEdit } from "react-icons/ai";
-import { GrView } from "react-icons/gr";
-import user1 from "../../../../public/images/user-11.png";
-import user2 from "../../../../public/images/user-12.png";
-import user3 from "../../../../public/images/user-13.png";
+import { useDispatch, useSelector } from "react-redux";
+import { loadAllOrdersRequest } from "@/redux/reducers/order";
+import { useRouter } from "next/navigation";
 
-export default function OrderTracking() {
+export default function OrderList() {
+  const data = useSelector((state) => state.order.data);
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllOrdersRequest());
+  }, [dispatch]);
+
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
@@ -24,49 +29,6 @@ export default function OrderTracking() {
       setShow(false);
     }
   };
-
-  const data = [
-    {
-      id: 1,
-      image: user1,
-    },
-    {
-      id: 2,
-      image: user2,
-    },
-    {
-      id: 3,
-      image: user1,
-    },
-    {
-      id: 4,
-      image: user2,
-    },
-    {
-      id: 5,
-      image: user1,
-    },
-    {
-      id: 6,
-      image: user3,
-    },
-    {
-      id: 7,
-      image: user3,
-    },
-    {
-      id: 8,
-      image: user1,
-    },
-    {
-      id: 9,
-      image: user3,
-    },
-    {
-      id: 10,
-      image: user1,
-    },
-  ];
 
   return (
     <div className="flex flex-row bg-[#f2f7fb] ">
@@ -86,63 +48,59 @@ export default function OrderTracking() {
           <Header />
         </header>
 
-        <main className="bg-gray-100">
+        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
-            <h1 className="font-bold text-2xl ">Add Attribute </h1>
+            <h1 className="font-bold text-2xl ">Orders </h1>
             <div className="flex gap-4 items-center ">
               <h1>Dashboard </h1>
               <IoIosArrowForward />
-              <h1>User</h1>
+              <h1>Order</h1>
               <IoIosArrowForward />
-              <h1> All User </h1>
+              <h1> Order List </h1>
             </div>
           </div>
 
           <div className="border-2 rounded-xl  shadow-xl bg-white w-[95%] max-sm:mx-auto mx-10 p-4 ">
-            <div className="flex flex-wrap gap-2 max-sm:w-full justify-between ">
+            <div className="flex flex-wrap gap-4 justify-between ">
               <div className="flex flex-wrap max-sm:w-full gap-4 items-center">
                 <input
-                  className="w-[400px]  border-2 rounded-xl p-2 h-10 "
+                  className="w-[400px] max-sm:w-full border-2 rounded-xl p-2 h-10 "
                   type="search"
                   placeholder="Search Here"
                 />
               </div>
               <button className="w-[200px] max-sm:w-full font-bold text-blue-500 border-2 border-blue-500 rounded-xl px-4 py-2 hover:text-white hover:bg-blue-500">
-                + Add New
+                Export all order
               </button>
             </div>
-            <div className="overflow-x-scroll no-scrollbar py-5">
-              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-4 px-20 w-[120%]  ">
-                <h1 className="w-[8%]">User</h1>
-                <h1>Phone</h1>
-                <h1>Email</h1>
-                <h1>Action</h1>
-              </div>
-              {data.map((d) => (
-                <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
-                  <div className="flex items-center gap-2 font-bold">
-                    <img
-                      width={50}
-                      height={50}
-                      className="rounded-xl"
-                      src={d.image}
-                      alt=""
-                    />
-                    <div>
-                      <h1>Kristin Watson</h1>
-                      <p className="text-gray-400 text-xs">Product Name </p>
-                    </div>
-                  </div>
-                  <p>$1,434.500</p>
-                  <p>1650</p>
-                  <div className="flex gap-4">
-                    <GrView color="blue" />
-                    <AiOutlineEdit color="green" />
-                    <MdDelete color="red" />
-                  </div>
-                </div>
+            <table className="w-full">
+              <tr>
+                <th className="text-left py-4">SrNo</th>
+                {/* <th className="text-left">Name</th> */}
+                <th className="text-left">Order ID</th>
+                <th className="text-left">Price</th>
+                {/* <th className="text-left">Qty</th>
+                <th className="text-left">Payment</th> */}
+                <th className="text-left">Status</th>
+                <th className="text-left">Tracking</th>
+              </tr>
+              {data.map((d, i) => (
+                <tr
+                  key={i}
+                  onClick={() => router.push("/order/order-details")}
+                  className="hover:bg-gray-200 duration-300"
+                >
+                  <td className="py-4 text-center">{d.index}</td>
+                  {/* <td className="">{d.label}</td> */}
+                  <td>{d.UID}</td>
+                  <td>{d.total}</td>
+                  {/* <td>{d.rating}</td>
+                  <td>{d.sku}</td> */}
+                  <td>{d.status}</td>
+                  <td>{d.status}</td>
+                </tr>
               ))}
-            </div>
+            </table>
             <hr />
             <div className="flex justify-between items-center py-4">
               <h1 className="font-semibold text-gra-400">Showing 10 entries</h1>

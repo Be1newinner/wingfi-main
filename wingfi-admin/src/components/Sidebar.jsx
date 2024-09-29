@@ -117,7 +117,7 @@ export default function LeftSidebar({ handleClose }) {
                 </div>
               </div>
             </Link>
-            <Link href="/products/products-list">
+            <Link href="/products">
               <div>
                 <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                   <div className="w-2 h-2 bg-gray-300 rotate-45">
@@ -148,7 +148,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showCategory && (
           <div>
-            <Link href="/category/category-list">
+            <Link href="/category">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -166,42 +166,7 @@ export default function LeftSidebar({ handleClose }) {
             </Link>
           </div>
         )}
-        <div
-          onClick={handleShowAttribute}
-          className={
-            showAttribute
-              ? "flex items-center justify-between p-3 hover:text-[#3984FC] cursor-pointer bg-[#E9F1FF] text-[#3984FC] rounded-xl duration-300"
-              : "flex items-center justify-between p-3 hover:text-[#3984FC] cursor-pointer"
-          }
-        >
-          <div className="flex gap-2 items-center font-semibold">
-            <IoCubeOutline />
-
-            <h1>Attributes</h1>
-          </div>
-
-          <IoIosArrowDown />
-        </div>
-        {showAttribute && (
-          <div>
-            <Link href="/attributes">
-              <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
-                <div className="w-2 h-2 bg-gray-300 rotate-45">
-                  <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
-                </div>
-                <h1>Attributes</h1>
-              </div>
-            </Link>
-            <Link href="/add-attributes">
-              <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
-                <div className="w-2 h-2 bg-gray-300 rotate-45">
-                  <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
-                </div>
-                <h1>Add Attributes</h1>
-              </div>
-            </Link>
-          </div>
-        )}
+        
         <div
           onClick={handleShowOrder}
           className={
@@ -220,7 +185,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showOrder && (
           <div>
-            <Link href="/order/order-list">
+            <Link href="/order">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
@@ -264,7 +229,7 @@ export default function LeftSidebar({ handleClose }) {
         </div>
         {showCustomer && (
           <div>
-            <Link href="/user/all-user">
+            <Link href="/user">
               <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
                 <div className="w-2 h-2 bg-gray-300 rotate-45">
                   <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>

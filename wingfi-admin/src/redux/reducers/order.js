@@ -1,70 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-// import { Order } from "../constants/order";
-
-// interface OrderState {
-//   orders: Order[];
-//   loading: boolean;
-//   error: string | null;
-//   success: boolean;
-//   latestOrderID: string | null;
-// }
 
 const initialState = {
-  orders: [],
+  data: [],
   loading: false,
-  error: null,
+  error: "",
 };
 
-const orderSlice = createSlice({
-  name: "order",
+const ordersSlice = createSlice({
+  name: "orders",
   initialState,
   reducers: {
-    loadAllOrdersRequest(state) {
+    loadAllOrdersRequest: (state, action) => {
+      console.log("SAGA REQUEST => ", action.payload)
       state.loading = true;
-      state.error = null;
     },
-    loadAllOrdersSuccess(state, action) {
+    loadAllOrdersSuccess: (state, action) => {
       state.loading = false;
-      state.orders = action.payload;
+      state.data = action.payload;
     },
-    loadAllOrdersFailure(state, action) {
-      state.loading = false;
-      state.error = action.payload;
-    },
-    loadSingleOrderRequest(
-      state,
-      action
-    ) {
-      console.log(action);
-      state.loading = true;
-      state.error = null;
-    },
-    loadSingleOrderSuccess(state, action) {
-      state.loading = false;
-      const index = state.orders.findIndex(
-        (address) => address.id === action.payload.id
-      );
-
-      if (index === -1) state.orders.push(action.payload);
-      // state.orders = state.orders.map((order) =>
-      //   order.id === action.payload.id ? action.payload : order
-      // );
-      state.error = null;
-    },
-    loadSingleOrderFailure(state, action) {
+    loadAllOrdersFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
     },
   },
 });
 
-export const {
-  loadAllOrdersRequest,
-  loadAllOrdersSuccess,
-  loadAllOrdersFailure,
-  loadSingleOrderRequest,
-  loadSingleOrderSuccess,
-  loadSingleOrderFailure,
-} = orderSlice.actions;
-
-export default orderSlice.reducer;
+export const { loadAllOrdersRequest, loadAllOrdersSuccess, loadAllOrdersFailure } = ordersSlice.actions;
+export default ordersSlice.reducer;

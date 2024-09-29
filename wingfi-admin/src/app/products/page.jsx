@@ -1,91 +1,24 @@
 "use client";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { IoFastFoodSharp } from "react-icons/io5";
-import { GrView } from "react-icons/gr";
-import { AiOutlineEdit } from "react-icons/ai";
-import { MdDelete } from "react-icons/md";
 import { VscThreeBars } from "react-icons/vsc";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import { selectProduct } from "@/redux/selectors/product";
-import { loadAllProductsRequest, loadAllProductsSuccess } from "@/redux/reducers/products";
+import {
+  loadAllProductsRequest,
+} from "@/redux/reducers/products";
 
 export default function ProductsList() {
   const data = useSelector(selectProduct);
-  console.log(data);
+  // console.log("all data is : ",data);
   const dispatch = useDispatch();
-
-
 
   useEffect(() => {
     dispatch(loadAllProductsRequest());
-  },[dispatch]);
-  // const data = [
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  //   {
-  //     name: "Dried food",
-  //     quantity: 1638,
-  //     sale: 20,
-  //     startdate: "20 nov 2023",
-  //   },
-  // ];
+  }, [dispatch]);
 
   const [show, setShow] = useState(false);
   const handle = () => {
@@ -116,9 +49,9 @@ export default function ProductsList() {
           <Header />
         </header>
 
-        <main className="bg-gray-100">
+        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
           <div className="flex flex-wrap justify-between items-center p-4 ">
-            <h1 className="font-bold text-2xl ">Add Attribute </h1>
+            <h1 className="font-bold text-2xl ">Products </h1>
             <div className="flex gap-4 items-center ">
               <h1>Dashboard </h1>
               <IoIosArrowForward />
@@ -148,33 +81,28 @@ export default function ProductsList() {
                 Add New
               </button>
             </div>
-            <div className="overflow-x-scroll no-scrollbar py-4">
-              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-2 w-[130%]  ">
-                <h1>Category</h1>
-                <h1>Icon</h1>
-                <h1>Quantity</h1>
-                <h1>Sale</h1>
-                <h1>Start date</h1>
-                <h1>Action</h1>
-              </div>
+            <table className="w-full">
+              <tr>
+                <th className="text-left py-4">SrNo</th>
+                <th className="text-left">Name</th>
+                <th className="text-left">MRP</th>
+                <th className="text-left">Price</th>
+                <th className="text-left">Rating</th>
+                <th className="text-left">SKU</th>
+                <th className="text-left">Status</th>
+              </tr>
               {data.map((d) => (
-                <div className="flex items-center justify-between w-[130%] hover:bg-gray-200 duration-300 my-4 rounded-xl">
-                  <div className="flex items-center font-bold">
-                    <Image src="/images/1.png" alt="" width={50} height={50} />
-                    <h1>{d?.response[0]?.id}</h1>
-                  </div>
-                  <IoFastFoodSharp />
-                  <p>{d.quantity}</p>
-                  <p>{d.sale}</p>
-                  <p>{d.startdate}</p>
-                  <div className="flex gap-2">
-                    <GrView />
-                    <AiOutlineEdit />
-                    <MdDelete />
-                  </div>
-                </div>
+                <tr className="hover:bg-gray-200 duration-300">
+                  <td className="py-4 text-center">{d.index}</td>
+                  <td className="">{d.label}</td>
+                  <td>{d.mrp}</td>
+                  <td>{d.price}</td>
+                  <td>{d.rating}</td>
+                  <td>{d.sku}</td>
+                  <td>{d.status}</td>
+                </tr>
               ))}
-            </div>
+            </table>
             <hr />
             <div className="flex flex-wrap gap-2 justify-between items-center py-4">
               <h1 className="font-semibold text-gra-400">Showing 10 entries</h1>
