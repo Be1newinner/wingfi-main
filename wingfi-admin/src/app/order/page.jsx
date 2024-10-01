@@ -31,24 +31,21 @@ export default function OrderList() {
   };
 
   return (
-    <div className="flex flex-row bg-[#f2f7fb] ">
+    <div className="flex flex-row bg-[#f2f7fb] h-screen overflow-hidden ">
       <div
         className={
-          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-0 duration-500"
+          show ? "w-[280px] duration-500 max-sm:absolute " : "w-20 duration-500"
         }
       >
-        <LeftSidebar handleClose={handleClose} />
+        <LeftSidebar handleClose={handleClose} show={show} handle={handle} />
       </div>
 
       <div className={show ? "w-[60%] flex-1 " : "w-full"}>
         <header className="flex items-center  justify-between">
-          <div className={show ? "hidden" : "text-3xl pl-2 bg-white py-[26px]"}>
-            <VscThreeBars onClick={handle} />
-          </div>
           <Header />
         </header>
 
-        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
+        <main className="bg-gray-100 h-[calc(h-screen-76px)]   overflow-scroll no-scrollbar">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
             <h1 className="font-bold text-2xl ">Orders </h1>
             <div className="flex gap-4 items-center ">
@@ -82,7 +79,7 @@ export default function OrderList() {
                 {/* <th className="text-left">Qty</th>
                 <th className="text-left">Payment</th> */}
                 <th className="text-left">Status</th>
-                <th className="text-left">Tracking</th>
+                {/* <th className="text-left">Tracking</th> */}
               </tr>
               {data.map((d, i) => (
                 <tr
@@ -97,7 +94,7 @@ export default function OrderList() {
                   {/* <td>{d.rating}</td>
                   <td>{d.sku}</td> */}
                   <td>{d.status}</td>
-                  <td>{d.status}</td>
+                  {/* <td>{d.status}</td> */}
                 </tr>
               ))}
             </table>
