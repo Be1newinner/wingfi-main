@@ -9,7 +9,7 @@ export default function OrdersList() {
   const order = useSelector(selectAllOrders);
   return (
     <div>
-      {order.map((d, index) => (
+      {order?.map((d, index) => (
         <div
           key={index}
           className="my-4 flex hover:bg-gray-200 hover:rounded-lg hover:text-sky-400 duration-300 mx-5  items-center"
