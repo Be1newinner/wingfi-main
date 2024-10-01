@@ -9,10 +9,6 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineEdit } from "react-icons/ai";
 import { GrView } from "react-icons/gr";
-import user1 from "../../../../public/images/user-11.png";
-import user2 from "../../../../public/images/user-12.png";
-import user3 from "../../../../public/images/user-13.png";
-
 export default function OrderTracking() {
   const [show, setShow] = useState(false);
   const handle = () => {
@@ -25,70 +21,67 @@ export default function OrderTracking() {
     }
   };
 
-  const data = [
-    {
-      id: 1,
-      image: user1,
-    },
-    {
-      id: 2,
-      image: user2,
-    },
-    {
-      id: 3,
-      image: user1,
-    },
-    {
-      id: 4,
-      image: user2,
-    },
-    {
-      id: 5,
-      image: user1,
-    },
-    {
-      id: 6,
-      image: user3,
-    },
-    {
-      id: 7,
-      image: user3,
-    },
-    {
-      id: 8,
-      image: user1,
-    },
-    {
-      id: 9,
-      image: user3,
-    },
-    {
-      id: 10,
-      image: user1,
-    },
-  ];
+  // const data = [
+  //   {
+  //     id: 1,
+  //     image: user1,
+  //   },
+  //   {
+  //     id: 2,
+  //     image: user2,
+  //   },
+  //   {
+  //     id: 3,
+  //     image: user1,
+  //   },
+  //   {
+  //     id: 4,
+  //     image: user2,
+  //   },
+  //   {
+  //     id: 5,
+  //     image: user1,
+  //   },
+  //   {
+  //     id: 6,
+  //     image: user3,
+  //   },
+  //   {
+  //     id: 7,
+  //     image: user3,
+  //   },
+  //   {
+  //     id: 8,
+  //     image: user1,
+  //   },
+  //   {
+  //     id: 9,
+  //     image: user3,
+  //   },
+  //   {
+  //     id: 10,
+  //     image: user1,
+  //   },
+  // ];
 
   return (
-    <div className="flex flex-row bg-[#f2f7fb] ">
+    <div className="flex flex-row bg-[#f2f7fb] h-screen overflow-hidden ">
       <div
         className={
-          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-0 duration-500"
+          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-20 duration-500"
         }
       >
-        <LeftSidebar handleClose={handleClose} />
+        <LeftSidebar handleClose={handleClose} show={show} handle={handle} />
       </div>
 
       <div className={show ? "w-[60%] flex-1 " : "w-full"}>
         <header className="flex items-center  justify-between">
-          <div className={show ? "hidden" : "text-3xl pl-2 bg-white py-[26px]"}>
-            <VscThreeBars onClick={handle} />
-          </div>
           <Header />
         </header>
 
         <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
-            <h1 className="font-bold text-2xl ">Add Attribute </h1>
+            <h1 className="font-bold text-2xl ">Users </h1>
             <div className="flex gap-4 items-center ">
               <h1>Dashboard </h1>
               <IoIosArrowForward />
@@ -118,8 +111,8 @@ export default function OrderTracking() {
                 <h1>Email</h1>
                 <h1>Action</h1>
               </div>
-              {data.map((d) => (
-                <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
+              {/* {data.map((d) => ( */}
+                {/* <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
                   <div className="flex items-center gap-2 font-bold">
                     <img
                       width={50}
@@ -140,8 +133,8 @@ export default function OrderTracking() {
                     <AiOutlineEdit color="green" />
                     <MdDelete color="red" />
                   </div>
-                </div>
-              ))}
+                </div> */}
+              {/* ))} */}
             </div>
             <hr />
             <div className="flex justify-between items-center py-4">

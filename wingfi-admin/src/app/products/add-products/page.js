@@ -21,27 +21,22 @@ function AddProduct() {
   };
 
   return (
-    <div className="flex flex-row  ">
+    <div className="flex flex-row  h-screen overflow-hidden ">
       <div
         className={
-          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-0 duration-500"
+          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-20 duration-500"
         }
       >
-        <LeftSidebar handleClose={handleClose} />
+        <LeftSidebar handleClose={handleClose} show={show} handle={handle}/>
       </div>
 
       <div className={show ? " w-[60%]  flex-1" : "w-full"}>
         <header className="flex items-center  justify-between">
-          <div
-            className={!show ? "text-3xl pl-2 bg-white py-[26px]" : "hidden"}
-          >
-            <VscThreeBars onClick={handle} />
-          </div>
           <Header />
         </header>
-        <main className="h-screen overflow-scroll no-scrollbar pb-10">
+        <main className="h-screen overflow-scroll no-scrollbar pb-48">
           <div className="flex flex-wrap justify-between p-4">
-            <h1 className="font-bold text-2xl ">Add Attribute </h1>
+            <h1 className="font-bold text-2xl ">Add Products </h1>
             <div className="flex gap-4  ">
               <h1>Dashboard</h1>
               <h1>Products</h1>
