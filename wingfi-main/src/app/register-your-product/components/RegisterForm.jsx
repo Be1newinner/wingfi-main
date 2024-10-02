@@ -2,14 +2,17 @@
 
 import { useEffect, useState } from "react";
 import FormField from "./FormField";
-import OTPInput from "./OTPInput";
+// import OTPInput from "./OTPInput";
 import useRegister from "../hooks/useRegister";
 
 const RegisterForm = () => {
   const [fullName, setFullName] = useState("");
   const [orderID, setOrderID] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [otpDigits, setOtpDigits] = useState(Array(4).fill(""));
+  const [
+    otpDigits,
+    // setOtpDigits
+  ] = useState(Array(4).fill("1"));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState(""); // Feedback message state
 
@@ -17,7 +20,7 @@ const RegisterForm = () => {
     fullNameError,
     orderIDError,
     phoneNumberError,
-    otpError,
+    // otpError,
     validateInputs,
     addOrderID,
     registerUser,
@@ -32,23 +35,23 @@ const RegisterForm = () => {
     }
   }, []);
 
-  const handleOtpChange = (index, value) => {
-    if (/^\d?$/.test(value)) {
-      const newOtpDigits = [...otpDigits];
-      newOtpDigits[index] = value;
-      setOtpDigits(newOtpDigits);
+  // const handleOtpChange = (index, value) => {
+  //   if (/^\d?$/.test(value)) {
+  //     const newOtpDigits = [...otpDigits];
+  //     newOtpDigits[index] = value;
+  //     setOtpDigits(newOtpDigits);
 
-      if (value && index < 3) {
-        document.getElementById(`otp-input-${index + 1}`).focus();
-      }
-    }
-  };
+  //     if (value && index < 3) {
+  //       document.getElementById(`otp-input-${index + 1}`).focus();
+  //     }
+  //   }
+  // };
 
-  const handleKeyDown = (index, event) => {
-    if (event.key === "Backspace" && !otpDigits[index] && index > 0) {
-      document.getElementById(`otp-input-${index - 1}`).focus();
-    }
-  };
+  // const handleKeyDown = (index, event) => {
+  //   if (event.key === "Backspace" && !otpDigits[index] && index > 0) {
+  //     document.getElementById(`otp-input-${index - 1}`).focus();
+  //   }
+  // };
 
   const submit = async () => {
     const hasError = validateInputs(fullName, orderID, phoneNumber, otpDigits);
@@ -106,12 +109,12 @@ const RegisterForm = () => {
         onChange={(e) => setPhoneNumber(e.target.value)}
         error={phoneNumberError}
       />
-      <OTPInput
+      {/* <OTPInput
         otpDigits={otpDigits}
         handleOtpChange={handleOtpChange}
         handleKeyDown={handleKeyDown}
         error={otpError}
-      />
+      /> */}
       <button
         style={{ maxWidth: 320 }}
         className="btn btn-neutral w-full"
