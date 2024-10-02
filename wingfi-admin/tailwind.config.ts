@@ -15,6 +15,19 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.scrollbar-hide': {
+          /* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
+          '-ms-overflow-style': 'none',  /* IE and Edge */
+          'scrollbar-width': 'none',     /* Firefox */
+          '&::-webkit-scrollbar': {
+            display: 'none',              /* Webkit-based browsers */
+          },
+        },
+      });
+    },
+  ],
 };
 export default config;

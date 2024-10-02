@@ -88,7 +88,7 @@ export function NavBar() {
             </ul>
           </div>
         </div>
-        <div className="flex mr-1">
+        <div className="flex mr-1 items-center">
           {/* <button className="btn btn-ghost btn-circle btn-sm sm:btn-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +105,9 @@ export function NavBar() {
               />
             </svg>
           </button> */}
-
+          <Link href="/verify" className="py-2 px-4 bg-red-500 text-white font-semibold rounded-xl scale-75">
+            <span className="">Verify Product</span>
+          </Link>
           <CartIcons />
         </div>
       </div>

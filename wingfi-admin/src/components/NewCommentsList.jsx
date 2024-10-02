@@ -7,7 +7,7 @@ export default function NewCommentsList() {
     <div>
       {dataNewComments.map((d, index) => (
         <div key={index} className="flex gap-2 my-3">
-          <div className="w-[50px] overflow-hidden rounded-full">
+          <div className="w-[50px] overflow-hidden no-scrollbar rounded-full">
             {d.image && (
               <Image src={d.image} alt="" width={1080} height={1080} />
             )}

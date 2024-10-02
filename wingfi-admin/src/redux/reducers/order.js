@@ -1,22 +1,33 @@
-// features/ordersSlice.js
+import { createSlice } from "@reduxjs/toolkit";
 import { createSlice } from '@reduxjs/toolkit';
 import { ORDER_SLICE } from "../constants/slices";
 
 const initialState = {
+  data: [],
   orders: {},
   totalOrders: 0,
   currentPage: 1,
   loading: false,
-  error: null,
+  error: "",
 };
 
 const ordersSlice = createSlice({
   name: ORDER_SLICE,
   initialState,
   reducers: {
+    loadAllOrdersRequest: (state, action) => {
+      console.log("SAGA REQUEST => ", action.payload)
+    },
+    loadAllOrdersSuccess: (state, action) => {
+      state.loading = false;
+      state.data = action.payload;
+    },
+    loadAllOrdersFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload.error || "An error occurred";
+    },
     ordersLoadRequest: (state) => {
       state.loading = true;
-      state.error = null;
     },
     ordersLoadSuccess: (state, action) => {
       // Normalize the orders for easier access
@@ -57,6 +68,7 @@ export const {
   totalOrdersRequest,
   totalOrdersSuccess,
   totalOrdersFailure,
+  loadAllOrdersRequest, loadAllOrdersSuccess, loadAllOrdersFailure
 } = ordersSlice.actions;
 
 export default ordersSlice.reducer;
