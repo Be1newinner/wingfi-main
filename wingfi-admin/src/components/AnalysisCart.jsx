@@ -8,7 +8,7 @@ import { selectAnalysis } from "@/redux/selectors/analysis";
 export default function AnalysisCart() {
   const analysis = useSelector(selectAnalysis);
   return (
-    <div className="flex flex-wrap">
+    <div className="flex flex-wrap justify-between">
       {analysis.map((item, index) => {
         return (
           <div

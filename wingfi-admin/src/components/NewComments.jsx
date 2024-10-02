@@ -11,7 +11,7 @@ export default function NewComments() {
 
   return (
     <>
-      <div className="border-2 w-[97%] m-2 h-[500px] bg-white rounded-2xl shadow-xl p-4  overflow-hidden">
+      <div className="border-2 w-[97%] m-2 h-[500px] bg-white rounded-2xl shadow-xl p-4  overflow-hidden scrollbar-hide">
         <div className="flex justify-between items-center py-2">
           <h1 className="font-bold text-xl"> New Comments </h1>
           <p

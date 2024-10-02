@@ -1,8 +1,8 @@
 "use client";
+import { Footer, NavBar } from "@/components";
 import { firestore } from "@/infrastructure/firebase.config";
 import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function VerifyProduct({ params }) {
@@ -48,20 +48,8 @@ export default function VerifyProduct({ params }) {
 
   return (
     <div className="flex flex-col h-screen">
-      <div className="w-full flex border">
-        <Link href={"/"} className="mx-auto">
-          <Image
-            src={"/wingfi.png"}
-            style={{
-              padding: 10,
-            }}
-            width={100}
-            height={200}
-            alt="Logo"
-          />
-        </Link>
-      </div>
-      <div className="container flex-1 flex flex-col md:flex-row justify-center items-center p-4 md:gap-8">
+      <NavBar />
+      <main className="container flex-1 flex flex-col md:flex-row justify-center items-center py-16 md:gap-8">
         <Image
           src={
             !IsSubmitted
@@ -147,7 +135,8 @@ export default function VerifyProduct({ params }) {
             />
           )}
         </div>
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }
