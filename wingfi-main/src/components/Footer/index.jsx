@@ -107,6 +107,9 @@ export function Footer() {
             <li className="font-medium hover:font-semibold">
               <Link href="/checkout">Checkout</Link>
             </li>
+            <li className="font-medium hover:font-semibold">
+              <Link href="/register-your-product">Register Your Product</Link>
+            </li>
           </ul>
         </div>
 
