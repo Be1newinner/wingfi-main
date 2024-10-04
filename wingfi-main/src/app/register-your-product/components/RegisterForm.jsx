@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import FormField from "./FormField";
 // import OTPInput from "./OTPInput";
 import useRegister from "../hooks/useRegister";
+import VerifyNumberButton from "../../../components/VerifyNumberButton";
 
 const RegisterForm = () => {
   const [fullName, setFullName] = useState("");
@@ -123,6 +124,7 @@ const RegisterForm = () => {
       >
         {isSubmitting ? "Registering..." : "Register"}
       </button>
+      <VerifyNumberButton />
       {feedbackMessage && (
         <div className="mt-4 text-center text-lg">
           <span
