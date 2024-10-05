@@ -8,6 +8,7 @@ import {
   BestSellerWrapper,
   RecProductsWrapper,
 } from "@/components";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -23,14 +24,17 @@ export default function Home() {
 
         {/* Best Selling Section */}
         <div
-          className="p-4 mx-auto sm:px-0 my-8"
-          style={{
-            maxWidth: 1200,
-          }}
+          className="lg:px-[100px] px-[20px]  py-[50px]"
         >
-          <div className="flex flex-col justify-between">
-            <span className="text-error">This Month</span>
-            <h2 className="font-semibold text-3xl">Best Sellers</h2>
+          <div className="flex justify-between items-center">
+            <div className="flex flex-col justify-between">
+              <span className="text-error font-bold text-sm	">This Month</span>
+              <h2 className="font-semibold text-2xl">Best Sellers</h2>
+            </div>
+
+            <div className="flex justify-between items-center">
+              <Link href={'/'} className="py-2 px-4 bg-red-500 text-white rounded-full">View More</Link>
+            </div>
           </div>
           <BestSellerWrapper />
         </div>
