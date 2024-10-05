@@ -13,7 +13,7 @@ const useRegister = () => {
   const [existingPhone, setExistingPhone] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const validateInputs = (fullName, orderID, phoneNumber, otpDigits) => {
+  const validateInputs = (fullName, orderID, phoneNumber) => {
     setFullNameError("");
     setOrderIDError("");
     setPhoneNumberError("");
@@ -51,15 +51,6 @@ const useRegister = () => {
       hasError = true;
     } else if (existingPhone && existingPhone !== phoneNumber) {
       setPhoneNumberError(`Phone number already registered: ${existingPhone}. Cannot change.`);
-      hasError = true;
-    }
-
-    // Validate OTP
-    if (otpDigits.some((digit) => digit === "")) {
-      setOtpError("OTP cannot be empty. Please fill all fields.");
-      hasError = true;
-    } else if (otpDigits.length !== 4) {
-      setOtpError("OTP must be exactly 4 digits.");
       hasError = true;
     }
 

@@ -10,10 +10,6 @@ const RegisterForm = () => {
   const [fullName, setFullName] = useState("");
   const [orderID, setOrderID] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [
-    otpDigits,
-    // setOtpDigits
-  ] = useState(Array(4).fill("1"));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState(""); // Feedback message state
 
@@ -54,8 +50,7 @@ const RegisterForm = () => {
   //   }
   // };
 
-  const submit = async () => {
-    const hasError = validateInputs(fullName, orderID, phoneNumber, otpDigits);
+  const submit = async (hasError) => {
     if (hasError) return;
 
     setIsSubmitting(true); // Start loading
@@ -110,21 +105,13 @@ const RegisterForm = () => {
         onChange={(e) => setPhoneNumber(e.target.value)}
         error={phoneNumberError}
       />
-      {/* <OTPInput
-        otpDigits={otpDigits}
-        handleOtpChange={handleOtpChange}
-        handleKeyDown={handleKeyDown}
-        error={otpError}
-      /> */}
-      <button
-        style={{ maxWidth: 320 }}
-        className="btn btn-neutral w-full"
-        onClick={submit}
-        disabled={isSubmitting} // Disable button when submitting
-      >
-        {isSubmitting ? "Registering..." : "Register"}
-      </button>
-      <VerifyNumberButton />
+      <VerifyNumberButton
+        phoneNumber={phoneNumber}
+        setIsSubmitting={setIsSubmitting}
+        isSubmitting={isSubmitting}
+        submitFunction={submit}
+        validations={() => validateInputs(fullName, orderID, phoneNumber)}
+      />
       {feedbackMessage && (
         <div className="mt-4 text-center text-lg">
           <span
