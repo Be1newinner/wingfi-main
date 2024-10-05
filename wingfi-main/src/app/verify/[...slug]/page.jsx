@@ -1,9 +1,8 @@
 "use client";
-import { firestore } from "@/infrastructure/firebase.config";
-import { doc, getDoc } from "firebase/firestore";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Footer, NavBar } from "@/components";
+import getVerificationByID from "@/utils/getVerificationByID";
 
 export default function VerifyProduct({ params }) {
   const [setError] = useState("");
@@ -14,28 +13,10 @@ export default function VerifyProduct({ params }) {
 
   const { slug } = params;
 
-  async function getVerificationByID({ slug, setIsLoading }) {
-    setIsLoading(true);
-    const docRef = doc(firestore, "ser58ls", slug);
-    const docSnap = await getDoc(docRef);
-    setIsLoading(false);
-    if (docSnap.exists()) {
-      return {
-        status: true,
-        data: docSnap.data(),
-      };
-    } else {
-      return {
-        status: false,
-        data: null,
-      };
-    }
-  }
-
   useEffect(() => {
     const submit = async (slug) => {
-      if (slug.length < 4) {
-        setError("Invalid Serial Number");
+      if (slug.length < 20) {
+        setError("Invalid Order ID");
         setIsSubmitted(true);
         setIsVerified(false);
       } else {
@@ -83,7 +64,7 @@ export default function VerifyProduct({ params }) {
                 </h2>
                 {IsVerified && (
                   <p className="text-center">
-                    Serial Number: <span>{Input}</span>
+                    ORDER ID : <span>{slug}</span>
                   </p>
                 )}
                 <p className="text-sm">
