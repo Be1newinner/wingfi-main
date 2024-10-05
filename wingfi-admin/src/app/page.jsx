@@ -31,7 +31,7 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(
-      loadAllProductsRequest({ name: "Vijay", email: "vijay@gmail.com" })
+      loadAllProductsRequest()
     );
   }, [dispatch]);
 
@@ -57,11 +57,12 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap justify-between">
             <TopProducts />
+            <Orders />
             {/* <TopCountrySales /> */}
           </div>
           <div className="flex flex-wrap justify-between">
             {/* <BestShopSeller /> */}
-            <Orders />
+            
             {/* <ProductOverview /> */}
           </div>
           {/* <div className="flex flex-wrap"> */}

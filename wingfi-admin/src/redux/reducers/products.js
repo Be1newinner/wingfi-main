@@ -6,7 +6,7 @@ const initialState = {
   totalProducts: 0,
   currentPage: 1,
   loading: false,
-  error: null
+  error: null,
 };
 
 const productsSlice = createSlice({
@@ -14,7 +14,7 @@ const productsSlice = createSlice({
   initialState,
   reducers: {
     loadAllProductsRequest: (state, action) => {
-      console.log("SAGA REQUEST => ", action.payload)
+      console.log("SAGA REQUEST => ", action.payload);
       state.loading = true;
     },
     loadAllProductsSuccess: (state, action) => {
@@ -25,16 +25,35 @@ const productsSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    addNewProductsRequest: (state, action) => {
+      console.log("ADD SAGA REQUEST => ", action.payload);
+      state.loading = true;
+    },
+    addNewProductsSuccess: (state, action) => {
+      state.loading = false;
+      state.data = [...state.data, action.payload];
+    },
+    addNewProductsFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
     setTotalProducts: (state, action) => {
       state.totalProducts = action.payload;
-    }
+    },
   },
 });
 
-export const { loadAllProductsRequest, loadAllProductsSuccess, loadAllProductsFailure } = productsSlice.actions;
+export const {
+  loadAllProductsRequest,
+  loadAllProductsSuccess,
+  loadAllProductsFailure,
+  addNewProductsSuccess,
+  addNewProductsRequest,
+  addNewProductsFailure,
+} = productsSlice.actions;
 export default productsSlice.reducer;
 
 const selectProductsSlice = (state) => state[PRODUCT_SLICE];

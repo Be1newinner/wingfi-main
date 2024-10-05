@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createSlice } from '@reduxjs/toolkit';
 import { ORDER_SLICE } from "../constants/slices";
 
 const initialState = {
@@ -17,6 +16,7 @@ const ordersSlice = createSlice({
   reducers: {
     loadAllOrdersRequest: (state, action) => {
       console.log("SAGA REQUEST => ", action.payload)
+      state.loading = true;
     },
     loadAllOrdersSuccess: (state, action) => {
       state.loading = false;

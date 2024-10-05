@@ -1,11 +1,11 @@
 import { createSelector } from "reselect";
 import { RootState } from "../rootReducer";
 
-export const selectOrderState = (state: RootState) => state.order;
+export const selectOrderState = (state: RootState) => state.orders.data 
 
 export const selectAllOrders = createSelector(
   [selectOrderState],
-  (orderState) => orderState.orders
+  (orderState) => orderState.order
 );
 
 // export const selectOrderById = (orderId: string) =>
@@ -13,7 +13,7 @@ export const selectAllOrders = createSelector(
 //     orders.find((order) => order.id === orderId)
 //   );
 
-export const selectOrderById = () => null;
+// export const selectOrderById = () => null;
 
 export const selectOrderLoading = createSelector(
   [selectOrderState],
