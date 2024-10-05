@@ -6,7 +6,6 @@ import getVerificationByID from "@/utils/getVerificationByID";
 
 export default function VerifyProduct({ params }) {
   const [setError] = useState("");
-  const [Input] = useState("");
   const [IsVerified, setIsVerified] = useState(false);
   const [IsSubmitted, setIsSubmitted] = useState(false);
   const [IsLoading, setIsLoading] = useState(false);
