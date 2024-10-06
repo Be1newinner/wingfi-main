@@ -7,6 +7,10 @@ const initialState = {
   currentPage: 1,
   loading: false,
   error: null,
+  subtotal: 0,
+  shipping: 0,
+  tax: 0,
+  totalPrice: 0,
 };
 
 const productsSlice = createSlice({
@@ -20,6 +24,13 @@ const productsSlice = createSlice({
     loadAllProductsSuccess: (state, action) => {
       state.loading = false;
       state.data = action.payload;
+      state.subtotal = action.payload.reduce(
+        (total, product) => total + product.price,
+        0
+      );
+      state.shipping = (state.subtotal * 10) / 100;
+      state.tax = (state.subtotal * 5) / 100;
+      state.totalPrice = state.subtotal - (state.shipping + state.tax);
     },
     loadAllProductsFailure: (state, action) => {
       state.loading = false;
@@ -32,6 +43,8 @@ const productsSlice = createSlice({
     addNewProductsSuccess: (state, action) => {
       state.loading = false;
       state.data = [...state.data, action.payload];
+      state.subtotal += action.payload.price;
+      // state.shipping += action.payload.price;
     },
     addNewProductsFailure: (state, action) => {
       state.loading = false;
