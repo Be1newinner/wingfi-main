@@ -9,6 +9,7 @@ import {
   RecProductsWrapper,
 } from '@/components';
 import Link from 'next/link';
+import CategoryList from '../components/Category/CategoryList';
 
 export default function Home() {
   return (
@@ -16,7 +17,7 @@ export default function Home() {
       <NavBar />
       <main>
         <HeroSection />
-        <HomeFeatures />
+        <CategoryList />
 
         {/* Best Selling Section */}
         <div className="lg:px-[100px] px-[20px]  py-[50px]">
@@ -34,6 +35,8 @@ export default function Home() {
           </div>
           <BestSellerWrapper />
         </div>
+
+        <HomeFeatures />
 
         {/* Buy Top Rated Prod Sections */}
         <div
