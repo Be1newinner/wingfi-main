@@ -1,5 +1,22 @@
-import { auth } from "../config/firebaseInit";
-import authMiddleware from "../config/authMiddleware";
+import admin from "firebase-admin";
+
+let privateKey = "";
+
+if (process.env.FIREBASE_PRIVATE_KEY) {
+    privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+}
+
+const app = admin.initializeApp({
+    credential: admin.credential.cert({
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        privateKey,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    }),
+    databaseURL:
+        "https://wingfi-9b5b7-default-rtdb.asia-southeast1.firebasedatabase.app",
+});
+
+const auth = admin.auth(app);
 
 async function readHandler(req, res) {
     try {
@@ -7,38 +24,15 @@ async function readHandler(req, res) {
             return res.status(405).json({ error: "Method Not Allowed" });
         }
 
-        await new Promise((resolve, reject) => {
-            authMiddleware(req, res, (err) => {
-                if (err) return reject(err);
-                resolve();
-            });
-        });
+        const { nextPageToken, limit = Math.min(limit, 5) } = req.body;
 
-        const { nextPageToken, limit } = req.body;
-        listAllUsers({ nextPageToken, limit });
+        const data = await auth.listUsers(limit, nextPageToken)
 
-        return res.status(200).json({ data: snapshot.val() });
+        return res.status(200).json({ data });
     } catch (error) {
         console.error("Error fetching data:", error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
-module.exports = readHandler;
-
-const listAllUsers = ({ nextPageToken, limit }) => {
-    getAuth(auth)
-        .listUsers(limit, nextPageToken)
-        .then((listUsersResult) => {
-            listUsersResult.users.forEach((userRecord) => {
-                console.log('user', userRecord.toJSON());
-            });
-            if (listUsersResult.pageToken) {
-                // List next batch of users.
-                listAllUsers(listUsersResult.pageToken);
-            }
-        })
-        .catch((error) => {
-            console.log('Error listing users:', error);
-        });
-};
+export default readHandler;

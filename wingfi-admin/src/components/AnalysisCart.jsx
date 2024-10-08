@@ -1,12 +1,8 @@
 "use client";
 import React from "react";
-// import { Line } from "react-chartjs-2";
-// import revenueData from "@/offline/revenueData.json";
-import { useSelector } from "react-redux";
-import { selectAnalysis } from "@/redux/selectors/analysis";
+import analysis from "@/offline/dataAnalytics.json"
 
 export default function AnalysisCart() {
-  const analysis = useSelector(selectAnalysis);
   return (
     <div className="flex flex-wrap justify-between">
       {analysis.map((item, index) => {

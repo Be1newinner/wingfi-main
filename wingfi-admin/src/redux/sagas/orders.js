@@ -40,7 +40,7 @@ function* loadAllOrdersSaga2(action) {
 }
 
 export function* ordersSagaWatcher() {
-  yield takeEvery(loadAllOrdersRequest.type, loadAllOrdersSaga);
-  yield takeEvery(ordersLoadRequest.type, loadAllOrdersSaga2);
+  yield takeEvery(loadAllOrdersRequest.type, loadAllOrdersSaga2);
+  yield takeEvery(ordersLoadRequest.type, loadAllOrdersSaga);
 }
 

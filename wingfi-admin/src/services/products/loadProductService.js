@@ -3,7 +3,7 @@ import StatusConverter from "@/utils/StatusConverter";
 
 const preURL =
   process.env.NODE_ENV === "development"
-    ? "https://wingfi-admin.vercel.app"
+    ? ""
     : "";
 
 export default async function loadProductService() {
