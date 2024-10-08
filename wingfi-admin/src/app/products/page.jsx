@@ -1,6 +1,6 @@
 "use client";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { VscThreeBars } from "react-icons/vsc";
+// import { VscThreeBars } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
@@ -10,6 +10,7 @@ import { selectProduct } from "@/redux/selectors/product";
 import {
   loadAllProductsRequest,
 } from "@/redux/reducers/products";
+import Link from "next/link";
 
 export default function ProductsList() {
   const data = useSelector(selectProduct);
@@ -69,14 +70,16 @@ export default function ProductsList() {
                 </select>
                 <h1 className="font-semibold">Entries</h1>
                 <input
-                  className="w-[400px] max-sm:w-full border-2 rounded-xl p-2 h-10 "
+                  className="w-[400px] max-sm:w-full border-2 rounded-xl p-2 h-10 focus:outline-none "
                   type="search"
                   placeholder="Search Here"
                 />
               </div>
+              <Link href="/products/add-products" >
               <button className="w-[200px] max-sm:w-full font-bold text-blue-500 border-2 border-blue-500 rounded-xl px-4 py-2 hover:text-white hover:bg-blue-500">
                 Add New
               </button>
+              </Link>
             </div>
             <table className="w-full">
               <tr>
@@ -88,8 +91,8 @@ export default function ProductsList() {
                 <th className="text-left">SKU</th>
                 <th className="text-left">Status</th>
               </tr>
-              {data.map((d) => (
-                <tr className="hover:bg-gray-200 duration-300">
+              {data.map((d,i) => (
+                <tr key={i} className="hover:bg-gray-200 duration-300">
                   <td className="py-4 text-center">{d.index}</td>
                   <td className="">{d.label}</td>
                   <td>{d.mrp}</td>

@@ -1,62 +1,35 @@
 "use client";
-import { VscThreeBars } from "react-icons/vsc";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
-import { AiOutlineEdit } from "react-icons/ai";
-import { GrView } from "react-icons/gr";
+import { IoIosArrowForward } from "react-icons/io";
 import Image from "next/image";
 import { FaAngleDown } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectProduct,
+  selectShipping,
+  selectSubtotal,
+  selectTax,
+  selectTotalPrice,
+} from "@/redux/selectors/product";
+import { loadAllProductsRequest } from "@/redux/reducers/products";
 
 export default function OrderList() {
-  const data = [
-    {
-      id: 1,
-      status: "Success",
-    },
-    {
-      id: 2,
-      status: "Pending",
-    },
-    {
-      id: 3,
-      status: "Success",
-    },
-    {
-      id: 4,
-      status: "Pending",
-    },
-    {
-      id: 5,
-      status: "Success",
-    },
-    {
-      id: 6,
-      status: "Cancel",
-    },
-    {
-      id: 7,
-      status: "Cancel",
-    },
-    {
-      id: 8,
-      status: "Success",
-    },
-    {
-      id: 9,
-      status: "Cancel",
-    },
-    {
-      id: 10,
-      status: "Success",
-    },
-  ];
-
   const [show, setShow] = useState(false);
+  const product = useSelector(selectProduct);
+  const subtotal = useSelector(selectSubtotal);
+  const shipping = useSelector(selectShipping);
+  const tax = useSelector(selectTax);
+  const totalPrice = useSelector(selectTotalPrice);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllProductsRequest());
+  }, [dispatch]);
+
   const handle = () => {
     setShow(true);
   };
@@ -71,7 +44,9 @@ export default function OrderList() {
     <div className="flex flex-row bg-[#f2f7fb] h-screen overflow-hidden ">
       <div
         className={
-          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-20 duration-500"
+          show
+            ? "w-[280px] duration-500 max-sm:absolute  "
+            : "w-20 duration-500"
         }
       >
         <LeftSidebar handleClose={handleClose} show={show} handle={handle} />
@@ -97,83 +72,43 @@ export default function OrderList() {
           <div className="flex flex-wrap justify-between w-full p-4">
             <div className=" mb-4 w-[58%] max-sm:w-full ">
               <div className="border-2 rounded-xl  shadow-xl bg-white w-full p-4 ">
-                <div className="flex bg-gray-200 h-10 p-4 rounded-xl justify-between font-bold items-center">
+                <div className="flex bg-gray-200 h-10 p-4 mb-2 rounded-xl justify-between font-bold items-center">
                   <h1>All Item</h1>
                   <div>
                     <h1 className="flex items-center gap-2">
-                      Sort <FaAngleDown />{" "}
+                      Sort <FaAngleDown />
                     </h1>
                   </div>
                 </div>
-                <div>
-                  <div className="flex justify-between font-bold items-center bg-gray-100 p-2 rounded-xl my-4 hover:bg-gray-400 duration-300">
-                    <div className="flex items-center">
-                      <Image
-                        src="/images/1.png"
-                        alt=""
-                        width={50}
-                        height={50}
-                      />
-                      <div>
-                        <h1>Product name</h1>
-                        <h1>Kristin Watson</h1>
-                      </div>
-                    </div>
-                    <div>
-                      <h1>Quantity</h1>
-                      <p>1</p>
-                    </div>
-                    <div>
-                      <h1>Price</h1>
-                      <p>$ 50.47</p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between font-bold p-2 items-center  rounded-xl my-4 hover:bg-gray-400  duration-300">
-                    <div className="flex items-center">
-                      <Image
-                        src="/images/1.png"
-                        alt=""
-                        width={50}
-                        height={50}
-                      />
-                      <div>
-                        <h1>Product name</h1>
-                        <h1>Kristin Watson</h1>
-                      </div>
-                    </div>
-                    <div>
-                      <h1>Quantity</h1>
-                      <p>1</p>
-                    </div>
-                    <div>
-                      <h1>Price</h1>
-                      <p>$ 50.47</p>
-                    </div>
-                  </div>
-                  <div className="flex justify-between font-bold items-center bg-gray-100 rounded-xl my-4 p-2 hover:bg-gray-400 duration-300">
-                    <div className="flex items-center">
-                      <Image
-                        src="/images/1.png"
-                        alt=""
-                        width={50}
-                        height={50}
-                      />
-                      <div>
-                        <h1>Product name</h1>
-                        <h1>Kristin Watson</h1>
-                      </div>
-                    </div>
-                    <div>
-                      <h1>Quantity</h1>
-                      <p>1</p>
-                    </div>
-                    <div>
-                      <h1>Price</h1>
-                      <p>$ 50.47</p>
-                    </div>
-                  </div>
-                </div>
+                <table className="w-full">
+                  {product.map((d, i) => (
+                    <tr key={i} className="hover:bg-gray-200 duration-300">
+                      <td className="text-center">{d.index}</td>
+                      <td className="flex items-center">
+                        <Image
+                          src="/images/1.png"
+                          alt=""
+                          width={50}
+                          height={50}
+                        />
+                        <td>
+                          <h1 className="font-sans">{d.label}</h1>
+                          <h1>Kristin Watson</h1>
+                        </td>
+                      </td>
+                      <td>
+                        <h1 className="font-semibold">Qty</h1>
+                        <p>1</p>
+                      </td>
+                      <td>
+                        <h1 className="font-semibold">Price</h1>
+                        <p>{d.price}</p>
+                      </td>
+                    </tr>
+                  ))}
+                </table>
               </div>
+
               <div className="border-2 rounded-xl  shadow-xl bg-white w-full my-4 p-4 ">
                 <div className="flex px-20 bg-gray-200 h-10 p-4 rounded-xl justify-between font-bold items-center">
                   <h1>Card Total</h1>
@@ -181,22 +116,22 @@ export default function OrderList() {
                 </div>
                 <div className="font-bold flex justify-between px-20 my-2 ">
                   <h1 className="text-gray-400">Subtotal:</h1>
-                  <p>$70.00</p>
+                  <p>${subtotal}</p>
                 </div>
                 <hr />
                 <div className="font-bold flex justify-between px-20 my-2 ">
                   <h1 className="text-gray-400">Shipping:</h1>
-                  <p>$10.00</p>
+                  <p>${shipping}</p>
                 </div>
                 <hr />
                 <div className="font-bold flex justify-between px-20 my-2 ">
                   <h1 className="text-gray-400">Tax (Gst):</h1>
-                  <p>$5.00</p>
+                  <p>${tax}</p>
                 </div>
                 <hr />
                 <div className="font-bold flex justify-between px-20 my-2 ">
                   <h1 className="text-gray-400">Total Price:</h1>
-                  <p className="text-red-400">$85.00</p>
+                  <p className="text-red-400">${totalPrice}</p>
                 </div>
               </div>
             </div>

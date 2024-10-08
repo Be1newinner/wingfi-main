@@ -16,6 +16,7 @@ const ordersSlice = createSlice({
   reducers: {
     loadAllOrdersRequest: (state, action) => {
       console.log("SAGA REQUEST => ", action.payload)
+      state.loading = true;
     },
     loadAllOrdersSuccess: (state, action) => {
       state.loading = false;
