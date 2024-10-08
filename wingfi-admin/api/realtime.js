@@ -55,12 +55,6 @@ async function addRealtime(body) {
   if (!path || !data) {
     return res.status(400).json({ error: "Path and data are required" });
   }
-  await new Promise((resolve, reject) => {
-    authMiddleware(req, res, (err) => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
 
   const ref = realtimeDb.ref(path);
   const newRef = ref.push();
@@ -77,13 +71,6 @@ async function updateRealtime(body) {
   if (!path || !data) {
     return res.status(400).json({ error: "Path and data are required" });
   }
-
-  await new Promise((resolve, reject) => {
-    authMiddleware(req, res, (err) => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
 
   const ref = realtimeDb.ref(path);
 
@@ -104,13 +91,6 @@ async function readRealtime(body) {
     return res.status(400).json({ error: "Path is required" });
   }
 
-  await new Promise((resolve, reject) => {
-    authMiddleware(req, res, (err) => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
-
   const ref = realtimeDb.ref(path);
   const snapshot = await ref.once("value");
 
@@ -127,13 +107,6 @@ async function deleteRealtime(body) {
   if (!path) {
     return res.status(400).json({ error: "Path is required" });
   }
-
-  await new Promise((resolve, reject) => {
-    authMiddleware(req, res, (err) => {
-      if (err) return reject(err);
-      resolve();
-    });
-  });
 
   const ref = realtimeDb.ref(path);
 
