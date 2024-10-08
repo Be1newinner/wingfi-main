@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { selectProduct } from "../redux/selectors/product";
 import React from "react";
 import { useSelector } from "react-redux";

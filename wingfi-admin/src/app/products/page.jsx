@@ -1,6 +1,6 @@
 "use client";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { VscThreeBars } from "react-icons/vsc";
+// import { VscThreeBars } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
@@ -91,8 +91,8 @@ export default function ProductsList() {
                 <th className="text-left">SKU</th>
                 <th className="text-left">Status</th>
               </tr>
-              {data.map((d) => (
-                <tr className="hover:bg-gray-200 duration-300">
+              {data.map((d,i) => (
+                <tr key={i} className="hover:bg-gray-200 duration-300">
                   <td className="py-4 text-center">{d.index}</td>
                   <td className="">{d.label}</td>
                   <td>{d.mrp}</td>

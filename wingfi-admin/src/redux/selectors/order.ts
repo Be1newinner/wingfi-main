@@ -1,26 +1,27 @@
 import { createSelector } from "reselect";
 import { RootState } from "../rootReducer";
+import { ORDER_SLICE } from "../constants/slices";
 
-export const selectOrderState = (state: RootState) => state.orders.data 
+export const selectOrderState = (state: RootState) => state[ORDER_SLICE].data;
+
+export const selectOrderState2 = (state: RootState) => state[ORDER_SLICE];
 
 export const selectAllOrders = createSelector(
-  [selectOrderState],
-  (orderState) => orderState.order
+  [selectOrderState2],
+  (orderState) => orderState.data
 );
 
-// export const selectOrderById = (orderId: string) =>
-//   createSelector([selectAllOrders], (orders) =>
-//     orders.find((order) => order.id === orderId)
-//   );
-
-// export const selectOrderById = () => null;
+export const selectAllOrdersData = createSelector(
+  [selectOrderState2],
+  (orderState) => orderState.data
+);
 
 export const selectOrderLoading = createSelector(
-  [selectOrderState],
+  [selectOrderState2],
   (orderState) => orderState.loading
 );
 
 export const selectOrderError = createSelector(
-  [selectOrderState],
+  [selectOrderState2],
   (orderState) => orderState.error
 );

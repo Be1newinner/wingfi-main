@@ -11,7 +11,7 @@ import Orders from "@/components/Orders";
 import NewComments from "@/components/NewComments";
 import Footer from "@/components/Footer";
 import LeftSidebar from "@/components/Sidebar";
-import { VscThreeBars } from "react-icons/vsc";
+// import { VscThreeBars } from "react-icons/vsc";
 import { useDispatch } from "react-redux";
 import { loadAllProductsRequest } from "@/redux/reducers/products";
 
