@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createSlice } from '@reduxjs/toolkit';
 import { ORDER_SLICE } from "../constants/slices";
 
 const initialState = {

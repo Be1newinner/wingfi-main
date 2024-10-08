@@ -1,7 +1,8 @@
 import { createSelector } from "reselect";
 import { RootState } from "../rootReducer";
+import { ORDER_SLICE } from "../constants/slices";
 
-export const selectOrderState = (state: RootState) => state.order;
+export const selectOrderState = (state: RootState) => state[ORDER_SLICE];
 
 export const selectAllOrders = createSelector(
   [selectOrderState],

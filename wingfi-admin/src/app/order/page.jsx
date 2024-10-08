@@ -1,5 +1,4 @@
 "use client";
-import { VscThreeBars } from "react-icons/vsc";
 import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
@@ -8,9 +7,10 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { loadAllOrdersRequest } from "@/redux/reducers/order";
 import { useRouter } from "next/navigation";
+import { ORDER_SLICE } from "@/redux/constants/slices";
 
 export default function OrderList() {
-  const data = useSelector((state) => state.order.data);
+  const data = useSelector((state) => state[ORDER_SLICE].data);
   const router = useRouter();
 
   const dispatch = useDispatch();

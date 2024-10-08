@@ -2,14 +2,19 @@
 
 import Image from "next/image";
 import { selectAllOrders } from "@/redux/selectors/order";
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function OrdersList() {
   const order = useSelector(selectAllOrders);
+
+  useEffect(() => {
+    console.log("order => ", order);
+  }, [order]);
+
   return (
     <div>
-      {order?.map((d, index) => (
+      {/* {order?.map((d, index) => (
         <div
           key={index}
           className="my-4 flex hover:bg-gray-200 hover:rounded-lg hover:text-sky-400 duration-300 mx-5  items-center"
@@ -31,7 +36,7 @@ export default function OrdersList() {
             <p>20 Nov 2024</p>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
