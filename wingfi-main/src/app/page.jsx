@@ -7,25 +7,19 @@ import {
   Newsletter,
   BestSellerWrapper,
   RecProductsWrapper,
-} from "@/components";
-import Link from "next/link";
+} from '@/components';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div
-      style={{
-        backgroundColor: "#f6f9fc",
-      }}
-    >
+    <div className="bg-[#f6f9fc]">
       <NavBar />
       <main>
         <HeroSection />
         <HomeFeatures />
 
         {/* Best Selling Section */}
-        <div
-          className="lg:px-[100px] px-[20px]  py-[50px]"
-        >
+        <div className="lg:px-[100px] px-[20px]  py-[50px]">
           <div className="flex justify-between items-center">
             <div className="flex flex-col justify-between">
               <span className="text-error font-bold text-sm	">This Month</span>
@@ -33,7 +27,9 @@ export default function Home() {
             </div>
 
             <div className="flex justify-between items-center">
-              <Link href={'/'} className="py-2 px-4 bg-red-500 text-white rounded-full">View More</Link>
+              <Link href={'/'} className="py-2 px-4 bg-red-500 text-white rounded-full">
+                View More
+              </Link>
             </div>
           </div>
           <BestSellerWrapper />
