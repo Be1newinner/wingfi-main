@@ -1,5 +1,27 @@
-import { auth } from "../config/firebaseInit";
-// import authMiddleware from "../config/authMiddleware";
+import admin from "firebase-admin";
+
+let privateKey = "";
+
+if (process.env.FIREBASE_PRIVATE_KEY) {
+    privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+}
+
+const app = admin.initializeApp({
+    credential: admin.credential.cert({
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        privateKey,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    }),
+    databaseURL:
+        "https://wingfi-9b5b7-default-rtdb.asia-southeast1.firebasedatabase.app",
+});
+
+const auth = admin.auth(app);
+
+const API_TYPES = {
+    GET_LIST_USERS: "GET_LIST_USERS",
+}
+
 
 export default async function readHandler(req, res) {
     try {
@@ -7,36 +29,28 @@ export default async function readHandler(req, res) {
             return res.status(405).json({ error: "Method Not Allowed" });
         }
 
-        // await new Promise((resolve, reject) => {
-        //     authMiddleware(req, res, (err) => {
-        //         if (err) return reject(err);
-        //         resolve();
-        //     });
-        // });
+        const { api_type } = req.body;
 
-        const { nextPageToken, limit } = req.body;
-        listAllUsers({ nextPageToken, limit });
+        switch (api_type) {
+            case API_TYPES.GET_LIST_USERS: return readUserList(req.body);
+            default: throw Error("INVALID API TYPE");
+        }
 
-        return res.status(200).json({ data: snapshot.val() });
     } catch (error) {
-        console.error("Error fetching data:", error);
+        console.log("ERROR: ", error.message);
+
+        if (error.message === "INVALID API TYPE") {
+            return res.status(500).json({ error: error.message });
+        }
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
-const listAllUsers = ({ nextPageToken, limit }) => {
-    getAuth(auth)
-        .listUsers(limit, nextPageToken)
-        .then((listUsersResult) => {
-            listUsersResult.users.forEach((userRecord) => {
-                console.log('user', userRecord.toJSON());
-            });
-            if (listUsersResult.pageToken) {
-                // List next batch of users.
-                listAllUsers(listUsersResult.pageToken);
-            }
-        })
-        .catch((error) => {
-            console.log('Error listing users:', error);
-        });
-};
+
+async function readUserList(body) {
+    const { nextPageToken, limit = Math.min(limit, 5) } = body;
+
+    const data = await auth.listUsers(limit, nextPageToken)
+
+    return res.status(200).json({ data });
+}
