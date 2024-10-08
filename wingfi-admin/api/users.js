@@ -1,4 +1,5 @@
-import { auth } from "../config/firebaseInit.js";
+import { auth } from "../config/firebaseInit";
+// import authMiddleware from "../config/authMiddleware";
 
 export default async function readHandler(req, res) {
     try {
@@ -6,42 +7,36 @@ export default async function readHandler(req, res) {
             return res.status(405).json({ error: "Method Not Allowed" });
         }
 
+        // await new Promise((resolve, reject) => {
+        //     authMiddleware(req, res, (err) => {
+        //         if (err) return reject(err);
+        //         resolve();
+        //     });
+        // });
+
         const { nextPageToken, limit } = req.body;
+        listAllUsers({ nextPageToken, limit });
 
-        // Await the result of listAllUsers
-        const users = await listAllUsers({ nextPageToken, limit });
-
-        // Return the users in the response
-        return res.status(200).json({ data: users });
+        return res.status(200).json({ data: snapshot.val() });
     } catch (error) {
         console.error("Error fetching data:", error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
 
-const listAllUsers = async ({ nextPageToken, limit }) => {
-    let allUsers = []; // Array to collect all users
-
-    // Recursive function to list all users
-    const getUsers = async (pageToken) => {
-        try {
-            const listUsersResult = await auth.listUsers(limit, pageToken);
-
-            // Add the current batch of users to the array
-            allUsers = [...allUsers, ...listUsersResult.users.map((userRecord) => userRecord.toJSON())];
-
-            // If there's a next page token, recursively call getUsers to fetch more users
+const listAllUsers = ({ nextPageToken, limit }) => {
+    getAuth(auth)
+        .listUsers(limit, nextPageToken)
+        .then((listUsersResult) => {
+            listUsersResult.users.forEach((userRecord) => {
+                console.log('user', userRecord.toJSON());
+            });
             if (listUsersResult.pageToken) {
-                await getUsers(listUsersResult.pageToken);
+                // List next batch of users.
+                listAllUsers(listUsersResult.pageToken);
             }
-        } catch (error) {
+        })
+        .catch((error) => {
             console.log('Error listing users:', error);
-            throw error;
-        }
-    };
-
-    // Start fetching users
-    await getUsers(nextPageToken);
-
-    return allUsers;
+        });
 };
