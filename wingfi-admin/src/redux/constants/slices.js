@@ -1,2 +1,2 @@
 export const ORDER_SLICE = "orders";
-export const PRODUCT_SLICE = "prodducts";
+export const PRODUCT_SLICE = "products";

@@ -33,23 +33,25 @@ export function HomeFeatures() {
 
   return (
     <div
-      className="mt-12 mx-auto flex justify-between items-center"
-      style={{
-        width: "92%",
-        maxWidth: 1200,
-        height: "auto",
-      }}
+      className="w-full max-w-full lg:px-[100px] px-[20px]  py-[50px] h-auto"
+      
     >
-      <ul className="flex gap-2 flex-wrap">
+      <ul className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-2 gap-2 flex-wrap">
         {list?.map((item) => (
           <li
             key={item.id}
-            className="flex gap-4 bg-white px-4 py-6 sm:py-8 border shadow"
-            style={{
-              flex: "1 0 24%",
-            }}
+            className="flex flex-col justify-center items-center bg-gray-200 p-5 rounded-lg"
           >
-            {item.icon}
+            <div>
+              {item.icon}
+            </div>
+
+            <div className="text-center">
+              <h4 className="text-lg font-bold">{item.item}</h4>
+              <p className="text-gray-500 sm:text-[10px">{item.dec}</p>
+            </div>
+
+            {/* {item.icon}
             <div className="flex flex-col">
               <span
                 style={{
@@ -59,7 +61,7 @@ export function HomeFeatures() {
                 {item.item}
               </span>
               <span>{item.dec}</span>
-            </div>
+            </div> */}
           </li>
         ))}
       </ul>

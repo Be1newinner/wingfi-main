@@ -1,13 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import { selectAllOrders, selectOrderState } from "@/redux/selectors/order";
+import { selectOrderState } from "@/redux/selectors/order";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  loadAllOrdersRequest,
-  ordersLoadRequest,
-} from "@/redux/reducers/order";
+import { loadAllOrdersRequest } from "@/redux/reducers/order";
 
 export default function OrdersList() {
   const order = useSelector(selectOrderState);
