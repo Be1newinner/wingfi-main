@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-// import { Theme_text_colors_class } from '@/infrastructure/theme';
 import { FaStar } from 'react-icons/fa';
 
 export function ProductViewList3({ item, rating }) {
   return (
     <Link className="shadow-md border p-5 w-full" href={'/shop/' + item?.slug}>
-      <div>
+      <div className="overflow-hidden transition-transform duration-300 hover:scale-110">
         <Image
           src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${item.sku}%2F0.webp?alt=media`}
           width={759}
@@ -15,10 +14,9 @@ export function ProductViewList3({ item, rating }) {
           className="h-[150px] w-full object-contain"
         />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 mt-3">
         <p className="leading-6 font-bold text-lg">{item?.title}</p>
 
-        {/* Render stars based on the rating value */}
         <div className="flex items-end justify-between">
           <div>
             <div className="flex gap-1 text-yellow-400">
@@ -32,12 +30,12 @@ export function ProductViewList3({ item, rating }) {
 
             <div className="flex flex-col-reverse">
               <span className="text-error font-[700]">₹{item?.price}/-</span>
-              <span className="text-gray-400 line-through">₹{item?.mrp}/-</span>
+              <span className="text-gray-400 line-through">₹{item?.mrp || 0}/-</span>
             </div>
           </div>
 
           <div>
-            <button className="bg-">Add to Cart</button>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
           </div>
         </div>
       </div>
