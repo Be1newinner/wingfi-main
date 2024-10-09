@@ -3,6 +3,14 @@ import Link from 'next/link';
 import { FaStar } from 'react-icons/fa';
 
 export function ProductViewList3({ item, rating }) {
+  const titleFormat = {
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  };
+
   return (
     <Link className="shadow-md border p-5 w-full" href={'/shop/' + item?.slug}>
       <div className="overflow-hidden transition-transform duration-300 hover:scale-110">
@@ -15,7 +23,9 @@ export function ProductViewList3({ item, rating }) {
         />
       </div>
       <div className="flex flex-col gap-2 mt-3">
-        <p className="leading-6 font-bold text-lg">{item?.title}</p>
+        <h2 className="leading-6 font-bold text-lg" style={titleFormat}>
+          {item?.title}
+        </h2>
 
         <div className="flex items-end justify-between">
           <div>
@@ -35,7 +45,9 @@ export function ProductViewList3({ item, rating }) {
           </div>
 
           <div>
-            <button className="bg-blue-500 text-white px-4 py-2 rounded">Add to Cart</button>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded text-md font-bold">
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
