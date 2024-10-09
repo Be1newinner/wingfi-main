@@ -97,7 +97,7 @@ export function Newsletter() {
             </div>
             <button
               type="submit"
-              className="rounded-[50px] h-[58px] px-[18px] text-[18px] font-[400] bg-red-500 text-white"
+              className="rounded-[50px] h-[58px] px-[18px] text-[18px] font-[500] bg-red-500 text-white"
             >
               Submit
             </button>

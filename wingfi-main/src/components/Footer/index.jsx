@@ -1,19 +1,12 @@
 import Link from 'next/link';
-import {
-  FaHeadphonesAlt,
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaWhatsapp,
-  FaTwitter,
-} from 'react-icons/fa';
+import { FaHeadphonesAlt } from 'react-icons/fa';
 import { MdOutlineMailOutline } from 'react-icons/md';
 import { FiMapPin } from 'react-icons/fi';
 import BasicDetails from '@/constants/BasicDetails.json';
 
 export function Footer() {
   return (
-    <footer className="footer  p-4 sm:p-10  pt-12 bg-[#695353] text-white   flex flex-col">
+    <footer className="footer  p-4 sm:p-10  pt-12 bg-[#695353] text-white flex flex-col">
       <div
         style={{
           maxWidth: 1200,

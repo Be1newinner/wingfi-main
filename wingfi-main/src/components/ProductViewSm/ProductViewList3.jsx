@@ -18,14 +18,14 @@ export function ProductViewList3({ item, rating }) {
   };
 
   return (
-    <li className="relative shadow-md border p-5 w-full">
-      <div className="overflow-hidden transition-transform duration-300 hover:scale-110">
+    <li className="relative shadow-md border p-5 w-full list-none">
+      <div className="overflow-hidden ">
         <Image
           src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${item.sku}%2F0.webp?alt=media`}
           width={759}
           height={1500}
           alt=""
-          className="h-[150px] w-full object-contain"
+          className="h-[150px] w-full object-contain transition-transform duration-300 hover:scale-110"
         />
       </div>
 

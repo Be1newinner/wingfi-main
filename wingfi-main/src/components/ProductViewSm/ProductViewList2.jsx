@@ -1,73 +1,77 @@
-"use client";
+'use client';
 
-import Image from "next/image";
-import Link from "next/link";
-import { Theme_text_colors_class } from "@/infrastructure/theme";
-import { FaRegHeart, FaStar } from "react-icons/fa";
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+import { FaStar } from 'react-icons/fa';
+import { FaRegHeart, FaHeart } from 'react-icons/fa'; // Import filled heart icon
 
-export function ProductViewList2({ item }) {
+export function ProductViewList2({ item, rating }) {
+  const [isFavorite, setIsFavorite] = useState(false); // State to manage heart icon
+
+  const titleFormat = {
+    display: '-webkit-box',
+    WebkitBoxOrient: 'vertical',
+    WebkitLineClamp: 2,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+  };
+
   return (
-    <div className="flex items-center bg-white border shadow p-2 sm:p-3 gap-1 sm:gap-4 overflow-hidden rounded-sm flex-col sm:flex-row basis-1/2">
-      <Image
-        src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${item.sku}%2F1.webp?alt=media`}
-        width={180}
-        height={180}
-        style={{
-          objectFit: "cover",
-        }}
-        alt=""
-      />
-      <div className="flex flex-col gap-4 justify-between h-full w-full">
-        <p
-          style={{
-            lineHeight: 1.3,
-          }}
-          className="text-md"
-        >
-          {item?.title}
-        </p>
-        <div
-          className={["flex gap-1", Theme_text_colors_class.primary].join(" ")}
-        >
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-          <FaStar />
-        </div>
-        <div>
-          <span
-            style={{
-              textDecorationLine: "line-through",
-              textDecorationColor: "gray",
-              color: "gray",
-            }}
-          >
-            ₹{item?.mrp}/-
-          </span>
-          <span className="text-error font-semibold">₹{item?.price}/-</span>
-        </div>
-        <div className="flex gap-2 ">
-          <Link
-            href={"/shop/" + item?.slug}
-            className="btn btn-sm btn-error sm:flex-1 border border-gray-300 shadow rounded-sm text-white font-medium min-w-16"
-          >
-            View
-          </Link>
-          <button
-            className="btn btn-sm btn-outline btn-error sm:flex-1 border shadow rounded-sm "
-            onClick={() => {
-              // dispatch(
-              //   addInWishlist(JSON.stringify({ ...item, sku: item.sku }))
-              // );
-            }}
-          >
-            <div className="flex gap-1 items-center">
-              <FaRegHeart /> wishlist
+    <li className="relative shadow-md border p-5 w-full list-none">
+      <Link
+        href={'/shop/' + item?.slug}
+        className="overflow-hidden transition-transform duration-300 hover:scale-110"
+      >
+        <Image
+          src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${item.sku}%2F1.webp?alt=media`}
+          width={759}
+          height={1500}
+          alt=""
+          className="h-[150px] w-full object-cover transition-transform duration-300 hover:scale-110"
+        />
+      </Link>
+
+      <span
+        className={`absolute top-[20px] right-[20px] transition-transform duration-300 bg-white w-[30px] h-[30px] flex justify-center items-center rounded-full ${
+          isFavorite ? 'scale-100 text-red-500' : 'scale-110 text-gray-400'
+        }`}
+        onClick={() => setIsFavorite(!isFavorite)} // Toggle favorite state
+      >
+        {isFavorite ? <FaHeart /> : <FaRegHeart />} {/* Conditional rendering of heart */}
+      </span>
+
+      <div className="flex flex-col gap-2 mt-3">
+        <Link href={'/shop/' + item?.slug}>
+          <h2 className="leading-6 font-bold text-lg" style={titleFormat}>
+            {item?.title}
+          </h2>
+        </Link>
+
+        <div className="flex items-end justify-between cursor-pointer">
+          <div>
+            <div className="flex gap-1 text-yellow-400">
+              {Array.from({ length: 5 }, (_, index) => (
+                <FaStar
+                  key={index}
+                  className={index < rating ? 'text-yellow-400' : 'text-gray-300'}
+                />
+              ))}
             </div>
-          </button>
+
+            <div className="flex flex-col-reverse">
+              <span className="text-error font-[700]">₹{item?.price}/-</span>
+              <span className="text-gray-400 line-through">₹{item?.mrp || 0}/-</span>
+            </div>
+          </div>
+
+          <div>
+            <button className="bg-red-500 text-white px-4 py-2 rounded text-md font-bold">
+              Add to Cart
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </li>
   );
 }
