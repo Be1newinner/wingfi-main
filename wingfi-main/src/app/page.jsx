@@ -10,6 +10,7 @@ import {
 } from '@/components';
 import Link from 'next/link';
 import CategoryList from '../components/Category/CategoryList';
+// import { Newsletter } from '@/components';
 
 export default function Home() {
   return (
@@ -52,8 +53,9 @@ export default function Home() {
         </div>
 
         <UserFeedBack2 />
-        <Newsletter />
+        {/* <Newsletter /> */}
       </main>
+      <Newsletter />
       <Footer />
     </div>
   );
