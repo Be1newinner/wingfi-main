@@ -60,7 +60,7 @@
 //   );
 // }
 
-import { FaLinkedinIn, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa'; // Corrected Twitter import
+import { FaLinkedinIn, FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const socialLinks = [
   {
@@ -83,21 +83,36 @@ const socialLinks = [
 
 export function Newsletter() {
   return (
-    <div className="flex justify-center items-center bg-gray-400 xl:p-0 px-[20px] py-[50px]">
-      <div className="container">
-        <div>
-          <h2>Newsletter</h2>
-          <form action="">
+    <div className="flex justify-center items-center bg-gray-400 py-[42px] xl:px-0 px-[20px]">
+      <div className="container flex lg:justify-between justify-center lg:flex-row flex-col items-center">
+        <div className="flex items-center gap-4">
+          <h2 className="text-[40px] font-[600] text-black">Newsletter</h2>
+          <form action="" className="flex items-center gap-4">
             <div>
-              <input type="text" placeholder="Enter your email" />
+              <input
+                type="text"
+                placeholder="Enter your email"
+                className="outline-none rounded-[50px] h-[58px] px-[18px] text-[18px] font-[600]"
+              />
             </div>
-            <button type="submit">Submit</button>
+            <button
+              type="submit"
+              className="rounded-[50px] h-[58px] px-[18px] text-[18px] font-[400] bg-red-500 text-white"
+            >
+              Submit
+            </button>
           </form>
         </div>
 
         <div className="flex gap-4 mt-4">
           {socialLinks.map((link, index) => (
-            <a key={index} href={link.link} target="_blank" rel="noopener noreferrer">
+            <a
+              key={index}
+              href={link.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center items-center w-10 h-10 bg-white rounded-full transition-transform duration-300 hover:bg-red-500 hover:-translate-y-1"
+            >
               {link.icon}
             </a>
           ))}

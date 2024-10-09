@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link';
 import {
   FaHeadphonesAlt,
   FaFacebookF,
@@ -6,14 +6,14 @@ import {
   FaInstagram,
   FaWhatsapp,
   FaTwitter,
-} from "react-icons/fa";
-import { MdOutlineMailOutline } from "react-icons/md";
-import { FiMapPin } from "react-icons/fi";
-import BasicDetails from "@/constants/BasicDetails.json";
+} from 'react-icons/fa';
+import { MdOutlineMailOutline } from 'react-icons/md';
+import { FiMapPin } from 'react-icons/fi';
+import BasicDetails from '@/constants/BasicDetails.json';
 
 export function Footer() {
   return (
-    <footer className="footer mt-3 p-4 sm:p-10  pt-12 bg-white text-base-content rounded flex flex-col">
+    <footer className="footer  p-4 sm:p-10  pt-12 bg-[#695353] text-white   flex flex-col">
       <div
         style={{
           maxWidth: 1200,
@@ -24,19 +24,19 @@ export function Footer() {
         <div className="flex flex-col gap-2 max-w-72">
           <span className="font-bold text-2xl">{BasicDetails.company}</span>
           <p>
-            We help delivers quality securely. Let&apos;s Shop. We help delivers
-            quality securely. Let&apos;s Shop. We help delivers.
+            We help delivers quality securely. Let&apos;s Shop. We help delivers quality securely.
+            Let&apos;s Shop. We help delivers.
           </p>
 
           <p>
-            Developed with love by{" "}
+            Developed with love by{' '}
             <a href="https://shipsar.in" className="hover:text-error">
               Shipsar Developers
             </a>
           </p>
 
           {/* Social Icons */}
-          <div className="text-gray-200 flex gap-2 mt-2">
+          {/* <div className="text-gray-200 flex gap-2 mt-2">
             {BasicDetails.support.facebook && (
               <Link
                 href={BasicDetails.support.facebook}
@@ -77,18 +77,13 @@ export function Footer() {
                 <FaWhatsapp size={20} />
               </Link>
             )}
-          </div>
+          </div> */}
         </div>
 
         {/* 2nd Column */}
         <div>
           <h3 className="text-lg font-bold">My Account</h3>
-          <ul
-            className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0"
-            style={{
-              listStyleType: "disc",
-            }}
-          >
+          <ul className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0">
             <li className="font-medium hover:font-semibold">
               <Link href="/shop">Shop</Link>
             </li>
@@ -116,12 +111,7 @@ export function Footer() {
         {/* 3rd Column */}
         <div>
           <h3 className="text-lg font-bold">Informations</h3>
-          <ul
-            className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0"
-            style={{
-              listStyleType: "disc",
-            }}
-          >
+          <ul className="flex flex-col gap-2 mt-2 pl-4 sm:pl-0">
             <li className="font-medium hover:font-semibold">
               <Link href="/contact">About Us</Link>
             </li>
@@ -148,9 +138,7 @@ export function Footer() {
             <div>
               <p>Got Questions? Contact us 24/7</p>
               <p className="font-medium text-lg">
-                <a href={`tel:+91${BasicDetails.Phone}`}>
-                  +91 {BasicDetails.Phone}
-                </a>
+                <a href={`tel:+91${BasicDetails.Phone}`}>+91 {BasicDetails.Phone}</a>
               </p>
             </div>
           </div>
