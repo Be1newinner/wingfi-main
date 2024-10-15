@@ -41,10 +41,10 @@ export default async function handler(req, res) {
     // });
 
     switch (api_type) {
-      case API_TYPES.ADD_DOCUMENT: return addDocument(req.body);
-      case API_TYPES.DELETE_DOCUMENT: return deleteDocument(req.body);
-      case API_TYPES.FETCH_DOCUMENT: return fetchDocument(req.body);
-      case API_TYPES.UPDATE_DOCUMENT: return updateDocument(req.body);
+      case API_TYPES.ADD_DOCUMENT: return addDocument(req.body, res);
+      case API_TYPES.DELETE_DOCUMENT: return deleteDocument(req.body, res);
+      case API_TYPES.FETCH_DOCUMENT: return fetchDocument(req.body, res);
+      case API_TYPES.UPDATE_DOCUMENT: return updateDocument(req.body, res);
       default: throw Error("INVALID API TYPE");
     }
 
@@ -54,7 +54,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function addDocument(body) {
+async function addDocument(body, res) {
   const { collectionPath, data, docId } = body;
 
   if (!collectionPath || !data) {
@@ -77,7 +77,7 @@ async function addDocument(body) {
 }
 
 
-async function deleteDocument(body) {
+async function deleteDocument(body, res) {
 
   const { documentPath } = body;
 
@@ -99,7 +99,7 @@ async function deleteDocument(body) {
 }
 
 
-async function fetchDocument(body) {
+async function fetchDocument(body, res) {
   const { collectionPath, docId } = body;
 
   if (!collectionPath || !docId) {
@@ -124,7 +124,7 @@ async function fetchDocument(body) {
   return res.status(200).json(document);
 }
 
-async function updateDocument(body) {
+async function updateDocument(body, res) {
   const { collectionPath, docId, data } = body;
 
   if (!collectionPath || !docId || !data) {

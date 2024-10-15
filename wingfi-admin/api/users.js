@@ -32,7 +32,7 @@ export default async function readHandler(req, res) {
         const { api_type } = req.body;
 
         switch (api_type) {
-            case API_TYPES.GET_LIST_USERS: return readUserList(req.body);
+            case API_TYPES.GET_LIST_USERS: return readUserList(req.body, res);
             default: throw Error("INVALID API TYPE");
         }
 
@@ -47,10 +47,10 @@ export default async function readHandler(req, res) {
 }
 
 
-async function readUserList(body) {
-    const { nextPageToken, limit = Math.min(limit, 5) } = body;
+async function readUserList(body, res) {
+    const { nextPageToken, limit } = body;
 
-    const data = await auth.listUsers(limit, nextPageToken)
+    const data = await auth.listUsers(limit ? Math.min(limit, 5) : 5, nextPageToken)
 
     return res.status(200).json({ data });
 }

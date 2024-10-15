@@ -35,10 +35,10 @@ export default async function handler(req, res) {
     const { api_type } = req.body;
 
     switch (api_type) {
-      case API_TYPES.ADD_REALTIME: return addRealtime(req.body);
-      case API_TYPES.DELETE_REALTIME: return deleteRealtime(req.body);
-      case API_TYPES.FETCH_REALTIME: return readRealtime(req.body);
-      case API_TYPES.UPDATE_REALTIME: return updateRealtime(req.body);
+      case API_TYPES.ADD_REALTIME: return addRealtime(req.body, res);
+      case API_TYPES.DELETE_REALTIME: return deleteRealtime(req.body, res);
+      case API_TYPES.FETCH_REALTIME: return readRealtime(req.body, res);
+      case API_TYPES.UPDATE_REALTIME: return updateRealtime(req.body, res);
       default: throw Error("INVALID API TYPE");
     }
 
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
 }
 
 
-async function addRealtime(body) {
+async function addRealtime(body, res) {
   const { path, data } = body;
 
   if (!path || !data) {
@@ -65,7 +65,7 @@ async function addRealtime(body) {
     .json({ message: "Data added successfully", id: newRef.key });
 }
 
-async function updateRealtime(body) {
+async function updateRealtime(body, res) {
   const { path, data } = body;
 
   if (!path || !data) {
@@ -84,7 +84,7 @@ async function updateRealtime(body) {
   return res.status(200).json({ message: "Data updated successfully" });
 }
 
-async function readRealtime(body) {
+async function readRealtime(body, res) {
   const { path } = body;
 
   if (!path) {
@@ -101,7 +101,7 @@ async function readRealtime(body) {
   return res.status(200).json({ data: snapshot.val() });
 }
 
-async function deleteRealtime(body) {
+async function deleteRealtime(body, res) {
   const { path } = body;
 
   if (!path) {

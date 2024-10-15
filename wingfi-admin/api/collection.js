@@ -22,7 +22,7 @@ const API_TYPES = {
   FETCH_COLLECTION: "FETCH_COLLECTION",
 }
 
-async function getCollection(body) {
+async function getCollection(body, res) {
 
   const { collectionPath, where = [], limit = 10 } = body;
 
@@ -77,7 +77,7 @@ export default async function handler(req, res) {
     const { api_type } = req.body;
 
     switch (api_type) {
-      case API_TYPES.FETCH_COLLECTION: return getCollection(req.body);
+      case API_TYPES.FETCH_COLLECTION: return getCollection(req.body, res);
       default: throw Error("INVALID API TYPE");
     }
 
