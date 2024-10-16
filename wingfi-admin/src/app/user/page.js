@@ -1,74 +1,40 @@
 "use client";
-// import { VscThreeBars } from "react-icons/vsc";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LeftSidebar from "@/components/Sidebar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-// import { MdDelete } from "react-icons/md";
-// import { AiOutlineEdit } from "react-icons/ai";
-// import { GrView } from "react-icons/gr";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "@/redux/selectors/auth";
+import { loadAllUsersRequest } from "@/redux/reducers/users";
+
 export default function OrderTracking() {
   const [show, setShow] = useState(false);
   const handle = () => {
     setShow(true);
   };
-
   const handleClose = () => {
     if (show) {
       setShow(false);
     }
   };
 
-  // const data = [
-  //   {
-  //     id: 1,
-  //     image: user1,
-  //   },
-  //   {
-  //     id: 2,
-  //     image: user2,
-  //   },
-  //   {
-  //     id: 3,
-  //     image: user1,
-  //   },
-  //   {
-  //     id: 4,
-  //     image: user2,
-  //   },
-  //   {
-  //     id: 5,
-  //     image: user1,
-  //   },
-  //   {
-  //     id: 6,
-  //     image: user3,
-  //   },
-  //   {
-  //     id: 7,
-  //     image: user3,
-  //   },
-  //   {
-  //     id: 8,
-  //     image: user1,
-  //   },
-  //   {
-  //     id: 9,
-  //     image: user3,
-  //   },
-  //   {
-  //     id: 10,
-  //     image: user1,
-  //   },
-  // ];
+  const data = useSelector(selectUser);
+  console.log("all data is : ", data);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadAllUsersRequest());
+  }, [dispatch]);
 
   return (
     <div className="flex flex-row bg-[#f2f7fb] h-screen overflow-hidden ">
       <div
         className={
-          show ? "w-[280px] duration-500 max-sm:absolute  " : "w-20 duration-500"
+          show
+            ? "w-[280px] duration-500 max-sm:absolute  "
+            : "w-20 duration-500"
         }
       >
         <LeftSidebar handleClose={handleClose} show={show} handle={handle} />
@@ -104,15 +70,32 @@ export default function OrderTracking() {
                 + Add New
               </button>
             </div>
-            <div className="overflow-x-scroll no-scrollbar py-5">
-              <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-4 px-20 w-[120%]  ">
+              <table className="w-full">
+                <tr>
+                  <th className="text-left py-4">SrNo</th>
+                  <th className="text-left">User</th>
+                  <th className="text-left">Phone</th>
+                  <th className="text-left">Email</th>
+                  <th className="text-left">Email Verified</th>
+                </tr>
+                {/* {data?.map((d, i) => (
+                  <tr key={i} className="hover:bg-gray-200 duration-300">
+                    <td className="py-4 text-center">{d.displayName}</td>
+                    <td className="">{d.uid}</td> 
+                    <td>{d.phoneNumber}</td>
+                    <td>{d.email}</td>
+                    <td>{d.emailVerified}</td>
+                  </tr>
+                ))} */}
+              </table>
+              {/* <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-4 px-20 w-[120%]  ">
                 <h1 className="w-[8%]">User</h1>
                 <h1>Phone</h1>
                 <h1>Email</h1>
                 <h1>Action</h1>
-              </div>
+              </div> */}
               {/* {data.map((d) => ( */}
-                {/* <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
+              {/* <div className="flex items-center justify-between w-[120%] pr-16 hover:bg-gray-300 duration-300 my-4 rounded-xl">
                   <div className="flex items-center gap-2 font-bold">
                     <img
                       width={50}
@@ -135,7 +118,6 @@ export default function OrderTracking() {
                   </div>
                 </div> */}
               {/* ))} */}
-            </div>
             <hr />
             <div className="flex justify-between items-center py-4">
               <h1 className="font-semibold text-gra-400">Showing 10 entries</h1>

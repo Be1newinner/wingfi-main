@@ -9,8 +9,9 @@ const preURL =
 export default async function loadOrdersService() {
   try {
     const data = await axios.post(
-      preURL + "/api/fetchCollection",
+      preURL + "/api/collection",
       {
+        api_type: "FETCH_COLLECTION",
         collectionPath: "or73r",
       },
       {
@@ -18,7 +19,7 @@ export default async function loadOrdersService() {
       }
     );
     const response = await data.data;
-    console.log("order data is :",response)
+    // console.log("order data is :",response)
     const mutatedData = response.map((item, index) => {
       return {
         index: index + 1,

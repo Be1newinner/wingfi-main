@@ -9,8 +9,9 @@ const preURL =
 export default async function loadProductService() {
   try {
     const data = await axios.post(
-      preURL + "/api/fetchCollection",
+      preURL + "/api/collection",
       {
+        api_type: "FETCH_COLLECTION",
         collectionPath: "p43duc",
       },
       {

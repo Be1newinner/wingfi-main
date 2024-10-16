@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function ProductsList() {
   const data = useSelector(selectProduct);
-  // console.log("all data is : ",data);
+  console.log("all data is : ",data);
   const dispatch = useDispatch();
 
   useEffect(() => {
