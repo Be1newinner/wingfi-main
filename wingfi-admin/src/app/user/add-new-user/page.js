@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 import { FaCheckCircle } from "react-icons/fa";
 import { IoIosArrowForward } from "react-icons/io";
 
-export default function OrderTracking() {
+export default function AddNewUser() {
   const [addBtn, setAddBtn] = useState("allow");
   const [updateBtn, setUpdateBtn] = useState("allow");
   const [deleteBtn, setDeleteBtn] = useState("allow");
@@ -46,7 +46,7 @@ export default function OrderTracking() {
   };
 
   return (
-    <div className="flex flex-row bg-[#f2f7fb] ">
+    <div className="flex flex-row bg-[#f2f7fb] h-screen overflow-hidden ">
       <div
         className={
           show ? "w-[280px] duration-500 max-sm:absolute  " : "w-20 duration-500"
@@ -60,9 +60,9 @@ export default function OrderTracking() {
           <Header />
         </header>
 
-        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
+        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar pb-40">
           <div className="flex flex-wrap justify-between items-center p-4 ">
-            <h1 className="font-bold text-2xl ">Add Attribute </h1>
+            <h1 className="font-bold text-2xl ">Add New User </h1>
             <div className="flex gap-4 items-center ">
               <h1>Dashboard </h1>
               <IoIosArrowForward />

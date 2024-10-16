@@ -8,9 +8,21 @@ export default async function loadProductService() {
       api_type: "GET_LIST_USERS",
     });
 
-    const response = await data.data;
-    console.log("users res is : ", response);
-    return response;
+    const response = await data.data.data.users;
+    // console.log("users res is : ", response);
+
+    const mutatedData = response.map((item, index) => {
+      return {
+        index: index + 1,
+        name: item.displayName,
+        UID: item.uid,
+        email: item.email,
+        emailVerified: item.emailVerified,
+      };
+    });
+
+
+    return mutatedData;
   } catch (error) {
     console.log(error);
     throw Error("Unknown Error!");

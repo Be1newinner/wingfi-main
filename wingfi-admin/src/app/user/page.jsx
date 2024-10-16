@@ -6,8 +6,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "@/redux/selectors/auth";
+import { selectUsers } from "@/redux/selectors/users";
 import { loadAllUsersRequest } from "@/redux/reducers/users";
+import Link from "next/link";
 
 export default function OrderTracking() {
   const [show, setShow] = useState(false);
@@ -20,8 +21,8 @@ export default function OrderTracking() {
     }
   };
 
-  const data = useSelector(selectUser);
-  console.log("all data is : ", data);
+  const userdata = useSelector(selectUsers);
+  console.log("user data is => ", userdata);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -66,27 +67,31 @@ export default function OrderTracking() {
                   placeholder="Search Here"
                 />
               </div>
+              <Link href="/user/add-new-user">
               <button className="w-[200px] max-sm:w-full font-bold text-blue-500 border-2 border-blue-500 rounded-xl px-4 py-2 hover:text-white hover:bg-blue-500">
                 + Add New
               </button>
+              </Link>
             </div>
               <table className="w-full">
                 <tr>
                   <th className="text-left py-4">SrNo</th>
+                  <th className="text-left py-4">Name</th>
                   <th className="text-left">User</th>
-                  <th className="text-left">Phone</th>
+                  {/* <th className="text-left">Phone</th> */}
                   <th className="text-left">Email</th>
-                  <th className="text-left">Email Verified</th>
+                  {/* <th className="text-left">Email Verified</th> */}
                 </tr>
-                {/* {data?.map((d, i) => (
+                {userdata?.map((d, i) => (
                   <tr key={i} className="hover:bg-gray-200 duration-300">
-                    <td className="py-4 text-center">{d.displayName}</td>
-                    <td className="">{d.uid}</td> 
-                    <td>{d.phoneNumber}</td>
+                    <td className="py-4 text-center">{d.index}</td>
+                    <td className="py-4 text-left">{d.name}</td>
+                    <td className="">{d.UID}</td> 
+                    {/* <td>{d.phoneNumber}</td> */}
                     <td>{d.email}</td>
-                    <td>{d.emailVerified}</td>
+                    {/* <td>{d.emailVerified}</td> */}
                   </tr>
-                ))} */}
+                ))}
               </table>
               {/* <div className="font-bold flex justify-between bg-gray-50 h-10 rounded-xl items-center p-4 px-20 w-[120%]  ">
                 <h1 className="w-[8%]">User</h1>
