@@ -46,7 +46,7 @@ export default function OrderTracking() {
           <Header />
         </header>
 
-        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar">
+        <main className="bg-gray-100 h-screen overflow-scroll no-scrollbar pb-40">
           <div className="flex flex-wrap gap-2 justify-between items-center p-4 ">
             <h1 className="font-bold text-2xl ">Users </h1>
             <div className="flex gap-4 items-center ">
