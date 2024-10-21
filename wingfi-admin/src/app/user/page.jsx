@@ -58,7 +58,7 @@ export default function OrderTracking() {
             </div>
           </div>
 
-          <div className="border-2 rounded-xl  shadow-xl bg-white w-[95%] max-sm:mx-auto mx-10 p-4 ">
+          <div className="border-2 rounded-xl  shadow-xl bg-white w-[94%] max-sm:mx-auto mx-10 p-4 ">
             <div className="flex flex-wrap gap-2 max-sm:w-full justify-between ">
               <div className="flex flex-wrap max-sm:w-full gap-4 items-center">
                 <input

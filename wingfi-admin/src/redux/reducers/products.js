@@ -43,7 +43,7 @@ const productsSlice = createSlice({
     addNewProductsSuccess: (state, action) => {
       state.loading = false;
       state.data = [...state.data, action.payload];
-      state.subtotal += action.payload.price;
+      // state.subtotal += action.payload.price;
       // state.shipping += action.payload.price;
     },
     addNewProductsFailure: (state, action) => {

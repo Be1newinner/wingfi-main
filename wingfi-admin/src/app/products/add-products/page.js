@@ -67,7 +67,7 @@ function AddProduct() {
           </div>
           {/* ================cart input ================= */}
           <div>
-            <div className="w-full flex gap-4">
+            <div className="w-full gap-4">
               <div className="w-[48%] max-sm:w-full px-4 mx-4 shadow-xl bg-white border-2 rounded-xl">
                 <h1 className="py-4 font-bold text-lg ">Product Name </h1>
                 <input
@@ -120,114 +120,13 @@ function AddProduct() {
                     />
                   </div>
                 </div>
-                <div className="w-full mb-4">
-                  <h1 className="font-bold my-4 text-lg ">Brand</h1>
-                  <select
-                    className="border-2 h-10 p-2  w-full rounded-lg font-bold text-gray-400"
-                    name=""
-                    id=""
-                  >
-                    <option value="">Shop</option>
-                    <option value="">Product</option>
-                  </select>
-                </div>
-                <div>
-                  <h1 className="font-bold text-lg ">Description</h1>
-                  <input
-                    type="text"
-                    className="w-full h-[200px] border-2 rounded-xl"
-                    placeholder="Description"
-                  />
-                  <p className="text-gray-400 font-bold">
-                    Do not exceed 100 characters when entering the product name.
-                  </p>
-                </div>
-              </div>
-              {/* ================cart input 2 ================= */}
-              <div className="flex-1 max-sm:w-full max-sm:py-4 px-4 mx-4 shadow-xl border-2 rounded-xl">
-                <h1 className="py-4 font-bold text-lg ">Product Name </h1>
-                <div className="flex gap-4 max-sm:justify-center justify-between">
-                  <div className="w-48 h-60 border-2 rounded-xl">
-                    <Image
-                      src="/images/upload-1.png"
-                      alt=""
-                      width={300}
-                      height={300}
-                    />
-                  </div>
-                  <div className="w-48 h-60 border-2 rounded-xl">
-                    <Image
-                      src="/images/upload-2.png"
-                      alt=""
-                      width={300}
-                      height={300}
-                    />
-                  </div>
-                  <div className="w-48 h-60 border-2 border-dashed border-teal-400 rounded-xl overflow-hidden ">
-                    <input
-                      className="py-20 px-10"
-                      type="file"
-                      id="file-input"
-                      name="ImageStyle"
-                    />
-                  </div>
-                </div>
-                <p>
-                  You need to add at least 4 images. Pay attention to the
-                  quality of the pictures you add, comply with the background
-                  color standards. Pictures must be in certain dimensions.
-                  Notice that the product shows all the detailsF
-                </p>
-                <div className="flex  justify-between py-2">
-                  <div className="w-[48%] ">
-                    <h1 className="font-bold text-xl ">Add size</h1>
-                    <select className="border-2 w-full rounded-xl h-10 p-2">
-                      <option value="">EU - 44</option>
-                      <option value="">EU - 40</option>
-                      <option value="">EU - 50</option>
-                    </select>
-                    <div className="flex flex-wrap gap-2 justify-between py-2">
-                      <div className="border-2 rounded-xl h-10 p-2 w-24">
-                        EU - 40
-                      </div>
-                      <div className="border-2 rounded-xl h-10 p-2 w-24">
-                        EU - 40
-                      </div>
-                      <div className="border-2 rounded-xl h-10 p-2 w-24">
-                        EU - 40
-                      </div>
-                      <div className="border-2 rounded-xl h-10 p-2 w-24">
-                        EU - 40
-                      </div>
-                      <div className="border-2 rounded-xl h-10 p-2 w-24">
-                        EU - 40
-                      </div>
-                      <div className="border-2 rounded-xl h-10 p-2 w-24">
-                        EU - 40
-                      </div>
-                    </div>
-                  </div>
-                  <div className="w-[48%]">
-                    <h1 className="font-bold text-xl ">Product date</h1>
-                    <div className="flex font-bold items-center border-2 rounded-xl h-10 p-2 justify-between">
-                      <input type="date" className="w-full" />
-                    </div>
-                  </div>
-                </div>
-                <div className="flex font-bold justify-between w-full">
-                  <button
-                    onClick={handleSubmit}
-                    className="py-2 px-2 border-2 rounded-xl w-[30%] border-blue-500 bg-blue-500 text-white hover:bg-white hover:text-blue-500 "
-                  >
-                    Add product
-                  </button>
-                  <button className="py-2 px-2 border-2 rounded-xl w-[30%] border-blue-500 text-blue-500 hover:text-white hover:bg-blue-500 ">
-                    Save product
-                  </button>
-                  <button className="py-2 px-2 border-2 rounded-xl w-[30%] hover:border-blue-500 hover:text-white hover:bg-blue-500 ">
-                    Schedule
-                  </button>
-                </div>
+
+                <button
+                  onClick={handleSubmit}
+                  className="py-2 px-2 mb-4 border-2 rounded-xl w-[30%] border-blue-500 bg-blue-500 text-white hover:bg-white hover:text-blue-500 "
+                >
+                  Add product
+                </button>
               </div>
             </div>
           </div>
