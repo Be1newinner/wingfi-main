@@ -67,11 +67,11 @@ export default function OrderTracking() {
                   placeholder="Search Here"
                 />
               </div>
-              <Link href="/user/add-new-user">
+              {/* <Link href="/user/add-new-user">
               <button className="w-[200px] max-sm:w-full font-bold text-blue-500 border-2 border-blue-500 rounded-xl px-4 py-2 hover:text-white hover:bg-blue-500">
                 + Add New
               </button>
-              </Link>
+              </Link> */}
             </div>
               <table className="w-full">
                 <tr>

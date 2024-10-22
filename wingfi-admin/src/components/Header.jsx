@@ -5,6 +5,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { MdForwardToInbox, MdOutlineHeadset } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
   const [activeBtn, setActiveBtn] = useState(null);
@@ -56,10 +57,12 @@ export default function Header() {
                     <MdOutlineHeadset color="grey" />
                     <h1>Support</h1>
                   </div>
-                  <div className="flex items-center gap-2 pt-2 hover:text-[#3984FC]">
-                    <LuLogOut color="grey" />
-                    <h1>Log out</h1>
-                  </div>
+                  <Link href="/user/login">
+                    <div className="flex items-center gap-2 pt-2 hover:text-[#3984FC]">
+                      <LuLogOut color="grey" />
+                      <h1>Log out</h1>
+                    </div>
+                  </Link>
                 </div>
               )}
             </div>
