@@ -24,12 +24,12 @@ export default function Login() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleGoogleLogin = () => {
-    dispatch(loginRequestByGoogle());
-    setTimeout(() => {
-      router.push("/");
-    }, 5000);
-  };
+  // const handleGoogleLogin = () => {
+  //   dispatch(loginRequestByGoogle());
+  //   setTimeout(() => {
+  //     router.push("/");
+  //   }, 5000);
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +62,7 @@ export default function Login() {
             <div className="flex flex-col justify-center items-center h-full">
               <div>
                 <h1 className="font-bold text-4xl pb-4">Sign In</h1>
-                <p className="font-sans font-medium text-sm pb-3">
+                {/* <p className="font-sans font-medium text-sm pb-3">
                   Sign in with open account
                 </p>
                 <div>
@@ -75,7 +75,7 @@ export default function Login() {
                   </div>
                 </div>
                 <hr />
-                <p className="py-4">Or Continue with Email Address</p>
+                <p className="py-4">Or Continue with Email Address</p> */}
 
                 {/* Email Input */}
                 <div className="flex gap-2 items-center justify-center p-2 w-full h-12 border-2 border-gray-400 rounded-xl focus:border-sky-600">
