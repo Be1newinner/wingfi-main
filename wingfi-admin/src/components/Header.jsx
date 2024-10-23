@@ -6,9 +6,13 @@ import { MdForwardToInbox, MdOutlineHeadset } from "react-icons/md";
 import { BiTask } from "react-icons/bi";
 import Image from "next/image";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutRequest } from "@/redux/reducers/auth";
 
 export default function Header() {
   const [activeBtn, setActiveBtn] = useState(null);
+  const dispatch = useDispatch();
+  const { user, loading, error } = useSelector((state) => state.auth);
 
   const handleBtnClick = (btnId) => {
     if (activeBtn === null) {
@@ -17,6 +21,10 @@ export default function Header() {
       setActiveBtn(null);
     }
   };
+
+  const handleLogout = () => {
+    dispatch(logoutRequest());
+  }
 
   return (
     <div className="pl-7 pr-3 flex py-4 justify-between bg-white sticky flex-1 max-w-full  max-sm:hidden items-center">
@@ -31,8 +39,9 @@ export default function Header() {
           <div className=" cursor-pointer rounded-full bg-gray-300 w-[38px] h-[38px] gap-4">
             <Image src="/images/user-1.png" alt="" height={1080} width={1080} />
           </div>
+          {user && user.uid ? (
           <div className="border-r-2 cursor-pointer w-[130px]">
-            <h1 className="font-bold ">kritsan Watson</h1>
+            <h1 className="font-bold ">{user.displayName}</h1>
             <p className="text-sm">Admin</p>
             <div className="absolute">
               {activeBtn === "user" && (
@@ -58,7 +67,7 @@ export default function Header() {
                     <h1>Support</h1>
                   </div>
                   <Link href="/user/login">
-                    <div className="flex items-center gap-2 pt-2 hover:text-[#3984FC]">
+                    <div onClick={handleLogout} className="flex items-center gap-2 pt-2 hover:text-[#3984FC]">
                       <LuLogOut color="grey" />
                       <h1>Log out</h1>
                     </div>
@@ -67,6 +76,9 @@ export default function Header() {
               )}
             </div>
           </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@ export default async function loadProductService() {
     });
 
     const response = await data.data.data.users;
-    // console.log("users res is : ", response);
+    console.log("users res is : ", response);
 
     const mutatedData = response.map((item, index) => {
       return {
