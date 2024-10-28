@@ -6,32 +6,34 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 // import { Pagination } from 'swiper/modules';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
+import Image from 'next/image';
+import pb from '../../assets/0B.jpg'
 
 export default function GadgetGallerySection() {
   const slides = [
     {
       name: 'Slide 1',
-      url: 'https://swiperjs.com/demos/images/nature-1.jpg',
+      url: pb,
     },
     {
       name: 'Slide 2',
-      url: 'https://swiperjs.com/demos/images/nature-2.jpg',
+      url: pb,
     },
     {
       name: 'Slide 3',
-      url: 'https://swiperjs.com/demos/images/nature-3.jpg',
+      url: pb,
     },
     {
       name: 'Slide 4',
-      url: 'https://swiperjs.com/demos/images/nature-4.jpg',
+      url: pb,
     },
     {
       name: 'Slide 5',
-      url: 'https://swiperjs.com/demos/images/nature-5.jpg',
+      url: pb,
     },
     {
       name: 'Slide 6',
-      url: 'https://swiperjs.com/demos/images/nature-6.jpg',
+      url: pb,
     },
   ];
 
@@ -40,7 +42,7 @@ export default function GadgetGallerySection() {
       <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">
         Gadget Gallery
       </p>
-      <p className="text-5xl font-bold py-5">Unveiling Our Mobile Marvels!</p>
+      <p className="text-5xl font-bold py-5">Limitless Power in Your Pocket!</p>
       <div className="w-full py-10">
       <Swiper
         effect={'coverflow'}
@@ -70,7 +72,12 @@ export default function GadgetGallerySection() {
                 overflow: 'hidden',
               }}
             >
-              <img
+              {/* <img
+                src={slide.url}
+                alt={slide.name}
+                className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform" // Scale effect on hover
+              /> */}
+              <Image
                 src={slide.url}
                 alt={slide.name}
                 className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform" // Scale effect on hover

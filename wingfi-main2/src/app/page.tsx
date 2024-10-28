@@ -8,6 +8,7 @@ import TechTreasuresSection from '@/components/Home/TechTreasuresSection';
 import NewsLetterSection from '@/components/Home/NewsLetterSection';
 import PopupBox from '@/components/PopupBox';
 import Product from '@/components/Home/Product';
+import Testimonials from '@/components/Testimonials';
 
 export default function Home() {
   return (
@@ -18,10 +19,12 @@ export default function Home() {
       <TechTreasuresSection />
       <ClickChangeSwiper />
       <GadgetGallerySection />
-      <NewsLetterSection />
       {/* <GedgetSwiper /> */}
       <Product/>
-      <PopupBox />
+      <NewsLetterSection />
+      
+      <Testimonials />
+      {/* <PopupBox /> */}
     </div>
   );
 }
