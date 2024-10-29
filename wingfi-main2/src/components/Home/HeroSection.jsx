@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 // Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 
-import './home.css';
+import "./home.css";
 // import required modules
-import { Pagination, Autoplay } from 'swiper/modules';
-import Image from 'next/image';
-import { gsap } from 'gsap';
-import image1 from '../../assets/hero-bgs/image1.png';
+import { Pagination, Autoplay } from "swiper/modules";
+import Image from "next/image";
+import { gsap } from "gsap";
+import image1 from "@/assets/hero-img.webp";
 
 const HeroSection = () => {
   const swiperRef = useRef(null); // Use ref to get access to Swiper instance
@@ -31,8 +31,8 @@ const HeroSection = () => {
             opacity: 1,
             y: 0,
             duration: 1, // Duration for animation
-            ease: 'power2.inOut',
-          },
+            ease: "power2.inOut",
+          }
         );
       };
 
@@ -40,7 +40,7 @@ const HeroSection = () => {
       animateSlide(swiperInstance.activeIndex);
 
       // Event listener to trigger animation on slide change
-      swiperInstance.on('slideChangeTransitionStart', () => {
+      swiperInstance.on("slideChangeTransitionStart", () => {
         animateSlide(swiperInstance.activeIndex);
       });
     }
@@ -52,7 +52,7 @@ const HeroSection = () => {
       className="h-screen w-full bg-no-repeat bg-cover"
     >
       <Swiper
-        direction={'vertical'}
+        direction={"vertical"}
         pagination={{
           clickable: true,
         }}
@@ -74,33 +74,45 @@ const HeroSection = () => {
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl font-bold text-white">6.7 Inches</h2>
-              <h4 className="text-3xl font-bold text-white">3D Curved 13 Pro+ 5G</h4>
+              <h2 className="text-8xl font-bold text-white">
+                THE NEW STANDARD
+              </h2>
+              <h4 className="text-3xl font-bold text-white">
+                Crafted Quality Starting at ₹749/-
+              </h4>
             </div>
             <div>
-              <Image src={image1} alt="image 1" width={200} />
+              <Image src={image1} alt="image 1" width={300} />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl font-bold text-white">6.7 Inches</h2>
-              <h4 className="text-3xl font-bold text-white">3D Curved 13 Pro+ 5G</h4>
+              <h2 className="text-8xl font-bold text-white">
+                THE NEW STANDARD
+              </h2>
+              <h4 className="text-3xl font-bold text-white">
+                Crafted Quality Starting at ₹749/-
+              </h4>
             </div>
             <div className="relative h-[200px]">
-              <Image src={image1} alt="image 1" width={200} />
+              <Image src={image1} alt="image 1" width={300} />
             </div>
           </div>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl font-bold text-white">6.7 Inches</h2>
-              <h4 className="text-3xl font-bold text-white">3D Curved 13 Pro+ 5G</h4>
+              <h2 className="text-8xl font-bold text-white">
+                THE NEW STANDARD
+              </h2>
+              <h4 className="text-3xl font-bold text-white">
+                Crafted Quality Starting at ₹749/-
+              </h4>
             </div>
             <div>
-              <Image src={image1} alt="image 1" width={200} />
+              <Image src={image1} alt="image 1" width={300} />
             </div>
           </div>
         </SwiperSlide>

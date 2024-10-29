@@ -6,37 +6,32 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
-import user from "../assets/testimonial-03.jpg";
 import { FaRegStar, FaStar } from "react-icons/fa";
+import ajay from "@/assets/testimonials/Ajay.png";
+import purushottam from "@/assets/testimonials/Purushottam.png";
+import suraj from "@/assets/testimonials/Suraj.png";
 
 const Testimonials = () => {
   const TestimonialsData = [
     {
-      title: "Expert Guidence Service",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-      image: user,
-      name: "John Doe",
+      title: "WingFi Power Bank: Charge More, Weighs Less, Looks Great",
+      desc: "The WingFi Powerbank is fantastic! It charges my phone multiple times, is lightweight, and looks great. The fast-charging feature is a game-changer. Highly recommended!",
+      image: ajay,
+      name: "Ajay Kumar",
       stars: 5,
     },
     {
-      title: "Value For Money",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-      image: user,
-      name: "John Doe",
+      title: "WingFi Power Bank: Lightweight, Powerful, and Fast-Charging",
+      desc: "I love the WingFi Powerbank! It’s lightweight, charges my phone multiple times, and has a sleek design. Fast-charging is a huge plus. Highly recommend it!",
+      image: purushottam,
+      name: "Purushottam",
       stars: 5,
     },
     {
-      title: "I love The OutStanding Quality",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-      image: user,
-      name: "John Doe",
-      stars: 5,
-    },
-    {
-      title: "I love The OutStanding Quality",
-      desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-      image: user,
-      name: "John Doe",
+      title: "WingFi 20,000mAh Fast-Charge Power Bank",
+      desc: "With a 20,000mAh capacity and fast-charging capability, the WingFi Powerbank is impressive. It’s compact, safe, and perfect for on-the-go charging.",
+      image: suraj,
+      name: "Suraj Gupta",
       stars: 5,
     },
   ];
@@ -65,7 +60,7 @@ const Testimonials = () => {
             {TestimonialsData.map((data, index) => (
               <SwiperSlide
                 key={index}
-                className="group flex flex-col w-full mx-auto mb-12  border-[1px] hover:border-sky-500 border-[#e4e1e1] rounded-3xl cursor-pointer"
+                className="group  flex flex-col w-full mx-auto mb-12  border-[1px] hover:border-sky-500 border-[#e4e1e1] rounded-3xl cursor-pointer"
               >
                 <div className="p-5">
                   <div className="flex items-center pb-5">
@@ -99,7 +94,9 @@ const Testimonials = () => {
                     />
                     <div>
                       <p className="text-2xl font-semibold">{data.name}</p>
-                      <p className="text-lg text-[#707171] font-semibold">Los Angeles</p>
+                      {/* <p className="text-lg text-[#707171] font-semibold">
+                        Los Angeles
+                      </p> */}
                     </div>
                   </div>
                 </div>
