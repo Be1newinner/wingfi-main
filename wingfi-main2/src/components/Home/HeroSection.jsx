@@ -13,6 +13,7 @@ import { Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { gsap } from "gsap";
 import image1 from "@/assets/hero-img.webp";
+import image2 from "@/assets/pb1.webp";
 
 const HeroSection = () => {
   const swiperRef = useRef(null); // Use ref to get access to Swiper instance
@@ -69,7 +70,7 @@ const HeroSection = () => {
         preloadImages={true}
         lazy={true}
         className="swiper-container"
-        ref={swiperRef} // Set ref to Swiper component
+        ref={swiperRef}
       >
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
@@ -97,7 +98,7 @@ const HeroSection = () => {
               </h4>
             </div>
             <div className="relative h-[200px]">
-              <Image src={image1} alt="image 1" width={300} />
+              <Image src={image2} alt="image 1" width={200} />
             </div>
           </div>
         </SwiperSlide>
