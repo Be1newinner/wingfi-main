@@ -1,5 +1,5 @@
-export { NavBar } from "./NavBar";
-export { Footer } from "./Footer";
+// export { NavBar } from "./NavBar";
+// export { Footer } from "./Footer";
 export { HeroSection } from "./Hero";
 export { HomeFeatures } from "./HomeFeatures";
 export { Newsletter } from "./Newsletter";

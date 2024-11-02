@@ -1,11 +1,8 @@
-import { NavBar, Footer } from "@/components";
 import CartComponent from "./CartComponent";
 
 export default function Cart() {
   return (
     <div className="bg-gray-100">
-      <NavBar />
-
       <main
         style={{
           maxWidth: 1200,
@@ -16,7 +13,6 @@ export default function Cart() {
       >
         <CartComponent />
       </main>
-      <Footer />
     </div>
   );
 }

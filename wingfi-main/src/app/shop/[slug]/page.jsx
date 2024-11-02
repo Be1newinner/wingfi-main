@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { FaStar } from 'react-icons/fa';
+import Link from "next/link";
+import Image from "next/image";
+import { FaStar } from "react-icons/fa";
 
-import { NavBar, Footer, UserFeedBack2, CartButton } from '@/components';
-import getProductFromURL from '@/service/getProductFromURL/getProductFromURLService';
+import { UserFeedBack2, CartButton } from "@/components";
+import getProductFromURL from "@/service/getProductFromURL/getProductFromURLService";
 
-import styles from './style.module.css';
-import { ExtraFeaturesCards } from './ExtraFeaturesCards';
+import styles from "./style.module.css";
+import { ExtraFeaturesCards } from "./ExtraFeaturesCards";
 
 export default async function SingleStore({ params }) {
   const { slug } = params;
@@ -19,23 +19,22 @@ export default async function SingleStore({ params }) {
   return (
     <div
       style={{
-        backgroundColor: '#f6f9fc',
+        backgroundColor: "#f6f9fc",
       }}
     >
-      <NavBar />
       <main
         className="mb-8 static sm:relative"
         style={{
           maxWidth: 1200,
-          marginLeft: 'auto',
-          marginRight: 'auto',
+          marginLeft: "auto",
+          marginRight: "auto",
         }}
       >
         {LoadingState ? (
           <div
             style={{
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             {/* <Player
@@ -77,7 +76,7 @@ export default async function SingleStore({ params }) {
                         width={1000}
                         height={1000}
                         style={{
-                          objectFit: 'contain',
+                          objectFit: "contain",
                         }}
                       />
                     </div>
@@ -100,11 +99,11 @@ export default async function SingleStore({ params }) {
                           height={200}
                           style={{
                             borderRadius: 2,
-                            borderColor: 'silver',
+                            borderColor: "silver",
                             borderWidth: 1,
                             width: 80,
                             height: 80,
-                            objectFit: 'contain',
+                            objectFit: "contain",
                           }}
                         />
                       </a>
@@ -115,7 +114,9 @@ export default async function SingleStore({ params }) {
 
               {/* Product Details */}
               <div className="px-1 flex flex-col gap-4">
-                <h2 className="ml-1 mb-4 font-bold text-3xl">{FilteredProduct.data?.title}</h2>
+                <h2 className="ml-1 mb-4 font-bold text-3xl">
+                  {FilteredProduct.data?.title}
+                </h2>
                 <div className="flex items-end gap-2">
                   <div className="text-error flex">
                     {Array?.from({
@@ -140,9 +141,9 @@ export default async function SingleStore({ params }) {
                   </span>
                   <span
                     style={{
-                      color: 'gray',
-                      textDecorationLine: 'line-through',
-                      textDecorationColor: 'gray',
+                      color: "gray",
+                      textDecorationLine: "line-through",
+                      textDecorationColor: "gray",
                     }}
                   >
                     ₹ {FilteredProduct.data?.mrp}/-
@@ -198,7 +199,8 @@ export default async function SingleStore({ params }) {
                 </div> */}
 
                 <p>
-                  <span className="font-medium">SKU:</span> {FilteredProduct.data?.sku}
+                  <span className="font-medium">SKU:</span>{" "}
+                  {FilteredProduct.data?.sku}
                 </p>
 
                 <div className="flex flex-wrap items-center gap-2 mb-6">
@@ -210,7 +212,7 @@ export default async function SingleStore({ params }) {
                     color="btn-neutral"
                   />
 
-                  <Link href={'/cart'}>
+                  <Link href={"/cart"}>
                     <button className="btn btn-error rounded-sm hover:text-white px-8 btn-outline">
                       Go To Cart
                     </button>
@@ -225,7 +227,9 @@ export default async function SingleStore({ params }) {
                 {/* <div className="divider divider-sm" /> */}
 
                 <div className={styles.collapse}>
-                  <div className="bg-slate-200 rounded-sm font-medium p-4">General</div>
+                  <div className="bg-slate-200 rounded-sm font-medium p-4">
+                    General
+                  </div>
                   <div className="px-4 pb-4">
                     <table className="mt-4">
                       <tbody>
@@ -244,7 +248,7 @@ export default async function SingleStore({ params }) {
                         <tr>
                           <td
                             style={{
-                              textWrap: 'nowrap',
+                              textWrap: "nowrap",
                             }}
                           >
                             Charging Cable Included
@@ -254,7 +258,8 @@ export default async function SingleStore({ params }) {
                         <tr>
                           <td>Sales Package</td>
                           <td>
-                            1 Power Bank, Charging Cable, <br /> User Manual, Warranty Card
+                            1 Power Bank, Charging Cable, <br /> User Manual,
+                            Warranty Card
                           </td>
                         </tr>
                       </tbody>
@@ -263,7 +268,9 @@ export default async function SingleStore({ params }) {
                 </div>
 
                 <div className={styles.collapse}>
-                  <div className="bg-slate-200 rounded-sm font-medium p-4">Warranty</div>
+                  <div className="bg-slate-200 rounded-sm font-medium p-4">
+                    Warranty
+                  </div>
                   <div className="px-4 pb-4">
                     <table className="mt-4">
                       <tbody>
@@ -294,71 +301,83 @@ export default async function SingleStore({ params }) {
             <div className="mt-16">
               <div className="py-4 px-1 flex flex-col gap-4">
                 <h1 className="text-xl font-bold underline">
-                  Power Your Life On-the-Go with the Wingfi India {FilteredProduct.data?.model}{' '}
-                  {FilteredProduct.data?.capacity}
+                  Power Your Life On-the-Go with the Wingfi India{" "}
+                  {FilteredProduct.data?.model} {FilteredProduct.data?.capacity}
                   Mah Power Bank
                 </h1>
 
                 <p>
-                  <b>Wingfi India</b>, a prominent name in power solutions for over 4 years, brings
-                  you the{' '}
+                  <b>Wingfi India</b>, a prominent name in power solutions for
+                  over 4 years, brings you the{" "}
                   <b>
-                    {' '}
-                    {FilteredProduct.data?.model} {FilteredProduct.data?.capacity}Mah Power Bank
+                    {" "}
+                    {FilteredProduct.data?.model}{" "}
+                    {FilteredProduct.data?.capacity}Mah Power Bank
                   </b>
-                  , a reliable and powerful companion for your daily charge needs.
+                  , a reliable and powerful companion for your daily charge
+                  needs.
                 </p>
 
-                <h2 className="text-xl font-bold">Built with Quality and Convenience in Mind</h2>
+                <h2 className="text-xl font-bold">
+                  Built with Quality and Convenience in Mind
+                </h2>
 
                 <ul
                   style={{
-                    listStyleType: 'disc',
+                    listStyleType: "disc",
                   }}
                   className="flex flex-col gap-1"
                 >
                   <li>
                     <b>Ample Capacity:</b> The {FilteredProduct.data?.capacity}
-                    mAh capacity ensures you can charge your smartphone, tablet, or other compatible
-                    devices multiple times on a single full charge.
+                    mAh capacity ensures you can charge your smartphone, tablet,
+                    or other compatible devices multiple times on a single full
+                    charge.
                   </li>
                   <li>
-                    <b>Versatility:</b> Equipped with{' '}
-                    <b>{FilteredProduct.data?.inputPorts} ports</b>, the Power Bank caters to a wide
-                    range of devices, allowing you to charge smartphones, tablets, cameras, and more
+                    <b>Versatility:</b> Equipped with{" "}
+                    <b>{FilteredProduct.data?.inputPorts} ports</b>, the Power
+                    Bank caters to a wide range of devices, allowing you to
+                    charge smartphones, tablets, cameras, and more
                     simultaneously.
                   </li>
                   <li>
                     <b>Convenience:</b> The <b>included charging cable </b>
-                    eliminates the need to carry an extra one, while the{' '}
-                    <b>user manual and warranty card</b> provide clear instructions and peace of
-                    mind.
+                    eliminates the need to carry an extra one, while the{" "}
+                    <b>user manual and warranty card</b> provide clear
+                    instructions and peace of mind.
                   </li>
                 </ul>
 
-                <h2 className="text-xl font-bold">Beyond the Technical Specifications</h2>
+                <h2 className="text-xl font-bold">
+                  Beyond the Technical Specifications
+                </h2>
 
-                <p>The {FilteredProduct.data?.model} offers more than just technical features:</p>
+                <p>
+                  The {FilteredProduct.data?.model} offers more than just
+                  technical features:
+                </p>
 
                 <ul
                   style={{
-                    listStyleType: 'disc',
+                    listStyleType: "disc",
                   }}
                   className="flex flex-col gap-1"
                 >
                   <li>
-                    <b>Peace of mind:</b> Backed by a <b>3-month warranty</b> that covers
-                    manufacturing defects, you can be assured of the product{`&apos`}s quality and
-                    durability.
+                    <b>Peace of mind:</b> Backed by a <b>3-month warranty</b>{" "}
+                    that covers manufacturing defects, you can be assured of the
+                    product{`&apos`}s quality and durability.
                   </li>
                   <li>
-                    <b>Reliable performance:</b> Wingfi India{`&apos`}s <b>own manufacturing</b>{' '}
-                    ensures rigorous quality control for consistent performance.
+                    <b>Reliable performance:</b> Wingfi India{`&apos`}s{" "}
+                    <b>own manufacturing</b> ensures rigorous quality control
+                    for consistent performance.
                   </li>
                   <li>
-                    <b>Commitment to sustainability:</b> By choosing a reusable power bank, you
-                    contribute to reducing reliance on disposable batteries and minimizing
-                    environmental impact.
+                    <b>Commitment to sustainability:</b> By choosing a reusable
+                    power bank, you contribute to reducing reliance on
+                    disposable batteries and minimizing environmental impact.
                   </li>
                 </ul>
 
@@ -367,36 +386,41 @@ export default async function SingleStore({ params }) {
                 </h2>
 
                 <p>
-                  The {FilteredProduct.data?.model} {FilteredProduct.data?.capacity}Mah Power Bank
-                  is the perfect choice for:
+                  The {FilteredProduct.data?.model}{" "}
+                  {FilteredProduct.data?.capacity}Mah Power Bank is the perfect
+                  choice for:
                 </p>
 
                 <ul
                   style={{
-                    listStyleType: 'disc',
+                    listStyleType: "disc",
                   }}
                   className="flex flex-col gap-1"
                 >
                   <li>
-                    <b>Professionals on the go:</b> Stay connected and productive throughout the day
-                    with reliable charging for your essential devices.
+                    <b>Professionals on the go:</b> Stay connected and
+                    productive throughout the day with reliable charging for
+                    your essential devices.
                   </li>
                   <li>
-                    <b>Travel enthusiasts:</b> Capture memories and stay connected with loved ones
-                    without worrying about running out of battery.
+                    <b>Travel enthusiasts:</b> Capture memories and stay
+                    connected with loved ones without worrying about running out
+                    of battery.
                   </li>
                   <li>
-                    <b>Students and young adults:</b> Keep your devices powered up for studies,
-                    entertainment, or social media.
+                    <b>Students and young adults:</b> Keep your devices powered
+                    up for studies, entertainment, or social media.
                   </li>
                 </ul>
 
-                <h2 className="text-xl font-bold">Invest in Reliable Power and Peace of Mind</h2>
+                <h2 className="text-xl font-bold">
+                  Invest in Reliable Power and Peace of Mind
+                </h2>
 
                 <p>
-                  Choose the Wingfi India {FilteredProduct.data?.model}{' '}
-                  {FilteredProduct.data?.capacity}Mah Power Bank and experience the freedom of
-                  uninterrupted connectivity.
+                  Choose the Wingfi India {FilteredProduct.data?.model}{" "}
+                  {FilteredProduct.data?.capacity}Mah Power Bank and experience
+                  the freedom of uninterrupted connectivity.
                 </p>
               </div>
             </div>
@@ -407,7 +431,7 @@ export default async function SingleStore({ params }) {
           <div className="flex flex-col justify-center items-center py-12 flex-1 gap-4">
             <span className="text-2xl font-medium">Hey, lost your way?</span>
             <Image
-              src={'/images/not-found.webp'}
+              src={"/images/not-found.webp"}
               width={800}
               height={800}
               alt="not found"
@@ -416,17 +440,20 @@ export default async function SingleStore({ params }) {
                 maxHeight: 350,
               }}
             />
-            <span className="text-sm ">May be we can help find you what you are looking for?</span>
+            <span className="text-sm ">
+              May be we can help find you what you are looking for?
+            </span>
             <p>
-              <Link href={'/shop'}>
-                <span className="text-blue-500 hover:link">Navigate to our store</span>
+              <Link href={"/shop"}>
+                <span className="text-blue-500 hover:link">
+                  Navigate to our store
+                </span>
               </Link>
               <span> to buy top quality powerbanks.</span>
             </p>
           </div>
         )}
       </main>
-      <Footer />
     </div>
   );
 }

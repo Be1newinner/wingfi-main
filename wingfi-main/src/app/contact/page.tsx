@@ -1,4 +1,3 @@
-import { Footer, NavBar } from "@/components";
 import Faq from "./Faq";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,8 +5,6 @@ import Image from "next/image";
 export default function Contact() {
   return (
     <div>
-      <NavBar />
-
       <main className="pb-4">
         <div
           style={{
@@ -90,7 +87,6 @@ export default function Contact() {
           <Faq />
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

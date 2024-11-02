@@ -26,7 +26,10 @@
     "reselect": "^5.1.1",
     "sharp": "^0.33.4",
     "slick-carousel": "^1.8.1",
-    "swiper": "^11.1.14"
+    "swiper": "^11.1.14",
+    "chart.js": "^4.4.4",
+    "gsap": "^3.12.5",
+    "react-chartjs-2": "^5.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

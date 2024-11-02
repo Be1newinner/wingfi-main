@@ -1,4 +1,4 @@
-import { Footer, NavBar, AccountSidebar } from "@/components";
+import { AccountSidebar } from "@/components";
 import ProtectedRoute from "@/service/Authentication/ProtectedRoutes";
 import Link from "next/link";
 import { FaUserTie } from "react-icons/fa6";
@@ -17,7 +17,6 @@ export function AccountStructure({
           backgroundColor: "#f6f9fc",
         }}
       >
-        <NavBar />
         <main
           className="p-2 mt-0 sm:mt-8 flex flex-col pb-0 sm:pb-20"
           style={{
@@ -49,7 +48,6 @@ export function AccountStructure({
             </div>
           </div>
         </main>
-        <Footer />
       </div>
     </ProtectedRoute>
   );

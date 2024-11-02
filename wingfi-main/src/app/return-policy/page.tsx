@@ -1,10 +1,8 @@
-import { Footer, NavBar } from "@/components";
 import React from "react";
 
 const ReturnPolicy = () => {
   return (
     <div>
-      <NavBar />
       <div className="p-4">
         <div className="">
           <div className="p-6">
@@ -62,9 +60,10 @@ const ReturnPolicy = () => {
               <h2 className="text-xl font-semibold mb-2">3. REFUNDS</h2>
               <p>
                 After receiving your return and inspecting the condition of your
-                item, we will process your exchange or refund, whichever suits the ( we, us, company ). Please allow at least
-                thirty (30) days from the receipt of your item to process your
-                exchange or refund. We will notify you by email when your return has been
+                item, we will process your exchange or refund, whichever suits
+                the ( we, us, company ). Please allow at least thirty (30) days
+                from the receipt of your item to process your exchange or
+                refund. We will notify you by email when your return has been
                 processed.
               </p>
             </section>
@@ -91,7 +90,6 @@ const ReturnPolicy = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

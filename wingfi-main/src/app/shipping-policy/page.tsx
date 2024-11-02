@@ -1,10 +1,8 @@
-import { Footer, NavBar } from "@/components";
 import React from "react";
 
 const ShippingPolicy = () => {
   return (
     <div>
-      <NavBar />
       <div className="p-4">
         <div className="">
           <div className="p-6">
@@ -123,7 +121,6 @@ const ShippingPolicy = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
