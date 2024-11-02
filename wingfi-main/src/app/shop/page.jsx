@@ -46,7 +46,7 @@ export default function Store() {
             <ShopProductsWrapper />
           </div>
         </div>
-        <Newsletter />
+        {/* <Newsletter /> */}
       </main>
     </>
   );

@@ -8,7 +8,7 @@ import { FaRegUser } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <header className="w-full top-0 left-0 py-5 px-10">
+    <header className="w-full top-0 left-0 py-5 px-10 bg-white">
       <div className="flex justify-between items-center">
         <div className="flex gap-3 items-center border rounded-full py-3 px-6">
           {/* <svg

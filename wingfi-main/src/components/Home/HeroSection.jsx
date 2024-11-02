@@ -91,11 +91,11 @@ const HeroSection = () => {
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl font-bold text-white">
-                THE NEW STANDARD
+              <h2 className="text-8xl uppercase font-bold text-white">
+                Charge on the Go
               </h2>
               <h4 className="text-3xl font-bold text-white">
-                Crafted Quality Starting at ₹749/-
+                High-Capacity Power Banks from Just ₹749/-
               </h4>
             </div>
             <div className="mt-5">
@@ -106,11 +106,11 @@ const HeroSection = () => {
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl font-bold text-white">
-                THE NEW STANDARD
+              <h2 className="text-8xl font-bold uppercase text-white">
+                Charge with Confidence
               </h2>
               <h4 className="text-3xl font-bold text-white">
-                Crafted Quality Starting at ₹749/-
+                Safe and Reliable Power Banks Starting at ₹749/-
               </h4>
             </div>
             <div className="mt-5">

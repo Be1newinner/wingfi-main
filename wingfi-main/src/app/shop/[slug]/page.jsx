@@ -7,6 +7,7 @@ import getProductFromURL from "@/service/getProductFromURL/getProductFromURLServ
 
 import styles from "./style.module.css";
 import { ExtraFeaturesCards } from "./ExtraFeaturesCards";
+import Testimonials from "@/components/Testimonials";
 
 export default async function SingleStore({ params }) {
   const { slug } = params;
@@ -425,7 +426,8 @@ export default async function SingleStore({ params }) {
               </div>
             </div>
             <div className="divider my-16" />
-            <UserFeedBack2 rating={4.87} reviewsCount={142} />
+            {/* <UserFeedBack2 rating={4.87} reviewsCount={142} /> */}
+            {/* <Testimonials /> */}
           </>
         ) : (
           <div className="flex flex-col justify-center items-center py-12 flex-1 gap-4">

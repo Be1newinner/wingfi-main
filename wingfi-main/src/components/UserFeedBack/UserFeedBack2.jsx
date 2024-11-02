@@ -42,9 +42,9 @@ export function UserFeedBack2({ rating, reviewsCount }) {
           <TbMicrophone2 />
           <h1 className="font-semibold">Testimonials</h1>
         </div>
-        <h1 className="text-2xl font-bold flex gap-2 mt-1 items-center">
+        {/* <h1 className="text-2xl font-bold flex gap-2 mt-1 items-center">
           <FaStar /> {rating} {rating && "&"} {reviewsCount} Users&apos; Reviews
-        </h1>
+        </h1> */}
         <div className="flex gap-12 flex-wrap pt-4  flex-col sm:flex-row">
           {feedbackList?.slice(0, 3)?.map((item, index) => (
             <div

@@ -51,7 +51,9 @@ export default function Contact() {
             <div className="">
               <div className="h-[350px]  w-full">
                 <Image
-                  src="./images/1.jpg"
+                  src="/images/1.jpg"
+                  width={500}
+                  height={500}
                   alt="img"
                   className="h-full w-full rounded-t-md"
                 />
