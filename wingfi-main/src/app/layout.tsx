@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ProviderWrapper } from "@/components";
 import AlertWrapper from "@/components/Alerts/AlertWrapper";
-import Navbar from "@/components/NavBar";
+import { NavBar } from "@/components/NavBar";
 import CursorTracking from "@/components/CursorTracking";
 import Footer from "@/components/Footer";
 
@@ -37,7 +37,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${inter.className} antialiased`}
       >
         <ProviderWrapper>
-          <Navbar />
+          <NavBar />
           <CursorTracking />
           {children}
           <Footer />

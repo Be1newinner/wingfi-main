@@ -22,7 +22,7 @@ export default function ClickChangeSwiper({ params }) {
   const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
-  const { slug } = params;
+  const slug = params?.slug || "";
   const FilteredProduct = getProductFromURL({ slug });
 
   if (FilteredProduct.error) {

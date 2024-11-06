@@ -6,7 +6,7 @@ import HeroSection from '@/components/Home/HeroSection';
 import GadgetGallerySection from '@/components/Home/GadgetGallerySection';
 import TechTreasuresSection from '@/components/Home/TechTreasuresSection';
 import NewsLetterSection from '@/components/Home/NewsLetterSection';
-import PopupBox from '@/components/PopupBox';
+// import PopupBox from '@/components/PopupBox';
 import Product from '@/components/Home/Product';
 import Testimonials from '@/components/Testimonials';
 
