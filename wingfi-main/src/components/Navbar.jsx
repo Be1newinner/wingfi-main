@@ -86,12 +86,14 @@ const Navbar = () => {
               0
             </span>
           </div>
-          <div className="flex items-center gap-2 border rounded-full p-1 ">
-            <div className="border p-2 rounded-full ">
-              <BsCart3 />
+          <Link href={"/cart"}>
+            <div className="flex items-center gap-2 border rounded-full p-1 cursor-pointer ">
+              <div className="border p-2 rounded-full ">
+                <BsCart3 />
+              </div>
+              <div className="cursor-pointer">$00.00</div>
             </div>
-            <div>$00.00</div>
-          </div>
+          </Link>
           <div className="border p-3 rounded-full">
             <FaRegUser />
           </div>

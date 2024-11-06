@@ -18,6 +18,8 @@ export default function CartProduct({
           <Image
             src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${sku}%2F1.webp?alt=media`}
             className="w-28 aspect-square rounded-md shadow-md"
+            width={110}
+            height={110}
             alt="product"
           />
           <div className="flex  flex-col gap-2">
