@@ -4,7 +4,6 @@ import React from 'react';
 import Image from 'next/image';
 import abouttextimage1 from '@/assets/about-image/about-text-img-01.png';
 import abouttextimage2 from '@/assets/about-image/about-text-img-02.png';
-import aboutImage from '@/assets/about-image/about-sign.png';
 
 const fontSize = {
   fontSize: 'clamp(1.875rem, 1.6304rem + 1.3497vw, 3.25rem)',
@@ -24,22 +23,16 @@ const About = () => {
       <div className="grid lg:grid-cols-[2fr_1fr] grid-cols-1 gap-6 mt-6">
         <div>
           <p className="font-[800] leading-[1.7] uppercase" style={fontSize}>
-            Our Most Recent Smartphone for the Future. Combining Stylish{' '}
+            Our Most Recent Powerbank for the Future. Combining Stylish{' '}
             <span className="inline-block align-middle">
               <Image src={abouttextimage1} alt="Stylish Mobile Device" width={60} height={60} />
             </span>{' '}
-            mobile device. With The Most{' '}
+            Best device. With The Trusted{' '}
             <span className="inline-block align-middle">
               <Image src={abouttextimage2} alt="Powerful Performance" width={60} height={60} />
             </span>{' '}
-            Powerful Performance Possible.
+             Performance Possible.
           </p>
-        </div>
-        <div className="lg:flex hidden flex-col justify-center">
-          <div>
-            <Image src={aboutImage} alt="about signature" />
-          </div>
-          <span>- Emma White, CEO</span>
         </div>
       </div>
     </div>

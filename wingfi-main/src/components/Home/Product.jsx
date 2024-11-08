@@ -50,7 +50,10 @@ const Product = () => {
             className="mySwiper"
           >
             {productsArray.map((data, index) => (
-              <SwiperSlide className="group flex flex-col w-1/3 h-full mb-12 border-[1px] border-[#e4e1e1] rounded-3xl cursor-pointer">
+              <SwiperSlide
+                key={index}
+                className="group flex flex-col w-1/3 h-full mb-12 border-[1px] border-[#e4e1e1] rounded-3xl cursor-pointer"
+              >
                 <Link href={`/shop/${data.slug}`} key={index}>
                   <div className="h-[350px] p-5 overflow-hidden border-b-2 flex-grow">
                     <Image

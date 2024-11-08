@@ -82,11 +82,6 @@ export default function GadgetGallerySection() {
                 overflow: "hidden",
               }}
             >
-              {/* <img
-                src={slide.url}
-                alt={slide.name}
-                className="w-full h-full object-cover transition-transform duration-300 ease-in-out transform" // Scale effect on hover
-              /> */}
               <Image
                 src={slide.url}
                 alt={slide.name}

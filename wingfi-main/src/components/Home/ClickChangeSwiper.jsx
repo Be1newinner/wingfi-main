@@ -14,12 +14,11 @@ import product2 from "@/assets/pro_1155_1.webp";
 import product3 from "@/assets/pro_1156_1.webp";
 import { CartButton } from "../ProductViewSm/CartButton";
 import getProductFromURL from "@/service/getProductFromURL/getProductFromURLService";
+import { Theme_colors_class } from "@/infrastructure/theme";
 
 export default function ClickChangeSwiper({ params }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [selectedStorage, setSelectedStorage] = useState(null);
-  const [price, setPrice] = useState(0);
+  const [price] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   const slug = params?.slug || "";
@@ -46,44 +45,6 @@ export default function ClickChangeSwiper({ params }) {
       image: product3,
     },
   ];
-
-  const colors = [
-    {
-      color: "red",
-      name: "Red",
-      availableStorage: ["128GB", "256GB"],
-      prices: { "128GB": 500, "256GB": 700 },
-    },
-    {
-      color: "green",
-      name: "Green",
-      availableStorage: ["512GB", "64GB"],
-      prices: { "512GB": 850, "64GB": 400 },
-    },
-    {
-      color: "blue",
-      name: "Blue",
-      availableStorage: ["1TB", "256GB"],
-      prices: { "1TB": 1000, "256GB": 750 },
-    },
-  ];
-
-  const allStorageOptions = ["128GB", "256GB", "512GB", "64GB", "1TB"];
-
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
-    setSelectedStorage(null);
-    setPrice(0);
-  };
-
-  const handleStorageClick = (storageOption) => {
-    setSelectedStorage(storageOption);
-    const selectedColorData = colors.find((c) => c.color === selectedColor);
-    if (selectedColorData) {
-      const storagePrice = selectedColorData.prices[storageOption];
-      setPrice(storagePrice || 0);
-    }
-  };
 
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
 
@@ -166,62 +127,7 @@ export default function ClickChangeSwiper({ params }) {
               and ready for anything, with a power bank you can depend on.
             </p>
 
-            <div className="my-5">
-              <div className="flex gap-2 items-center mb-2 font-bold">
-                <h2>Color:</h2>
-                <h2 className="capitalize">
-                  {selectedColor || "Select a color"}
-                </h2>
-              </div>
-              <div className="flex items-center gap-2">
-                {colors.map((colorOption) => (
-                  <span
-                    key={colorOption.color}
-                    className={`w-[20px] h-[20px] rounded-full cursor-pointer ${
-                      selectedColor === colorOption.color
-                        ? "border border-blue-500"
-                        : "bg-gray-300"
-                    }`}
-                    style={{ backgroundColor: colorOption.color }}
-                    onClick={() => handleColorClick(colorOption.color)}
-                  ></span>
-                ))}
-              </div>
-            </div>
-
             <div className="my-4">
-              <div className="flex gap-2 items-center mb-2 font-bold">
-                <h2>Storage:</h2>
-                <h2>{selectedStorage || "Select a storage"}</h2>
-              </div>
-
-              <div className="flex items-center gap-2">
-                {allStorageOptions.map((storageOption) => {
-                  const selectedColorData = colors.find(
-                    (c) => c.color === selectedColor
-                  );
-                  const isAvailable =
-                    selectedColorData?.availableStorage.includes(storageOption);
-
-                  return (
-                    <button
-                      key={storageOption}
-                      className={`px-3 py-1 rounded ${
-                        selectedStorage === storageOption
-                          ? "bg-blue-500 text-white"
-                          : "bg-gray-300"
-                      } ${isAvailable ? "" : "opacity-50 cursor-not-allowed"}`}
-                      onClick={() =>
-                        isAvailable && handleStorageClick(storageOption)
-                      }
-                      disabled={!isAvailable}
-                    >
-                      {storageOption}
-                    </button>
-                  );
-                })}
-              </div>
-
               <div className="mt-4">
                 <h2 className="text-xl font-semibold">Price: ${price}</h2>
               </div>
@@ -242,7 +148,13 @@ export default function ClickChangeSwiper({ params }) {
                     <FaPlus />
                   </button>
                 </div>
-                <div className="flex items-center justify-center gap-3 border-2 rounded-full border-solid p-3 w-full">
+                <div
+                  className={
+                    "flex items-center justify-center gap-3 border-2 rounded-full border-solid p-3 w-full" +
+                    " " +
+                    Theme_colors_class.primary
+                  }
+                >
                   <CartButton
                     item={FilteredProduct.data}
                     text="Add to Cart"

@@ -27,7 +27,7 @@ const data = {
   labels: labels,
   datasets: [
     {
-      label: "My First Dataset",
+      label: "The Dataset",
       data: [65, 59],
       fill: false,
       backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)"],
@@ -52,7 +52,7 @@ const options = {
     },
     title: {
       display: true,
-      text: "Horizontal Bar Chart",
+      text: "Bar Chart",
     },
   },
 };

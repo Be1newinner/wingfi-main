@@ -14,13 +14,13 @@ export default function TechTreasuresSection() {
             Tech Treasures
           </p>
           <p className="text-4xl lg:text-5xl font-bold text-center">
-            Security Features
+            Top Features
           </p>
         </div>
         <div className="w-full lg:w-1/2 lg:px-10 flex flex-col items-center lg:items-start">
           <p className="pb-5 text-[#707171] text-lg lg:text-base text-center lg:text-left">
-            Non nisi est sit amet facilisis magna etiam tempor. Aliquam sem et
-            tortor consequat. Dolor morbi neque aliquam non.
+            The feature packed Power Banks curated for you and your loved ones.
+            Now, Pick this wingfi power bank and get ready for your long trips.
           </p>
           <Link
             href="#"
@@ -35,14 +35,15 @@ export default function TechTreasuresSection() {
           <div className="h-full flex items-center justify-center flex-col gap-10">
             <div className="flex items-center justify-center flex-col gap-2 lg:gap-5">
               <h3 className="text-xl lg:text-2xl font-bold capitalize">
-                Processor
+                Fast Charging Technology:
               </h3>
               <h2 className="text-3xl lg:text-4xl font-bold capitalize">
-                Brand-new k15
+                Brand-new Power Bank
               </h2>
               <p className="text-lg text-center text-[#707171]">
-                Quis risus sed vulputate odio ut enim blandit. Neque laoreet
-                suspendisse interdum nisl.
+                Featuring advanced Quick Charge 3.0 and Power Delivery (PD)
+                technology, it charges your devices up to 50% faster than
+                standard power banks.
               </p>
             </div>
             <div className="w-3/4 lg:w-full hover:scale-105 ease-in-out duration-300 cursor-pointer">
@@ -59,14 +60,15 @@ export default function TechTreasuresSection() {
             <div className="h-full flex items-center flex-col lg:flex-row justify-center gap-10">
               <div className="w-full flex items-center lg:items-start justify-center flex-col gap-2 lg:gap-5">
                 <h3 className="text-xl lg:text-2xl font-bold capitalize">
-                  Battery Life
+                  Capacity and Efficiency:
                 </h3>
                 <h2 className="text-3xl lg:text-4xl font-bold capitalize">
                   Upto 31 hrs
                 </h2>
                 <p className="text-lg text-[#707171] text-center lg:text-start">
-                  Nunc pulvinar sapien et ligula ullamcorper malesuada proin
-                  libero. Arcu cursus vitae congue mauris rhoncus.
+                  Packed with a powerful 20,000mAh capacity, our power bank
+                  offers multiple charges for your devices, ensuring you stay
+                  connected wherever you go.
                 </p>
               </div>
               <div className="w-3/4 lg:w-full flex items-center justify-center">
@@ -82,15 +84,16 @@ export default function TechTreasuresSection() {
             <div className="h-full flex items-center justify-center flex-col lg:flex-row-reverse gap-10">
               <div className="w-full flex items-center lg:items-start justify-center flex-col gap-5">
                 <h3 className="text-xl lg:text-2xl font-bold capitalize">
-                  Data Storage
+                  Durability and Quality Assurance:
                 </h3>
 
                 <h2 className="text-3xl lg:text-4xl font-bold capitalize">
-                  Presently 512GB+
+                  Unbelivably Durable 
                 </h2>
                 <p className="text-lg text-[#707171] text-center lg:text-start">
-                  Mollis aliquam ut porttitor leo a. Vulputate odio ut enim
-                  blandit volutpat maecenas. Pellentesque nulla facilisi.
+                  Crafted with durable, high-quality materials for long-lasting
+                  performance, this power bank is built to withstand everyday
+                  wear and tear.
                 </p>
               </div>
               <div className="w-3/4 lg:w-full flex items-center justify-center">
