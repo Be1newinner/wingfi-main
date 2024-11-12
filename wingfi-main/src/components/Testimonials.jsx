@@ -38,7 +38,7 @@ const Testimonials = () => {
 
   return (
     <>
-      <div className="w-full flex flex-col items-center px-[50px] py-[50px]">
+      <div className="w-full flex flex-col items-center py-[50px] px-5">
         <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">
           Testimonials
         </p>
@@ -94,8 +94,8 @@ const Testimonials = () => {
                       )
                     )}
                   </div>
-                  <h1 className="text-2xl font-bold text-left">{data.title}</h1>
-                  <p className="text-left py-5 text-[#707171] border-b-2">
+                  <h1 className="text-2xl font-bold text-left line-clamp-2">{data.title}</h1>
+                  <p className="text-left text-[#707171] text-base border-b-2 border-gray-200 py-3 line-clamp-4">
                     {data.desc}
                   </p>
                   <div className="flex items-center gap-4 py-5">

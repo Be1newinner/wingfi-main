@@ -30,6 +30,7 @@ export async function ShopProductsWrapper() {
       slug={item?.slug}
       sku={item?.sku}
       rating={item?.rating}
+      isWishlisted={false}
     />
   ));
 }

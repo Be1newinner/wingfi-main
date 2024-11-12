@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa6";
 
 interface props {
   title: string;
@@ -11,6 +12,7 @@ interface props {
   image: string;
   rating: number;
   sku: number;
+  isWishlisted?: boolean;
 }
 
 export function ProductViewList({
@@ -20,56 +22,52 @@ export function ProductViewList({
   slug,
   rating,
   sku,
+  isWishlisted = false,
 }: props) {
+
   return (
-    <Link
-      href={"/shop/" + slug}
-      className="py-2 sm:p-2 w-full basis-full sm:basis-1/3"
-    >
-      <div className="flex-col items-center bg-white p-2 sm:p-4 w-full gap-1 sm:gap-4 rounded border shadow">
-        <Image
-          src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${sku}%2F1.webp?alt=media`}
-          width={400}
-          height={400}
-          alt=""
-          className="hover:scale-105 mb-2"
-        />
-        <div className="flex flex-col gap-3 justify-between">
-          <p
-            style={{
-              lineHeight: 1.1,
-            }}
+    <Link href={`/shop/${slug}`} className="py-2 sm:p-2 w-full block">
+      <div className="flex flex-col bg-white w-full rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow duration-200 overflow-hidden">
+        <div className="relative w-full aspect-square mb-2 overflow-hidden">
+          <Image
+            src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${sku}%2F1.webp?alt=media`}
+            alt={title}
+            width={400}
+            height={400}
+            className="object-contain w-full"
+          />
+          <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">
+            New
+          </div>
+          <button 
+            className="absolute top-2 right-2 h-10 w-10 border border-gray-300 px-2 py-1 rounded-full bg-white text-xs font-semibold transition-all duration-300 ease-in-out flex items-center justify-center"
+            aria-label="Add to Wishlist"
           >
-            {title}
-          </p>
-          <div className="flex gap-1 text-error">
-            {Array?.from({ length: Math.floor(rating) })?.map((item, index) => (
-              <FaStar key={index} />
+            <FaRegHeart size={20} className={`${isWishlisted ? "fill-red-500 text-red-500" : "m-auto"}`}/>
+          </button>
+        </div>
+
+        <div className="flex flex-col gap-3 p-4 ">
+          <p className="line-clamp-1 text-md font-semibold">{title}</p>
+
+          <div className="flex gap-1">
+            {[...Array(Math.floor(rating))].map((_, index) => (
+              <FaStar
+                key={index}
+                size={16}
+                className="fill-red-500 text-red-500"
+              />
             ))}
           </div>
-          <div>
-            <span
-              className="text-error"
-              style={{
-                fontWeight: 700,
-              }}
-            >
-              ₹ {price}/-
-            </span>
-            <span
-              style={{
-                color: "gray",
-                textDecorationLine: "line-through",
-                textDecorationColor: "gray",
-              }}
-            >
-              ₹ {mrp}/-
-            </span>
+
+          <div className="flex items-center gap-2">
+            <span className="font-bold text-red-500">₹{price}/-</span>
+            <span className="text-gray-500 line-through">₹{mrp}/-</span>
           </div>
 
-          <button className="btn btn-error btn-sm text-white font-medium rounded-sm px-4">
+          {/* <button className="bg-red-500 text-white px-4 py-2 rounded text-sm font-medium hover:bg-red-600 transition-colors duration-200">
             View Product
-          </button>
+          </button> */}
         </div>
       </div>
     </Link>

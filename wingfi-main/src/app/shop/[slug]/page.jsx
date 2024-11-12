@@ -8,6 +8,7 @@ import getProductFromURL from "@/service/getProductFromURL/getProductFromURLServ
 // import styles from "./style.module.css";
 import { ExtraFeaturesCards } from "./ExtraFeaturesCards";
 import Tabs from "@/components/Tabs/Tabs";
+import Testimonials from "@/components/Testimonials";
 // import Testimonials from "@/components/Testimonials";
 
 export default async function SingleStore({ params }) {
@@ -17,7 +18,7 @@ export default async function SingleStore({ params }) {
   const FilteredProduct = await getProductFromURL({
     slug,
   });
-  
+
   const tabs = [
     {
       label: "Description",
@@ -34,12 +35,7 @@ export default async function SingleStore({ params }) {
       }}
     >
       <main
-        className="mb-8 static sm:relative"
-        style={{
-          maxWidth: 1200,
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
+        className="static sm:relative max-w-7xl mx-auto"
       >
         {LoadingState ? (
           <div
@@ -66,14 +62,32 @@ export default async function SingleStore({ params }) {
         ) : FilteredProduct.data ? (
           <>
             {/* Top Image View */}
-            <div className="flex sm:pt-8 gap-8 flex-col sm:flex-row">
-              <div className="flex flex-col gap-4 static sm:sticky top-5 h-full">
-                <div
-                  className="carousel"
-                  style={{
-                    maxWidth: 510,
-                  }}
-                >
+            <div className="flex sm:pt-8 gap-6 md:gap-10 flex-col sm:flex-row w-full p-5">
+              <div className="flex flex-row gap-4 static sm:sticky top-5 h-full w-full md:w-1/2">
+                <div className="flex flex-col gap-2">
+                  {FilteredProduct.data?.images?.map((item, index) => (
+                    <a
+                      href={`#head-carousal-item${index}`}
+                      key={index}
+                      className="flex-shrink-0"
+                    >
+                      <Image
+                        className="bg-slate-200 rounded-sm shadow object-contain"
+                        src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${FilteredProduct.data.sku}%2F${item}.webp?alt=media`}
+                        alt={`${FilteredProduct.data?.model} Black Power Bank`}
+                        width={80}
+                        height={80}
+                        style={{
+                          borderRadius: 10,
+                          borderColor: "silver",
+                          borderWidth: 1,
+                        }}
+                      />
+                    </a>
+                  ))}
+                </div>
+
+                <div className="carousel w-full">
                   {FilteredProduct.data?.images?.map((item, index) => (
                     <div
                       key={index}
@@ -81,53 +95,27 @@ export default async function SingleStore({ params }) {
                       className="carousel-item w-full"
                     >
                       <Image
-                        className="bg-slate-200 rounded-md shadow px-2 sm:px-0 w-full"
+                        className="bg-slate-200 rounded-xl shadow px-2 sm:px-0 w-full object-contain"
                         src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${FilteredProduct.data.sku}%2F${item}.webp?alt=media`}
                         alt={`${FilteredProduct.data?.modal} Black Power Bank`}
                         width={1000}
                         height={1000}
-                        style={{
-                          objectFit: "contain",
-                        }}
                       />
                     </div>
                   ))}
                 </div>
-                <div
-                  style={{
-                    gap: 5,
-                  }}
-                  className="flex justify-between items-center flex-row w-full"
-                >
-                  {FilteredProduct.data?.images?.map((item, index) => {
-                    return (
-                      <a href={`#head-carousal-item${index}`} key={index}>
-                        <Image
-                          className="bg-slate-200 mx-auto sm:mx-0 rounded-sm shadow"
-                          src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${FilteredProduct.data.sku}%2F${item}.webp?alt=media`}
-                          alt={`${FilteredProduct.data?.model} Black Power Bank`}
-                          width={200}
-                          height={200}
-                          style={{
-                            borderRadius: 5,
-                            borderColor: "silver",
-                            borderWidth: 1,
-                            width: 80,
-                            height: 80,
-                            objectFit: "contain",
-                          }}
-                        />
-                      </a>
-                    );
-                  })}
-                </div>
               </div>
 
               {/* Product Details */}
-              <div className="px-1 flex flex-col gap-4">
-                <h2 className="ml-1 mb-4 font-bold text-3xl">
+              <div className="px-1 flex flex-col gap-4 w-full md:w-1/2">
+                <h2 className="font-bold text-2xl md:text-4xl line-clamp-2">
                   {FilteredProduct.data?.title}
                 </h2>
+                <p className="line-clamp-3">
+                  Wingfi India, a prominent name in power solutions for over 4
+                  years, brings you the EnergyHub 20000Mah Power Bank, a
+                  reliable and powerful companion for your daily charge needs.
+                </p>
                 <div className="flex items-end gap-2">
                   <div className="text-error flex">
                     {Array?.from({
@@ -142,20 +130,12 @@ export default async function SingleStore({ params }) {
 
                 <div>
                   <span
-                    className="text-error"
-                    style={{
-                      fontWeight: 500,
-                      fontSize: 24,
-                    }}
+                    className="text-error text-2xl font-bold"
                   >
                     ₹ {FilteredProduct.data?.price}/-
                   </span>
                   <span
-                    style={{
-                      color: "gray",
-                      textDecorationLine: "line-through",
-                      textDecorationColor: "gray",
-                    }}
+                    className="text-xs text-gray-600 line-through ml-2"
                   >
                     ₹ {FilteredProduct.data?.mrp}/-
                   </span>
@@ -243,18 +223,7 @@ export default async function SingleStore({ params }) {
             {/* Product Description Tabs */}
             <Tabs tabs={tabs} data={FilteredProduct.data} />
 
-            <div className="mt-16 md:mt-24">
-              <div className="container mx-auto px-4 md:px-0">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-                  
-
-                  
-                </div>
-              </div>
-            </div>
-            <div className="divider my-16" />
-            <UserFeedBack2 rating={4.87} reviewsCount={142} />
-            {/* <Testimonials /> */}
+            <Testimonials />
           </>
         ) : (
           <div className="flex flex-col justify-center items-center py-12 flex-1 gap-4">

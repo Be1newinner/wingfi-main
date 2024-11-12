@@ -1,13 +1,13 @@
 // import Hero from '@/components/Home/Hero';
-import About from '@/components/Home/About';
-import ClickChangeSwiper from '@/components/Home/ClickChangeSwiper';
-import BarChart from '@/components/Home/BarChart';
-import HeroSection from '@/components/Home/HeroSection';
-import GadgetGallerySection from '@/components/Home/GadgetGallerySection';
-import TechTreasuresSection from '@/components/Home/TechTreasuresSection';
-import NewsLetterSection from '@/components/Home/NewsLetterSection';
-import Product from '@/components/Home/Product';
-import Testimonials from '@/components/Testimonials';
+import About from "@/components/Home/About";
+import ClickChangeSwiper from "@/components/Home/ClickChangeSwiper";
+import BarChart from "@/components/Home/BarChart";
+import HeroSection from "@/components/Home/HeroSection";
+import GadgetGallerySection from "@/components/Home/GadgetGallerySection";
+import TechTreasuresSection from "@/components/Home/TechTreasuresSection";
+import NewsLetterSection from "@/components/Home/NewsLetterSection";
+import Product from "@/components/Home/Product";
+import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
   return (
@@ -18,9 +18,11 @@ export default function Home() {
       <TechTreasuresSection />
       <ClickChangeSwiper />
       <GadgetGallerySection />
-      <Product/>
-      <NewsLetterSection />      
-      <Testimonials />
+      <Product />
+      <NewsLetterSection />
+      <div className="max-w-7xl mx-auto">
+        <Testimonials />
+      </div>
     </div>
   );
 }
