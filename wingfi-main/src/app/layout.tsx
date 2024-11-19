@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { ProviderWrapper } from "@/components";
 import AlertWrapper from "@/components/Alerts/AlertWrapper";
-import NavBar from "@/components/NavBar";
+import { NavBar } from "@/components/NavBar";
 import CursorTracking from "@/components/CursorTracking";
 import Footer from "@/components/Footer";
 
