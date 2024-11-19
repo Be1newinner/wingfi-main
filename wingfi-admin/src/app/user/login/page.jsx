@@ -1,18 +1,19 @@
 "use client";
+
 import Image from "next/image";
 import { MdOutlineMail } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
-import MySvgIcon from "@/components/googleIcon";
+// import MySvgIcon from "@/components/googleIcon";
 import "react-toastify/dist/ReactToastify.css";
-import { useDispatch } from "react-redux";
-import { loginRequestByGoogle } from "@/redux/reducers/auth";
+// import { useDispatch } from "react-redux";
+// import { loginRequestByGoogle } from "@/redux/reducers/auth";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { firebaseAuth } from "@/constants/firebase.config";
 import { useState } from "react";
 
 export default function Login() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const router = useRouter();
   const [credentials, setCredentials] = useState({
     email: "",
@@ -56,7 +57,7 @@ export default function Login() {
           </div>
           <div className="w-[55%] h-[95%] rounded-xl bg-white m-4">
             <div className="flex gap-2 justify-end">
-              <p className="text-gray-400">Don't have an account?</p>
+              <p className="text-gray-400">Don&apos;t have an account?</p>
               <span>Sign up</span>
             </div>
             <div className="flex flex-col justify-center items-center h-full">
