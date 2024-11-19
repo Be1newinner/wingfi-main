@@ -1,14 +1,16 @@
-"use client";
+/** @format */
 
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "./style.css";
-import { Pagination, Autoplay } from "swiper/modules";
-import Image from "next/image";
-import Link from "next/link";
-import { ProductsData } from "@/service/Products/ProductsService";
+'use client';
+
+import React, { useEffect, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import './style.css';
+import { Pagination, Autoplay } from 'swiper/modules';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ProductsData } from '@/service/Products/ProductsService';
 
 const Product = () => {
   const [productsArray, setProductsArray] = useState([]);
@@ -18,12 +20,12 @@ const Product = () => {
       try {
         const products = await ProductsData({
           lim: 15,
-          order: "s",
-          coll: "p43duc",
+          order: 's',
+          coll: 'p43duc',
         });
         setProductsArray(products);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error('Error fetching products:', error);
       }
     }
 
@@ -46,6 +48,7 @@ const Product = () => {
               delay: 3000,
               disableOnInteraction: false,
             }}
+            loop={true}
             modules={[Pagination, Autoplay]}
             className="mySwiper"
           >

@@ -1,14 +1,16 @@
-import Link from "next/link";
-import Image from "next/image";
-import { FaStar } from "react-icons/fa";
+/** @format */
 
-import { CartButton, UserFeedBack2 } from "@/components";
-import getProductFromURL from "@/service/getProductFromURL/getProductFromURLService";
+import Link from 'next/link';
+import Image from 'next/image';
+import { FaStar } from 'react-icons/fa';
+
+import { CartButton, UserFeedBack2 } from '@/components';
+import getProductFromURL from '@/service/getProductFromURL/getProductFromURLService';
 
 // import styles from "./style.module.css";
-import { ExtraFeaturesCards } from "./ExtraFeaturesCards";
-import Tabs from "@/components/Tabs/Tabs";
-import Testimonials from "@/components/Testimonials";
+import { ExtraFeaturesCards } from './ExtraFeaturesCards';
+import Tabs from '@/components/Tabs/Tabs';
+import Testimonials from '@/components/Testimonials';
 // import Testimonials from "@/components/Testimonials";
 
 export default async function SingleStore({ params }) {
@@ -21,27 +23,25 @@ export default async function SingleStore({ params }) {
 
   const tabs = [
     {
-      label: "Description",
+      label: 'Description',
     },
     {
-      label: "Product Specification",
+      label: 'Product Specification',
     },
   ];
 
   return (
     <div
       style={{
-        backgroundColor: "#f6f9fc",
+        backgroundColor: '#f6f9fc',
       }}
     >
-      <main
-        className="static sm:relative max-w-7xl mx-auto"
-      >
+      <main className="static sm:relative max-w-7xl mx-auto">
         {LoadingState ? (
           <div
             style={{
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: 'center',
+              alignItems: 'center',
             }}
           >
             {/* <Player
@@ -79,7 +79,7 @@ export default async function SingleStore({ params }) {
                         height={80}
                         style={{
                           borderRadius: 10,
-                          borderColor: "silver",
+                          borderColor: 'silver',
                           borderWidth: 1,
                         }}
                       />
@@ -129,14 +129,10 @@ export default async function SingleStore({ params }) {
                 </div>
 
                 <div>
-                  <span
-                    className="text-error text-2xl font-bold"
-                  >
+                  <span className="text-error text-2xl font-bold">
                     ₹ {FilteredProduct.data?.price}/-
                   </span>
-                  <span
-                    className="text-xs text-gray-600 line-through ml-2"
-                  >
+                  <span className="text-xs text-gray-600 line-through ml-2">
                     ₹ {FilteredProduct.data?.mrp}/-
                   </span>
                 </div>
@@ -190,7 +186,7 @@ export default async function SingleStore({ params }) {
                 </div> */}
 
                 <p>
-                  <span className="font-medium">SKU:</span>{" "}
+                  <span className="font-medium">SKU:</span>{' '}
                   {FilteredProduct.data?.sku}
                 </p>
 
@@ -203,7 +199,7 @@ export default async function SingleStore({ params }) {
                     color="btn-neutral"
                   />
 
-                  <Link href={"/cart"}>
+                  <Link href={'/cart'}>
                     <button className="btn btn-error rounded-sm hover:text-white px-8 btn-outline">
                       Go To Cart
                     </button>
@@ -229,7 +225,7 @@ export default async function SingleStore({ params }) {
           <div className="flex flex-col justify-center items-center py-12 flex-1 gap-4">
             <span className="text-2xl font-medium">Hey, lost your way?</span>
             <Image
-              src={"/images/not-found.webp"}
+              src={'/images/not-found.webp'}
               width={800}
               height={800}
               alt="not found"
@@ -242,7 +238,7 @@ export default async function SingleStore({ params }) {
               May be we can help find you what you are looking for?
             </span>
             <p>
-              <Link href={"/shop"}>
+              <Link href={'/shop'}>
                 <span className="text-blue-500 hover:link">
                   Navigate to our store
                 </span>

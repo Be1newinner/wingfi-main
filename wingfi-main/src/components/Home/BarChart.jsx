@@ -1,6 +1,8 @@
-"use client";
+/** @format */
 
-import { Bar } from "react-chartjs-2";
+'use client';
+
+import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,7 +11,7 @@ import {
   Title,
   Tooltip,
   Legend,
-} from "chart.js";
+} from 'chart.js';
 
 ChartJS.register(
   CategoryScale,
@@ -17,21 +19,21 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 // Replace with your own labels if needed
-const labels = ["January", "February"];
+const labels = ['January', 'February'];
 
 const data = {
   labels: labels,
   datasets: [
     {
-      label: "The Dataset",
+      label: 'The Dataset',
       data: [65, 59],
       fill: false,
-      backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)"],
-      borderColor: ["rgb(255, 99, 132)", "rgb(255, 159, 64)"],
+      backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(255, 159, 64, 0.2)'],
+      borderColor: ['rgb(255, 99, 132)', 'rgb(255, 159, 64)'],
       borderWidth: 1,
     },
   ],
@@ -39,7 +41,7 @@ const data = {
 
 // Options for horizontal bar chart
 const options = {
-  indexAxis: "y", // Set to 'y' to make the bars horizontal
+  indexAxis: 'y', // Set to 'y' to make the bars horizontal
   elements: {
     bar: {
       borderWidth: 2,
@@ -48,24 +50,24 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: "top",
+      position: 'top',
     },
     title: {
       display: true,
-      text: "Bar Chart",
+      text: 'Bar Chart',
     },
   },
 };
 
 export default function BarChart() {
   const textImage = {
-    backgroundColor: "#2f8d46",
+    backgroundColor: '#2f8d46',
     backgroundImage:
       'url("https://media.geeksforgeeks.org/wp-content/uploads/20231218222854/1.png")',
-    backgroundRepeat: "repeat",
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    WebkitFontSmoothing: "antialiased",
+    backgroundRepeat: 'repeat',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    WebkitFontSmoothing: 'antialiased',
   };
 
   return (
