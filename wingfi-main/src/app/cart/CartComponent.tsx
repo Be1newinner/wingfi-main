@@ -16,7 +16,7 @@ export default function CartComponent() {
       {quantity ? (
         <>
           <div className="bg-whquantityite basis-2/3 shadow">
-            <p className="text-white font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-blue-500">
+            <p className="text-white font-semibold text-sm p-4 px-4 sm:px-8 shadow-md bg-red-500">
               CART ITEMS
             </p>
             <CartProductArray />
@@ -27,7 +27,7 @@ export default function CartComponent() {
               }}
             >
               <Link href={!UserUID ? "/signin?next=checkout" : "/checkout"}>
-                <button className="btn bg-blue-500 hover:bg-blue-600 rounded-none text-white px-16 shadow">
+                <button className="btn bg-red-500 hover:bg-red-600 rounded-none text-white px-16 shadow">
                   PLACE ORDER
                 </button>
               </Link>
