@@ -4,14 +4,11 @@
 
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavBar } from '@/components/NavBar';
+// import { NavBar } from '@/components/NavBar';
 // import { Footer } from '@/components/Footer';
 import NewsLetterSection from '@/components/Home/NewsLetterSection';
 
 import {
-  // NavBar,
-  // Footer,
-  Newsletter,
   CartProductArray,
   PricingCart,
   EmptyCart,

@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { FaMobileAlt, FaChargingStation, FaHeadphones, FaHeadset, FaLaptop } from 'react-icons/fa';
 
 const categories = [

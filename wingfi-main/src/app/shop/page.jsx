@@ -1,4 +1,4 @@
-import { Newsletter, ShopProductsWrapper } from "@/components";
+import {  ShopProductsWrapper } from "@/components";
 import Link from "next/link";
 
 export default function Store() {

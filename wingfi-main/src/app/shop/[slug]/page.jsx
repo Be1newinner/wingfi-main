@@ -1,10 +1,11 @@
 /** @format */
+"use client"
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaStar } from 'react-icons/fa';
 
-import { CartButton, UserFeedBack2 } from '@/components';
+import { CartButton } from '@/components';
 import getProductFromURL from '@/service/getProductFromURL/getProductFromURLService';
 
 // import styles from "./style.module.css";

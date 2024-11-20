@@ -1,10 +1,10 @@
 import Image from 'next/image';
-import styles from './styles.module.css';
-import { Theme_colors } from '@/infrastructure/theme';
-import bg from '@/../public/images/bg.jpg';
+// import styles from './styles.module.css';
+// import { Theme_colors } from '@/infrastructure/theme';
+// import bg from '@/../public/images/bg.jpg';
 import { FaArrowRight } from 'react-icons/fa6';
 import image1 from './../../../public/hero/camerahero.png';
-import image2 from './../../../public/hero/heroImage.png';
+// import image2 from './../../../public/hero/heroImage.png';
 import HeroSwiper from './HeroSwiper';
 
 import Link from 'next/link';

@@ -42,8 +42,8 @@ export default function SignInForm() {
     } else return true;
   };
 
-  const emailSignIn = async () => {
-    // event.preventDefault();
+  const emailSignIn = async (event) => {
+    event.preventDefault();
 
     if (validations(emailIDInput, PasswordInput)) {
       dispatch(

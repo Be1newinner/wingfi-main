@@ -20,7 +20,7 @@ export async function ShopProductsWrapper() {
 
   // getProducts().then((e) => {
   //   productsArray = e;
-  console.log("data => ", productsArray);
+  // console.log("data => ", productsArray);
   // });
 
   return productsArray?.map((item) => (

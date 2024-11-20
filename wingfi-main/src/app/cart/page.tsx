@@ -1,3 +1,5 @@
+"use client"
+
 import CartComponent from "./CartComponent";
 
 export default function Cart() {

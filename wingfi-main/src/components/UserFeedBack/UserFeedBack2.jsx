@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { TbMicrophone2 } from "react-icons/tb";
-import { FaStar } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
+// rating, reviewsCount
 
-export function UserFeedBack2({ rating, reviewsCount }) {
+export function UserFeedBack2() {
   const feedbackList = [
     {
       id: 0,

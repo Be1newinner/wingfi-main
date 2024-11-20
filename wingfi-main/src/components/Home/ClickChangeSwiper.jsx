@@ -17,7 +17,7 @@ import { CartButton } from '../ProductViewSm/CartButton';
 import getProductFromURL from '@/service/getProductFromURL/getProductFromURLService';
 import { Theme_colors_class } from '@/infrastructure/theme';
 import Link from 'next/link';
-import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
+// import { IoArrowBack, IoArrowForward } from 'react-icons/io5';
 
 const ProductsData = [
   {
