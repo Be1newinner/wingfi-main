@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import { redirect, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -42,7 +40,7 @@ export default function SignInForm() {
     } else return true;
   };
 
-  const emailSignIn = async (event) => {
+  const emailSignIn = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (validations(emailIDInput, PasswordInput)) {
@@ -67,51 +65,53 @@ export default function SignInForm() {
       {AuthErrors ? (
         <span className="font-medium text-error">{AuthErrors}</span>
       ) : null}
-      <label className="form-control w-full sm:w-96 mt-2">
-        <input
-          type="text"
-          placeholder="email ID"
-          className="input input-bordered text-xs rounded-sm"
-          name="email"
-          autoComplete="email"
-          id="email"
-          maxLength={25}
-          value={emailIDInput}
-          onChange={(e) => setEmailIDInput(e.target.value)}
-        />
-        {ErrorInputs.email && (
-          <div className="label">
-            <span className="label-text-alt text-error">
-              {ErrorInputs.email}
-            </span>
-          </div>
-        )}
-      </label>
-      <label className="form-control max-w-96">
-        <input
-          type="password"
-          placeholder="password"
-          className="input input-bordered text-xs rounded-sm"
-          name="password"
-          autoComplete="password"
-          id="password"
-          value={PasswordInput}
-          onChange={(e) => setPasswordInput(e.target.value)}
-        />
-        {ErrorInputs.password && (
-          <div className="label">
-            <span className="label-text-alt text-error">
-              {ErrorInputs.password}
-            </span>
-          </div>
-        )}
-      </label>
-      <button
-        className="btn btn-primary w-full rounded-sm"
-        onClick={emailSignIn}
-      >
-        Sign In
-      </button>
+      <form onSubmit={emailSignIn}>
+        <label className="form-control w-full sm:w-96 mt-2">
+          <input
+            type="text"
+            placeholder="email ID"
+            className="input input-bordered text-xs rounded-sm"
+            name="email"
+            autoComplete="email"
+            id="email"
+            maxLength={25}
+            value={emailIDInput}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setEmailIDInput(e.target.value)}
+          />
+          {ErrorInputs.email && (
+            <div className="label">
+              <span className="label-text-alt text-error">
+                {ErrorInputs.email}
+              </span>
+            </div>
+          )}
+        </label>
+        <label className="form-control max-w-96">
+          <input
+            type="password"
+            placeholder="password"
+            className="input input-bordered text-xs rounded-sm"
+            name="password"
+            autoComplete="password"
+            id="password"
+            value={PasswordInput}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => setPasswordInput(e.target.value)}
+          />
+          {ErrorInputs.password && (
+            <div className="label">
+              <span className="label-text-alt text-error">
+                {ErrorInputs.password}
+              </span>
+            </div>
+          )}
+        </label>
+        <button
+          type="submit"
+          className="btn btn-primary w-full rounded-sm"
+        >
+          Sign In
+        </button>
+      </form>
       <div className="text-xs mt-2">
         Don{`&apos;`}t have an Account?{" "}
         <Link href={"/signup"} className="text-blue-500 hover:text-blue-900">
@@ -122,7 +122,7 @@ export default function SignInForm() {
       <div className="flex gap-4">
         <button
           className="btn flex flex-row flex-1 rounded-sm"
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent) => {
             e.preventDefault();
             dispatch(loginRequestByGoogle());
           }}
