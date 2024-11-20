@@ -37,6 +37,8 @@ const initialState = {
     displayName: null,
     isAdmin: false,
     token: null,
+    refreshToken: null,
+    tokenExpiry: null
   },
   loading: true,
   error: null,
@@ -47,10 +49,6 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    loginRequestByGoogle(state) {
-      state.loading = true;
-      state.error = null;
-    },
     loginRequest(
       state,
       action
@@ -88,14 +86,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    rehydrateUser(state, action) {
-      state.user = action.payload;
-      state.isRehydrated = true;
-      state.loading = false;
-    },
-    triggerRehydrate(state) {
-      state.loading = true;
-    },
   },
 });
 
@@ -106,9 +96,6 @@ export const {
   logoutRequest,
   logoutSuccess,
   logoutFailure,
-  rehydrateUser,
-  loginRequestByGoogle,
-  triggerRehydrate,
 } = authSlice.actions;
 
 export default authSlice.reducer;

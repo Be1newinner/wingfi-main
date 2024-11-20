@@ -8,7 +8,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUsers } from "@/redux/selectors/users";
 import { loadAllUsersRequest } from "@/redux/reducers/users";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function OrderTracking() {
   const [show, setShow] = useState(false);
@@ -22,7 +22,7 @@ export default function OrderTracking() {
   };
 
   const userdata = useSelector(selectUsers);
-  console.log("user data is => ", userdata);
+  // console.log("user data is => ", userdata);
   const dispatch = useDispatch();
 
   useEffect(() => {
