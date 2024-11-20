@@ -86,14 +86,6 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
-    rehydrateUser(state, action) {
-      state.user = action.payload;
-      state.isRehydrated = true;
-      state.loading = false;
-    },
-    triggerRehydrate(state) {
-      state.loading = true;
-    },
   },
 });
 
@@ -104,8 +96,6 @@ export const {
   logoutRequest,
   logoutSuccess,
   logoutFailure,
-  rehydrateUser,
-  triggerRehydrate,
 } = authSlice.actions;
 
 export default authSlice.reducer;

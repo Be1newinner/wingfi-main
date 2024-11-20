@@ -1,13 +1,21 @@
 import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./rootSagas";
-import { rootReducer as reducer } from "./rootReducer";
+import { rootReducer } from "./rootReducer";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
+
 // import {
 //   loginRequest,
 //   loginSuccess,
 //   logoutRequest,
 //   rehydrateUser,
 // } from "./reducers/auth";
+
+const persistConfig = {
+  key: "root",
+  storage,
+};
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -28,6 +36,8 @@ const sagaMiddleware = createSagaMiddleware();
 //   rehydrateUser,
 // };
 
+const reducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
@@ -40,3 +50,5 @@ export const store = configureStore({
 sagaMiddleware.run(rootSaga);
 
 export type AppDispatch = typeof store.dispatch;
+
+export const persistor = persistStore(store);

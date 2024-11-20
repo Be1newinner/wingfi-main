@@ -19,7 +19,7 @@ export default function Login() {
   const selector = useSelector(selectUser);
 
   const dispatch = useDispatch();
-  const [error, setError] = useState("");
+  const [error] = useState("");
   const handleChange = (e) => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
@@ -31,9 +31,10 @@ export default function Login() {
   };
 
   useEffect(() => {
-    if (selector) {
-      // router.replace("/");
-      console.log(selector)
+    if (selector.uid && selector.isAdmin) {
+      router.replace("/");
+    } else {
+      console.log("NOPE!");
     }
   }, [selector, router]);
 
