@@ -1,42 +1,54 @@
-import { call, put, takeEvery, takeLatest } from "redux-saga/effects";
+
+import { call, put, takeLatest } from "redux-saga/effects";
 import {
-  signInWithPopup,
   signOut,
-  getIdToken,
+  signInWithEmailAndPassword,
+  getIdTokenResult,
 } from "firebase/auth";
-import { firebaseAuth, googleProvider } from "../../constants/firebase.config";
+import { firebaseAuth } from "../../constants/firebase.config";
 import {
-  loginRequestByGoogle,
   loginSuccess,
   loginFailure,
   logoutRequest,
   logoutSuccess,
   logoutFailure,
+  loginRequest,
 } from "../reducers/auth";
 
-function* googleLoginSaga() {
+function* emailLoginSaga({ payload: { email, password } }) {
+  console.log({ email, password });
   try {
-    const result = yield call(signInWithPopup, firebaseAuth, googleProvider);
-    const user = result.user;
-    const token = yield call(getIdToken, user);
+    const response = yield call(signInWithEmailAndPassword, firebaseAuth, email, password);
+    const user = response.user
+    const data = yield call(getIdTokenResult, user);
+    // const data = yield call(getIdTokenResult(user, false));
 
-    const userData = {
-      uid: user.uid,
-      email: user.email,
-      emailVerified: user.emailVerified,
-      phoneNumber: user.phoneNumber,
-      photoURL: user.photoURL,
-      displayName: user.displayName,
-      isAdmin: false,
-      token,
-    };
+    console.log({ data });
 
-    yield put(loginSuccess(userData));
+    if (user?.reloadUserInfo?.customAttributes &&
+      JSON.parse(user?.reloadUserInfo?.customAttributes)?.admin
+    ) {
+      yield put(loginSuccess({
+        uid: user.uid,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        phoneNumber: user.phoneNumber,
+        photoURL: user.photoURL,
+        displayName: user.displayName,
+        isAdmin: JSON.parse(user?.reloadUserInfo?.customAttributes)?.admin,
+        token: user.stsTokenManager.accessToken,
+        refreshToken: user.stsTokenManager.refreshToken,
+        tokenExpiry: user.stsTokenManager.refreshToken
+      }));
+    } else {
+      console.log("ACCESS DENIED!");
+      yield put(loginFailure("ACCESS DENIED!"));
+    }
   } catch (error) {
+    console.log("ERROR IN LOGIN SAGA!", error)
     yield put(loginFailure(error.message));
   }
 }
-
 
 function* logoutSaga() {
   try {
@@ -48,6 +60,6 @@ function* logoutSaga() {
 }
 
 export default function* authSagaWatcher() {
-  yield takeEvery(loginRequestByGoogle.type, googleLoginSaga);
+  yield takeLatest(loginRequest.type, emailLoginSaga);
   yield takeLatest(logoutRequest.type, logoutSaga);
 }
