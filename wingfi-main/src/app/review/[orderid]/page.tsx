@@ -1,6 +1,6 @@
 "use client";
 
-import { NavBar, Footer, Newsletter } from "@/components";
+import { Newsletter } from "@/components";
 import Link from "next/link";
 import ReviewContainer from "./ReviewContainer";
 import { useEffect } from "react";
@@ -28,8 +28,6 @@ export default function Checkout({ params }: { params: { orderid: string } }) {
 
   return (
     <div className="bg-gray-100">
-      <NavBar />
-
       <main
         style={{
           maxWidth: 1200,
@@ -73,7 +71,6 @@ export default function Checkout({ params }: { params: { orderid: string } }) {
 
         <Newsletter />
       </main>
-      <Footer />
     </div>
   );
 }

@@ -36,12 +36,12 @@ export function CartButton({
   const [quantity, setQuantity] = useState<number>(0);
 
   useEffect(() => {
-    const sku = item.sku || "";
+    const sku = item?.sku || "";
     if (sku) {
       const quant = selectCartItemsData[sku]?.qty || 0;
       setQuantity(quant);
     }
-  }, [selectCartItemsData, item.sku]);
+  }, [selectCartItemsData, item?.sku]);
 
   return quantity > 0 ? (
     <QuantityChangeSelect item={item} quantity={quantity} size={size} />

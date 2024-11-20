@@ -173,6 +173,14 @@ export default function LeftSidebar({ handleClose, show, handle }) {
               <h1>All User</h1>
             </div>
           </Link>
+          <Link href="/user/login">
+            <div className="flex items-center gap-2 px-6 py-2 text-base font-bold text-gray-500 cursor-pointer">
+              <div className="w-2 h-2 bg-gray-300 rotate-45">
+                <div className="w-1 h-1 rounded-full bg-white m-[1px]"></div>
+              </div>
+              <h1>Login</h1>
+            </div>
+          </Link>
         </div>
         {!show ? (
           <div onClick={handle} className=" cursor-pointer flex justify-center mb-10">

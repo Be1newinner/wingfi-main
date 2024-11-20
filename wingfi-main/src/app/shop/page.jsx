@@ -1,10 +1,9 @@
-import { NavBar, Footer, Newsletter, ShopProductsWrapper } from "@/components";
+import { Newsletter, ShopProductsWrapper } from "@/components";
 import Link from "next/link";
 
 export default function Store() {
   return (
     <>
-      <NavBar />
       <main
         className="pb-8"
         style={{
@@ -47,9 +46,8 @@ export default function Store() {
             <ShopProductsWrapper />
           </div>
         </div>
-        <Newsletter />
+        {/* <Newsletter /> */}
       </main>
-      <Footer />
     </>
   );
 }

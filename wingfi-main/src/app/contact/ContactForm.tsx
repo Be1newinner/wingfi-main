@@ -1,11 +1,8 @@
-import { Footer, NavBar } from "@/components";
 import Link from "next/link";
 
 export default function Contact() {
   return (
     <div>
-      <NavBar />
-
       <main className="bg-slate-200 pb-4">
         <div
           style={{
@@ -119,7 +116,6 @@ export default function Contact() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

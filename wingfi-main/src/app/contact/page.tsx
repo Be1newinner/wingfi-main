@@ -1,4 +1,3 @@
-import { Footer, NavBar } from "@/components";
 import Faq from "./Faq";
 import Link from "next/link";
 import Image from "next/image";
@@ -6,8 +5,6 @@ import Image from "next/image";
 export default function Contact() {
   return (
     <div>
-      <NavBar />
-
       <main className="pb-4">
         <div
           style={{
@@ -54,7 +51,9 @@ export default function Contact() {
             <div className="">
               <div className="h-[350px]  w-full">
                 <Image
-                  src="./images/1.jpg"
+                  src="/images/1.jpg"
+                  width={500}
+                  height={500}
                   alt="img"
                   className="h-full w-full rounded-t-md"
                 />
@@ -90,7 +89,6 @@ export default function Contact() {
           <Faq />
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

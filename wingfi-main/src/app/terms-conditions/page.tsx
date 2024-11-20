@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import { Footer, NavBar } from "@/components";
 
 const TermsOfUse = () => {
   return (
@@ -9,7 +8,6 @@ const TermsOfUse = () => {
         <title>Terms of Use</title>
         <meta name="description" content="Terms of Use for our website" />
       </Head>
-      <NavBar />
       <div className="p-6">
         <h1 className="text-2xl font-bold mb-4">TERMS OF USE</h1>
         <p className="mb-4">
@@ -22,7 +20,10 @@ const TermsOfUse = () => {
           </h2>
           <p>
             We are{" "}
-            <b>(&quot;Company,&quot; &quot;we &apos;SMART GADGETS WORLD,&quot; &quot;us,&quot; &quot;our&quot;)</b>
+            <b>
+              (&quot;Company,&quot; &quot;we &apos;SMART GADGETS WORLD,&quot;
+              &quot;us,&quot; &quot;our&quot;)
+            </b>
             .
           </p>
           <p>
@@ -165,8 +166,8 @@ const TermsOfUse = () => {
             in our Services, including all source code, databases,
             functionality, software, website designs, audio, video, text,
             photographs, and graphics in the Services (collectively, the
-            &quot;Content&quot;), as well as the trademarks, service marks, and logos
-            contained therein (the &quot;Marks&quot;).
+            &quot;Content&quot;), as well as the trademarks, service marks, and
+            logos contained therein (the &quot;Marks&quot;).
           </p>
           <p>
             Our Content and Marks are protected by copyright and trademark laws
@@ -175,16 +176,16 @@ const TermsOfUse = () => {
             world.
           </p>
           <p>
-            The Content and Marks are provided in or through the Services &quot;AS
-            IS&quot; for your personal, non-commercial use or internal business
-            purpose only.
+            The Content and Marks are provided in or through the Services
+            &quot;AS IS&quot; for your personal, non-commercial use or internal
+            business purpose only.
           </p>
           <p>
             <strong>Your use of our Services</strong>
             <br />
             Subject to your compliance with these Legal Terms, including the
-            &quot;PROHIBITED ACTIVITIES&quot; section below, we grant you a non-exclusive,
-            non-transferable, revocable license to:
+            &quot;PROHIBITED ACTIVITIES&quot; section below, we grant you a
+            non-exclusive, non-transferable, revocable license to:
             <ul className="list-disc list-inside mb-4">
               <li>access the Services; and</li>
               <li>
@@ -225,19 +226,19 @@ const TermsOfUse = () => {
           <p>
             <strong>Your submissions</strong>
             <br />
-            Please review this section and the &quot;PROHIBITED ACTIVITIES&quot; section
-            carefully prior to using our Services to understand the (a) rights
-            you give us and (b) obligations you have when you post or upload any
-            content through the Services.
+            Please review this section and the &quot;PROHIBITED ACTIVITIES&quot;
+            section carefully prior to using our Services to understand the (a)
+            rights you give us and (b) obligations you have when you post or
+            upload any content through the Services.
           </p>
           <p>
             <strong>Submissions:</strong> By directly sending us any question,
             comment, suggestion, idea, feedback, or other information about the
-            Services (&quot;Submissions&quot;), you agree to assign to us all intellectual
-            property rights in such Submission. You agree that we shall own this
-            Submission and be entitled to its unrestricted use and dissemination
-            for any lawful purpose, commercial or otherwise, without
-            acknowledgment or compensation to you.
+            Services (&quot;Submissions&quot;), you agree to assign to us all
+            intellectual property rights in such Submission. You agree that we
+            shall own this Submission and be entitled to its unrestricted use
+            and dissemination for any lawful purpose, commercial or otherwise,
+            without acknowledgment or compensation to you.
           </p>
           <p>
             <strong>You are responsible for what you post or upload:</strong> By
@@ -342,9 +343,9 @@ const TermsOfUse = () => {
                 upload or transmit (or attempt to upload or to transmit)
                 viruses, Trojan horses, or other material, including excessive
                 use of capital letters and spamming (continuous posting of
-                repetitive text), that interferes with any party&apos;s uninterrupted
-                use and enjoyment of the Services or modifies, impairs,
-                disrupts, alters, or interferes with the use, features,
+                repetitive text), that interferes with any party&apos;s
+                uninterrupted use and enjoyment of the Services or modifies,
+                impairs, disrupts, alters, or interferes with the use, features,
                 function, operation, or maintenance of the Services;
               </li>
               <li>
@@ -352,8 +353,8 @@ const TermsOfUse = () => {
                 material that acts as a passive or active information collection
                 or transmission mechanism, including without limitation, clear
                 gifs, pixel tags, web bugs, cookies, or other similar devices
-                (sometimes referred to as &quot;spyware&quot; or &quot;passive collection
-                mechanisms&quot; or &quot;pcms&quot;);
+                (sometimes referred to as &quot;spyware&quot; or &quot;passive
+                collection mechanisms&quot; or &quot;pcms&quot;);
               </li>
               <li>
                 disguise the origin of any content transmitted through the
@@ -367,8 +368,8 @@ const TermsOfUse = () => {
                 Content contained therein;
               </li>
               <li>
-                copy or adapt the Services&apos; software, including but not limited
-                to Flash, PHP, HTML, JavaScript, or other code;
+                copy or adapt the Services&apos; software, including but not
+                limited to Flash, PHP, HTML, JavaScript, or other code;
               </li>
               <li>
                 upload or transmit (or attempt to upload or to transmit) any
@@ -548,14 +549,14 @@ const TermsOfUse = () => {
         <section id="disclaimer" className="mb-8">
           <h2 className="text-xl font-semibold mb-2">11. DISCLAIMER</h2>
           <p>
-            The Services are provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. We
-            make no warranties or representations about the accuracy or
-            completeness of the Services or the content provided. We disclaim
-            all warranties of any kind, whether express or implied, including,
-            but not limited to, implied warranties of merchantability, fitness
-            for a particular purpose, and non-infringement. We do not warrant
-            that the Services will be available at all times, secure, or
-            error-free.
+            The Services are provided on an &quot;AS IS&quot; and &quot;AS
+            AVAILABLE&quot; basis. We make no warranties or representations
+            about the accuracy or completeness of the Services or the content
+            provided. We disclaim all warranties of any kind, whether express or
+            implied, including, but not limited to, implied warranties of
+            merchantability, fitness for a particular purpose, and
+            non-infringement. We do not warrant that the Services will be
+            available at all times, secure, or error-free.
           </p>
         </section>
 
@@ -580,9 +581,9 @@ const TermsOfUse = () => {
             You agree to indemnify, defend, and hold harmless us, our
             affiliates, and our respective officers, directors, employees, and
             agents from and against any claims, liabilities, damages, losses,
-            and expenses, including reasonable attorneys&apos; fees, arising out of
-            or in any way connected with your access to or use of the Services,
-            or your violation of these Legal Terms.
+            and expenses, including reasonable attorneys&apos; fees, arising out
+            of or in any way connected with your access to or use of the
+            Services, or your violation of these Legal Terms.
           </p>
         </section>
 
@@ -621,7 +622,6 @@ const TermsOfUse = () => {
           </p>
         </section>
       </div>
-      <Footer />
     </div>
   );
 };

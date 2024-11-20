@@ -9,8 +9,9 @@ const preURL =
 export default async function loadProductService() {
   try {
     const data = await axios.post(
-      preURL + "/api/fetchCollection",
+      preURL + "/api/collection",
       {
+        api_type: "FETCH_COLLECTION",
         collectionPath: "p43duc",
       },
       {
@@ -32,6 +33,39 @@ export default async function loadProductService() {
       };
     });
     return mutatedData;
+  } catch (error) {
+    console.log(error);
+    throw Error("Unknown Error!");
+  }
+}
+
+
+export async function addProductService({
+
+}) {
+  console.log("your res is : ");
+  try {
+    const {data} = await axios.post(
+      preURL + "/api/document",
+      {
+        api_type: "ADD_DOCUMENT",
+        collectionPath: "p43duc",
+        data: {
+          i:"dasdasdasdasd",
+          l:"",
+          m:0,
+          p:0,
+          r:0,
+          s:0,
+          sk:1159,
+          t:""
+        },
+        docId: "product_slug1"
+      }
+    );
+    const response = await data;
+    console.log("your res is : ", response);
+    return response;
   } catch (error) {
     console.log(error);
     throw Error("Unknown Error!");

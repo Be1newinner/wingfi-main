@@ -20,6 +20,7 @@ const auth = admin.auth(app);
 
 const API_TYPES = {
     GET_LIST_USERS: "GET_LIST_USERS",
+    LOG_IN_ADMIN: "LOG_IN_ADMIN"
 }
 
 
@@ -33,6 +34,7 @@ export default async function readHandler(req, res) {
 
         switch (api_type) {
             case API_TYPES.GET_LIST_USERS: return readUserList(req.body, res);
+            case API_TYPES.LOG_IN_ADMIN: return logInAdmin(req.body, res)
             default: throw Error("INVALID API TYPE");
         }
 
@@ -52,5 +54,12 @@ async function readUserList(body, res) {
 
     const data = await auth.listUsers(limit ? Math.min(limit, 5) : 5, nextPageToken)
 
+    return res.status(200).json({ data });
+}
+
+async function logInAdmin(body, res) {
+    const { email, password } = body;
+    console.log("TRYING ADMIN LOGIN", email, password)
+    const data = {};
     return res.status(200).json({ data });
 }

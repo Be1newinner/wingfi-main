@@ -1,5 +1,4 @@
 "use client";
-import { Footer, NavBar } from "@/components";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import getVerificationByID from "@/utils/getVerificationByID";
@@ -30,7 +29,6 @@ export default function VerifyProduct({ params }) {
 
   return (
     <div className="flex flex-col h-screen">
-      <NavBar />
       <main className="container flex-1 flex flex-col md:flex-row justify-center items-center py-16 md:gap-8">
         <Image
           src={
@@ -118,7 +116,6 @@ export default function VerifyProduct({ params }) {
           )}
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
