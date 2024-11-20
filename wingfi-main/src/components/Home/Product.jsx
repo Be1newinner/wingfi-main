@@ -52,7 +52,7 @@ const Product = () => {
             modules={[Pagination, Autoplay]}
             className="mySwiper"
           >
-            {productsArray.map((data, index) => (
+            {productsArray?.map((data, index) => (
               <SwiperSlide
                 key={index}
                 className="group flex flex-col w-1/3 h-full mb-12 border-[1px] border-[#e4e1e1] rounded-3xl cursor-pointer"
@@ -62,8 +62,8 @@ const Product = () => {
                     <Image
                       src={`https://firebasestorage.googleapis.com/v0/b/wingfi-9b5b7.appspot.com/o/pro%2F${data.sku}%2F1.webp?alt=media`}
                       alt={data.title}
-                      width={200}
-                      height={300}
+                      width={600}
+                      height={900}
                       className="object-cover h-full w-full rounded-lg group-hover:scale-105 ease-in-out duration-300"
                     />
                   </div>
