@@ -1,7 +1,9 @@
-import { ProductViewList } from "@/components";
+/** @format */
+
+import { ProductViewList } from '@/components';
 // import { useDispatch, useSelector } from "react-redux";
 // import { useEffect } from "react";
-import { ProductsData } from "./../../service/Products/ProductsService";
+import { ProductsData } from './../../service/Products/ProductsService';
 // import { addProductsArray } from "../../store/Slice/AllProductsSlice";
 // import { useRef } from "react";
 
@@ -12,13 +14,13 @@ export async function ShopProductsWrapper() {
 
   const productsArray = await ProductsData({
     lim: 15,
-    order: "s",
-    coll: "p43duc",
+    order: 's',
+    coll: 'p43duc',
   });
 
   // getProducts().then((e) => {
   //   productsArray = e;
-  console.log("data => ", productsArray);
+  // console.log("data => ", productsArray);
   // });
 
   return productsArray?.map((item) => (
@@ -30,6 +32,7 @@ export async function ShopProductsWrapper() {
       slug={item?.slug}
       sku={item?.sku}
       rating={item?.rating}
+      isWishlisted={false}
     />
   ));
 }

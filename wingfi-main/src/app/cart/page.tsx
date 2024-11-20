@@ -1,3 +1,5 @@
+"use client";
+
 import CartComponent from "./CartComponent";
 
 export default function Cart() {
@@ -6,10 +8,8 @@ export default function Cart() {
       <main
         style={{
           maxWidth: 1200,
-          marginLeft: "auto",
-          marginRight: "auto",
         }}
-        className="sm:my-8"
+        className="sm:py-8 mx-auto"
       >
         <CartComponent />
       </main>

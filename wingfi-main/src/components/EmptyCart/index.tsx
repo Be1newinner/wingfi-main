@@ -1,3 +1,5 @@
+"use client"
+
 import Lottie from "lottie-react";
 import * as animationData from "@/../public/animation/empty_cart.json";
 import Link from "next/link";

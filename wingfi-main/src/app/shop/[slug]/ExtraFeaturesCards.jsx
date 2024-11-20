@@ -1,7 +1,7 @@
 export  function ExtraFeaturesCards() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 relative">
-      <div className="flex flex-col p-5 rounded-sm shadow bg-red-50 dark:bg-opacity-90">
+      <div className="flex flex-col p-5 rounded-md border border-gray-200 bg-red-50 dark:bg-opacity-90">
         <div>
           <svg
             width="24"
@@ -73,7 +73,7 @@ export  function ExtraFeaturesCards() {
           <p className="text-slate-500 mt-0.5 text-sm">On orders over $50.00</p>
         </div>
       </div>
-      <div className="flex flex-col p-5 rounded-sm shadow bg-sky-50 dark:bg-opacity-90">
+      <div className="flex flex-col p-5 rounded-md border border-gray-200 bg-sky-50 dark:bg-opacity-90">
         <div>
           <svg
             width="24"
@@ -145,7 +145,7 @@ export  function ExtraFeaturesCards() {
           <p className="text-slate-500 mt-0.5 text-sm">Just phone number.</p>
         </div>
       </div>
-      <div className="flex flex-col p-5 rounded-sm shadow bg-green-50 dark:bg-opacity-90">
+      <div className="flex flex-col p-5 rounded-md border border-gray-200 bg-green-50 dark:bg-opacity-90">
         <div>
           <svg
             width="24"
@@ -198,7 +198,7 @@ export  function ExtraFeaturesCards() {
           </p>
         </div>
       </div>
-      <div className="flex flex-col p-5 rounded-sm shadow bg-amber-50 dark:bg-opacity-90">
+      <div className="flex flex-col p-5 rounded-md border border-gray-200 bg-amber-50 dark:bg-opacity-90">
         <div>
           <svg
             width="24"

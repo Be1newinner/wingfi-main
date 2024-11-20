@@ -1,8 +1,17 @@
-import React from "react";
+/** @format */
+'use client';
+
+import { usePathname } from 'next/navigation';
+import React from 'react';
 
 export default function NewsLetterSection() {
+  const pathname = usePathname();
   return (
-    <div className="h-full px-5 py-10 lg:px-[50px] lg:py-[50px] bg-[#ebfafe] mx-5 lg:mx-10 rounded-[50px] border border-[#e4e1e1]">
+    <div
+      className={`h-full px-5 py-10 lg:px-[50px] lg:py-[50px] mx-5 lg:mx-10 rounded-[50px] border border-[#e4e1e1] ${
+        pathname == '/checkout' ? 'bg-[#ffffff]' : 'bg-[#ebfafe]'
+      }`}
+    >
       <div className="w-full flex flex-col items-center gap-10 lg:flex-row lg:items-start">
         <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-5">
           <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">

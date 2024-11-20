@@ -1,36 +1,39 @@
-"use client";
+/** @format */
 
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+// import { NavBar } from '@/components/NavBar';
+// import { Footer } from '@/components/Footer';
+import NewsLetterSection from '@/components/Home/NewsLetterSection';
 
 import {
-  NavBar,
-  Footer,
-  Newsletter,
   CartProductArray,
   PricingCart,
   EmptyCart,
-} from "@/components";
-import { AddAddressItem, AddressItem, PaymentOptions } from "./components";
+} from '@/components';
+import { AddAddressItem, AddressItem, PaymentOptions } from './components';
 import {
   selectAddresses,
   selectDefaultAddress,
   selectDefaultAddressObject,
-} from "@/redux/selectors/address";
+} from '@/redux/selectors/address';
 import {
   addNewAddressRequest,
   changeDefaultAddress,
   fetchAddressesRequest,
-} from "@/redux/reducers/address";
-import { AddressType, BasicAddressFields } from "@/redux/constants/address";
-import { selectUserUID } from "@/redux/selectors/auth";
-import { selectCartQuantity } from "@/redux/selectors/cart";
-import ProtectedRoute from "@/service/Authentication/ProtectedRoutes";
+} from '@/redux/reducers/address';
+import { AddressType, BasicAddressFields } from '@/redux/constants/address';
+import { selectUserUID } from '@/redux/selectors/auth';
+import { selectCartQuantity } from '@/redux/selectors/cart';
+import ProtectedRoute from '@/service/Authentication/ProtectedRoutes';
 import {
   selectGenerateOrderStatusState,
   selectNewOrderIDState,
-} from "@/redux/selectors/order";
-import { useRouter } from "next/navigation";
+} from '@/redux/selectors/order';
+import { useRouter } from 'next/navigation';
+import Footer from '@/components/Footer';
 
 export default function Checkout() {
   const [checkoutSteps, setCheckoutSteps] = useState<number>(1);
@@ -45,14 +48,14 @@ export default function Checkout() {
   const navigate = useRouter();
 
   const [formValues, setFormValues] = useState<BasicAddressFields>({
-    houseNumber: "",
-    name: "",
+    houseNumber: '',
+    name: '',
     phoneNumber: 0,
     pinCode: 0,
-    landmark: "",
-    city: "",
-    state: "",
-    type: "other",
+    landmark: '',
+    city: '',
+    state: '',
+    type: 'other',
   });
 
   useEffect(() => {
@@ -60,7 +63,7 @@ export default function Checkout() {
       if (UserUID) {
         dispatch(fetchAddressesRequest(UserUID));
       } else {
-        console.error("Error: E1156");
+        console.error('Error: E1156');
       }
     })();
   }, [UserUID, dispatch]);
@@ -69,7 +72,7 @@ export default function Checkout() {
     if (UserUID) {
       const keySelected = Date.now();
       await dispatch(
-        addNewAddressRequest({ ...formValues, key: keySelected, uid: UserUID })
+        addNewAddressRequest({ ...formValues, key: keySelected, uid: UserUID }),
       );
     }
   }
@@ -85,13 +88,13 @@ export default function Checkout() {
   return (
     <ProtectedRoute>
       <div className="bg-gray-100">
-        <NavBar />
+        {/* <NavBar /> */}
 
         <main
           style={{
             maxWidth: 1200,
-            marginLeft: "auto",
-            marginRight: "auto",
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}
           className="sm:my-8"
         >
@@ -123,7 +126,7 @@ export default function Checkout() {
                       ))}
                       <div
                         className={`flex p-6 gap-4 items-start cursor-pointer border-t-2 ${
-                          DefaultAddress === 999 ? "bg-blue-50" : ""
+                          DefaultAddress === 999 ? 'bg-blue-50' : ''
                         }`}
                         onClick={() => dispatch(changeDefaultAddress(999))}
                       >
@@ -159,7 +162,7 @@ export default function Checkout() {
                         <div className="flex flex-col flex-1 gap-2">
                           <span>DELIVERY ADDRESS</span>
                           <p className="font-bold text-md text-black">
-                            {defaultAddressData?.name}{" "}
+                            {defaultAddressData?.name}{' '}
                             {defaultAddressData?.phoneNumber}
                           </p>
                           <span>
@@ -236,7 +239,9 @@ export default function Checkout() {
             )}
           </div>
 
-          <Newsletter />
+          <div className="mt-6">
+            <NewsLetterSection />
+          </div>
         </main>
         <Footer />
       </div>

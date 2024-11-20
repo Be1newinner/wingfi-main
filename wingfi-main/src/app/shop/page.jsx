@@ -1,4 +1,4 @@
-import { Newsletter, ShopProductsWrapper } from "@/components";
+import {  ShopProductsWrapper } from "@/components";
 import Link from "next/link";
 
 export default function Store() {
@@ -7,17 +7,17 @@ export default function Store() {
       <main
         className="pb-8"
         style={{
-          backgroundColor: "#f6f9fc",
+          backgroundColor: "#f9f9f8",
         }}
       >
-        <div className="bg-slate-200">
+        <div className="bg-[#f9f9f8]">
           <div
             style={{
               maxWidth: 1200,
               marginLeft: "auto",
               marginRight: "auto",
             }}
-            className="py-0 sm:py-8"
+            className="py-0 sm:py-4"
           >
             <div className="text-sm breadcrumbs p-4">
               <ul>
@@ -28,7 +28,7 @@ export default function Store() {
               </ul>
             </div>
 
-            <p className="text-xl sm:text-3xl pb-4 ps-3 font-semibold">
+            <p className="text-xl sm:text-4xl ps-3 font-bold">
               Explore All Products
             </p>
           </div>
@@ -41,8 +41,9 @@ export default function Store() {
             marginRight: "auto",
             marginTop: 12,
           }}
+          className="bg-[#f9f9f8]"
         >
-          <div className="m-3 flex flex-wrap">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full p-5">
             <ShopProductsWrapper />
           </div>
         </div>
