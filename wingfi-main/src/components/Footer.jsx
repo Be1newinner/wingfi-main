@@ -30,20 +30,20 @@ export default function Footer() {
   return (
     <footer className="p-4 md:p-10 bg-[#1f1f1f] text-base-content rounded-tr-3xl rounded-tl-3xl">
       <div className="container mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 gap-8 pb-10">
           {/* 1st Column - Company Info */}
-          <div className="col-span-1 md:col-span-1 text-center md:text-left">
-            <p className="w-full max-w-[200px] mx-auto text-white font-bold uppercase text-sm border-[1px] mb-4 border-white px-5 py-2 rounded-full text-center">
+          <div className="col-span-1 md:col-span-1 text-left md:text-left">
+            <p className="w-fit p-3 px-5  text-white font-bold uppercase text-sm border-[1px] mb-4 border-white  rounded-full text-left">
               Stay Connected
             </p>
-            <span className="block font-bold text-2xl text-white text-center md:text-left mb-4">
+            <span className="block font-bold text-2xl text-white text-left md:text-left mb-4">
               {basicDetails.company}
             </span>
-            <p className="text-[#e4e1e1] text-center md:text-left mb-4">
+            <p className="text-[#e4e1e1] text-left md:text-left mb-4">
               We help deliver quality securely. Let&apos;s Shop. We help deliver
               quality securely. Let&apos;s Shop. We help deliver.
             </p>
-            <p className="text-[#e4e1e1] text-center md:text-left">
+            <p className="text-[#e4e1e1] text-left md:text-left">
               Developed with love by{' '}
               <a href="https://shipsar.in" className="hover:text-error">
                 Shipsar Developers
@@ -53,10 +53,10 @@ export default function Footer() {
 
           {/* 2nd Column - My Account */}
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-lg font-bold text-white text-center md:text-left">
+            <h3 className="text-lg font-bold text-white text-left md:text-left">
               My Account
             </h3>
-            <ul className="flex flex-col items-center md:items-start gap-2 mt-2">
+            <ul className="flex flex-col items-start md:items-start gap-2 mt-2">
               {[
                 { href: '/shop', label: 'Shop' },
                 { href: '/orders-info', label: 'Orders History' },
@@ -80,10 +80,10 @@ export default function Footer() {
 
           {/* 3rd Column - Information */}
           <div className="col-span-1 md:col-span-1">
-            <h3 className="text-lg font-bold text-white text-center md:text-left">
+            <h3 className="text-lg font-bold text-white text-left md:text-left">
               Informations
             </h3>
-            <ul className="flex flex-col items-center md:items-start gap-2 mt-2">
+            <ul className="flex flex-col items-start md:items-start gap-2 mt-2">
               {[
                 { href: '/contact', label: 'About Us' },
                 { href: '/privacy-policy', label: 'Privacy Policy' },
@@ -102,16 +102,16 @@ export default function Footer() {
           </div>
 
           {/* 4th Column - Contact */}
-          <div className="col-span-1 md:col-span-1 flex flex-col items-center md:items-start">
+          <div className="col-span-1 md:col-span-1 flex flex-col items-start md:items-start">
             <h2 className="font-bold text-xl text-white mb-4">Talk to Us</h2>
-            <div className="flex flex-col items-center md:items-start gap-4">
+            <div className="flex flex-col items-start md:items-start gap-4">
               <div className="flex items-center gap-3">
                 <FaHeadphonesAlt
                   size={40}
                   color="#1877F2"
                   className="hidden md:block"
                 />
-                <div className="text-center md:text-left">
+                <div className="text-left md:text-left">
                   <p className="text-[#e4e1e1]">
                     Got Questions? Contact us 24/7
                   </p>
@@ -123,12 +123,12 @@ export default function Footer() {
                 </div>
               </div>
 
-              <p className="flex gap-2 items-center text-[#e4e1e1] text-center md:text-left">
+              <p className="flex gap-2 items-center text-[#e4e1e1] text-left md:text-left">
                 <MdOutlineMailOutline color="#1877F2" size={24} />
                 {basicDetails.email}
               </p>
 
-              <p className="flex gap-1 items-center text-[#e4e1e1] text-center md:text-left">
+              <p className="flex gap-1 items-center text-[#e4e1e1] text-left md:text-left">
                 <FiMapPin size={40} color="#1877F2" />
                 {basicDetails.address}
               </p>
@@ -138,12 +138,12 @@ export default function Footer() {
 
         {/* Footer Bottom */}
         <div className="border-t border-gray-400 pt-6 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-white text-center md:text-left">
+          <p className="text-white text-left md:text-left">
             Copyright © 2024 - All Rights Reserved by {basicDetails.company}
           </p>
 
           {/* Social Icons */}
-          <div className="text-gray-200 flex gap-2 justify-center md:justify-end">
+          <div className="text-gray-200 flex gap-2 justify-start md:justify-end">
             {[
               {
                 condition: basicDetails.support.facebook,
