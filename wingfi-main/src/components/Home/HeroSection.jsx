@@ -53,7 +53,7 @@ const HeroSection = () => {
   return (
     <div
       style={{ backgroundImage: "url('../../assets/hero-bgs/slider-bg.jpg')" }}
-      className="h-screen w-full bg-no-repeat bg-cover"
+      className="h-screen w-full bg-no-repeat bg-cover hero-section"
     >
       <Swiper
         direction={'vertical'}
