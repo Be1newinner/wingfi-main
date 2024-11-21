@@ -1,17 +1,21 @@
-import { useState, useEffect, FormEvent, ChangeEvent } from "react";
-import { redirect, useSearchParams } from "next/navigation";
-import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { loginRequest, loginRequestByGoogle } from "@/redux/reducers/auth";
-import { useSelector } from "react-redux";
-import { selectAuthErrors, selectUser } from "@/redux/selectors/auth";
+/** @format */
+
+'use client';
+
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+import { redirect, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { useDispatch } from 'react-redux';
+import { loginRequest, loginRequestByGoogle } from '@/redux/reducers/auth';
+import { useSelector } from 'react-redux';
+import { selectAuthErrors, selectUser } from '@/redux/selectors/auth';
 
 export default function SignInForm() {
-  const [emailIDInput, setEmailIDInput] = useState("");
-  const [PasswordInput, setPasswordInput] = useState("");
+  const [emailIDInput, setEmailIDInput] = useState('');
+  const [PasswordInput, setPasswordInput] = useState('');
   const [ErrorInputs, setErrorInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   const dispatch = useDispatch();
@@ -21,18 +25,18 @@ export default function SignInForm() {
   const searchParams = useSearchParams();
 
   const validations = (email: string, password: string): boolean => {
-    const tempErrors = { email: "", password: "" };
+    const tempErrors = { email: '', password: '' };
 
     // Validations
     const emailRegEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!email) tempErrors.email = "Please Input email ID!";
+    if (!email) tempErrors.email = 'Please Input email ID!';
     else if (!emailRegEx.test(email))
-      tempErrors.email = "Please Input valid email ID!";
+      tempErrors.email = 'Please Input valid email ID!';
 
-    if (!password) tempErrors.password = "Please Input password!";
+    if (!password) tempErrors.password = 'Please Input password!';
     else if (password.length < 6)
-      tempErrors.password = "Email or Password is invalid!";
+      tempErrors.password = 'Email or Password is invalid!';
 
     if (tempErrors.email || tempErrors.password) {
       setErrorInputs(tempErrors);
@@ -48,15 +52,15 @@ export default function SignInForm() {
         loginRequest({
           email: emailIDInput,
           password: PasswordInput,
-        })
+        }),
       );
-      setErrorInputs({ email: "", password: "" });
+      setErrorInputs({ email: '', password: '' });
     }
   };
 
   useEffect(() => {
-    const search = searchParams.get("next");
-    if (User?.uid) redirect(search ? "/" + search : "/");
+    const search = searchParams.get('next');
+    if (User?.uid) redirect(search ? '/' + search : '/');
   }, [User?.uid, searchParams]);
 
   return (
@@ -76,7 +80,9 @@ export default function SignInForm() {
             id="email"
             maxLength={25}
             value={emailIDInput}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setEmailIDInput(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setEmailIDInput(e.target.value)
+            }
           />
           {ErrorInputs.email && (
             <div className="label">
@@ -95,7 +101,9 @@ export default function SignInForm() {
             autoComplete="password"
             id="password"
             value={PasswordInput}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setPasswordInput(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setPasswordInput(e.target.value)
+            }
           />
           {ErrorInputs.password && (
             <div className="label">
@@ -105,16 +113,13 @@ export default function SignInForm() {
             </div>
           )}
         </label>
-        <button
-          type="submit"
-          className="btn btn-primary w-full rounded-sm"
-        >
+        <button type="submit" className="btn btn-primary w-full rounded-sm">
           Sign In
         </button>
       </form>
       <div className="text-xs mt-2">
-        Don{`&apos;`}t have an Account?{" "}
-        <Link href={"/signup"} className="text-blue-500 hover:text-blue-900">
+        Don{`&apos;`}t have an Account?{' '}
+        <Link href={'/signup'} className="text-blue-500 hover:text-blue-900">
           Sign Up
         </Link>
       </div>

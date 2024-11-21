@@ -1,3 +1,4 @@
+'use-client'
 import SingInForms from "./SignInForm";
 import { SignInWrapper } from "../../components";
 import { Suspense } from "react";

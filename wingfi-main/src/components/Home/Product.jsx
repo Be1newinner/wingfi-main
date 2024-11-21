@@ -10,14 +10,14 @@ import './style.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ProductsData } from '@/service/Products/ProductsService';
-import { FaStar, FaHeart } from 'react-icons/fa';
+import { FaStar } from 'react-icons/fa';
 import { CartButton } from '../ProductViewSm/CartButton';
 import { Theme_colors_class } from '@/infrastructure/theme';
 
 const Product = () => {
   const [productsArray, setProductsArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [favorites, setFavorites] = useState([]);
+  // const [favorites, setFavorites] = useState([]);
   const sliderRef = useRef(null); // Create a reference for the slick slider
 
   useEffect(() => {
@@ -40,13 +40,13 @@ const Product = () => {
     fetchProducts();
   }, []);
 
-  const toggleFavorite = (productId) => {
-    setFavorites((prev) =>
-      prev.includes(productId)
-        ? prev.filter((id) => id !== productId)
-        : [...prev, productId],
-    );
-  };
+  // const toggleFavorite = (productId) => {
+  //   setFavorites((prev) =>
+  //     prev.includes(productId)
+  //       ? prev.filter((id) => id !== productId)
+  //       : [...prev, productId],
+  //   );
+  // };
 
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, index) => (
