@@ -2,8 +2,9 @@
 
 import { ReactNode } from "react";
 import { Provider } from "react-redux";
-import { store } from "../redux/store";
-import RehydrationReducer from "./RehydrationReducer";
+import { persistor, store } from "../redux/store";
+// import RehydrationReducer from "./RehydrationReducer";
+import { PersistGate } from "redux-persist/es/integration/react";
 
 interface ProviderWrapperProps {
   children: ReactNode;
@@ -12,7 +13,9 @@ interface ProviderWrapperProps {
 export function ProviderWrapper({ children }: ProviderWrapperProps) {
   return (
     <Provider store={store}>
-      <RehydrationReducer>{children}</RehydrationReducer>
+      <PersistGate loading={null} persistor={persistor}>
+        {children}
+      </PersistGate>
     </Provider>
   );
 }

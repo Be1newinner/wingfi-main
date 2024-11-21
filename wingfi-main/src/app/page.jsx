@@ -1,6 +1,3 @@
-"use client"
-
-// import Hero from '@/components/Home/Hero';
 import About from "@/components/Home/About";
 import ClickChangeSwiper from "@/components/Home/ClickChangeSwiper";
 import BarChart from "@/components/Home/BarChart";
