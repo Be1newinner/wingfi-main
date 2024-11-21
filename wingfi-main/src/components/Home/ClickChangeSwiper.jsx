@@ -143,21 +143,6 @@ export default function ClickChangeSwiper({ params }) {
                 </div>
 
                 <div className="flex items-center gap-4 mt-5">
-                  {/* <div className="flex items-center gap-3 border-2 rounded-full border-solid p-3">
-                    <button
-                      className="px-4 text-xl font-bold"
-                      onClick={decrementQuantity}
-                    >
-                      <FaMinus />
-                    </button>
-                    <span className="text-xl font-bold">{quantity}</span>
-                    <button
-                      className="px-4 text-xl font-bold"
-                      onClick={incrementQuantity}
-                    >
-                      <FaPlus />
-                    </button>
-                  </div> */}
                   <div
                     className={
                       'flex items-center justify-center gap-3 border-2 rounded-full border-solid w-fit' +
