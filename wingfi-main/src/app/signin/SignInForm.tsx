@@ -1,6 +1,12 @@
 "use client";
 
-import { useState, useEffect, FormEvent, ChangeEvent } from "react";
+import {
+  useState,
+  useEffect,
+  FormEvent,
+  ChangeEvent,
+  MouseEventHandler,
+} from "react";
 import { redirect, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
@@ -43,9 +49,7 @@ export default function SignInForm() {
     } else return true;
   };
 
-  const emailSignIn = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const emailSignIn = async () => {
     if (validations(emailIDInput, PasswordInput)) {
       dispatch(
         loginRequest({
@@ -68,7 +72,7 @@ export default function SignInForm() {
       {AuthErrors ? (
         <span className="font-medium text-error">{AuthErrors}</span>
       ) : null}
-      <form onSubmit={emailSignIn} className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1">
         <label className="form-control w-full sm:w-96 mt-2">
           <input
             type="text"
@@ -112,10 +116,13 @@ export default function SignInForm() {
             </div>
           )}
         </label>
-        <button type="submit" className="btn btn-primary w-full rounded-sm">
+        <button
+          onClick={emailSignIn}
+          className="btn btn-primary w-full rounded-sm"
+        >
           Sign In
         </button>
-      </form>
+      </div>
       <div className="text-xs mt-2">
         Don{`&apos;`}t have an Account?{" "}
         <Link href={"/signup"} className="text-blue-500 hover:text-blue-900">
