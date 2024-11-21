@@ -107,7 +107,7 @@ const Product = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center justify-center lg:px-[50px] px-5 py-[50px]">
+    <div className="w-full flex flex-col items-center justify-center lg:px-[50px] px-2 py-[50px]">
       <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">
         Discover Products
       </p>

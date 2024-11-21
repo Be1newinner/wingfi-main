@@ -1,6 +1,12 @@
+/** @format */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  overflow-x: hidden !important;
+}
 
 :root {
   --primary-color: #ff5861;

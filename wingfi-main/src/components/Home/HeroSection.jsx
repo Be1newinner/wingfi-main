@@ -68,8 +68,8 @@ const HeroSection = () => {
         }}
         slidesPerView={1}
         spaceBetween={30}
-        mousewheel="true"
-        grabCursor
+        // mousewheel="true"
+        // grabCursor
         preloadimages="true"
         lazy="true"
         className="swiper-container"

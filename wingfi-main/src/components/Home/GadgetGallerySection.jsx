@@ -50,11 +50,13 @@ export default function GadgetGallerySection() {
   ];
 
   return (
-    <div className="w-full flex flex-col items-center justify-center px-[50px] py-[50px]">
+    <div className="w-full flex flex-col items-center justify-center lg:px-[50px] px-2 py-[50px] overflow-x-hidden">
       <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">
         Gadget Gallery
       </p>
-      <p className="text-5xl font-bold py-5">Limitless Power in Your Pocket!</p>
+      <p className="lg:text-5xl text-2xl font-bold py-5">
+        Limitless Power in Your Pocket!
+      </p>
       <div className="w-full py-10">
         <Swiper
           effect={'coverflow'}

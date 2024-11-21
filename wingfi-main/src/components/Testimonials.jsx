@@ -78,7 +78,9 @@ const Testimonials = () => {
         <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">
           Testimonials
         </p>
-        <p className="text-5xl font-bold py-5">Our Customer Feedback</p>
+        <p className="lg:text-5xl text-3xl font-bold py-5">
+          Our Customer Feedback
+        </p>
         <div className="w-full py-10">
           <Slider
             {...settings}
