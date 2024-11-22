@@ -35,6 +35,7 @@ import AdminDashboard from "./components/AdminDashboard.jsx";
 import AddContactDetails from "./components/AddContactDetails.jsx";
 import GetContactDetails from "./components/GetContactDetails.jsx";
 import ContactType from "./components/ContactType.jsx";
+import Products from "./components/products/products.jsx";
 
 const App = () => {
   return (
@@ -57,11 +58,13 @@ const App = () => {
                 <Route path="users/vendors" element={<Vendors />} />
 
                 {/* Services Routes */}
+
                 <Route path="service/train" element={<Train />} />
                 <Route path="service/air" element={<Air />} />
                 <Route path="service/hotel" element={<Hotel />} />
                 <Route path="service/cab" element={<Cab />} />
                 <Route path="service/bus" element={<Bus />} />
+                <Route path="products/products" element={<Products />} />
 
                 {/* Ratecard Routes */}
                 <Route path="ratecard/get-cab" element={<RateCardGetCab />} />

@@ -5,11 +5,25 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { FaChevronLeft, FaChevronRight, FaCaretDown } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import logo from "../assets/logo/tges-logo.webp";
-import { MdNotificationsNone } from "react-icons/md";
-import { LayoutDashboard, Users, FileText, Contact, FileCode, Grip } from "lucide-react";
+import {
+  MdNotificationsNone,
+  MdOutlineReviews,
+  MdReviews,
+} from "react-icons/md";
+import {
+  LayoutDashboard,
+  Users,
+  FileText,
+  Contact,
+  FileCode,
+  Grip,
+} from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAuth } from "../redux/selectors/authSelectors";
 import { authLogoutRequest } from "../redux/reducers/authReducer";
+import { FcCustomerSupport } from "react-icons/fc";
+import { AiOutlineCustomerService } from "react-icons/ai";
+import { GrTransaction } from "react-icons/gr";
 
 const navItems = [
   {
@@ -31,12 +45,12 @@ const navItems = [
     ],
   },
   {
-    text: "Services",
+    text: "Products",
     // to: '/service',
     icon: <Grip size={20} />,
     alert: false,
     children: [
-      { text: "Train", to: "/service/train" },
+      { text: "Products", to: "/products/products" },
       { text: "Air", to: "/service/air" },
       { text: "Bus", to: "/service/bus" },
       { text: "Hotel", to: "/service/hotel" },
@@ -44,14 +58,14 @@ const navItems = [
     ],
   },
   {
-    text: "Rate Card",
+    text: "Orders",
     // to: '/ratecard',
     icon: <FileText size={20} />,
     alert: false,
     children: [{ text: "Get Cabs", to: "/ratecard/get-cab" }],
   },
   {
-    text: "Contact Details",
+    text: "Statistics",
     // to: '/search-contact',
     icon: <Contact size={20} />,
     alert: false,
@@ -70,6 +84,25 @@ const navItems = [
       },
     ],
   },
+  {
+    text: "Reviews",
+    icon: <MdOutlineReviews size={20} />,
+    alert: false,
+    children: [],
+  },
+  {
+    text: "Customers",
+    icon: <AiOutlineCustomerService size={20} />,
+    alert: false,
+    children: [],
+  },
+  {
+    text: "Transactions",
+    icon: <GrTransaction size={20} />,
+    alert: false,
+    children: [],
+  },
+
   {
     text: "Get Logs",
     to: "/getlogs",
@@ -123,16 +156,17 @@ function AdminDashboard() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-100">
+    <div className="flex h-screen  overflow-hidden bg-gray-100">
       {/* Sidebar */}
       <aside
-        className={`shadow-lg bg-black ${
+        className={`shadow-lg bg-black  ${
           sidebarCollapsed ? "w-20" : "w-64"
         } transition-all duration-300`}
       >
-        <div className="flex items-center justify-between p-4 border-b border-gray-700">
+        {/* <div className="flex items-center justify-between p-4 border-b border-gray-700">
           {!sidebarCollapsed && (
-            <img src={logo} alt="logo" className="w-full h-10 object-contain" />
+            // <img src={logo} alt="logo" className="w-full h-10 object-contain" />
+            <h1 className="w-full  text-2xl font-extrabold object-contain text-white">WINGFI</h1>
           )}
           <button
             onClick={toggleSidebar}
@@ -140,9 +174,9 @@ function AdminDashboard() {
           >
             {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
           </button>
-        </div>
+        </div> */}
 
-        <nav className="p-4 font-semibold">
+        <nav className="p-4 flex flex-col  font-semibold">
           {navItems.map((item, index) => (
             <div key={index} className="mb-2">
               {/* Parent link */}
@@ -160,7 +194,7 @@ function AdminDashboard() {
                     : "hover:text-black text-white"
                 }`}
               >
-                <div className="flex items-center">
+                <div className="flex">
                   {item.icon}
                   {!sidebarCollapsed && (
                     <span className="ml-3 flex-1">{item.text}</span>
@@ -196,6 +230,21 @@ function AdminDashboard() {
             </div>
           ))}
         </nav>
+
+        <div className="flex absolute bottom-0 w-[260px] left-0 items-center justify-between p-4 border-b border-gray-700">
+          {!sidebarCollapsed && (
+            // <img src={logo} alt="logo" className="w-full h-10 object-contain" />
+            <h1 className="w-full  text-2xl font-extrabold object-contain text-white">
+              WINGFI
+            </h1>
+          )}
+          <button
+            onClick={toggleSidebar}
+            className="h-10 w-10 p-2 flex items-center justify-center rounded-md bg-white hover:bg-gray-100"
+          >
+            {sidebarCollapsed ? <FaChevronRight /> : <FaChevronLeft />}
+          </button>
+        </div>
       </aside>
 
       {/* Main Content */}
