@@ -1,0 +1,239 @@
+/** @format */
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectCabService } from "../../redux/selectors/serviceSelector";
+import { serviceCabRequest } from "../../redux/reducers/serviceReducer";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import Loader from "../../utils/Loader";
+import * as XLSX from "xlsx";
+import { format } from "date-fns";
+import CommonHeaderRoute from "../../utils/CommonHeaderRoute";
+import { toast } from "react-toastify";
+
+const Cab = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const { data: userData, loading, error } = useSelector(selectCabService);
+  const [expandedRows, setExpandedRows] = useState([]);
+  const limit = 10;
+  const [page, setPage] = useState(parseInt(searchParams.get("page")) || 1);
+
+  useEffect(() => {
+    dispatch(serviceCabRequest({ page, limit }));
+  }, [dispatch, page, limit]);
+
+  const handlePageChange = (newPage) => {
+    if (newPage > 0) {
+      setPage(newPage);
+      navigate(`/service/cab?page=${newPage}`);
+    }
+  };
+
+  const toggleRowExpansion = (id) => {
+    if (expandedRows.includes(id)) {
+      setExpandedRows(expandedRows.filter((rowId) => rowId !== id));
+    } else {
+      setExpandedRows([...expandedRows, id]);
+    }
+  };
+
+  // Utility function to format date and time
+  const formatDateTime = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return new Date(dateString).toLocaleString("en-US", options);
+  };
+
+  const exportToExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(userData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Cab");
+    XLSX.writeFile(
+      workbook,
+      `cab_service_${format(
+        new Date(),
+        "dd-MM-yyyy_HH-mm-ss"
+      )}_data-${limit}.xlsx`
+    );
+  };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  return (
+    <div className="w-full flex justify-start flex-col h-full overflow-scroll no-scrollbar">
+      <div className="p-5">
+        <CommonHeaderRoute title="Cab Service" userData={userData} />
+      </div>
+
+      <div className="w-full overflow-auto h-[calc(100vh-200px)] mb-4 px-4">
+        {userData.data.length > 0 ? (
+          <>
+            <table className="min-w-full bg-white border border-gray-300">
+              <thead>
+                <tr>
+                  <th className="px-4 py-2 border">ID</th>
+                  <th className="px-4 py-2 border">Name</th>
+                  <th className="px-4 py-2 border">Email</th>
+                  <th className="px-4 py-2 border">Contact No</th>
+                  <th className="px-4 py-2 border">Pickup Time</th>
+                  <th className="px-4 py-2 border">Drop Time</th>
+                  <th className="px-4 py-2 border">Expand</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userData.data.map((data) => (
+                  <React.Fragment key={data.id}>
+                    <tr>
+                      <td className="px-4 py-2 border">{data.id}</td>
+                      <td className="px-4 py-2 border">{data.name}</td>
+                      <td className="px-4 py-2 border">
+                        <a
+                          href={`mailto:${data.email}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {data.email}
+                        </a>
+                      </td>
+                      <td className="px-4 py-2 border">
+                        <a href={`tel:${data.contactNo}`}>{data.contactNo}</a>
+                      </td>
+                      <td className="px-4 py-2 border">
+                        {formatDateTime(data.pickupDateTime)}
+                      </td>
+                      <td className="px-4 py-2 border">
+                        {formatDateTime(data.dropDateTime)}
+                      </td>
+                      <td className="px-4 py-2 border">
+                        <button
+                          className="text-blue-500 underline"
+                          onClick={() => toggleRowExpansion(data.id)}
+                        >
+                          {expandedRows.includes(data.id) ? "Hide" : "Show"}
+                        </button>
+                      </td>
+                    </tr>
+                    {expandedRows.includes(data.id) && (
+                      <tr>
+                        <td colSpan="7" className="px-4 py-2 border">
+                          <table className="min-w-full bg-gray-100 border border-gray-300">
+                            <thead>
+                              <tr>
+                                <th className="px-4 py-2 border">
+                                  Pickup Address
+                                </th>
+                                <th className="px-4 py-2 border">
+                                  Pickup Landmark
+                                </th>
+                                <th className="px-4 py-2 border">
+                                  Drop Address
+                                </th>
+                                <th className="px-4 py-2 border">
+                                  Drop Landmark
+                                </th>
+                                <th className="px-4 py-2 border">
+                                  Type of Cab
+                                </th>
+                                <th className="px-4 py-2 border">
+                                  Other Requirements
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td className="px-4 py-2 border">
+                                  {data.pickupAddress}
+                                </td>
+                                <td className="px-4 py-2 border">
+                                  {data.pickupLandmark}
+                                </td>
+                                <td className="px-4 py-2 border">
+                                  {data.dropAddress}
+                                </td>
+                                <td className="px-4 py-2 border">
+                                  {data.dropLandmark}
+                                </td>
+                                <td className="px-4 py-2 border">
+                                  {data.typeOfCabRequired}
+                                </td>
+                                <td className="px-4 py-2 border">
+                                  {data.otherRequirements || "None"}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                ))}
+              </tbody>
+            </table>
+          </>
+        ) : (
+          <p className="text-center text-gray-600 text-2xl font-bold py-10">
+            No data found
+          </p>
+        )}
+      </div>
+
+      {/* Pagination */}
+      {userData.pagination &&
+        userData.pagination.total_pages > 1 &&
+        userData.data.length > 0 && (
+          <div className="flex-none bg-white p-5 border-t border-gray-300">
+            <div className="flex justify-between max-w-full mx-auto">
+              <button
+                onClick={() =>
+                  handlePageChange(userData.pagination?.current_page - 1)
+                }
+                disabled={userData.pagination?.current_page === 1}
+                className={`bg-indigo-600 py-2 px-4 text-white rounded-lg ${
+                  userData.pagination?.current_page === 1
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+              >
+                Previous
+              </button>
+
+              <span className="bg-indigo-600 px-4 py-2 text-white rounded-lg">
+                Page {userData.pagination?.current_page} of{" "}
+                {userData.pagination?.total_pages}
+              </span>
+
+              <button
+                onClick={() =>
+                  handlePageChange(userData.pagination?.current_page + 1)
+                }
+                disabled={
+                  userData.pagination?.current_page ===
+                  userData.pagination?.total_pages
+                }
+                className={`bg-indigo-600 py-2 px-4 text-white rounded-lg ${
+                  userData.pagination?.current_page ===
+                  userData.pagination?.total_pages
+                    ? "opacity-50 cursor-not-allowed"
+                    : ""
+                }`}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        )}
+    </div>
+  );
+};
+
+export default Cab;
