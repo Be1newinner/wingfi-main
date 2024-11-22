@@ -58,14 +58,14 @@ export default function ClickChangeSwiper({ params }) {
     },
   ];
 
-  const fontSize = {
-    fontSize: 'clamp(1.875rem, 1.7416rem + 0.7362vw, 2.625rem)',
-  };
+  // const fontSize = {
+  //   fontSize: 'clamp(1.875rem, 1.7416rem + 0.7362vw, 2.625rem)',
+  // };
 
   return (
-    <div className="px-[50px] py-[50px]">
+    <div className="lg:px-[50px] px-2 py-[50px]">
       <div className="grid lg:grid-cols-2 grid-cols-1 border border-solid rounded-lg">
-        <div className="flex flex-col gap-3 md:flex-row w-auto h-[550px] p-4 overflow-hidden">
+        <div className="flex flex-col gap-3 md:flex-row w-auto h-[550px] md:p-4 p-2 overflow-hidden">
           <div className="swiper-container p-4 rounded-lg gallery-top w-full h-[75vh] md:w-[80%] md:h-full">
             <Swiper
               spaceBetween={10}
@@ -77,6 +77,10 @@ export default function ClickChangeSwiper({ params }) {
               }}
               pagination={{ clickable: true }}
               watchSlidesProgress
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
               loop={true}
               modules={[FreeMode, Navigation, Thumbs]}
               className="w-full h-full"
@@ -94,9 +98,6 @@ export default function ClickChangeSwiper({ params }) {
                   </div>
                 </SwiperSlide>
               ))}
-              {/* Custom navigation buttons */}
-              <div className="swiper-button-prev text-black  border border-gray-300 rounded-full w-[50px] h-[50px] flex items-center justify-center shadow-lg"></div>
-              <div className="swiper-button-next text-black  border border-gray-300 rounded-full w-[50px] h-[50px] flex items-center justify-center shadow-lg"></div>
             </Swiper>
           </div>
         </div>
@@ -104,9 +105,7 @@ export default function ClickChangeSwiper({ params }) {
         <div className="flex justify-center items-center gap-3 flex-col w-auto h-[550px] p-3">
           {ProductsData.map((data, i) => (
             <div key={i} className="border border-solid p-4 rounded-lg">
-              <h3 className="text-4xl font-bold" style={fontSize}>
-                {data.title}
-              </h3>
+              <h3 className="lg:text-4xl text-2xl font-bold ">{data.title}</h3>
               <p className="text-gray-400 mt-2">
                 Always stay powered up, anywhere you go. Efficient and reliable
                 charging designed for convenience and versatility. Stay
@@ -143,21 +142,6 @@ export default function ClickChangeSwiper({ params }) {
                 </div>
 
                 <div className="flex items-center gap-4 mt-5">
-                  {/* <div className="flex items-center gap-3 border-2 rounded-full border-solid p-3">
-                    <button
-                      className="px-4 text-xl font-bold"
-                      onClick={decrementQuantity}
-                    >
-                      <FaMinus />
-                    </button>
-                    <span className="text-xl font-bold">{quantity}</span>
-                    <button
-                      className="px-4 text-xl font-bold"
-                      onClick={incrementQuantity}
-                    >
-                      <FaPlus />
-                    </button>
-                  </div> */}
                   <div
                     className={
                       'flex items-center justify-center gap-3 border-2 rounded-full border-solid w-fit' +

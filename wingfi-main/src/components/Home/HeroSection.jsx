@@ -1,20 +1,22 @@
-"use client";
+/** @format */
 
-import React, { useEffect, useRef } from "react";
+'use client';
+
+import React, { useEffect, useRef } from 'react';
 // Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/pagination';
 
-import "./home.css";
+import './home.css';
 // import required modules
-import { Pagination, Autoplay } from "swiper/modules";
-import Image from "next/image";
-import { gsap } from "gsap";
-import image1 from "@/assets/pro_1153_0.webp";
-import image2 from "@/assets/pb1.webp";
-import image3 from "@/assets/pro_1151_0.webp";
+import { Pagination, Autoplay } from 'swiper/modules';
+import Image from 'next/image';
+import { gsap } from 'gsap';
+import image1 from '@/assets/pro_1153_0.webp';
+import image2 from '@/assets/pb1.webp';
+import image3 from '@/assets/pro_1151_0.webp';
 
 const HeroSection = () => {
   const swiperRef = useRef(null); // Use ref to get access to Swiper instance
@@ -33,8 +35,8 @@ const HeroSection = () => {
             opacity: 1,
             y: 0,
             duration: 1, // Duration for animation
-            ease: "power2.inOut",
-          }
+            ease: 'power2.inOut',
+          },
         );
       };
 
@@ -42,7 +44,7 @@ const HeroSection = () => {
       animateSlide(swiperInstance.activeIndex);
 
       // Event listener to trigger animation on slide change
-      swiperInstance.on("slideChangeTransitionStart", () => {
+      swiperInstance.on('slideChangeTransitionStart', () => {
         animateSlide(swiperInstance.activeIndex);
       });
     }
@@ -51,10 +53,10 @@ const HeroSection = () => {
   return (
     <div
       style={{ backgroundImage: "url('../../assets/hero-bgs/slider-bg.jpg')" }}
-      className="h-screen w-full bg-no-repeat bg-cover"
+      className="h-screen w-full bg-no-repeat bg-cover hero-section"
     >
       <Swiper
-        direction={"vertical"}
+        direction={'vertical'}
         pagination={{
           clickable: true,
         }}
@@ -66,20 +68,20 @@ const HeroSection = () => {
         }}
         slidesPerView={1}
         spaceBetween={30}
-        mousewheel="true"
-        grabCursor
+        // mousewheel="true"
+        // grabCursor
         preloadimages="true"
         lazy="true"
         className="swiper-container"
         ref={swiperRef}
       >
         <SwiperSlide className="swiper-slide">
-          <div className="h-full flex justify-center items-center flex-col">
+          <div className="h-full flex justify-center items-center flex-col p-3">
             <div>
-              <h2 className="text-8xl font-bold text-white">
+              <h2 className="lg:text-8xl text-4xl font-bold text-white">
                 THE NEW STANDARD
               </h2>
-              <h4 className="text-3xl font-bold text-white">
+              <h4 className="text-2xl font-bold text-white">
                 Crafted Quality Starting at ₹749/-
               </h4>
             </div>
@@ -91,10 +93,10 @@ const HeroSection = () => {
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl uppercase font-bold text-white">
+              <h2 className="lg:text-8xl text-4xl font-bold text-white">
                 Charge on the Go
               </h2>
-              <h4 className="text-3xl font-bold text-white">
+              <h4 className="text-2xl font-bold text-white">
                 High-Capacity Power Banks from Just ₹749/-
               </h4>
             </div>
@@ -106,10 +108,10 @@ const HeroSection = () => {
         <SwiperSlide className="swiper-slide">
           <div className="h-full flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-8xl font-bold uppercase text-white">
+              <h2 className="lg:text-8xl text-4xl font-bold text-white">
                 Charge with Confidence
               </h2>
-              <h4 className="text-3xl font-bold text-white">
+              <h4 className="text-2xl font-bold text-white">
                 Safe and Reliable Power Banks Starting at ₹749/-
               </h4>
             </div>

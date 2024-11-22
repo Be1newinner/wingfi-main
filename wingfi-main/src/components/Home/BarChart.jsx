@@ -71,13 +71,16 @@ export default function BarChart() {
   };
 
   return (
-    <div className="px-[50px] py-[50px]">
+    <div className="lg:px-[50px] px-2 py-[50px]">
       <div className=" grid lg:grid-cols-2 grid-cols-1">
         <div className="flex justify-center items-center h-full">
           <Bar data={data} options={options} />
         </div>
         <div className="flex justify-center items-center w-full h-full">
-          <h2 className="font-[900] text-[300px]" style={textImage}>
+          <h2
+            className="font-[900] md:text-[300px] text-[150px]"
+            style={textImage}
+          >
             X6
           </h2>
         </div>
