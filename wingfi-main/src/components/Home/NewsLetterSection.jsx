@@ -17,7 +17,7 @@ export default function NewsLetterSection() {
           <p className="font-bold uppercase text-sm border-[3px] border-[#5784ff] px-5 py-2 rounded-full text-[#5784ff] text-center">
             Stay Wired In
           </p>
-          <p className="text-4xl lg:text-5xl font-semibold text-center lg:text-left">
+          <p className="text-3xl lg:text-5xl  font-semibold text-center lg:text-left">
             Get our most recent updates straight to your inbox.
           </p>
         </div>
@@ -28,7 +28,7 @@ export default function NewsLetterSection() {
               placeholder="Enter your email address"
               className="w-full p-4 border rounded-l-full text-base border-none focus:outline-none focus:border-none focus:ring-0"
             />
-            <button className="w-1/3 uppercase text-[15px] p-4 font-bold text-white text-xl bg-[#4e7fff] rounded-r-full">
+            <button className="w-1/3 uppercase lg:text-[15px] text-[10px] lg:p-4 p-2 font-bold text-white text-xl bg-[#4e7fff] rounded-r-full">
               Submit
             </button>
           </div>
