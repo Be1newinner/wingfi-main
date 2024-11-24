@@ -9,8 +9,8 @@ import {
   addNewProductsFailure,
 } from "../reducers/products";
 
-import loadProductService from "../../services/products/loadProductService";
-import { addProductService } from "../../services/products/loadProductService";
+import loadProductService from "../../service/products/loadProductService";
+import { addProductService } from "../../service/products/loadProductService";
 
 function* loadAllProductsSaga(action) {
   try {

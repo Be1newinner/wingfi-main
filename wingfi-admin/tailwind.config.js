@@ -1,32 +1,20 @@
-
-const config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        // Custom background colors
+        'custom-bg': '#022061', // Replace with your desired color
+        'primary-bg': '#1f2937', // Example dark background
+        'secondary-bg': '#374151', // Example secondary background color
+
+        // Custom text colors
+        'custom-text': '#333333', // Replace with your desired text color
+        'primary-text': '#ffffff', // Example for white text
+        'secondary-text': '#9ca3af', // Example for grayish text
       },
     },
   },
-  darkMode: "class",
-  plugins: [
-    function ({ addUtilities }) {
-      addUtilities({
-        '.scrollbar-hide': {
-          /* Hide scrollbar for Webkit-based browsers (Chrome, Safari, Edge) */
-          '-ms-overflow-style': 'none',  /* IE and Edge */
-          'scrollbar-width': 'none',     /* Firefox */
-          '&::-webkit-scrollbar': {
-            display: 'none',              /* Webkit-based browsers */
-          },
-        },
-      });
-    },
-  ],
+  plugins: [],
 };
-export default config;
